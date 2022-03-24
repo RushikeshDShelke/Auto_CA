@@ -1,0 +1,415 @@
+<root>
+	<carousels>
+		<item>
+			<title>Header Text</title>
+			<identifier>header-text</identifier>
+			<slides>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Free Shipping &amp; 60-Day Free Returns<br>
+<a href="#" style="border-bottom:1px solid">Join Now</a>			
+</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>20</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Up to 40% Off<br>
+<a href="#" style="border-bottom:1px solid">Shop Sale</a>			
+</div>
+]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Get The Latest Deals And More<br>
+<a href="#" style="border-bottom:1px solid">Sign up</a>
+</div>]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+		<item>
+			<title>Home Categories Au</title>
+			<identifier>home-categories-au</identifier>
+			<slides>
+				<item>
+					<carousel>home-categories-au</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="a-center">
+ <div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">			
+                       <img src="{{media url=&quot;athlete2/Demos/au/home-slider-au-01.jpg&quot;}}" alt="" />
+                        <span class="ox-banner-container">
+                            <span class="button primary medium ox-show-hover ox-moveup-hover">shop now</span>
+                        </span>	
+                    </a>
+                </div>
+                <h6>Clothing</h6>
+</a>
+</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home-categories-au</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>20</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="a-center">                
+<div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">			
+                       <img src="{{media url=&quot;athlete2/Demos/au/home-slider-au-02.jpg&quot;}}" alt="" />
+                        <span class="ox-banner-container">
+                            <span class="button primary medium  ox-show-hover ox-moveup-hover">shop now</span>
+                        </span>	
+                    </a>
+                </div>
+                <h6>Surfboards</h6>
+            </div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home-categories-au</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>30</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="a-center">                
+<div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">			
+                       <img src="{{media url=&quot;athlete2/Demos/au/home-slider-au-03.jpg&quot;}}" alt="" />
+                        <span class="ox-banner-container">
+                            <span class="button primary medium  ox-show-hover ox-moveup-hover">shop now</span>
+                        </span>	
+                    </a>
+                </div>
+                <h6>Snowboards</h6>
+            </div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home-categories-au</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>40</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="a-center">                
+<div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">			
+                       <img src="{{media url=&quot;athlete2/Demos/au/home-slider-au-04.jpg&quot;}}" alt="" />
+                        <span class="ox-banner-container">
+                            <span class="button primary medium ox-show-hover ox-moveup-hover">shop now</span>
+                        </span>	
+                    </a>
+                </div>
+                <h6>Skateboards</h6>
+            </div>]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+		<item>
+			<title>Home Banners Au</title>
+			<identifier>home_banners_au</identifier>
+			<slides>
+				<item>
+					<carousel>home_banners_au</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[        <div class="ox-banner ox-banner-content-overlay banner-stretch image-cover banner-stretch-vertical ox-img-zoom-hover-masked h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/au/home--au-b1.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button secondary medium ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	
+            </a>
+        </div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home_banners_au</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>20</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[		<div class="ox-banner banner-stretch banner-stretch-vertical ox-img-zoom-hover-masked image-cover ox-banner-big ox-banner-animated-text v-center h-center">
+			<a class="ox-banner-link" href="#">
+				<span class="ox-banner-animated-container">
+						<span class="text">are you beach </span>
+						<span class="text">body ready?</span>
+						<em class="link">SHOP NOW</em>
+				</span>
+				<img src="{{media url=&quot;athlete2/Demos/au/home--au-b2.jpg&quot;}}" alt="" />
+			</a>
+		</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home_banners_au</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>30</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[		<div class="ox-banner banner-stretch banner-stretch-vertical ox-img-zoom-hover-masked image-cover ox-banner-big ox-banner-animated-text v-bottom h-left">
+			<a class="ox-banner-link" href="#">
+				<span class="ox-banner-animated-container">
+						<span class="text" style="background:#fff">are you beach </span>
+						<span class="text" style="background:#fff">body ready?</span>
+						<em class="link">SHOP NOW</em>
+				</span>
+				<img src="{{media url=&quot;athlete2/Demos/au/home--au-b3.jpg&quot;}}" alt="" />
+			</a>
+		</div>]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+	</carousels>
+</root>

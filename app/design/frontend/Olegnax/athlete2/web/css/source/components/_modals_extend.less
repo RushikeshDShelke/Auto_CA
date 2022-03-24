@@ -1,0 +1,279 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Components -> Modals
+//  _____________________________________________
+
+//
+//  Variables
+//  ---------------------------------------------
+
+@modal-title__color: @text__color;
+@modal-title__border: none;
+
+@modal-popup-title__font-size: 26px;
+@modal-popup-title-mobile__font-size: @modal-popup-title__font-size;
+@modal-popup-breakpoint-screen__m: @screen__m;
+
+@modal-slide__first__indent-left: 44px;
+@modal-slide-mobile__background-color: #ffffff;
+@modal-overlay__background-color: rgba(0, 0, 0, 0.2);
+
+@minicart-icons-color: #000000;
+@modal-action-close__font-size: 11px;
+@modal-title__border: none;
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .modal-popup.confirm {
+        .modal-header{
+            display:none;
+        }
+        .modal-content{
+            padding-top: 30px;
+            text-align: center;
+            font-weight: @font-weight__bold;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+        .modal-inner-wrap .modal-content{
+            padding-right:30px;
+        }
+        .modal-footer{
+            text-align: center;
+            padding-bottom: 30px;
+        }
+    }
+    .modal-popup{
+        .modal-header,
+        .modal-content,
+        .modal-footer {
+            .lib-css(padding, 30px);
+        }
+        .modal-footer {
+            .lib-css(padding-top, 0);
+            button,
+            .action-primary{
+                min-width: 90px;
+                min-height: 40px;
+                margin-bottom:3px;
+            }
+        }
+        .modal-header {
+            .lib-css(padding-bottom, 25px);
+            background: #f4f4f4;
+        }
+
+    }
+    .modal-custom,
+    .modal-popup,
+    .modal-slide {
+        .action-close {
+            .lib-button-reset();
+            .lib-button-icon(
+                @icon-remove,
+                @_icon-font-color: @icon-btn-color,
+                @_icon-font-size: 12px,
+                @_icon-font-line-height: 40px,
+                @_icon-font-text-hide: true
+            );
+            position: absolute;
+            right: 0;
+            top: 0;
+            background:@icon-btn-background;
+            &:before{
+                width:40px;
+                height:40px;
+                font-weight: normal;
+                content: "\40";
+                font-family: 'Athlete2';
+            }            
+            &:after{
+                content:none;
+            }
+            &:focus,
+            &:hover{
+                background:@icon-btn-hover-background;
+                transition: all 10ms;
+                &:before{
+                    transition: all 10ms;
+                    color:@icon-btn-hover-color;
+                }
+            }
+        }
+        .modal-inner-wrap{
+            .lib-css(box-shadow, @modal-box-shadow);
+        }
+    }
+
+    .modal-custom {
+        .action-close {
+            .lib-css(margin, @indent__m);
+        }
+    }
+
+    .modal-popup {
+        .modal-title {
+            .lib-css(border-bottom, @modal-title__border);
+            .lib-css(font-weight, 800);
+            .lib-css(padding, 0);
+            .lib-css(padding-bottom, 0);
+            font-size: @modal-popup-title__font-size;
+            margin-bottom: 0;
+            min-height: 1em;
+            word-wrap: break-word;
+        }
+
+        .action-close {
+            padding: @indent__s;
+        }
+    }
+
+    .modal-slide {
+
+        .page-main-actions {
+            margin-bottom: @modal-slide-header__padding-vertical - (@indent__l/2);
+            margin-top: @modal-slide-header__padding-vertical;
+        }
+    }
+
+    .modals-overlay {
+        .lib-css(background-color, @modal-overlay__background-color);
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+
+    body {
+        &._has-modal-custom {
+            .modal-custom-overlay {
+                height: 100vh;
+                left: 0;
+                position: fixed;
+                top: 0;
+                width: 100vw;
+                z-index: @overlay__z-index;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .custom-slide {
+        .lib-modal();
+        .lib-modal-slide();
+
+        &._show {
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .modal-inner-wrap {
+            .lib-css(background-color, @modal-slide-mobile__background-color);
+            box-sizing: border-box;
+            height: auto;
+            min-height: 100%;
+        }
+    }
+
+    body {
+        &._has-modal-custom {
+            height: 100vh;
+            overflow: hidden;
+            width: 100vw;
+
+            .modal-custom-overlay {
+                .lib-css(background-color, @modal-overlay__background-color);
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @modal-popup-breakpoint-screen__m) {
+    .modal-popup {
+        &.modal-slide {
+            .modal-inner-wrap[class] {
+                .lib-css(background-color, @modal-slide-mobile__background-color);
+            }
+
+            &._inner-scroll {
+                &._show {
+                    -webkit-overflow-scrolling: touch;
+                    overflow-y: auto;
+                }
+
+                .modal-inner-wrap {
+                    height: auto;
+                    min-height: 100%;
+                }
+            }
+        }
+
+        .modal-title {
+            .lib-css(font-size, @modal-popup-title-mobile__font-size);
+            .lib-css(font-weight, 800);
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .modal-popup .modal-inner-wrap{
+            width: 90%;
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .modal-popup{
+        .modal-footer {
+            button,
+            .action-primary{
+                min-width: 120px;
+            }
+        }
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @modal-popup-breakpoint-screen__m) {
+    .modal-popup{
+        .modal-content,
+        .modal-footer {
+            .lib-css(padding, 50px);
+        }
+        .modal-footer {
+            .lib-css(padding-top, 0);
+        }
+        &.confirm{
+            .modal-content{
+                padding-top: 50px;
+            }
+            .modal-inner-wrap .modal-content{
+                padding-right:50px;
+            }
+            .modal-footer{
+                padding-bottom: 50px;
+            }
+        }
+    }
+    .modal-popup {
+        &.modal-slide {
+            .modal-footer {
+                .lib-css(border-top, @modal-title__border);
+                text-align: center;
+            }
+        }
+    }
+}

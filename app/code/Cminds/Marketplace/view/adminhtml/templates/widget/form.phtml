@@ -1,0 +1,126 @@
+<?php
+/** @var $block Cminds\Marketplace\Block\Adminhtml\Customer\Edit\Tab\Tabs\Shippingfees\Edit\Form */
+?>
+<?php
+$addNewMethod = __('Add New Method');
+$delNewMethod = __('Delete New Method');
+?>
+<div>
+    <button id="add_new_method_button" class="primary"><?php echo $addNewMethod ?></button>
+</div>
+<div class="entry-edit form-inline">
+    <?= $block->getFormHtml() ?>
+</div>
+<?= $block->getChildHtml('form_after') ?>
+
+<script>
+    require([
+        'jquery'
+    ], function(jQuery){
+        function onLoad() {
+            var shippings = jQuery('#edit_form').find('fieldset');
+            var addNewMethod = '<?php echo $addNewMethod ?>';
+            var delNewMethod = '<?php echo $delNewMethod ?>';
+
+            jQuery('#method_id').hide();
+
+            for (var i = 0; i < shippings.length; i++) {
+                var method = jQuery(shippings[i]).find('select[name^="method_type"]');
+                var flatRate = jQuery(shippings[i]).find('input[name^="flatrate_fee"]').parent().parent();
+                var tableRate = jQuery(shippings[i]).find('input[name^="tablerate_fee"]').parent().parent();
+                var tableRateCondition = jQuery(shippings[i]).find('select[name^="tablerate_condition"]').parent().parent();
+                var tableRateCsvFile = jQuery(shippings[i]).find('input[name^="tablerate_csv_file"]').parent().parent();
+                var methodDeleteButton = jQuery(shippings[i]).find('input[name^="delete_method_button"]');
+                var deleteMethod = jQuery(shippings[i]).find('input[name^="methods_to_delete"]');
+
+                methodDeleteButton.on(
+                    'click',
+                    {
+                        methodElement: shippings[i],
+                        deleteMethod: deleteMethod
+                    },
+                    function (event) {
+                        var methodElement = event.data.methodElement;
+                        var deleteMethod = event.data.deleteMethod;
+                        jQuery(deleteMethod).val('delete');
+                        jQuery(methodElement).hide();
+                });
+
+                // Free shiping
+                if (method.val() == 3) {
+                    flatRate.hide();
+                    tableRate.hide();
+                    tableRateCondition.hide();
+                    tableRateCsvFile.hide();
+                }
+
+                // Table rate
+                if (method.val() == 2) {
+                    flatRate.hide();
+                    tableRate.show();
+                    tableRateCondition.show();
+                    tableRateCsvFile.show();
+                }
+
+                // Flat rate
+                if (method.val() == 1) {
+                    flatRate.show();
+                    tableRate.hide();
+                    tableRateCondition.hide();
+                    tableRateCsvFile.hide();
+                }
+
+                method.on(
+                    'change',
+                    {
+                        flatRate: flatRate,
+                        tableRate: tableRate,
+                        tableRateCondition: tableRateCondition,
+                        tableRateCsvFile: tableRateCsvFile
+                    },
+                    function (event) {
+                        var flatRate = event.data.flatRate;
+                        var tableRate = event.data.tableRate;
+                        var tableRateCondition = event.data.tableRateCondition;
+                        var tableRateCsvFile = event.data.tableRateCsvFile;
+
+                        if (this.value == 3) {
+                            flatRate.hide();
+                            tableRate.hide();
+                            tableRateCondition.hide();
+                            tableRateCsvFile.hide();
+                        }
+
+                        if (this.value == 2) {
+                            flatRate.hide();
+                            tableRate.show();
+                            tableRateCondition.show();
+                            tableRateCsvFile.show();
+                        }
+
+                        if (this.value == 1) {
+                            flatRate.show();
+                            tableRate.hide();
+                            tableRateCondition.hide();
+                            tableRateCsvFile.hide();
+                        }
+                    }
+                );
+            }
+
+            // manage New Shipping Method block
+            jQuery('#add_new_method_button').click( function() {
+                if (jQuery('#method_id').is(':visible')) {
+                    jQuery('#add_new_method_button').text(addNewMethod);
+                    jQuery('#methods_to_delete_').val('delete');
+                    jQuery('#method_id').hide();
+                } else {
+                    jQuery('#add_new_method_button').text(delNewMethod);
+                    jQuery('#methods_to_delete_').val('');
+                    jQuery('#method_id').show();
+                }
+            });
+        }
+        onLoad();
+    });
+</script>

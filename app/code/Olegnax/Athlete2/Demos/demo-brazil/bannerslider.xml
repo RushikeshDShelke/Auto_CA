@@ -1,0 +1,114 @@
+<root>
+	<bannersliders>
+		<item>
+			<group_name>brazil</group_name>
+			<slide_width>340</slide_width>
+			<slide_height>234</slide_height>
+			<identifier>brazil-banner-slider</identifier>
+			<slides>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/brazil/bannerslider/banner-slider-br-01.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(61, 61, 61)</title_color>
+					<title_bg>rgb(255, 255, 255)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(61, 61, 61)</title_hover_bg>
+					<title_position>top-left</title_position>
+					<title>run free
+with athlete</title>
+					<link_color>rgb(61, 61, 61)</link_color>
+					<link_bg>rgb(201, 238, 35)</link_bg>
+					<link_text>shop now</link_text>
+					<link_href>#</link_href>
+					<sort_order>10</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/brazil/bannerslider/banner-slider-br-02.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(61, 61, 61)</title_color>
+					<title_bg>rgb(255, 255, 255)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(61, 61, 61)</title_hover_bg>
+					<title_position>bottom-left</title_position>
+					<title>who's got
+your back?</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgb(61, 61, 61)</link_bg>
+					<link_text>shop awesome gear</link_text>
+					<link_href>#</link_href>
+					<sort_order>20</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/brazil/bannerslider/banner-slider-br-03.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(61, 61, 61)</title_color>
+					<title_bg>rgb(255, 255, 255)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(61, 61, 61)</title_hover_bg>
+					<title_position>center</title_position>
+					<title>smart
+devices</title>
+					<link_color>rgb(58, 58, 58)</link_color>
+					<link_bg>rgb(201, 238, 35)</link_bg>
+					<link_text>view products</link_text>
+					<link_href>#</link_href>
+					<sort_order>30</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/brazil/bannerslider/banner-slider-br-04.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(61, 61, 61)</title_color>
+					<title_bg>#ffffff</title_bg>
+					<title_hover_color>#ffffff</title_hover_color>
+					<title_hover_bg>rgb(61, 61, 61)</title_hover_bg>
+					<title_position>top-left</title_position>
+					<title>the heat 
+is on</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgb(61, 61, 61)</link_bg>
+					<link_text>discover</link_text>
+					<link_href>#</link_href>
+					<sort_order>40</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/brazil/bannerslider/banner-slider-br-05.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(61, 61, 61)</title_color>
+					<title_bg>rgb(255, 249, 249)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(61, 61, 61)</title_hover_bg>
+					<title_position>center</title_position>
+					<title>tame
+the beast</title>
+					<link_color>rgb(65, 65, 65)</link_color>
+					<link_bg>rgb(201, 238, 35)</link_bg>
+					<link_text>shop now</link_text>
+					<link_href>#</link_href>
+					<sort_order>50</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/brazil/bannerslider/banner-slider-br-06.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(61, 61, 61)</title_color>
+					<title_bg>rgb(255, 255, 255)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(61, 61, 61)</title_hover_bg>
+					<title_position>top-left</title_position>
+					<title>reach
+the summit</title>
+					<link_color>#ffffff</link_color>
+					<link_bg>rgb(61, 61, 61)</link_bg>
+					<link_text>shop the look</link_text>
+					<link_href>#</link_href>
+					<sort_order>60</sort_order>
+				</item>
+			</slides>
+		</item>
+	</bannersliders>
+</root>

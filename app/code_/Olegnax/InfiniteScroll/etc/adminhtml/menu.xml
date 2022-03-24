@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Olegnax_InfiniteScroll::scroll" title="InfiniteScroll" translate="title"
+			 module="Olegnax_InfiniteScroll" sortOrder="999" parent="Olegnax_Core::Olegnax_Core"
+			 resource="Olegnax_InfiniteScroll::scroll"/>
+		<add id="Olegnax_InfiniteScroll::config" title="Configuration" translate="title"
+			 module="Olegnax_InfiniteScroll" sortOrder="10"
+			 action="adminhtml/system_config/edit/section/olegnax_infinitescroll"
+			 parent="Olegnax_InfiniteScroll::scroll" resource="Olegnax_InfiniteScroll::scroll"/>
+	</menu>
+</config>

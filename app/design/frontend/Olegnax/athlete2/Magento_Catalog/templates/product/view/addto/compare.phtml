@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+
+/** @var $block \Magento\Catalog\Block\Product\View\AddTo\Compare */
+$compare_disabled = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product/compare_disable');
+if(!$compare_disabled):
+$actions_position = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product/actions_position');
+?>
+
+<?php $viewModel = $block->getData('addToCompareViewModel'); ?>
+<?php if ($viewModel->isAvailableForCompare($block->getProduct())): ?>
+	<?php if ('2' == $actions_position) { ?>
+	<a href="#" data-post='<?= /* @noEscape */ $block->getPostDataParams() ?>'
+	   data-role="add-to-links"
+	   class="action tocompare athlete2-icon-compare a2-tooltip-btn">
+		<span class="a2-tooltip"><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+	</a>
+	<?php } else { ?>
+	<a href="#" data-post='<?= /* @noEscape */ $block->getPostDataParams() ?>'
+	   data-role="add-to-links"
+	   class="action tocompare athlete2-icon-compare">
+		<span><?= $block->escapeHtml(__('Add to Compare')) ?></span>		
+	</a>
+	<?php } ?>
+<?php endif; ?>
+<?php endif; ?>

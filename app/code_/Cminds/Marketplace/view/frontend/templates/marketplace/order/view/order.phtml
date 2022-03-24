@@ -1,0 +1,71 @@
+<?php $_order = $block->getOrder(); ?>
+<?php $_items = $block->getItems(); ?>
+<?php $_shippingAddress = $block->getOrder()->getShippingAddress(); ?>
+<?php $_billingAddress = $block->getOrder()->getBillingAddress(); ?>
+
+<div class='row'>
+    <div class="col-md-5">
+        <h3><?php echo /* @escapeNotVerified */ __("Billing Address"); ?></h3>
+        <?php echo $block->getFormatedBillingAddress();?>
+    </div>
+    <?php if($_shippingAddress) : ?>
+    <div class="col-md-5">
+        <h3><?php echo /* @escapeNotVerified */ __("Shipping Address"); ?></h3>
+        <?php echo $block->getFormatedShippingAddress();?>
+    </div>
+    <?php endif ;?>
+
+</div>
+
+<div class='row'>
+    <div class='col-md-12'>
+        <h2 class="sub-header"><?php echo /* @escapeNotVerified */  __("Ordered Items"); ?></h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><?php echo /* @escapeNotVerified */  __('Product'); ?></th>
+                    <th><?php echo /* @escapeNotVerified */  __('SKU'); ?></th>
+                    <th><?php echo /* @escapeNotVerified */  __('Item Status'); ?></th>
+                    <th><?php echo /* @escapeNotVerified */  __('Price'); ?></th>
+                    <th><?php echo /* @escapeNotVerified */  __('Qty'); ?></th>
+                    <th><?php echo /* @escapeNotVerified */  __('Row Total'); ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $sumPrice = 0; $sumQty = 0; $sumRowTotal = 0;?>
+                <?php foreach($_items AS $_item) : ?>
+                    <?php if($_item->getData('parent_item_id')) continue; ?>
+                    <tr>
+                        <td>
+                            <?php echo $block->escapeHtml($_item->getName()); ?>
+                            <?php if(is_string($_item->getData('product_options'))) : ?>
+                                <?php $data = unserialize($_item->getData('product_options')); ?>
+                                <?php if(isset($data['attributes_info'])): ?>
+                                    <dl>
+                                        <?php foreach($data['attributes_info'] AS $attribute): ?>
+                                            <dt><?php echo $attribute['label']; ?></dt>
+                                            <dd><?php echo $attribute['value']; ?></dd>
+                                        <?php endforeach; ?>
+
+                                    </dl>
+                                <?php endif;?>
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo $block->escapeHtml($_item->getSku()); ?></td>
+                        <td><?php echo $block->escapeHtml($_item->getStatus()); ?></td>
+                        <td><?php $sumPrice = $sumPrice + $_item->getPrice(); echo  $block->getCurrencyHelper()->currency($_item->getPrice()); ?></td>
+                        <td><?php $sumQty = $sumQty + $_item->getQtyOrdered(); echo /* @escapeNotVerified */ number_format($_item->getQtyOrdered()); ?></td>
+                        <td><?php $sumRowTotal = $sumRowTotal + $_item->getRowTotal(); echo $block->getCurrencyHelper()->currency($_item->getRowTotal()); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                <th colspan="4"></th>
+                <th><?php echo $block->escapeHtml($sumQty); ?></th>
+                <th><?php echo $block->getCurrencyHelper()->currency($sumRowTotal); ?></th>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

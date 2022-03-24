@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="admin-2columns-left">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Olegnax\Athlete2Slideshow\Block\Adminhtml\Slides\Edit" name="olegnax_athlete2slideshow_slides_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Olegnax\Athlete2Slideshow\Block\Adminhtml\Slides\Edit\Tabs" name="olegnax_athlete2slideshow_slides_tabs">
+                <block class="Olegnax\Athlete2Slideshow\Block\Adminhtml\Slides\Edit\Tab\General" name="olegnax_athlete2slideshow_slides_tab_general"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general</argument>
+                    <argument name="block" xsi:type="string">olegnax_athlete2slideshow_slides_tab_general</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

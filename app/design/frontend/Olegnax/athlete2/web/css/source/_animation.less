@@ -1,0 +1,322 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Animations
+//  _____________________________________________
+    .simple-animation() {
+        -webkit-transition: all 200ms ease;
+        -moz-transition: all 200ms ease;
+        -o-transition: all 200ms ease;
+        transition: all 200ms ease;
+    }
+    .fast-anim{
+        -webkit-transition: @link__transition;
+        -moz-transition: @link__transition;
+        -o-transition: @link__transition;
+        transition: @link__transition;
+        &:hover{
+            -webkit-transition: all 10ms ease-in-out;
+            -moz-transition: all 10ms ease-in-out;
+            -o-transition: all 10ms ease-in-out;
+            transition: all 10ms ease-in-out;
+        }
+    }
+& when (@media-common = true) {
+    .simple-animation {
+        -webkit-transition: all 200ms ease;
+        -moz-transition: all 200ms ease;
+        -o-transition: all 200ms ease;
+        transition: all 200ms ease;
+    }
+
+    //
+    //  Animated text
+    //  ---------------------------------------------
+
+    .animated-text--masked {        
+        overflow: hidden;
+        color: #000;
+        position: relative;
+        display: inline-block;
+        white-space: nowrap;
+    }
+    .animated-text--masked .wrap {
+        overflow: hidden;
+        position: relative;
+        z-index: 100;
+        -ms-transform: translateX(0%) translateZ(0);
+        -webkit-transform: translateX(0%) translateZ(0);
+        transform: translateX(0%) translateZ(0);
+    }
+    .animated-text--masked .inner {
+        line-height: 1;
+        margin: 0;
+        padding: 7px 12px;
+        display: block;
+        color:#000000;
+        -ms-transform: translateX(0%) translateZ(0);
+        -webkit-transform: translateX(0%) translateZ(0);
+        transform: translateX(0%) translateZ(0);
+    }
+    .animated-text--masked:after {
+        display: block;
+        background-color: #000;
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-101%) translateZ(0);
+    }
+    .ox-slideout{
+        .field.search{
+            .animated-text--masked{
+                top:-7px;
+            }
+        }
+    }
+    .ox-overlay-active,
+    .ox-slideout-active{ 
+        .animated-text--masked {
+            .wrap{
+                animation: animated-text-masked-wrapper 1s;
+            }
+            .inner{
+                animation: animated-text-masked-inner 1s;
+            }
+            &:after{
+                animation: animated-text-masked-after 1s;
+            }
+        }
+    }
+
+    @keyframes animated-text-masked-wrapper {
+        0% {     
+            -ms-transform: translateX(100%) translateZ(0);
+            -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0); 
+        }
+        10% {     
+            -ms-transform: translateX(100%) translateZ(0);
+            -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0); 
+        }
+        50% {     
+            -ms-transform: translateX(0%) translateZ(0);
+            -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+        }
+        70% {     
+            -ms-transform: translateX(0%) translateZ(0);
+            -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+        }
+        100% {     
+            -ms-transform: translateX(0%) translateZ(0);
+            -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+        }
+    }
+
+    @keyframes animated-text-masked-inner {
+        0% {     
+            -ms-transform: translateX(-100%) translateZ(0);
+            -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);
+            color:#ffffff;
+        }
+        10% {     
+            -ms-transform: translateX(-100%) translateZ(0);
+            -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);
+            color:#ffffff;
+        }
+        50% {     
+            -ms-transform: translateX(0%) translateZ(0);
+            -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+            color:#ffffff;
+        }
+        70% {     
+            -ms-transform: translateX(0%) translateZ(0);
+            -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+            color:#ffffff;
+        }
+        100% {
+            color:inherit;
+            -ms-transform: translateX(0%) translateZ(0);
+            -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+        }
+    }
+
+    @keyframes animated-text-masked-after {
+        0% {     
+            transform: translateX(100%) translateZ(0);
+        }
+        10% {     
+            transform: translateX(100%) translateZ(0);
+        }
+        50% {
+            transform: translateX(0) translateZ(0);
+        }
+        70% {
+            transform: translateX(0) translateZ(0);
+        }
+        100% {     
+            transform: translateX(-100%) translateZ(0);
+        }
+    }
+
+    .flashing-cursor{
+        height:48px;
+        width:3px;
+        background: #000000;
+        display: block;
+        position: absolute;
+        animation: flashing 1s infinite;
+    }
+
+    @keyframes flashing {
+        0% {     
+           opacity:1;
+        }
+
+        50% {
+            opacity:0;
+        }
+
+        100% {     
+            opacity:1;;
+        }
+    }
+
+
+    @keyframes move-vertical-hover {
+        0% {     
+            transform: translateY(0);
+        }
+        50% {     
+            transform: translateY(-35px);
+        }
+        50.1% {     
+            transform: translateY(35px);
+        }
+        100% {     
+            transform: translateY(0);
+        }
+    }
+    @keyframes move-vertical-out {
+        0% {     
+            transform: translateY(0);
+        }
+        50% {     
+            transform: translateY(35px);
+        }
+        50.1% {     
+            transform: translateY(-35px);
+        }
+        100% {     
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scalein {
+        0% {     
+            transform: scaleX(0);
+        }
+        100% {     
+            transform: scaleX(1);
+        }
+    }
+    @keyframes scaleout {
+        0% {     
+            transform: scaleX(1);
+        }
+        100% {     
+            transform: scaleX(0);
+        }
+    }
+    
+    @keyframes move-horizontal-hover {
+        0% {     
+            transform: translateX(0);
+        }
+        50% {     
+            transform: translateX(-25px);
+        }
+        50.1% {     
+            transform: translateX(25px);
+        }
+        100% {     
+            transform: translateX(0);
+        }
+    }
+    @keyframes move-horizontal-out {
+        0% {     
+            transform: translateX(0);
+        }
+        50% {     
+            transform: translateX(25px);
+        }
+        50.1% {     
+            transform: translateX(-25px);
+        }
+        100% {     
+            transform: translateX(0);
+        }
+    }
+
+
+    @keyframes translate-up {
+        0% {     
+            transform: translateY(0%);
+        }
+
+        100% {     
+            transform: translateY(-100%);
+        }
+    }
+    @keyframes translate-down {
+        0% {     
+            transform: translateY(-100%);
+        }
+
+        100% {     
+            transform: translateY(0%);
+        }
+    }
+
+    @keyframes spin {
+        from{
+            transform: rotate(0deg);
+        }to{
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes messages {
+        0% {     
+            opacity:0;
+            transform: translateY(10px);
+        }
+        2% {     
+            opacity:1;
+            transform: translateY(0);
+        }
+        95%{
+            opacity:1;
+            visibility:visible;
+            transform: translateY(0);
+        }
+        100 {
+            opacity:0;
+            visibility:hidden;
+            transform: translateY(-10px);
+        }
+    }
+}

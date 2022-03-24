@@ -1,0 +1,196 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_NewsletterPopupBasic
+ * @copyright   Copyright (c) 2021 Olegnax (http://olegnax.com/). All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Olegnax\NewsletterPopupBasic\Model\Config\Source\Layout;
+use Olegnax\NewsletterPopupBasic\Model\Config\Source\PositionH;
+use Olegnax\NewsletterPopupBasic\Model\Config\Source\PositionV;
+use Olegnax\NewsletterPopupBasic\Model\Config\Source\InputStyle;
+
+/** @var array $appearance */
+$appearance = $block->getData('appearance');
+/** @var array $general */
+$general = $block->getData('general');
+/** @var Template $block */
+/** @var Escaper $escaper */
+?>
+<?php if ($general['width']): ?>
+	.modal-popup.ox-newsletter-modal { width: <?= $escaper->escapeHtmlAttr($general['width']) ?>px}
+<?php endif; ?>
+<?php if ($general['height']): ?>
+	@media only screen and (min-width: 640px){
+	.modal-popup.ox-newsletter-modal .modal-inner-wrap{ height: <?= $escaper->escapeHtmlAttr($general['height']) ?>px}
+	}
+<?php endif; ?>
+<?php if ($general['mobile_height']): ?>
+	@media only screen and (max-width: 639px){
+	.modal-popup.ox-newsletter-modal .col.-content{    height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	.modal-popup.ox-newsletter-modal .ox-newsletter-modal__container,
+	.modal-popup.ox-newsletter-modal .modal-inner-wrap{height:100%}
+	.modal-popup.ox-newsletter-modal { height: <?= $escaper->escapeHtmlAttr($general['mobile_height']) ?>px}
+	}
+<?php endif; ?>
+<?php if ($general['mobile_width']): ?>
+	@media only screen and (max-width: 639px){
+	.modal-popup.ox-newsletter-modal { width: <?= $escaper->escapeHtmlAttr($general['mobile_width']) ?>px}
+	}
+<?php endif; ?>
+<?php if ($general['mobile_image_height']): ?>
+	@media only screen and (max-width: 639px){
+	.ox-newsletter-modal .-image { padding-bottom: <?= $escaper->escapeHtmlAttr($general['mobile_image_height']) ?>px}
+	}
+<?php endif; ?>
+<?php if ($general['mobile_image_height'] === '0'): ?>
+	@media only screen and (max-width: 639px){
+	.ox-newsletter-modal .-image { display:none!important;}
+	}
+<?php endif; ?>
+<?php if ($general['position_h'] == PositionH::RIGHT): ?>
+	.modal-popup.ox-newsletter-modal { left:auto; right:20px;}
+<?php endif; ?>
+<?php if ($general['position_v'] == PositionV::BOTTOM): ?>
+	.modal-popup.ox-newsletter-modal { bottom:20px; top:auto; }
+<?php endif; ?>
+
+<?php $columnWidth = $escaper->escapeHtmlAttr($general['column_width']);
+if ($general['layout'] != Layout::FULLWIDTH && $columnWidth): ?>
+	@media only screen and (min-width: 640px){
+	.ox-newsletter-modal .-columns .col.-image{
+	-ms-flex: 0 0  <?= $columnWidth ?>%;
+	flex: 0 0  <?= $columnWidth ?>%;
+	max-width:  <?= $columnWidth ?>%;
+	}
+	.ox-newsletter-modal .-columns .col.-content{
+	-ms-flex: 0 0  <?= (100 - $columnWidth) ?>%;
+	flex: 0 0  <?= (100 - $columnWidth) ?>%;
+	max-width:  <?= (100 - $columnWidth) ?>%;
+	}
+	}
+<?php endif; ?>
+
+
+<?php if ($general['padding'] != ''): ?>
+	.modal-popup.ox-newsletter-modal .modal-inner-wrap{ padding: <?= $escaper->escapeHtmlAttr($general['padding']) ?>px}
+<?php endif; ?>
+<?php if ($general['tablet_padding'] != ''): ?>
+	@media only screen and (min-width: 640px) and (max-width: 1024px){
+	.modal-popup.ox-newsletter-modal .modal-inner-wrap{ padding: <?= $escaper->escapeHtmlAttr($general['tablet_padding']) ?>px}
+	}
+<?php endif; ?>
+<?php if ($general['mobile_padding'] != ''): ?>
+	@media only screen and (max-width: 639px){
+	.modal-popup.ox-newsletter-modal .modal-inner-wrap{ padding: <?= $escaper->escapeHtmlAttr($general['mobile_padding']) ?>px}
+	}
+<?php endif; ?>
+<?php if ($general['content_padding'] != ''): ?>
+	.ox-newsletter-modal .inner{ padding: <?= $escaper->escapeHtmlAttr($general['content_padding']) ?>px}
+<?php endif; ?>
+<?php if ($general['tablet_content_padding'] != ''): ?>
+	@media only screen and (min-width: 640px) and (max-width: 1024px){
+	.ox-newsletter-modal .inner{ padding: <?= $escaper->escapeHtmlAttr($general['tablet_content_padding']) ?>px}
+	}
+<?php endif; ?>
+<?php if ($general['mobile_content_padding'] != ''): ?>
+	@media only screen and (max-width: 639px){
+	.ox-newsletter-modal .inner{ padding: <?= $escaper->escapeHtmlAttr($general['mobile_content_padding']) ?>px}
+	}
+<?php endif; ?>
+	
+<?php if ($appearance['background_color']): ?>
+	.modal-popup.ox-newsletter-modal .modal-inner-wrap{ background-color: <?= $appearance['background_color'] ?>}
+<?php endif; ?>
+
+<?php if ($appearance['bg_image_enabled'] && $appearance['background_image']): ?>
+	.modal-popup.ox-newsletter-modal .modal-inner-wrap{
+    <?= $block->getBackgroundImage() ?>
+    <?php if ($appearance['bg_position_y'] && $appearance['bg_position_x']): ?>
+		background-position: <?= $escaper->escapeHtmlAttr($appearance['bg_position_x']) ?> <?= $escaper->escapeHtmlAttr($appearance['bg_position_y']) ?>;
+    <?php endif; ?>
+    <?php if ($appearance['bg_repeat']): ?>
+		background-repeat: <?= $escaper->escapeHtmlAttr($appearance['bg_repeat']) ?>;
+    <?php endif; ?>
+    <?php if ($appearance['bg_size']): ?>
+		background-size: <?= $escaper->escapeHtmlAttr($appearance['bg_size']) ?>;
+    <?php endif; ?>
+	}
+<?php endif; ?>
+
+<?php if ($appearance['newsletter_text_color']): ?>
+	.modal-popup.ox-newsletter-modal .ox-newsletter-modal__container a,	
+	.modal-popup.ox-newsletter-modal .ox-newsletter-modal__container{ color: <?= $appearance['newsletter_text_color'] ?>}
+	.ox-newsletter-modal__container a.ox-grey-underline{ border-color: <?= $appearance['newsletter_text_color'] ?> }
+<?php endif; ?>
+<?php if ($appearance['newsletter_titles_color']): ?>
+	.ox-newsletter-modal__container h1,
+	.ox-newsletter-modal__container h2,
+	.ox-newsletter-modal__container h3,
+	.ox-newsletter-modal__container h4,
+	.ox-newsletter-modal__container h5,
+	.ox-newsletter-modal__container h6{ color: <?= $appearance['newsletter_titles_color'] ?>}
+<?php endif; ?>
+
+<?php if ($appearance['close_button_bg']): ?>
+	.modal-popup.ox-newsletter-modal .action-close{ background-color: <?= $appearance['close_button_bg'] ?> }
+<?php endif; ?>
+<?php if ($appearance['close_button_icon_color']): ?>
+	.modal-popup.ox-newsletter-modal .action-close:before { color: <?= $appearance['close_button_icon_color'] ?> }
+<?php endif; ?>
+<?php if ($appearance['close_button_bg_hover']): ?>
+	.modal-popup.ox-newsletter-modal .action-close:focus,
+	.modal-popup.ox-newsletter-modal .action-close:active,
+	.modal-popup.ox-newsletter-modal .action-close:hover{ background-color: <?= $appearance['close_button_bg_hover'] ?> }
+<?php endif; ?>
+<?php if ($appearance['close_button_icon_color_hover']): ?>
+	.modal-popup.ox-newsletter-modal .action-close:focus:before,
+	.modal-popup.ox-newsletter-modal .action-close:active:before,
+	.modal-popup.ox-newsletter-modal .action-close:hover:before{ color: <?= $appearance['close_button_icon_color_hover'] ?> }
+<?php endif; ?>
+
+<?php if ($appearance['newsletter_button_color']): ?>
+	.ox-newsletter-modal .block.newsletter .action.primary { color: <?= $appearance['newsletter_button_color'] ?> }
+<?php endif; ?>
+<?php if ($appearance['newsletter_button_hover']): ?>
+	.ox-newsletter-modal .block.newsletter .action.primary:focus,
+	.ox-newsletter-modal .block.newsletter .action.primary:active,
+	.ox-newsletter-modal .block.newsletter .action.primary:hover { color: <?= $appearance['newsletter_button_hover'] ?> }
+<?php endif; ?>
+<?php if ($appearance['newsletter_button_bg']): ?>
+	.ox-newsletter-modal .block.newsletter .action.primary { background-color: <?= $appearance['newsletter_button_bg'] ?> }
+<?php endif; ?>
+<?php if ($appearance['newsletter_button_hover_bg']): ?>
+	.ox-newsletter-modal .block.newsletter .action.primary:after { background-color: <?= $appearance['newsletter_button_hover_bg'] ?> }
+<?php endif; ?>
+
+<?php if ($appearance['newsletter_input_bg']): ?>	
+	.ox-newsletter-modal .block.newsletter input { background-color: <?= $appearance['newsletter_input_bg'] ?> }
+<?php endif; ?>
+<?php if ($appearance['newsletter_input_border_color'] && $appearance['newsletter_input_style'] == InputStyle::NORMAL): ?>
+	.ox-newsletter-modal .block.newsletter input { border:1px solid; }
+<?php endif; ?>
+<?php if ($appearance['newsletter_input_border_color']): ?>
+	.ox-newsletter-modal .inputs-style--underlined .block.newsletter input,
+	.ox-newsletter-modal .block.newsletter input { border-color: <?= $appearance['newsletter_input_border_color'] ?> }
+<?php endif; ?>
+<?php if ($appearance['newsletter_input_border_focus']): ?>
+	.ox-newsletter-modal .inputs-style--underlined .block.newsletter input:focus,
+	.ox-newsletter-modal .block.newsletter input:focus { border-color: <?= $appearance['newsletter_input_border_focus'] ?> }
+<?php endif; ?>
+<?php if ($appearance['newsletter_input_color']): ?>
+	.ox-newsletter-modal .block.newsletter input,
+	.ox-newsletter-modal .block.newsletter .newsletter .control:before { color: <?= $appearance['newsletter_input_color'] ?> }
+	.ox-newsletter-modal .block.newsletter input::-webkit-input-placeholder { color: <?= $appearance['newsletter_input_color'] ?> }
+	.ox-newsletter-modal .block.newsletter input::placeholder { color: <?= $appearance['newsletter_input_color'] ?> }
+	.ox-newsletter-modal .block.newsletter input:-ms-input-placeholder { color: <?= $appearance['newsletter_input_color'] ?> }
+	.ox-newsletter-modal .block.newsletter input::-ms-input-placeholder { color: <?= $appearance['newsletter_input_color'] ?> }
+<?php endif; ?>
+

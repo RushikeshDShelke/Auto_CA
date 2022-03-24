@@ -1,0 +1,50 @@
+<?php 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Delhivery
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+
+?>
+
+
+<script>
+require(['jquery'], function($) {
+	
+	$("#edit_form").on('change', '.carrier',function(){
+		if($(this).val()=='delhivery'){
+			console.log('hihihih');
+			var inputfield = $(this).closest('td').next('td').next('td').find('input');
+			var url='<?php echo $this->getUrl("delhivery/assign/tracking"); ?>';
+			$.ajax({
+				url: url,
+				type: "POST",
+				showLoader: true,
+				data: {order_id:'<?php echo $block->getRequest()->getParam("order_id"); ?>'},
+				success: function(json) 
+				{
+					var msg=JSON.parse(json);
+					if(msg['success']==1){
+						inputfield.val(msg['awb']);
+				  	}else{
+				  		alert(msg['error_msg']);
+				  		
+				  	}
+				}
+		    });
+		}	
+ 	});
+});
+
+</script>

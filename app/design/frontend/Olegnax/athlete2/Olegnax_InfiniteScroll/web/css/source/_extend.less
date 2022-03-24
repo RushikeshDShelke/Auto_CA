@@ -1,0 +1,104 @@
+//  /**
+//  * Athlete2 Theme - Manadev Layered Navigation
+//  * Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+//  **/
+
+//
+//  Styles Extends
+//  _____________________________________________
+
+
+& when (@media-common = true) {    
+    .ox-product-scroll{
+        &.ox-product-scroll__loader--theme{
+            .ox-product-scroll__loader{
+                background: url('@{baseDir}images/preloader.svg');
+                background-size: 56px 21px;
+                width: 56px;
+                height: 21px;
+            }
+        }
+        &.ox-product-scroll__loader--theme{
+            &.ox-product-scroll__type--button{
+                .ox-product-scroll__button{
+                    height: 50px;
+                    line-height: 50px;
+                    padding:0;
+                    position:relative;
+                    .label{
+                        opacity: 1;
+                    }
+                    &:before{
+                        content: '';
+                        position: absolute;
+                        z-index: -1;
+                        width: 100%;
+                        transform: scaleX(0);
+                        transform-origin: left;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background-color: #000000;
+                    }
+                }
+                &.active{
+                    .ox-product-scroll__loader{
+                        display:none;
+                    }
+                    .ox-product-scroll__button{
+                        display: block;
+                        transition: all 200ms;
+                        height:8px;
+                        line-height: 6px;
+                        .label{
+                            opacity: 0;
+                        }
+                        &:after{
+                            content:none;
+                        }
+                        &:before{
+                             animation: button-loader 2s infinite ease-in-out;
+                        }
+                    }                
+                }
+            }
+        }
+    }
+    .ox-product-scroll__amount {
+        .amount-wrap{
+            font-size: 13px;
+            font-weight: @font-weight__semibold;
+            opacity: 0.5;
+        }
+        .amount-count-line {
+            background: #4d4d4d;
+            transform: scale(0);
+            transform-origin: 0;
+            animation: progress-line 0.4s ease forwards;
+            span {
+                background: @main-color;
+                transform: scale(0);
+                transform-origin: 0;
+                animation: progress-line 0.6s ease forwards 0.4s;
+            }
+        }
+    }
+    @keyframes button-loader {
+        0% {
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        70% {     
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        70.1% {     
+            transform: scaleX(1);
+            transform-origin: right;
+        }
+        100% {
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+    }
+}

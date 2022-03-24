@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="olegnax" translate="label" sortOrder="15">
+            <label>Olegnax</label>
+        </tab>
+        <section id="olegnax_quickview" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Quick View</label>
+            <tab>olegnax</tab>
+            <resource>Olegnax_Quickview::quickview</resource>
+            <group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <frontend_model>Olegnax\Quickview\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Quick View General Settings</label>
+                <field id="enable_product_listing" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable on product listing</label>
+                    <comment>Enable/Disable Quick View on Category pages.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

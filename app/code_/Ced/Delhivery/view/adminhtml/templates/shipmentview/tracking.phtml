@@ -1,0 +1,172 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php /** @var $this Mage_Adminhtml_Block_Sales_Order_Shipment_View_Tracking */ ?>
+<?php $_order = $this->getShipment()->getOrder(); 
+?>
+<?php $zipcode = $_order->getShippingAddress()->getPostcode() ?>
+
+<div class="field-row grid" id="shipment_tracking_info">
+<table cellspacing="0" class="data">
+    <col width="100" />
+    <col />
+    <col />
+    <col width="80" />
+    <thead>
+        <tr class="headings">
+            <th><?php echo Mage::helper('sales')->__('Carrier') ?></th>
+            <th><?php echo Mage::helper('sales')->__('Title') ?></th>
+            <th><?php echo Mage::helper('sales')->__('Number') ?></th>
+              <?php  $heavy_shipment =  Mage::getStoreConfig('carriers/dlastmile/heavy_shipment'); 
+		if($heavy_shipment){ ?>
+			  <th><?php echo Mage::helper('sales')->__('Shipment Length') ?></th>  
+            <th><?php echo Mage::helper('sales')->__('Shipment Width') ?></th>
+             <th><?php echo Mage::helper('sales')->__('Shipment Height') ?></th>
+		<?php } ?>
+            <th class="last"><?php echo Mage::helper('sales')->__('Action') ?></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>
+                <select name="carrier" class="select" style="width:110px" onchange="selectCarrier(this)">
+                    <?php foreach ($this->getCarriers() as $_code=>$_name): ?>
+                    <option value="<?php echo $_code ?>"><?php echo $this->escapeHtml($_name) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+            <td><input class="input-text" type="text" id="tracking_title" name="title" value="" /></td>
+            <td><input class="input-text" type="text" id="tracking_number" name="number" value="" /></td>
+               <?php  $heavy_shipment =  Mage::getStoreConfig('carriers/dlastmile/heavy_shipment'); 
+		if($heavy_shipment){
+		?>
+              <td><input class="input-text" type="text" id="shipment_length" name="shipment_length" value="" /></td>
+            <td><input class="input-text" type="text" id="shipment_width" name="shipment_width" value="" /></td>
+              <td><input class="input-text" type="text" id="shipment_height" name="shipment_height" value="" /></td>
+          <?php } ?>
+            <td class="last"><?php echo $this->getSaveButtonHtml() ?></td>
+        </tr>
+        <tr>
+            <td colspan="7" class="a-center last" style="padding:8px;">From Delhivery Lastmile</td>
+        </tr>        
+    </tfoot>
+<?php if($_tracks = $this->getShipment()->getAllTracks()): ?>
+    <tbody>
+    <?php $i=0;foreach ($_tracks as $_track):$i++ ?>
+   <?php   $lmawb = Mage::getModel('lastmile/lastmile')->loadByAwb($_track->getNumber());
+   $model = Mage::getModel('lastmile/lastmile')->load($lmawb);
+ //  print_r($model);
+   ?>
+        <tr class="<?php echo ($i%2==0)?'even':'odd' ?>">
+            <td><?php echo $this->escapeHtml($this->getCarrierTitle($_track->getCarrierCode())) ?></td>
+            <td><?php echo $this->escapeHtml($_track->getTitle()) ?></td>
+            <td>
+                <?php if ($_track->isCustom()): ?>
+                <?php echo $this->escapeHtml($_track->getNumber()) ?>
+                <?php else: ?>
+                <a href="#" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_track) ?>','trackorder','width=800,height=600,resizable=yes,scrollbars=yes')"><?php echo $this->escapeHtml($_track->getNumber()) ?></a>
+                <div id="shipment_tracking_info_response_<?php echo $_track->getId() ?>"></div>
+                <?php endif; ?>
+            </td>
+              <?php  $heavy_shipment =  Mage::getStoreConfig('carriers/dlastmile/heavy_shipment'); 
+		if($heavy_shipment){ ?>
+             <td><?php echo $this->escapeHtml($model->shipment_length) ?></td>
+              <td><?php echo $this->escapeHtml($model->shipment_width) ?></td>
+               <td><?php echo $this->escapeHtml($model->shipment_height) ?></td>
+               <?php } ?>
+            <td class="last"><a href="#" onclick="deleteTrackingNumber('<?php echo $this->getRemoveUrl($_track) ?>'); return false;"><?php echo Mage::helper('sales')->__('Delete') ?></a></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+<?php endif; ?>
+</table>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('sales')->__('Eway Bill Number Information') ?></h4>
+    </div>
+    <fieldset>
+        <tr>
+
+            <td class="label"><label><strong><?php echo Mage::helper('sales')->__('Eway Bill Number :') ?></strong></label></td>
+            <td class="value"><?php echo Mage::helper('ewaybillno')->getEwayBillNumber($this->getShipment()->getIncrementId()); ?></td>
+        </tr>
+    </fieldset>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+function selectCarrier(elem) {
+    var option = elem.options[elem.selectedIndex];
+    $('tracking_title').value = option.value && option.value != 'custom' ? option.text : '';
+	if (option.value && option.value == 'dlastmile') {
+		 submitAjaxData(elem.id);
+	 }
+}
+
+function deleteTrackingNumber(url) {
+    if (confirm('<?php echo Mage::helper('sales')->__('Are you sure?') ?>')) {
+        submitAndReloadArea($('shipment_tracking_info').parentNode, url)
+    }
+}
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+function submitAjaxData(valueofrow ){
+var url ="<?php echo Mage::helper('adminhtml')->getUrl("lastmile/adminhtml_lastmile/getAWB")?>";
+       new Ajax.Request(url, {
+            method:'post'
+            , parameters: {   
+				 zipcode: '<?php echo $zipcode?>',
+				 orderid: '<?php echo $_order->getId();?>'
+                } 
+            , requestHeaders: {Accept: 'application/json'},
+            onSuccess: function(transport) {
+                retjson = transport.responseText.evalJSON();
+				var textboxid = valueofrow.replace('trackingC','trackingN');
+				
+				if(/\d{1,9}/.test(retjson.resp[0].awb))
+					document.getElementById('tracking_number').value = retjson.resp[0].awb;
+				else
+					alert(retjson.resp[0].awb);
+             }
+          });
+}
+function setAWBStatusAjaxData( ){
+var url ="<?php echo Mage::helper('adminhtml')->getUrl("lastmile/adminhtml_lastmile/setAWBStatus")?>";
+       new Ajax.Request(url, {
+            method:'post'
+            , parameters: {           
+                } 
+            , requestHeaders: {Accept: 'application/json'},
+            onSuccess: function(transport) {
+
+             }
+          });
+}
+setAWBStatusAjaxData();
+//]]>
+</script>

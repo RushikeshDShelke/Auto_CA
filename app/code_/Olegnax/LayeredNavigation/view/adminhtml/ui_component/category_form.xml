@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author      Olegnax
+ * @package     Olegnax_LayeredNavigation
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * @license     Proprietary License https://olegnax.com/license/
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<fieldset name="display_settings" sortOrder="20">
+		<settings>
+			<collapsible>true</collapsible>
+			<label translate="true">Display Settings</label>
+		</settings>
+		<field name="ox_nav_disable_ajax" sortOrder="60" formElement="checkbox">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="default" xsi:type="number">0</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>boolean</dataType>
+				<label translate="true">Disable AJAX in Layered Navigation</label>
+			</settings>
+			<formElements>
+				<checkbox>
+					<settings>
+						<valueMap>
+							<map name="false" xsi:type="string">0</map>
+							<map name="true" xsi:type="string">1</map>
+						</valueMap>
+						<prefer>toggle</prefer>
+					</settings>
+				</checkbox>
+			</formElements>
+		</field>
+	</fieldset>
+</form>

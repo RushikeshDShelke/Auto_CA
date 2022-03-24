@@ -1,0 +1,39 @@
+<?php
+ $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+$category_id = $product->getCategoryIds();
+$_categoryFactory = $objectManager->get('Magento\Catalog\Model\CategoryFactory');
+foreach ($category_id as $categoryId) {
+    try {
+        $category = $_categoryFactory->create()->load($categoryId);
+    } catch (\Exception $e) {
+        /* Handle this appropriately... */
+    }
+    // echo 'Parent Category ID: ', $category->getParentId(), PHP_EOL;
+
+    if($category->getParentId() == 24){
+        $_outputhelper    = $this->helper('Magento\Catalog\Helper\Output');
+        $_imgHtml   = '';
+        // print_r($category->getImageUrl());
+        // exit();
+
+        if ($_imgUrl = $category->getImageUrl()) {
+            $_imgHtml = '<img width = 50px height = 50px src="' . $_imgUrl . '" />';
+            $_imgHtml = $_outputhelper->categoryAttribute($category, $_imgHtml, 'image');
+            /* @escapeNotVerified */ echo $_imgHtml;
+        }
+    }
+}
+$attr = $product->getResource()->getAttribute("craftsman_name");
+$artist_text=$attr->getSource()->getOptionText($product->getCraftsmanName());
+$atrist_url= "craftsman/".str_replace(" ","-",strtolower($artist_text)).".html";
+$artisan_name = explode("Master Artisan",$artist_text);
+$pos = 14;
+$master_artisan = substr($artist_text, 0, $pos);
+$master_artisan_name = substr($artist_text, $pos);
+
+?>
+<div class="three-des">
+  <a href="<?php  echo $baseurl.$atrist_url;  ?>" ><h2><?php echo "".$master_artisan; ?></h2> <span><?= $master_artisan_name ; ?></span></a>  </div>

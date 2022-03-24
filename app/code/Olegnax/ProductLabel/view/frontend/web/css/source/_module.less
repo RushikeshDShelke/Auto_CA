@@ -1,0 +1,105 @@
+//
+//  Variables
+//  _____________________________________________
+
+@ox-product-label__sale--color: #ffffff;
+@ox-product-label__new--color: #ffffff;
+@ox-product-label__featured--color: #ffffff;
+@ox-product-label__bestseller--color: #ffffff;
+@ox-product-label__sale--background: #c2e124;
+@ox-product-label__new--background: #f94127;
+@ox-product-label__featured--background: #00d7e1;
+@ox-product-label__bestseller--background: #f94127;
+@ox-product-label__margin:3px;
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .ox-product-labels-wrapper{
+        position: absolute;
+        text-align: left;
+        pointer-events: none; 
+        top:0;
+        left:0;
+        z-index: 2;
+        opacity:1;
+        transition: opacity 0.2s ease;
+        &.ox-product-labels--top-left{
+            top:0;
+            left:0;
+            bottom:auto;
+            right:auto;
+            span {
+                margin-bottom:@ox-product-label__margin;
+            }
+        }
+        &.ox-product-labels--top-right{
+            top:0;
+            right:0;
+            bottom:auto;
+            left:auto;
+            span {
+                margin-bottom:@ox-product-label__margin;
+            }
+        }
+        &.ox-product-labels--bottom-left{
+            bottom:0;
+            left:0;
+            top: auto;
+            right: auto;
+            span {
+                margin-top:@ox-product-label__margin;
+            }
+        }
+        &.ox-product-labels--bottom-right{
+            bottom:0;
+            right:0;
+            top:auto;
+            left:auto;
+            span {
+                margin-top:@ox-product-label__margin;
+            }
+        }
+    }
+    .ox-product-label-custom,
+    .ox-product-label-bestseller,
+    .ox-product-label-featured,
+    .ox-product-label-new,
+    .ox-product-label-sale{
+        padding: 5px 7px;
+        font-size: 14px;
+        font-weight: @font-weight__semibold;
+        line-height: 1;
+        display: inline-block;
+        clear: left;
+        float: left;
+    }
+    .ox-product-label-bestseller{
+        color: @ox-product-label__bestseller--color;
+        background: @ox-product-label__bestseller--background;
+    }
+    .ox-product-label-custom,
+    .ox-product-label-featured{
+        color: @ox-product-label__featured--color;
+        background: @ox-product-label__featured--background;
+    }
+    .ox-product-label-new{
+        color: @ox-product-label__new--color;
+        background: @ox-product-label__new--background;
+    }
+    .ox-product-label-sale{
+        color: @ox-product-label__sale--color;
+        background: @ox-product-label__sale--background;
+    }
+    .products-grid__layout-2,
+    .products-grid__layout-default{
+        &.grid{
+            .product-item:hover{
+                .ox-product-labels-wrapper{
+                    opacity:0;
+                }
+            }
+        }
+    }
+}

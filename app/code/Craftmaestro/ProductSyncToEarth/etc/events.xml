@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+   <event name="catalog_product_save_after">
+       <observer name="craftmaestro_productsynctoearth_observer_productqtysynctoearthfables" instance="Craftmaestro\ProductSyncToEarth\Observer\Productqtysynctoearthfables" />
+   </event>
+
+
+</config>

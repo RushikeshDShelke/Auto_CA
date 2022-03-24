@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<olegnax_infinitescroll>
+			<general>
+				<type>button</type>
+                                <button_label>Load more</button_label>
+				<loader_type>theme</loader_type>
+				<loader></loader>				
+				<progress_counter>1</progress_counter>
+                                <progress_label1>You've viewed </progress_label1>
+                                <progress_label2> of </progress_label2>
+                                <progress_label3> products</progress_label3>
+				<products_container></products_container>
+				<product_container></product_container>
+			</general>
+		</olegnax_infinitescroll>
+	</default>
+</config>

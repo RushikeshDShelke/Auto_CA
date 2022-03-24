@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Dotzot\Grid\Api\Data\GridInterface" type="Dotzot\Grid\Model\Grid" />
+
+    <virtualType name="Dotzot\Grid\Model\ResourceModel\Grid\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wk_grid_records</argument>
+            <argument name="resourceModel" xsi:type="string">Dotzot\Grid\Model\ResourceModel\Grid</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_grid_list_data_source" xsi:type="string">Dotzot\Grid\Model\ResourceModel\Grid\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <preference for="Dotzot\Grid\Api\Data\SecondgridInterface" type="Dotzot\Grid\Model\Secondgrid" />
+     <virtualType name="Dotzot\Grid\Model\ResourceModel\Grid\Secondgrid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wk_secondgrid_records</argument>
+            <argument name="resourceModel" xsi:type="string">Dotzot\Grid\Model\ResourceModel\Secondgrid</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_record_secondgrid_list_data_source" xsi:type="string">Dotzot\Grid\Model\ResourceModel\Grid\Secondgrid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Dotzot\Grid\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Dotzot\Grid\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">customLogHandler</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Dotzot\Grid\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,279 @@
+<?php
+if ($block->getCustomerSession()->isLoggedIn()) {
+    $customerData = $block
+        ->getCustomerModel()
+        ->load($block->getCustomerSession()->getId());
+} else {
+    $customerData = new \Magento\Framework\DataObject();
+}
+
+$customFields = $block->getCustomFields();
+$customFieldsValues = unserialize($customerData->getNewCustomFieldsValues());
+if (!is_array($customFieldsValues)) {
+    $customFieldsValues = [];
+}
+?>
+
+<div class="container main-container vendor-container">
+    <h1 style="padding-left: 10px; "><?php echo $block->escapeHtml(__('Manage Profile Info')); ?></h1>
+
+    <form name="settings_supplier_profile" id="settings_supplier_profile"
+          action="<?php echo $block->getUrl('supplier/settings/profilesave') ?>"
+          method="post"
+          enctype="multipart/form-data"
+          data-mage-init='{"validation":{}}'>
+
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12 personal-info nopadding">
+                <?php if ($block->getSupplierHelper()->canUploadLogos()) : ?>
+                    <div  class="col-sm-8 input-container">
+                        <div class="text-center">
+                            <?php if ($block->getSupplierHelper()->getSupplierLogo()) : ?>
+                                <img
+                                    src="<?php echo $block->escapeHtml($block->getSupplierHelper()->getSupplierLogo()) ?>"
+                                    alt="" class="avatar img-circle img-thumbnail"
+                                    style="width: 200px"/>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div  class="col-sm-8 input-container">
+                        <label for="logo" class="control-label">
+                            Logo
+                        </label>
+                        <input type="file" id="logo" name="logo"
+                               class="text-center center-block well well-sm"/>
+
+                        <div class="checkbox">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="remove_logo"
+                                />
+                                <?php echo $block->escapeHtml(__('Remove logo')); ?>
+                            </label>
+                        </div>
+                    </div>
+
+                <?php endif; ?>
+                <div style="clear:both;"></div>
+                <div class="form-group">
+                    <label for="name" class="required col-lg-3 control-label">
+                        <?php echo $block->escapeHtml(__('Name')); ?> <em>*</em>
+                    </label>
+                    <div class="col-sm-8 input-container">
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="input-text required-entry form-control validate-length maximum-length-60"
+                            value="<?php echo $block->escapeHtml($customerData->getSupplierName()) ?:
+                                $block->escapeHtml($customerData->getSupplierNameNew()); ?>"
+                        />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <label for="name" class="required col-lg-3 control-label">
+                        <?php echo $block->escapeHtml(__('Description')); ?>
+                        <em>*</em>
+                    </label>
+                    <div class="col-sm-8 input-container">
+                        <textarea
+                            name="description"
+                            id="description"
+                            rows="14"
+                            class="input-text required-entry form-control wysiwyg"
+                        ><?php echo $block->escapeHtml($customerData->getSupplierDescription()) ?:
+                                $block->escapeHtml($customerData->getSupplierDescriptionNew()); ?></textarea>
+                        <div id="description_error_required_field_label"
+                             class="cminds_error"><?php echo $block->escapeHtml(__('This is a required field.')); ?></div>
+                    </div>
+                </div>
+
+                <?php if ($customFields) : ?>
+                    <?php foreach ($customFields as $field) : ?>
+                        <div class="form-group">
+                            <div class="span3 label-container">
+                                <label for="<?php echo $block->escapeHtml($field->getName()); ?>" <?php echo $field->getIsRequired() ? 'class="required col-lg-3 control-label"' : 'class="col-lg-3 control-label"'; ?>>
+                                    <?php echo $block->escapeHtml($field->getLabel()); ?>
+                                    <em><?php echo $field->getIsRequired() ? '*' : ''; ?></em>
+                                </label>
+                            </div>
+                            <div class="col-sm-8 input-container">
+                                <?php
+                                echo $block->getCustomField(
+                                    $field,
+                                    $customFieldsValues
+                                );
+                                ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+                <div class="clearfix"></div>
+                <div style="margin-left: 15px; "
+                     class="checkbox profile-checkbox">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="profile_enabled"
+                            <?php echo $customerData->getSupplierProfileVisible() ? ' checked="checked"' : ''; ?>
+                        />
+                        <?php echo $block->escapeHtml(__('Profile Page Enabled')); ?>
+                    </label>
+                </div>
+            </div>
+        </div>
+            <div class="clearfix"></div>
+
+            <div style="margin-left: 10px; " class="col-md-2">
+                <input
+                    type="submit"
+                    name="submit"
+                    class="btn btn-primary"
+                    value="<?php echo $block->escapeHtml(__('Save')) ?>"
+                />
+            </div>
+    </form>
+
+    <?php if ($customerData->getSupplierNameNew() || $customerData->getNewCustomFieldsValues()) : ?>
+        <div class="clearfix"></div>
+        <h1 class="page-header"><?php echo $block->escapeHtml(__('Waiting For Review by Admin')); ?></h1>
+
+        <div class="col-md-8 col-sm-6 col-xs-12 personal-info nopadding">
+            <?php if ($customerData->getSupplierNameNew()) : ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5><b><?php echo $block->escapeHtml(__("Name")); ?> :</b>
+                        </h5>
+                        <p><?php echo $block->escapeHtml($customerData->getSupplierNameNew()); ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($customerData->getSupplierDescriptionNew()) : ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5><b><?php echo $block->escapeHtml(__("Description")); ?>
+                                :</b></h5>
+                        <p><?php echo $block->escapeHtml($customerData->getSupplierDescriptionNew()); ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php foreach ($customFieldsValues AS $customValue) : ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5><?php echo $block->escapeHtml($customValue['name']); ?>
+                            :</h5>
+                        <p><?php echo $block->escapeHtml($customValue['value']); ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <form name="settings_supplier_profile_clear"
+              id="settings_supplier_profile_clear"
+              action="<?php echo $block->getUrl('supplier/settings/profilesave') ?>"
+              method="post"
+              enctype="multipart/form-data">
+
+            <div style="margin-left: 10px; " class="col-md-2">
+                <input
+                    type="submit"
+                    name="clear"
+                    class="btn btn-warning"
+                    value="<?php echo $block->escapeHtml(__('Clear text')) ?>"
+                />
+            </div>
+
+        </form>
+    <?php endif; ?>
+</div>
+
+<script type="text/javascript">
+    require([
+        "jquery",
+        'tinymce',
+        "jquery/ui"
+    ], function ($, tinyMCEm) {
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
+            tinyMCEm.init({
+                mode : "specific_textareas",
+                editor_selector : "wysiwyg",
+                theme: "advanced",
+                theme_advanced_toolbar_location: "top",
+                theme_advanced_buttons1: "bold,italic,underline,|,fontselect,fontsizeselect,|,forecolor,backcolor",
+                theme_advanced_buttons2: "",
+                theme_advanced_buttons3: "",
+                theme_advanced_toolbar_align: "left",
+                add_form_submit_trigger: true
+            });
+        });
+
+        function hideEdError(ed)
+        {
+            var id = ed.id;
+            var selector = '#' + id + '_error_required_field_label';
+            if (typeof $(selector) !== 'undefined') {
+                $(selector).hide();
+            }
+        }
+
+        function hideTinymceErrors()
+        {
+            for (var i = 0; i < tinymce.editors.length; i++) {
+                var ed = tinymce.editors[i];
+                hideEdError(ed);
+            }
+        }
+
+        function displayTinymceErrorLabel(ed)
+        {
+            var id = ed.id;
+            var selector = '#' + id + '_error_required_field_label';
+            if (typeof $(selector) !== 'undefined') {
+                $(selector).show();
+            }
+        }
+
+        function checkEmpty(ed)
+        {
+            var content = ed.getContent().replace(/<[^>]*>/ig, ' ')
+                .replace(/<\/[^>]*>/ig, ' ')
+                .replace(/&nbsp;|&#160;/gi, ' ')
+                .replace(/\s+/ig, ' ')
+                .trim();
+
+            if (content === '') {
+                displayTinymceErrorLabel(ed);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        $('#settings_supplier_profile').submit(function (e) {
+            hideTinymceErrors();
+
+            var emptyTinymceDetected = 0;
+
+            for (var i = 0; i < tinymce.editors.length; i++) {
+                if (checkEmpty(tinymce.editors[i])) {
+                    emptyTinymceDetected = 1;
+                }
+            }
+
+            if (emptyTinymceDetected) {
+                e.preventDefault();
+            }
+
+            return;
+        });
+    });
+</script>

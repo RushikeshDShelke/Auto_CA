@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+ $helper = $this->helper( 'Olegnax\Quickview\Helper\Helper' );
+$_product = $helper->getProduct();
+$cssClass = $block->getCssClass() ? ' ' . $block->getCssClass() : '';
+$title = '';
+if (trim($block->getPageHeading())) {
+    $title = '<span class="base" data-ui-id="page-title-wrapper" ' .  $block->getAddBaseAttribute() . '>'
+        . $block->escapeHtml($block->getPageHeading()) . '</span>';
+}
+?>
+<?php if ($title): ?>
+<div class="page-title-wrapper<?= /* @escapeNotVerified */ $cssClass ?>">
+    <a href="<?= $_product->getProductUrl(); ?>"><h1 class="page-title"
+        <?php if ($block->getId()): ?> id="<?= /* @escapeNotVerified */ $block->getId() ?>" <?php endif; ?>
+        <?php if ($block->getAddBaseAttributeAria()): ?>
+            aria-labelledby="<?= /* @escapeNotVerified */ $block->getAddBaseAttributeAria() ?>"
+        <?php endif; ?>>
+        <?= /* @escapeNotVerified */ $title ?>
+		</h1></a>
+    <?= $block->getChildHtml() ?>
+</div>
+<?php endif; ?>

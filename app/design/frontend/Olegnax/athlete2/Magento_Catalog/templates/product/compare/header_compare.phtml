@@ -1,0 +1,96 @@
+<?php
+$minicart_type = $block->getConfig('athlete2_settings/header/minicart_type' );
+
+$icon = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16">
+  <g>
+    <polygon points="2 2 8 2 8 0 0 0 0 12 3 12 3 10 2 10 2 2"/>
+    <rect x="8" y="2" width="2" height="1"/>
+    <polygon points="13 6 13 14 6 14 6 6 13 6 13 4 4 4 4 16 15 16 15 6 13 6"/>
+  </g>
+</svg>';
+?>
+
+<div class="header__item header__item-compare">
+    <a class="js-item-compare-action button" data-bind="scope: 'compareProducts'">
+                <?= $icon; ?>
+		<!-- ko if: compareProducts().count -->
+        <span class="header__item-badge" data-bind="text: compareProducts().countCaption.replace(/[^0-9]*/igm, '')"></span>
+		<!-- /ko -->
+    </a>
+    <div class="header__item-dropdown-content"
+			 data-role="OXmodal"
+             data-mage-init='{"OXmodal":{
+                "triggerTarget":".js-item-compare-action",
+				"overlayClass":"ox-slideout-shadow",
+                "timeout": "500",
+                "closeOnEscape": true,
+				"closeButtonTrigger": "#btn-compare-close",
+                "closeOnMouseLeave": <?php echo 'dropdown-hover' == $minicart_type ? 'true' : 'false'; ?>,
+				"hoverOpen": <?php echo 'dropdown-hover' == $minicart_type ? 'true' : 'false'; ?>,
+				"type": "<?php echo 'slideout' == $minicart_type ? 'slideout' : ''; ?>",
+				"htmlClass":"ox-fixed"
+			}}'>
+
+        <div class="block block-compare" data-bind="scope: 'compareProducts'" data-role="compare-products-sidebar">
+            <!-- ko if: compareProducts().count -->
+            <div class="block-content no-display" aria-labelledby="block-compare-heading" data-bind="css: {'no-display': !compareProducts().count}">
+				<div class="items-total">
+					<span class="amount" data-bind="text: compareProducts().countCaption"></span>
+					<span class="label">
+						<?= $block->escapeHtml(__('in Compare')) ?>
+					</span>
+					<button type="button" id="btn-compare-close" class="ox-overlay-close-btn" aria-label="Close Modal"  data-action="close"><span></span></button>
+				</div>
+                <ol id="compare-items" class="product-items product-items-names" data-bind="foreach: compareProducts().items">
+                    <li class="product-item">
+                        <input type="hidden" class="compare-item-id" data-bind="value: id"/>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a data-bind="attr: {href: product_url}, html: name" class="product-item-link"></a>
+                            </strong>
+                            <div class="product actions">
+                                <div class="secondary">
+                                    <a href="#" data-bind="attr: {'data-post': remove_url}" title="<?= $block->escapeHtml(__('Remove This Item')) ?>" class="action delete">
+                                        <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+				<div class="dropdown-bottom-wrapper">
+					<div class="dropdown-bottom-actions">
+						<div class="secondary">
+							<a id="compare-clear-all" href="#" class="action secondary clear" data-post="<?=$block->escapeHtml(
+								$this->helper('Magento\Catalog\Helper\Product\Compare')->getPostDataClearList()
+							) ?>">
+								<span><?= $block->escapeHtml(__('Clear All')) ?></span>
+							</a>
+						</div>
+						<div class="primary">
+							<a data-bind="attr: {'href': compareProducts().listUrl}" class="action compare primary"><span><?= $block->escapeHtml(__('Compare')) ?></span></a>
+						</div>
+					</div>
+				</div>
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: compareProducts().count -->
+			<div class="block-content">
+				<div class="empty-compare-wrapper">
+					<div class="athlete2-icon-compare empty-compare-icon"></div>
+					<div class="subtitle empty"><?= $block->escapeHtml(__('You have no items to compare.')) ?></div>
+					<button type="button" id="btn-compare-close" class="button continue primary" data-action="close"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></button>
+				</div>
+			</div>
+            <!-- /ko -->
+        </div>
+        <script type="text/x-magento-init">
+        {"[data-role=compare-products-sidebar]": {"Magento_Ui/js/core/app": <?= /* @escapeNotVerified */ $block->getJsLayout() ?>}}
+        </script>
+
+    </div>
+</div>
+
+
+
+

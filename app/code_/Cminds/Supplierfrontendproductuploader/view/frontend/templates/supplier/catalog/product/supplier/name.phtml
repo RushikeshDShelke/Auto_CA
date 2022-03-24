@@ -1,0 +1,9 @@
+<?php $supplierName = $block->getProductSupplierName(); ?>
+<?php if ($block->isCreatedBySupplier() && $block->canShowSoldBy() && !empty($supplierName)) : ?>
+    <p>
+        <?php echo /* @escapeNotVerified */ __('by'); ?>
+        <a href="<?php echo $block->getSupplierHelper()->getSupplierPageUrl($block->getProduct()); ?>">
+            <?php echo $block->escapeHtml($supplierName); ?>
+        </a>
+    </p>
+<?php endif; ?>

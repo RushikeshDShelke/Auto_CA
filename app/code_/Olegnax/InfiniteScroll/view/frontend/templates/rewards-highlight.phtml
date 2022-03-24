@@ -1,0 +1,21 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+?>
+<?php /** @var \Amasty\Rewards\Block\Frontend\Catalog\HighlightCategory $block */ ?>
+<div data-bind="scope: 'amasty-rewards-highlight-catalog-<?= (int)$block->getProductId();?>'">
+    <div class="amasty-rewards-loader" data-bind="visible: loader()" style="display: none;">
+        <img src="<?= $block->escapeUrl($block->getViewFileUrl('Amasty_Rewards::images/ajax-loader.gif')); ?>" />
+    </div>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Olegnax_InfiniteScroll/js/rewards-highlight": <?= /** @no-escape */ $block->getJsLayout();?>
+            }
+        }
+    </script>
+</div>

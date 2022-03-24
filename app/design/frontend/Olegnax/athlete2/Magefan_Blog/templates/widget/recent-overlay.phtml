@@ -1,0 +1,102 @@
+<?php
+/**
+ * Athlete2 Theme
+ * Blog recent posts widget
+ *
+ * @var $block \Magefan\Blog\Block\Widget\Recent
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+?>
+<?php
+	$theme_helper = $this->helper('Olegnax\Athlete2\Helper\Helper');
+	$at_settings = $theme_helper->getConfig('athlete2_settings/blog');
+	$_hideReadMore = $at_settings['blog_list_read_more'];
+	$_hideCategories = $at_settings['blog_list_categories'];
+	$gWidth = $at_settings['blog_list_image_width'];
+	$gHeight = $at_settings['blog_list_image_height'];
+	$iWidth = $at_settings['blog_widget_image_width'];
+	$iHeight = $at_settings['blog_widget_image_height'];
+	$columns = 	$at_settings['widget_columns'];
+	if(!$columns) {
+		$columns= 3;
+	}
+	$classes = [];
+	$classes[] = 'columns-' . $columns;
+	$classes[] = 'blog-list--overlay';
+	$classes[] = 'blog-style-modern';
+	if($theme_helper->getConfig('athlete2_design/blog_list/big_post_white')){
+		$classes[] = 'white-style';
+	}
+	$classesOutput = implode(' ',	$classes);
+	$shortDesc = false;
+?>
+
+<?php
+    $_postCollection = $block->getPostCollection();
+?>
+<?php if ($_postCollection->count()) { ?>
+<div class="post-list-wrapper widget blog-widget-recent">
+	<?php $blockTitle = $block->escapeHtml($block->getData('title'));
+	if ($blockTitle){ ?>
+		<h3 class="title"><?= $blockTitle ?></h3>
+	<?php } ?>
+    <div class="post-list clearfix <?= $classesOutput ?>">
+        <?php foreach ($_postCollection as $_post) { ?>
+            <?php
+                $_postUrl = $_post->getPostUrl();
+                $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+				$_categoriesCount = $_post->getCategoriesCount();
+				if($iWidth && $iHeight) {
+					$featuredImage = $_post->getFeaturedImage([$iWidth, $iHeight]);
+				} elseif ($gWidth && $gHeight) {
+					$featuredImage = $_post->getFeaturedImage([$gWidth, $gHeight]);
+				} else {
+					$featuredImage = $_post->getFeaturedImage();
+				}
+            ?>
+            <article class="post-holder post-holder-<?php echo $_post->getId() ?>">
+				<?php if ($featuredImage) { ?>
+					<div class="post-image-wrapper">
+						<div class="gradient-overlay"></div>
+						<div class="bg-image-holder" style="background-image:url(<?php echo $featuredImage ?>);"></div>
+					</div>
+				<?php } ?>
+					<div class="post-content">
+						<?php if ( $_categoriesCount ) { ?>
+							<div class="item post-categories">
+								<?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
+									<a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>">
+										<?php echo $block->escapeHtml($ct->getTitle()) ?>
+									</a>									
+								<?php } ?>
+							</div>
+						<?php } ?>
+						<h2 class="post-title">
+							<a class="post-item-link" href="<?php echo $_postUrl ?>">
+								<?php echo $_postName; ?>
+							</a>
+						</h2>
+						<?php if ($content = $block->getShorContent($_post) && $shortDesc) { ?>
+							<div class="post-description clearfix">
+								<?php echo $content ?>  
+							</div>
+						<?php } ?>
+						<div class="post-links">
+							<?php if (!$_hideReadMore) { ?>		
+								<a class="item post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+								   <?php echo __('Read more') ?>
+								</a>
+							<?php } ?>
+						</div>
+					</div>
+
+            </article>
+
+        <?php } ?>
+    </div>
+</div>
+<?php } ?>

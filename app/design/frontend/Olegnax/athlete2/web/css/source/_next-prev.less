@@ -1,0 +1,161 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .ox-prev-next__link{
+        display: none;
+        height: 145px;
+        position: fixed;
+        top: calc(~"50% - 70px");
+        z-index:30;
+        &.ox-product-link-previous{
+                left: 0;
+                .ox-prev-next__arrow{
+                    svg{
+                        transform: rotate(180deg);
+                        margin-right: 1px;
+                    }
+                }
+        }
+        &.ox-product-link-next{
+                right: 0;
+                .content-wrapper{
+                    right:0;
+                }
+                .content{
+                    order:1;
+                }
+                .inner{
+                    -ms-transform: translateX(-100%) translateZ(0);
+                    -webkit-transform: translateX(-100%) translateZ(0);
+                    transform: translateX(-100%) translateZ(0);
+                }
+                .content-wrapper{
+                    -ms-transform: translateX(100%) translateZ(0);
+                    -webkit-transform: translateX(100%) translateZ(0);
+                    transform: translateX(100%) translateZ(0);
+                }
+                .image-wrapper{
+                    -ms-transform: translateX(-100%) translateZ(0);
+                    -webkit-transform: translateX(-100%) translateZ(0);
+                    transform: translateX(-100%) translateZ(0);
+                }
+                .product-image-container{
+                    -ms-transform: translateX(100%) translateZ(0);
+                    -webkit-transform: translateX(100%) translateZ(0);
+                    transform: translateX(100%) translateZ(0);       
+                }
+        }
+        .ox-prev-next__arrow{
+            width: 30px;
+            height: 100px;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            margin-top: 22px;
+            svg{
+                fill: #ffffff;
+                width: 23px;
+            }
+        }
+        .label{
+            color:@main-color;
+        }
+        .overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+        .image-wrapper{
+            overflow: hidden;
+            -ms-transform: translateX(100%) translateZ(0);
+            -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0);
+            -ms-transition: transform 0.35s cubic-bezier(0.85,0,0.12,1) 0.2s;
+            -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.85,0,0.12,1) 0.2s;
+            transition: transform 0.35s cubic-bezier(0.85,0,0.12,1) 0.2s;
+        }
+        .product-image-container{
+            -ms-transform: translateX(-100%) translateZ(0);
+            -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);       
+            -ms-transition: transform 0.35s cubic-bezier(0.85,0,0.12,1) 0.2s;
+            -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.85,0,0.12,1) 0.2s;
+            transition: transform 0.35s cubic-bezier(0.85,0,0.12,1) 0.2s;
+        }
+        .content-wrapper{
+            z-index:1;
+            height: 100%;
+            display: flex;
+            position: absolute;
+            top: 0;
+            overflow: hidden;
+            -ms-transform: translateX(-100%) translateZ(0);
+            -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);
+            -ms-transition: transform 0.2s cubic-bezier(0.85,0,0.12,1);
+            -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.85,0,0.12,1);
+            transition: transform 0.2s cubic-bezier(0.85,0,0.12,1);
+        }
+        .inner{
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            -ms-transform: translateX(100%) translateZ(0);
+            -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0);       
+            -ms-transition: transform 0.2s cubic-bezier(0.85,0,0.12,1);
+            -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.85,0,0.12,1);
+            transition: transform 0.2s cubic-bezier(0.85,0,0.12,1);
+        }
+        .content{
+            flex-flow: column;
+            display: flex;
+            height: 100%;
+            font-weight: @font-weight__bold;
+            width: 155px;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 20px;
+            justify-content: space-between;
+            .name{
+                max-height: 70px;
+                overflow: hidden;
+            }
+        }
+        &:hover{
+            .content-wrapper,
+            .inner{
+                -ms-transform: translateX(0%) translateZ(0);
+                -webkit-transform: translateX(0%) translateZ(0);
+                transform: translateX(0%) translateZ(0);
+                -ms-transition-duration: 0.25s;
+                -webkit-transition-duration: 0.25s;                
+                transition-duration: 0.25s;
+            }
+            .image-wrapper,
+            .product-image-container{
+                -ms-transform: translateX(0%) translateZ(0);
+                -webkit-transform: translateX(0%) translateZ(0);
+                transform: translateX(0%) translateZ(0);
+            }
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .ox-prev-next__link{
+        display:block;
+    }
+}
+

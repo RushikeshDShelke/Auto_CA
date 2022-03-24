@@ -1,0 +1,194 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="jajuma" sortOrder="999" class="jajuma-tab" translate="label">
+            <label>Jajuma</label>
+        </tab>
+        <section id="webp" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>WebP Image Optimization</label>
+            <tab>jajuma</tab>
+            <resource>Jajuma_WebpImages::config_jajuma_webp</resource>
+            <group id="extension_info" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Extension Information</label>
+                <attribute type="expanded">1</attribute>
+                <field id="extension_info_text" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <frontend_model>Jajuma\WebpImages\Block\System\Config\Form\Jajuma\Module</frontend_model>
+                    <comment><![CDATA[
+              <div style="margin:auto;padding:10px;background-color:#f1f1f1;display:inline-block;width:97%;">
+                        <div class="box-img" style="width: 20%;float: left;">
+                            <a href="https://www.jajuma.de/en" title="Magento 2 WebP Optimized Images Extension" target="_blank">
+                <div class="jajuma-extlogo"></div>
+                            </a>
+                            <strong style="font-size: 10px;">Copyright ©
+                                <script>var today = new Date();
+                                document.write(today.getFullYear());</script>
+                                <a href="https://www.jajuma.de/en" target="_blank">www.jajuma.de</a>
+                            </strong>
+                        </div>
+                        <div style="width: 77%;float: left;padding-left: 3%;">
+                            <div class="name" style="font-size: 16px;">
+                                <b>Magento 2 WebP Optimized Images</b> by <a href="https://www.jajuma.de/en" target="_blank"><b>JaJuMa</b></a>
+                 <div class="jajuma-minilogo"></div>
+                            </div>
+                            <hr>
+                            <br>
+                            <div class="more"><b>More Information About This Extension:</b>
+                                <br>
+                                <p><a href="https://www.jajuma.de/en/jajuma-develop/extensions/webp-optimized-images-extension-for-magento-2"
+                       target="_blank">Website</a> |
+                   <a href="https://www.jajuma.de/sites/default/files/ckfinder/userfiles/images/jajuma-develop/webp-optimized-images-magento/JaJuMa_WebP_Optimized_Images_Manual_v002.pdf"
+                       target="_blank">Manual</a> |
+                    <a href="https://www.jajuma.de/en/jajuma-develop/extensions/webp-optimized-images-extension-for-magento-2/webp-images-faq"
+                       target="_blank">FAQ</a> |
+                   <a href="https://demo.extension.jajuma.de/"
+                       target="_blank">Demo</a> |
+                   <a href="https://marketplace.magento.com/jajuma-module-webpimages.html"
+                       target="_blank">Marketplace</a>
+                </p>
+                            </div>
+                            <hr>
+                            <br>
+                            <div class="info"><b>Discover More Ideas To Improve Your Store:</b>
+                                <br>
+                                <p>
+                                    <a href="https://www.jajuma.de/en/jajuma-develop/extensions/shariff-social-share-buttons-extension-for-magento-2"
+                                       target="_blank">Shariff Social Share Buttons</a> |
+                                    <a href="https://www.jajuma.de/en/jajuma-develop/extensions/customer-navigation-manager-extension-for-magento-2"
+                                       target="_blank">Customer Navigation Manager</a> |
+                                    <a href="https://www.jajuma.de/en/jajuma-develop/extensions/prg-pattern-link-masking-for-magento-2"
+                                       target="_blank">PRG Pattern Link Masking</a> |
+                                    <a href="https://www.jajuma.de/en/jajuma-develop/extensions/video-widget-gdpr-extension-for-magento-2"
+                                       target="_blank">Video Widget</a>
+                                </p>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    ]]></comment>
+                </field>
+            </group>
+            <group id="setting" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General Configuration</label>
+                <field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Optimize Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="check_transparency" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="15" translate="label" type="select">
+                    <label>Disable with transparent images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field  id="clear_cache_webp" translate="label comment" type="button" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Clear Webp Image</label>
+                    <comment><![CDATA[This button will clear all the generated webp images.]]></comment>
+                    <frontend_model>Jajuma\WebpImages\Block\Adminhtml\System\Config\ClearButton</frontend_model>
+                </field>
+            </group>
+            <group id="advance_mode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+                <label>Conversion Configuration</label>
+                <field id="convert_tool" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Conversion Tool</label>
+                    <comment>Select the tool to be used for WebP image conversion</comment>
+                    <source_model>Jajuma\WebpImages\Model\Config\Source\Tool</source_model>
+                </field>
+                <field id="path_to_cwebp" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>Path to cwebp</label>
+                    <validate>validate-cwebp-path</validate>
+                    <comment><model>Jajuma\WebpImages\Model\Config\Comment</model></comment>
+                    <depends>
+                        <field id="convert_tool">cwebp</field>
+                    </depends>
+                </field>
+                <field id="path_to_imagemagick" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>Path to imagemagick</label>
+                    <validate>validate-imagemagick-path</validate>
+                    <comment>Define the path of imagemagick command or leave it empty to use global command "convert". Example: "/usr/local/bin/convert"</comment>
+                    <depends>
+                        <field id="convert_tool">convert</field>
+                    </depends>
+                </field>
+                <field id="quality" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+                    <label>WebP Quality</label>
+                    <validate>validate-number validate-zero-or-greater validate-digits</validate>
+                    <comment>Define the compression factor applied for webp conversion (from 0 to 100)</comment>
+                </field>
+                <field id="cwebp_command" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label" type="text">
+                    <label>Cwebp Custom Command</label>
+                    <validate>validate-cwebp-command</validate>
+                    <comment><![CDATA[Example command: -alpha_q 100 -z 9 -m 6 -segments 4 -sns 80 -f 25 -sharpness 0 -strong -pass 10 -mt -alpha_method 1 -alpha_filter fast -o]]></comment>
+                    <depends>
+                        <field id="convert_tool">cwebp</field>
+                    </depends>
+                </field>
+                <field id="imagemagick_command" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="200" translate="label" type="text">
+                    <label>Imagemagick Custom Command</label>
+                    <validate>validate-imagemagick-command</validate>
+                    <comment><![CDATA[Example command: -quality 100 -define webp:lossless=true,method=6]]></comment>
+                    <depends>
+                        <field id="convert_tool">convert</field>
+                    </depends>
+                </field>
+                <field id="test_button" translate="label comment" type="button" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Jajuma\WebpImages\Block\Adminhtml\System\Config\TestButton</frontend_model>
+                </field>
+            </group>
+            <group id="native_lazy" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label">
+                <label>Native Lazy Loading</label>
+                <field id="enable_native_lazy" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enable Native Lazy Loading</label>
+                    <comment><![CDATA[If enabled, ' loading="lazy" ' will be added for images converted.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="exclude_native_lazy" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <label>Native Lazy Loading Blacklist</label>
+                    <comment><![CDATA[<span><b>Exclude images from Native Lazy Loading</b> by a list of comma separated strings (or RegEx).<br>
+If the img tag match with any of the strings above, the ' loading="lazy" ' won't be added to that img tag.</span>]]></comment>
+                </field>
+            </group>
+            <group id="professional_mode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label">
+                <label>Advanced Configuration</label>
+                <field id="message" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <frontend_model>Jajuma\WebpImages\Block\Adminhtml\System\Config\AdvancedConfiguration</frontend_model>
+                    <comment><![CDATA[
+                <div class="messages">
+        <div class="message message-warning message-demo-mode">
+    <b>Note: </b><br><span>For most sites following configs are not needed.<br>
+Please use only after checking the manual <a href="https://www.jajuma.de/en/jajuma-develop/extensions/webp-optimized-images-extension-for-magento-2" target="_blank">(Link)</a> and understand what you are doing.
+</span>        </div>
+    </div>
+                ]]></comment>
+                </field>
+                <field id="exclude_img" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <label>Blacklist</label>
+                    <comment><![CDATA[<span><b>Exclude images</b> from WebP Conversion by a list of comma separated strings (or RegEx).<br>
+If the img tag match with any of the strings above, that img tag won't be converted.<br>
+Note: img-tags with <i>data-nowebp="true"</i> are excluded from conversion by default.</span>]]></comment>
+                </field>
+                <field id="src_tag" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <label>Custom src-tag</label>
+                    <comment><![CDATA[<span>By default we look at the <b>src</b> attribute to get the image URL and use this for WebP conversion.<br>
+If you use some custom attribute for img URL, e. g. in case you are using lazyload on your site, you can use this config to have this converted first.<br>
+Example: If your lazyload function uses <b>data-src</b>, just input <i>data-src</i> into this config.<br>
+For img tags having a data-src we will then use the data-src image URL for WebP conversion.<br>
+For img tags having no data-src, we will still use src attribute for conversion.
+</span>]]></comment>
+                </field>
+                <field id="srcset_tag" translate="label comment" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <label>Custom srcset-tag</label>
+                    <comment><![CDATA[<span>By default we add picture tags using <b>srcset</b> tags.<br>
+You can use this config to change this behaviour, e. g. in case you are using lazyload on your site.<br>
+Example: If your lazyload function uses <b>data-srcset</b>, just input <i>data-srcset</i> into this config.<br>
+The extension will then add picture tags using data-srcset.<br>
+!!! Please ensure your lazyload script does support lazyloading for picture-tags !!!
+</span>]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

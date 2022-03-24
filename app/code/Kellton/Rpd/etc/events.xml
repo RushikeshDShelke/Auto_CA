@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+   <event name="checkout_type_onepage_save_order_after">
+       <observer name="kellton_rpd_observer_savecustomobserver" instance="Kellton\Rpd\Observer\Savecustomobserver" />
+   </event>
+
+
+</config>

@@ -1,0 +1,19 @@
+.track-container{width:48%; float: left;} 
+.page-title-wrapper h1.page-title{font-weight: 500;}
+.block-customer-track{margin-bottom: 0;padding: 28px;background:#f9f9f9;}
+.block-customer-track .form-track .field .label span{text-transform: capitalize; font-size: 16px; }
+#track_message{ color: #006400; font-size:14px;background: #e5efe5;      padding: 12px 20px 12px 44px;    margin: 0 0 10px;  position: relative;}
+#track_message:after{-webkit-font-smoothing: antialiased;font-size: 24px;line-height: 24px;color: #006400;content: '\e60e';font-family: 'luma-icons';margin: -12px 0 0;vertical-align: middle;display: inline-block;font-weight: normal;overflow: hidden;speak: none;left: 0;top: 22px;width: 45px;position: absolute;text-align: center;}
+#success_track{display: inline-block;}
+.track_result{width:48%; float: left; margin-left: 20px;}
+.track_result h2{font-size:20px; font-weight: 500;padding:10px;background: #f9f9f9; margin-top: 0px;}
+.track_result ul{padding: 0px; margin: 0px;}
+.track_result ul li{list-style-type: none;}
+.track_result ul li span b>p{display: inline-block;}
+.track_result ul li span b>p a{text-decoration: none;}
+.track_result table tr td{border-top: 1px solid #cdcdcd;border-bottom: 1px solid #cdcdcd;border-left: 1px solid #cdcdcd;background-color: #f9f9f9;}
+.track_result table tr td:last-child{border-right: 1px solid #cdcdcd;}
+.error_msg{color: #a94442;background-color: #f2dede;border-color: #ebccd1;padding: 12px 20px 12px 44px;margin-top: 20px;margin-left: 0;clear: both;margin-bottom: 10px;}
+/*.error_msg:after{-webkit-font-smoothing: antialiased;font-size: 24px;line-height: 24px;color: #a94442;content: '\e632';font-family: 'luma-icons'; vertical-align: middle;display: inline-block;font-weight: normal;overflow: hidden;speak: none;left: 56px;width: 45px;position: absolute;text-align: center;}
+.error_msg p{font-size:14px;font-weight: 400;margin-bottom: 0px;}*/
+table#shipmentservice{margin-bottom: 15px;}

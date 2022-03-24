@@ -1,0 +1,30 @@
+{
+  "name": "olegnax/module-instagrammin",
+  "description": "Instagram Feed Widget",
+  "version": "1.0.1.1",
+  "type": "magento2-module",
+  "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Olegnax",
+      "email": "mail@olegnax.com",
+      "homepage": "https://olegnax.com",
+      "role": "Technical Support"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+      "olegnax/module-core": ">=1.2.0.3"
+  },
+  "autoload": {
+	"files": [
+	  "registration.php"
+	],
+	"psr-4": {
+	  "Olegnax\\InstagramMin\\": ""
+	}
+  }
+}

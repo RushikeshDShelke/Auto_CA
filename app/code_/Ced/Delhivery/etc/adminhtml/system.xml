@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Delhivery
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+      <system>
+            <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <group id="delhivery" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Delhivery</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                              <label>Enabled</label>
+                              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        </field>
+                        <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Method Name</label>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="149" showInDefault="1" showInWebsite="1" showInStore="0">
+                              <label>Sort Order</label>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Carrier Title</label>
+                        </field>
+                        <field id="client_id" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Client Id</label>
+                        </field>
+                        <field id="login_id" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Login Id</label>
+                        </field>
+                        <field id="license_key" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>License Key</label>
+                        </field>
+                        <field id="showmethod" translate="label" type="select" sortOrder="151" showInDefault="1" showInWebsite="1" showInStore="0">
+                              <label>Show Method if Not Applicable</label>
+                              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                              <frontend_class>shipping-skip-hide</frontend_class>
+                        </field>
+                        <field id="specificerrmsg" translate="label" type="textarea" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Displayed Error Message</label>
+                        </field>
+                        <field id="gateway_url" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Gateway URL</label>
+                              <comment>To use production url replace test with track from the url</comment>
+                        </field>
+                        <field id="pincode_url" translate="label" type="text" sortOrder="94" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Pincode URL</label>
+                              <comment>To use production url replace test with track from the url</comment>
+                        </field>
+                        <field id="awb_url" translate="label" type="text" sortOrder="98" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Awb URL</label>
+                              <comment>To use production url replace test with track from the url</comment>
+                        </field>
+                        <field id="track_url" translate="label" type="text" sortOrder="98" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Tracking URL</label>
+                              <comment>Url to track delhivery shipment</comment>
+                        </field>
+                        <field id="shipping_mode" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                              <label>Shipping Mode</label>
+                              <source_model>Ced\Delhivery\Model\Config\Source\Mode</source_model>
+                        </field>
+                        <field id="shipping_charge" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+                              <label>Shipping Rates API Url</label>
+                              <comment>To use production url replace test with track from the url</comment>
+                        </field>
+                  </group>
+            </section>
+      </system>
+</config>

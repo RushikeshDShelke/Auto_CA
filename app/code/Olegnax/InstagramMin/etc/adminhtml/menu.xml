@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Olegnax_InstagramMin::top_level" module="Olegnax_InstagramMin" resource="Olegnax_InstagramMin::config" parent="Olegnax_Core::Olegnax_Core" sortOrder="9999" title="Instagram"/>
+		<add action="olegnax_instagrammin/intspost/index" id="Olegnax_InstagramMin::olegnax_instagrammin_intspost"
+			 module="Olegnax_InstagramMin"
+			 parent="Olegnax_InstagramMin::top_level"
+			 resource="Olegnax_InstagramMin::IntsPost_view"
+			 sortOrder="10"
+			 title="Instagram Posts"/>
+
+		<add id="Olegnax_InstagramMin::config" title="Configuration" translate="title"
+			 module="Olegnax_InstagramMin" sortOrder="20"
+			 action="adminhtml/system_config/edit/section/olegnax_instagram"
+			 parent="Olegnax_InstagramMin::top_level" resource="Olegnax_InstagramMin::config_olegnax_instagrammin"/>
+	</menu>
+</config>

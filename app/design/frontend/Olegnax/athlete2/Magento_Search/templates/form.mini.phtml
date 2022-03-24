@@ -1,0 +1,129 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+/** @var $escaper \Magento\Framework\Escaper */
+
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+$athlete_search_type = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/header/search_type');
+$athlete_header_layout = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/header/header_layout');
+$search_icon = '<span class="search-icon-wrapper"><svg data-name="search-icon-small 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><rect x="11.73223" y="10.52513" width="2" height="4.41421" transform="translate(-5.27386 12.73223) rotate(-45)"></rect><path d="M7,0a7,7,0,1,0,7,7A7,7,0,0,0,7,0ZM7,12a5,5,0,1,1,5-5A5,5,0,0,1,7,12Z"></path></svg></span>';
+$placeholderText = __('Search');
+$input_classes = 'js-input-focus';
+$defaultModalClass = 'ox-dialog';
+$slideoutHtmlClass = 'ox-fixed';
+if($this->helper('Olegnax\Athlete2\Helper\Helper')->isActivePlugin( 'Amasty_Xsearch' )){
+	$slideoutHtmlClass = 'am-search-fixed ox-fixed';
+	$defaultModalClass = 'ox-dialog am-search-modal';
+}
+if ($athlete_search_type == 'overlay') {
+    $input_classes .= ' width-dynamic';
+}
+?>
+<div class="block block-search header__item header__item-search block-search--type-<?= $escaper->escapeHtmlAttr($athlete_search_type) ?>">
+	<div <?php if (in_array($athlete_search_type, ['slideout', 'overlay'])) : ?>data-move-mobile="search.slideout" data-move-sticky="search.slideout"<?php endif; ?> class="block block-content"<?php
+    switch ($athlete_search_type) {
+        case 'slideout':
+        case 'overlay':
+            ?> data-role="OXmodal"
+			data-mage-init='{"OXmodal":{
+				 "defaultModalClass": "<?= $defaultModalClass ?>",
+				 "triggerTarget":".action-search-slideout",
+				 "closeButtonTrigger": ".ox-overlay-close-btn",
+				 "overlayClass":"ox-slideout-shadow",
+				 "timeout": "1000",
+				 "closeOnEscape": true,
+				 "closeOnMouseLeave": false,
+				 "hoverOpen": false,
+				 "type": "<?= $escaper->escapeHtmlAttr($athlete_search_type) ?>",
+				 "positionSlideout":"top",
+				 "htmlClass":"<?= $slideoutHtmlClass ?>"
+				 }}'<?php
+            break;
+    }
+    ?>>
+	<?php if ($athlete_header_layout != 'header_6') : ?>
+	<div class="header__search-wrapper<?=
+        !in_array($athlete_search_type, ['slideout', 'overlay']) ? ' ox-move-item ox-move-item-search.slideout' : '';
+        ?>">
+			<div class="ox-overlay-close-btn" aria-label="Close Modal" ><span></span></div>
+			<?php if ($athlete_search_type == 'overlay') {
+            ?>
+				<div class="logo__container">
+					<?php echo $block->getLayout()->getBlock('logo')->toHtml(); ?>
+				</div>
+			<?php
+        } ?>
+			<form class="form minisearch" id="search_mini_form" action="<?= $escaper->escapeUrl($helper->getResultUrl()) ?>" method="get">
+				<div class="search_form_wrap">
+					<div class="field search">
+						<div class="control">
+							<div class="flashing-cursor"></div>
+							<input id="search"
+								   data-mage-init='{"quickSearch":{
+								   "formSelector":"#search_mini_form",
+								   "url":"<?= $block->escapeUrl($helper->getSuggestUrl()) ?>",
+								   "destinationSelector":"#search_autocomplete"}
+								   }'
+								   type="text"
+								   name="<?= $escaper->escapeHtmlAttr($helper->getQueryParamName()) ?>"
+								   value="<?= /* @noEscape */ $helper->getEscapedQueryText() ?>"
+								   placeholder="<?= $escaper->escapeHtmlAttr($placeholderText) ?>"
+								   class="input-text <?= $escaper->escapeHtmlAttr($input_classes) ?>"
+								   maxlength="<?= $escaper->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
+								   role="combobox"
+								   aria-haspopup="false"
+								   aria-autocomplete="both"
+								   autocomplete="off"
+								   aria-expanded="false"/>
+							<div id="search_autocomplete" class="search-autocomplete"></div>
+							<div class="label animated-text--masked">
+								<div class="wrap">
+									<label class="inner" for="search" data-role="minisearch-label"><?= $escaper->escapeHtml($placeholderText) ?></label>
+								</div>
+							</div>
+							<?= $block->getChildHtml() ?>
+						</div>
+					</div>
+					<div class="actions">
+						<button type="submit"
+								title="<?= $escaper->escapeHtml(__('Go')) ?>"
+								class="action search"
+								aria-label="Search"
+						>
+							<?= $search_icon ?>
+							<span><?= $escaper->escapeHtml(__('Go')) ?></span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	<?php endif; ?>
+	</div>
+	<?php if (!in_array($athlete_search_type, ['slideout', 'overlay'])) : ?>
+		<div class="block block-content block-content-slideout" data-move-mobile="search.slideout" data-move-sticky="search.slideout"
+			 style="display:none" data-role="OXmodal"
+			 data-mage-init='{"OXmodal":{
+			 "defaultModalClass": "<?= $defaultModalClass ?>",
+			 "triggerTarget":".action-search-slideout",
+			 "closeButtonTrigger": ".ox-overlay-close-btn",
+			 "overlayClass":"ox-slideout-shadow",
+			 "timeout": "1000",
+			 "closeOnEscape": true,
+			 "closeOnMouseLeave": false,
+			 "hoverOpen": false,
+			 "type": "slideout",
+			 "positionSlideout":"top",
+			 "htmlClass":"<?= $slideoutHtmlClass ?>"
+			 }}'>
+		</div>
+	<?php endif; ?>
+	<a class="button action-search-slideout"><?= $search_icon ?></a>
+</div>

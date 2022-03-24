@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <betterpopup>
+            <module>
+                <type>1</type>
+            </module>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <what_to_show>
+                <template>1</template>
+                <html_content>
+                    <![CDATA[
+<div id="mp-popup-template3">
+    <div class="tmp3-img-content">
+        <img src="{{img_tmp3}}"/>
+    </div>
+    <div class="tmp3-text-content">
+        <div class="tmp3-title">Subscribe</div>
+        <div class="tmp3-sub-title">TO OUR NEWSLETTER</div>
+        <div class="tmp3-text mppopup-text">Subsribe to our email newsletter today to receive update on the latest news, tutorials and special offers!</div>
+        <form class="form subscribe tmp3-form" novalidate action="{{form_url}}" method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="mp-newsletter-validate-detail">
+            <div class="tmp3_field_newsletter">
+                <input name="email" type="email" id="mp-newsletter" class="tmp3-input"
+                       placeholder="Enter your email to subscribe"
+                       data-validate="{required:true, 'validate-email':true}">
+            </div>
+            <button class="action subscribe primary tmp3-button" title="Send" type="submit">
+                <img src="{{tmp3_icon_button}}"/>
+            </button>
+            <div class="popup-loader">
+                <img class="loader" src="{{url_loader}}" alt="Loading...">
+            </div>
+        </form>
+    </div>
+</div>
+                    ]]>
+                </html_content>
+                <responsive>1</responsive>
+                <width>800</width>
+                <height>321</height>
+                <background_color>#3d9bc7</background_color>
+                <text_color>#FFFFFF</text_color>
+                <popup_success>
+                    <enabled_fireworks>0</enabled_fireworks>
+                    <html_success_content>
+                        <![CDATA[
+                            <p class="success-title">Thank you, you got the offer!</p>
+                            <div class="mp-popup-coupon-code">
+                                <input id="mp-coupon-code" type="text" readonly="readonly" value="{{coupon_code}}" />
+                                <button class="btn-copy primary" type="submit">Copy</button>
+                            </div>
+                            <small>Please use this coupon code when checking out</small>
+                        ]]>
+                    </html_success_content>
+                    <enable_coupon>0</enable_coupon>
+                    <coupon_pattern>[12AN]</coupon_pattern>
+                </popup_success>
+            </what_to_show>
+            <where_to_show>
+                <which_page_to_show>2</which_page_to_show>
+            </where_to_show>
+            <when_to_show>
+                <popup_appear>1</popup_appear>
+                <after_scroll>50</after_scroll>
+                <delay>5</delay>
+                <cookieExp>0</cookieExp>
+                <show_float_button>0</show_float_button>
+                <float_button_label>Subscribe</float_button_label>
+            </when_to_show>
+        </betterpopup>
+    </default>
+</config>

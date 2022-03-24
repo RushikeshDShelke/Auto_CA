@@ -1,0 +1,5 @@
+<?php 
+$galleryColumns = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product/gallery_layout');
+if($galleryColumns == '1col' || $galleryColumns == '2cols') : ?>
+<script type="text/x-magento-init">{"*":{"sticky-sidebar":{"wrapper":".athlete2_product_info__wrapper","sticky":".product-info-main, .product.media"}}}</script>
+<?php endif;

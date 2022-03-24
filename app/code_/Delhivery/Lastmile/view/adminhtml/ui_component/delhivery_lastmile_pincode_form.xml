@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Delhivery_Lastmile extension
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category  Delhivery
+ * @package   Delhivery_Lastmile
+ * @copyright Copyright (c) 2018
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">delhivery_lastmile_pincode_form.pincode_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Manage Pincode Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Delhivery\Lastmile\Block\Adminhtml\Pincode\Edit\Buttons\Back"/>
+            <button name="delete" class="Delhivery\Lastmile\Block\Adminhtml\Pincode\Edit\Buttons\Delete"/>
+            <button name="reset" class="Delhivery\Lastmile\Block\Adminhtml\Pincode\Edit\Buttons\Reset"/>
+            <button name="save" class="Delhivery\Lastmile\Block\Adminhtml\Pincode\Edit\Buttons\Save"/>
+            <button name="save_and_continue" class="Delhivery\Lastmile\Block\Adminhtml\Pincode\Edit\Buttons\SaveAndContinue"/>
+        </buttons>
+        <namespace>delhivery_lastmile_pincode_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>delhivery_lastmile_pincode_form.pincode_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="pincode_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="delhivery_lastmile/pincode/save"/>
+        </settings>
+        <dataProvider class="Delhivery\Lastmile\Model\Pincode\DataProvider" name="pincode_form_data_source">
+            <settings>
+                <requestFieldName>pincode_id</requestFieldName>
+                <primaryFieldName>pincode_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Manage Pincode Information</label>
+        </settings>
+        <field name="pincode_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>pincode_id</dataScope>
+            </settings>
+        </field>
+        <field name="district" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">District</label>
+                <dataScope>district</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="pin" formElement="input" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Pincode</label>
+                <dataScope>pin</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="pre_paid" formElement="checkbox" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Pre Paid</label>
+                <dataScope>pre_paid</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="cash" formElement="checkbox" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Cash</label>
+                <dataScope>cash</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="pickup" formElement="checkbox" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Pickup</label>
+                <dataScope>pickup</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="cod" formElement="checkbox" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">COD</label>
+                <dataScope>cod</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="state_code" formElement="input" sortOrder="80">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">State Code</label>
+                <dataScope>state_code</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="status" formElement="select" sortOrder="90">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">pincode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Delhivery\Lastmile\Model\Pincode\Source\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

@@ -1,0 +1,139 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+
+// $items = $block->getPaymentReceivedCollection();
+
+$orders = $block->getFlatCollection(); 
+
+$supplierid = $objectManager->create('Cminds\Supplierfrontendproductuploader\Helper\Data')->getSupplierId(); 
+
+$supplier = $objectManager->create('Magento\Customer\Model\Customer')->load($supplierid);
+
+$supplierCustomFeilds = unserialize($supplier->getCustomFieldsValues());
+
+$merchantId = "MCID";
+$GSTN='';
+$paymentDueDate = null;
+
+?>
+
+<div class="container-fluid main-container vendor-container">
+    <h1><?php echo __('Payments Received') ?></h1>
+
+ <div class="row">
+        <div class='col-md-12'>
+            <div class="table-responsive table-vendar-box">
+                <table class="table table-striped table-vendar">
+                    <thead>
+                        <tr>
+                            <th><?php echo __('MC Order No.'); ?></th>
+                            <th><?php echo __('Invoice Date'); ?></th>
+                            <th><?php echo __('Product Name'); ?></th>  
+                            <th><?php echo __('Quantity'); ?></th>                           
+                            <th><?php echo __('Price Per Piece'); ?></th> 
+                            <th><?php echo __('Tax'); ?></th>
+                            <th><?php echo __('Total Amount'); ?></th>
+                            <th><?php echo __('Payment Received Date'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                 <?php if (count($orders->getData()) >=1): ?>
+                     <?php  foreach($orders->getData() AS $order)
+                        { 
+                          $craftprice = 0;
+
+                          $product = $objectManager->get('Magento\Catalog\Model\Product')->load($order['product_id']);
+                         
+                           if($product->getMarketplaceFee()) { $craftprice = $product->getMarketplaceFee(); }
+                          // $orderModel = $block->getSalesOrderModel()->load($order['order_id']);
+                          $orderModel = $objectManager->create('Magento\Sales\Model\Order')->load($order['order_id']);
+
+                          $newshipdate='';
+                          foreach($orderModel->getAllItems() as $item) {
+                            $newshipdate=$item->getItemreadinessdate();
+                          }                          
+
+                          $shipDate = "";
+                          $invoiceDate = "";
+              
+              
+                          if ($orderModel->hasInvoices()) {
+                            $invIncrementIDs = array();
+                            foreach ($orderModel->getInvoiceCollection() as $inv) {
+                              $invIncrementIDs[] = $inv->getIncrementId();
+                              $invoiceDate=$inv->getCreatedAt();
+                                //other invoice details...
+                            } 
+                          }
+
+                           foreach($orderModel->getShipmentsCollection() as $shipment)
+                            {        
+                             $itemShipment = $objectManager->create(Magento\Sales\Model\Order\Shipment::class)->load($shipment->getEntityId()); 
+                               
+
+                                foreach($itemShipment->getItemsCollection() as $shipItem)
+                                {
+                                 
+                                    if($shipItem->getProductId() == $product->getId())
+                                    {
+                                        $shipDate = $shipment->getCreatedAt();
+                                    }
+                                }
+                            }
+
+                            if($shipDate != "")
+                            {
+                              $shipDay = date('d', strtotime($shipDate));
+                              $month = date('m', strtotime($shipDate));
+                              $year = date('Y', strtotime($shipDate));
+
+                                if($shipDay >= 1 && $shipDay <=15)
+                                {
+                                    $paymentDueDate = date("Y-m-d", strtotime("+1 month", strtotime("15-".$month."-".$year)));
+                                }
+
+                                else
+                                {
+                                    $customDate = date("Y-m-d", strtotime("+1 month", strtotime($year."-".$month."-16")));
+
+                                    $paymentDueDate = date("Y-m-d", strtotime($customDate));
+                                }
+                                                           
+                            }
+                             if($GSTN==''){
+                                $tax = 0.00;
+                            }else{
+                              $tax = $craftprice * $order['tax_percent'] / 100;
+                            }
+                           ?>
+                      <tr>
+                         <td><?php echo $merchantId."-".$orderModel->getIncrementId();?></td>                 
+                       <td class="invoicedate"><?php echo $invoiceDate != "" ? date('d/M/y',strtotime($invoiceDate)) : "-";?></td>                     
+                        <td><?php echo $order['name'];?></td>                    
+                                            
+                         <td class="qty-value"><?php echo round($order['qty_ordered']);?></td>
+
+                         <td><?php echo $priceHelper->currency($craftprice, true, false);?></td>
+
+                        
+                        <td><?php echo $priceHelper->currency($tax * $order['qty_ordered'], true, false);?></td>
+                        <td>
+                          <?php echo $priceHelper->currency($order['qty_ordered'] * ($craftprice + $tax), true, false);?>
+                          
+                        </td>
+
+                        <td><?php if($paymentDueDate){ echo date('d/M/y',strtotime($paymentDueDate));} else{ echo '-'; } ?></td>
+                        <!--<td><?php //echo date('d/M/y',strtotime($invoiceDate. ' + 6 days'));?></td>-->
+                       </tr>   
+                    <?php } ?>
+                     <?php else :?>
+                      <tr><td><?php echo __('No record found.'); ?></td></tr>
+                    <?php endif;?>                        
+                    </tbody>
+                </table>
+            </div> 
+        </div>
+    </div>
+

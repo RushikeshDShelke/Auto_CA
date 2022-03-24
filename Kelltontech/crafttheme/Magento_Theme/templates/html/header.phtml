@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+<?php if ($block->getShowPart() == 'welcome') : ?>
+    <li class="greet welcome" data-bind="scope: 'customer'">
+        <!-- ko if: customer().fullname  -->
+        <span class="logged-in"
+              data-bind="text: new String('<?= $block->escapeHtml(__('Hello, %1!', '%1')) ?>').replace('%1', customer().fullname)">
+        </span>
+        <!-- /ko -->
+        <!-- ko ifnot: customer().fullname  -->
+        <span class="not-logged-in"
+              data-bind='html:"<?= $block->escapeHtml($welcomeMessage) ?>"'></span>
+        <?= $block->getBlockHtml('header.additional') ?>
+        <!-- /ko -->
+    </li>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "customer": {
+                        "component": "Magento_Customer/js/view/customer"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+<script type="text/javascript">
+require(['jquery'],function(){
+	jQuery(document).ready(function(){
+		var pagemessages = jQuery('.page.messages').remove();
+		pagemessages.insertAfter('#contentarea');
+		var breadCrumbPara = jQuery('.breadcrumbs').remove();
+		breadCrumbPara.insertAfter('.page.messages');
+        jQuery(document).on("click", "a.level-top", function(e){
+			//e.preventDefault(); 
+			}
+		);
+        var sizeBox = jQuery('.size-box').remove(); sizeBox.insertAfter('.product-info-price');
+
+        jQuery("#myBtn").click(function(){
+            var dots=document.getElementById("dots");var moreText=document.getElementById("more");var btnText=document.getElementById("myBtn");if(dots.style.display==="none"){dots.style.display="inline";btnText.innerHTML="Read more";moreText.style.display="none";}else{dots.style.display="none";btnText.innerHTML="Read less";moreText.style.display="inline";}
+        });
+
+    });
+});
+</script>
+<?php elseif ($block->getShowPart() == 'other') :?>
+    <?= $block->getChildHtml() ?>
+<?php endif ?>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCZQGS9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->

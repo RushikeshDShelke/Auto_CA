@@ -1,0 +1,114 @@
+<root>
+	<bannersliders>
+		<item>
+			<group_name>default</group_name>
+			<slide_width>320</slide_width>
+			<slide_height>220</slide_height>
+			<identifier>default-banner-slider</identifier>
+			<slides>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/default/bannerslider/banner320-run.jpg</image>
+					<imageX2></imageX2>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<title_hover_color>rgb(0, 0, 0)</title_hover_color>
+					<title_hover_bg></title_hover_bg>
+					<title_position>bottom-left</title_position>
+					<title>who's got
+your back</title>
+					<link_color></link_color>
+					<link_bg></link_bg>
+					<link_text>shop awesome gear</link_text>
+					<link_href>#</link_href>
+					<sort_order>10</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/default/bannerslider/banner320-2.jpg</image>
+					<imageX2></imageX2>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<title_hover_color>rgb(0, 0, 0)</title_hover_color>
+					<title_hover_bg></title_hover_bg>
+					<title_position>top-left</title_position>
+					<title>run free
+with athlete</title>
+					<link_color></link_color>
+					<link_bg>rgb(0, 216, 249)</link_bg>
+					<link_text>shop now</link_text>
+					<link_href>#</link_href>
+					<sort_order>20</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/default/bannerslider/banner320-golf.jpg</image>
+					<imageX2></imageX2>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<title_hover_color>rgb(0, 0, 0)</title_hover_color>
+					<title_hover_bg></title_hover_bg>
+					<title_position>center</title_position>
+					<title>golf clubs</title>
+					<link_color></link_color>
+					<link_bg></link_bg>
+					<link_text></link_text>
+					<link_href>#</link_href>
+					<sort_order>30</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/default/bannerslider/banner320-winter.png</image>
+					<imageX2></imageX2>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<title_hover_color>rgb(0, 0, 0)</title_hover_color>
+					<title_hover_bg></title_hover_bg>
+					<title_position>top-left</title_position>
+					<title>winter
+sport</title>
+					<link_color></link_color>
+					<link_bg>rgb(0, 216, 249)</link_bg>
+					<link_text>shop now</link_text>
+					<link_href>#</link_href>
+					<sort_order>40</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/default/bannerslider/banner320-basket.png</image>
+					<imageX2></imageX2>
+					<title_color></title_color>
+					<title_bg>rgba(0, 0, 0, 0)</title_bg>
+					<title_hover_color>rgb(0, 0, 0)</title_hover_color>
+					<title_hover_bg></title_hover_bg>
+					<title_position>center</title_position>
+					<title>text without 
+background</title>
+					<link_color></link_color>
+					<link_bg></link_bg>
+					<link_text></link_text>
+					<link_href>#</link_href>
+					<sort_order>50</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/default/bannerslider/banner320-iphones1.png</image>
+					<imageX2></imageX2>
+					<title_color>rgb(0, 0, 0)</title_color>
+					<title_bg>rgba(0, 0, 0, 0)</title_bg>
+					<title_hover_color>rgb(0, 0, 0)</title_hover_color>
+					<title_hover_bg></title_hover_bg>
+					<title_position>top-left</title_position>
+					<title>discover
+everything
+iphone</title>
+					<link_color></link_color>
+					<link_bg></link_bg>
+					<link_text>discover</link_text>
+					<link_href>#</link_href>
+					<sort_order>60</sort_order>
+				</item>
+			</slides>
+		</item>
+	</bannersliders>
+</root>

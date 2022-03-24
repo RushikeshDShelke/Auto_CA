@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="wbcomcore" translate="label" sortOrder="550">
+            <label>Wbcom Designs</label>
+        </tab>
+        <section id="wbcomcore" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="100">
+            <label>Wbcom Core</label>
+            <tab>wbcomcore</tab>
+            <resource>Wbcom_Core::wbcom_cofig</resource>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10">
+                <label>Core General Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

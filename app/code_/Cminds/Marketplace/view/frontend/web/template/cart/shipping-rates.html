@@ -1,0 +1,79 @@
+<!--
+/**
+ * Cminds Marketplace checkout cart shipping rates js component template.
+ *
+ * @category Cminds
+ * @package  Cminds_Marketplace
+ * @author   Piotr Pierzak <piotrek.pierzak@gmail.com>
+ */
+-->
+<form id="co-shipping-method-form" data-bind="blockLoader: isLoading">
+    <div data-bind="visible: shippingMethodsEnabled">
+        <fieldset class="fieldset rate" data-bind="visible: (supplierData().length > 0)" style="margin-bottom:20px;">
+            <dl class="items methods" data-bind="foreach: supplierData()">
+                <dt class="item-title">
+                    <span data-bind="text: $data.supplierName"></span>
+                </dt>
+                <dd class="item-options">
+                    <span style="font-weight:700;"><!-- ko i18n: 'Products'--><!-- /ko -->:</span>
+                    <ul data-bind="foreach: $data.items" class="item" style="padding-left:22px;margin-bottom:5px;">
+                        <li data-bind="text: $data.name" style="margin-bottom:0;"></li>
+                    </ul>
+
+                    <span style="font-weight:700;"><!-- ko i18n: 'Supplier shipping methods'--><!-- /ko -->:</span>
+                    <div data-bind="foreach: $parent.getRatesForSupplier($data.supplierId)" class="field choice item">
+                        <fieldset style="border:0;margin:0;padding:0;">
+                            <input type="radio"
+                                   class="radio"
+                                   data-bind="
+                                    checked: selected,
+                                    click: $parents[1].selectSupplierShippingMethod,
+                                    attr: {
+                                        value: id,
+                                        name: 'supplier[' + supplierId + ']',
+                                        id: 's_method_supplier_' + supplierId + '_' + id,
+                                        class: 'supplier_methods'
+                                    }
+                                    "/>
+                            <label class="label" data-bind="attr: {for: 's_method_supplier_' + supplierId + '_' + id}">
+                                <!-- ko text: $data.name --><!-- /ko -->
+                                <!-- ko text: $parents[1].getFormattedPrice(price) --><!-- /ko -->
+                            </label>
+                        </fieldset>
+                    </div>
+                </dd>
+            </dl>
+        </fieldset>
+    </div>
+    <p class="field note" data-bind="visible: (shippingRates().length <= 0)">
+        <!-- ko text: $t('Sorry, no quotes are available for this order at this time')--><!-- /ko -->
+    </p>
+    <fieldset class="fieldset rate" data-bind="visible: (shippingRates().length > 0)">
+        <dl class="items methods" data-bind="foreach: shippingRateGroups">
+            <dt class="item-title"><span data-bind="text: $data"></span></dt>
+            <dd class="item-options" data-bind="foreach: $parent.getRatesForGroup($data)">
+                <div data-bind="css: {'field choice item': available, 'message error': !available} ">
+                    <!-- ko ifnot: (available) -->
+                    <div data-bind="text: error_message"></div>
+                    <!-- /ko -->
+                    <!-- ko if: (available) -->
+                    <input type="radio"
+                           class="radio"
+                           data-bind="
+                                click: $parents[1].selectShippingMethod,
+                                checked: $parents[1].selectedShippingMethod,
+                                attr: {
+                                    value: carrier_code + '_' + method_code,
+                                    id: 's_method_' + method_code
+                                }
+                                "/>
+                    <label class="label" data-bind="attr: {for: 's_method_' + method_code}">
+                        <!-- ko text: $data.method_title --><!-- /ko -->
+                        <!-- ko text: $parents[1].getFormattedPrice(amount) --><!-- /ko -->
+                    </label>
+                    <!-- /ko -->
+                </div>
+            </dd>
+        </dl>
+    </fieldset>
+</form>

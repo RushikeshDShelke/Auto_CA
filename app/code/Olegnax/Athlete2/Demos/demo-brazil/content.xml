@@ -1,0 +1,2443 @@
+<root>
+	<blocks>
+		<item>
+			<title>Athlete2 Product After Description Block</title>
+			<identifier>athlete2-after-product-info-block</identifier>
+			<content><![CDATA[<div class="info-block align-items-center">
+<div class="col-12 col-md-6"><div class="d-flex align-items-center"><div class="athlete2-icon-shipping-svg" style="margin-right: 10px;"></div><strong>free shipping</strong></div></div>
+<div class="col-12 col-md-6"><div class="d-flex align-items-center"><div class="athlete2-icon-returns-svg" style="margin-right: 10px;"></div><strong>Hassle Free Returns</strong></div></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Athlete2 Footer Content After</title>
+			<identifier>athlete2-footer-content-after</identifier>
+			<content><![CDATA[<div class="row"><div class="col-12 col-md-3 mb-3 mb-md-0"><iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2F209.97.182.187%2Fathlete%2F&width=400&layout=standard&action=like&size=small&show_faces=true&share=false&height=20&colorscheme=light&appId=212509162107987" width="400" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></div><div class="col athlete_footer_customer_service">
+<h6>ONLINE CUSTOMER SERVICE: 1.800.123.4567</h6>
+</div></div>]]></content>
+		</item>
+		<item>
+			<title>Athlete2 Footer Content After Newsletter</title>
+			<identifier>athlete2-footer-content-after-newsletter</identifier>
+			<content><![CDATA[<h4>connect with us</h4>
+{{widget type="Olegnax\Athlete2\Block\SocialIcons" facebook_link="#" facebook_sort="1" facebook_messenger_link="#" facebook_messenger_sort="2" instagram_link="#" instagram_sort="3" twitter_link="#" twitter_sort="4" skype_link="#" skype_sort="5" tumblr_link="#" tumblr_sort="5" google_plus_link="#" google_plus_sort="7" amazon_link="#" amazon_sort="8" stripe_link="#" stripe_sort="10" paypal_link="#" paypal_sort="11" vimeo_link="#" vimeo_sort="12" vk_link="#" vk_sort="13" foursquare_link="#" foursquare_sort="14" flickr_link="#" flickr_sort="15" whatsapp_link="#" whatsapp_sort="17" telegram_plane_link="#" telegram_plane_sort="18" template="Olegnax_Athlete2::widgets/social_icons.phtml" type_name="Olegnax - Social Icons"}}]]></content>
+		</item>
+		<item>
+			<title>Athlete2 Header Text</title>
+			<identifier>athlete2-header-text</identifier>
+			<content><![CDATA[<div class="row" style="opacity: 0.4;">
+    <div class="col-align-vertical" style="margin-right: 5%;">
+        <div class="athlete2-icon-phone-svg" style="margin-right: 10px;"></div>
+        <span style="font-weight: 700;">1 800 123 4567</span>
+    </div>
+    <div class="col-align-vertical" style="margin-right: 5%;">
+        <div class="athlete2-icon-shipping-svg" style="margin-right: 10px;"></div>
+        <span style="font-weight: 700; text-transform: uppercase">worldwide delivery</span>
+    </div>
+    <div class="col-align-vertical">
+        <div class="athlete2-icon-returns-svg" style="margin-right: 10px;"></div>
+        <span style="font-weight: 700;text-transform: uppercase">Hassle-Free Returns</span>
+    </div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Athlete2 Footer Content</title>
+			<identifier>athlete2-footer-content</identifier>
+			<content><![CDATA[<div class="row">
+<div class="col-12 col-sm-6 col-md-3">
+<h4>Stores</h4>
+<p style="line-height:22px;font-size: 12px;"><span class="fas fa-map-marker-alt" style="font-size:15px;"></span>&nbsp;&nbsp;  Lingeries Store<br>
+34 New Clity 5655, Excel Tower<br>
+OPG Rpad, 4538FH<br>
+
+</p><p style="line-height:22px;font-size: 12px;"><span class="fas fa-map-marker-alt" style="font-size:15px;"></span>&nbsp;&nbsp;  Lingeries Store<br>
+34 New Clity 5655, Excel Tower<br>
+OPG Rpad, 4538FH<br>
+</p>
+
+</div>
+<div class="col-12 col-sm-6 col-md-3">
+<h4>Features</h4>
+<ul>
+<li><a href="#"><span class="fas fa-gift" style="font-size:15px;"></span>&nbsp;&nbsp; Custom Sub Themes</a></li>
+<li><a href="#"><span class="fas fa-magic" style="font-size:15px;"></span>&nbsp;&nbsp; Over 200 Color Options</a></li>
+<li><a href="#"><span class="fas fa-ellipsis-h" style="font-size:15px;"></span>&nbsp;&nbsp; Color Swatches</a></li>
+<li><a href="#"><span class="fas fa-bullhorn" style="font-size:15px;"></span>&nbsp;&nbsp; Blog</a></li>
+<li><a href="#"><span class="fas fa-th-large" style="font-size:15px;"></span>&nbsp;&nbsp; Customizable Grid</a></li>
+<li><a href="#"><span class="fas fa-list-alt" style="font-size:15px;"></span>&nbsp;&nbsp; Mega Menu</a></li>
+<li><a href="#"><span class="fas fa-asterisk" style="font-size:15px;"></span>&nbsp;&nbsp; Widgetized Banner System</a></li>
+<li><a href="#"><span class="fas fa-expand" style="font-size:15px;"></span>&nbsp;&nbsp; Fluid Width</a></li>
+<li><a href="#"><span class="fas fa-hand-o-right" style="font-size:15px;"></span>&nbsp;&nbsp; and so much more...</a></li>
+</ul>
+</div>
+<div class="col-12 col-sm-6 col-md-3">
+<h4>Get Help</h4>
+<ul>
+<li><a href="#">Contact Customer Service</a></li>
+<li><a href="#">ScoreCard</a></li>
+<li><a href="#">Product Availability and Price</a></li>
+<li><a href="#">Recalls</a></li>
+<li><a href="#">Return Policy</a></li>
+<li><a href="#">Shipping Rates</a></li>
+</ul>
+<a href="#" class="button primary">need help?</a>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="col-12 col-sm-6 col-md-3">
+<h4>Orders</h4>
+<ul>
+<li><a href="#">Order Tracking</a></li>
+<li><a href="#">Product Availability Pricing</a></li>
+<li><a href="#">Recalls</a></li>
+<li><a href="#">Returns &amp; Warranties</a></li>
+</ul>
+<a href="#" class="button primary">order status</a>
+<div class="spacer-small">&nbsp;</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Athlete2 Content Above Footer</title>
+			<identifier>athlete2-content-above-footer</identifier>
+			<content><![CDATA[<div style="background:#3d3d3d">
+    <div class="container">
+        <div class="centered-iblocks" style="padding: 50px 10px">
+            <div class="iblock">
+                <div class="icon-wrapper">
+                    <svg class="accent-color" width="24px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 41">
+                        <path d="M31,0H11L9,2V39l2,2H31l2-2V2ZM12.2,3H29.8L30,3.2V9H12V3.2ZM30,37.8l-0.2.2H12.2L12,37.8V32H30v5.8ZM12,30V11H30V30H12Z" transform="translate(-9)"/>
+                        <rect x="8" y="34" width="8" height="2"/>
+                        <rect x="11" y="5" width="2" height="2"/>
+                    </svg>
+                </div>
+                <div class="content-wrapper">
+                    <span class="small-subtitle no-margin" style="color: #fff; letter-spacing: 0;">call us now</span>
+                    <h4 class="no-margin" style="color: #fff;">1 800 123 4567</h4>
+                </div>
+            </div>
+            <div class="iblock">
+                <div class="icon-wrapper">
+                    <svg class="accent-color" width="49px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 49 35" style="enable-background:new 0 0 49 35;" xml:space="preserve">
+                            <path d="M40,28c0.6,0,1.2,0.3,1.6,0.8l0.4,0.6V30c0,1.1-0.9,2-2,2s-2-0.9-2-2v-0.6l0.4-0.6C38.8,28.3,39.4,28,40,28 M35,0H0v30h6
+                                    c0,2.8,2.2,5,5,5s5-2.2,5-5h16h3c0,2.8,2.3,5,5,5s5-2.3,5-5h4V17h-4V9H35V0L35,0z M3,27V3h29v6v8v10H15c-0.9-1.2-2.3-2-4-2
+                                    s-3.1,0.8-4,2H3L3,27z M35,17v-5h7v5H35L35,17z M35,27v-7h11v7h-2c-0.9-1.2-2.3-2-4-2s-3.1,0.8-4,2H35L35,27z M11,32
+                                    c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S12.1,32,11,32L11,32z"/>
+                    </svg>
+                </div>
+                <div class="content-wrapper">
+                    <span class="small-subtitle no-margin" style="color: #fff; letter-spacing: 0;">free shipping over 100$</span>
+                    <h4 class="no-margin" style="color: #fff;">worldwide delivery</h4>
+                </div>
+            </div>
+            <div class="iblock">
+                <div class="icon-wrapper">
+                    <svg class="accent-color" width="50px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 50 34" style="enable-background:new 0 0 50 34;" xml:space="preserve">
+                    <polygon points="46.6,10.2 42,14.8 42,3 42,0 10,0 7,0 7,3 7,11 10,11 10,3 39,3 39,14.7 34.5,10.2 32.4,12.3 39,19 39,19 42,19 
+                            42,19 48.7,12.3 "/>
+                    <polygon points="39,31 10,31 10,19.3 14.4,23.8 16.6,21.7 10,15 10,15 7,15 7,15 0.2,21.7 2.4,23.8 7,19.2 7,31 7,34 38.7,34 42,34 
+                            42,31 42,23 39,23 "/>
+                    </svg>
+                </div>
+                <div class="content-wrapper">
+                    <span class="small-subtitle no-margin" style="color: #fff; letter-spacing: 0;">we got you covered</span>
+                    <h4 class="no-margin" style="color: #fff;">Hassle-Free Returns</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Athlete2 Copyright Additional Content</title>
+			<identifier>athlete2-copyright-additional</identifier>
+			<content><![CDATA[<img src="{{media url=&quot;athlete2/Demos/default/cc_icons.png&quot;}}" alt="" />]]></content>
+		</item>
+		<item>
+			<title>Athlete2 Women Category Brazil</title>
+			<identifier>Athlete2 Women Category Brazil</identifier>
+			<content><![CDATA[        <div class="ox-banner banner-stretch ox-banner-huge big-border ox-banner-animated-text v-bottom h-left" style="border-color: #c9ee23;">
+            <a class="ox-banner-link" href="https://athlete.olegnax.com/index.php/">
+                <span class="ox-banner-animated-container">
+                    <em class="link">SHOP THE LOOK</em>
+                    <span class="text" style="color:#fff; background:transparent">are you beach</span>
+                    <span class="text" style="color:#fff; background:transparent">body ready?</span>                   
+                </span>
+               <img src="{{media url=&quot;athlete2/Demos/brazil/br-women-cat-01-c.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+<div class="row" style="margin-top:30px;">
+    <div class="col-sm-6"> 
+            <a href="#">	
+            <img src="{{media url=&quot;athlete2/Demos/brazil/br-women-cat-02.jpg&quot;}}" alt="" width="100%"/>
+            </a>
+
+    </div>
+    <div class="col-sm-6"> 
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-top h-left">
+            <a class="ox-banner-link" href="https://athlete.olegnax.com/index.php/">
+                <span class="ox-banner-animated-container">
+                    <span class="text">complete</span>
+                    <span class="text">your kit</span>
+                    <em class="link">SHOP THE LOOK</em>
+                </span>
+               <img src="{{media url=&quot;athlete2/Demos/brazil/br-women-cat-03.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="promo-block-categories-grid" style="margin-top:30px;"> 
+    <div class="a-center ox-max-width-500">
+        <h1 class="no-margin">shop by</h1>
+        <h1><em class="hightlighted-text lower">categories</em></h1>        
+    </div>
+    <div class="row no-gutters" style="    padding-left: 3%;    padding-right: 3%;">
+        <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">
+                <img src="{{media url=&quot;athlete2/Demos/brazil/br-women-cat-slider-01.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	                    
+                </a>
+            </div>
+            <h6 style="font-weight:800">tops</h6>
+        </div>
+        <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">
+                <img src="{{media url=&quot;athlete2/Demos/brazil/br-women-cat-slider-02.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	                    
+                </a>
+            </div>
+            <h6 style="font-weight:800">hoodies</h6>
+        </div>
+        <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">
+                <img src="{{media url=&quot;athlete2/Demos/brazil/br-women-cat-slider-03.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	                    
+                </a>
+            </div>
+            <h6 style="font-weight:800">shoes</h6>
+        </div>
+        <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">
+                <img src="{{media url=&quot;athlete2/Demos/brazil/br-women-cat-slider-04.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	                    
+                </a>
+            </div>
+            <h6 style="font-weight:800">pants</h6>
+        </div>
+    </div>
+</div>
+
+<div class="a-center">
+<div class="spacer-medium">&nbsp;</div>
+<span class="small-subtitle" style="color:#d1d1d1; letter-spacing: 1px; margin-bottom: 10px;">most wanted</span>
+<h1 class="big">Featured</h1>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="0" title_side_line="0" products_count="10" category_ids="110" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="1" autoplay_time="3000" pause_on_hover="1" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - Products List by Category"}}
+</div>
+<div class="spacer-small">&nbsp;</div>
+<div class="promo-block-categories-grid" style="margin-top:30px;"> 
+    <div class="a-center">
+        <h2>shop by brand</h2>      
+    </div>
+    <div class="spacer-small">&nbsp;</div>
+    <div class="row no-gutters" style="padding-left: 3%;padding-right: 3%;">
+        <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-01.jpg&quot;}}" alt="" />     
+                </a>
+            </div>
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-05.jpg&quot;}}" alt="" />    
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-02.jpg&quot;}}" alt="" />
+                </a>
+            </div>
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-06.jpg&quot;}}" alt="" />         
+                </a>
+            </div>
+        </div>
+         <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-03.jpg&quot;}}" alt="" />     
+                </a>
+            </div>
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-07.jpg&quot;}}" alt="" />    
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-sm-3 a-center">
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-04.jpg&quot;}}" alt="" />         
+                </a>
+            </div>
+            <div class="ox-banner ox-img-zoom-out-hover">
+                <a class="ox-banner-link" href="#">
+                    <img src="{{media url=&quot;athlete2/Demos/brazil/brand-08.jpg&quot;}}" alt="" />            
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+]]></content>
+		</item>
+		<item>
+			<title>Athlete Custom Tab</title>
+			<identifier>athlete-custom-tab</identifier>
+			<content><![CDATA[<h5>* You can add as many custom tabs as you need!</h5>
+<div class="table-bordered table-header-border overflow-y">
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Bust (cm)</th>
+<th>Waist (cm)</th>
+<th>Hip (cm)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XS</td>
+<td>82,5</td>
+<td>62</td>
+<td>87,5</td>
+</tr>
+<tr>
+<td>S</td>
+<td>85</td>
+<td>63,5</td>
+<td>89</td>
+</tr>
+<tr>
+<td>M</td>
+<td>87,5</td>
+<td>67,5</td>
+<td>93</td>
+</tr>
+<tr>
+<td>L</td>
+<td>90</td>
+<td>72,5</td>
+<td>98</td>
+</tr>
+<tr>
+<td>XL</td>
+<td>93</td>
+<td>77,5</td>
+<td>103</td>
+</tr>
+</tbody>
+</table>
+</div>]]></content>
+		</item>
+	</blocks>
+	<pages>
+		<item>
+			<title>Athlete2 Home Page Brazil</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>athlete2-home-brazil</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[{{widget type="Olegnax\BannerSlider\Block\BannerSlider" slide_group="brazil-banner-slider" size_big="0" auto_scroll="3" scroll_items="1" rewind="1" type_name="Olegnax - Banner Slider"}}
+<div class="a-center">
+<div class="spacer-medium">&nbsp;</div>
+<span class="small-subtitle" style="color:#d1d1d1; letter-spacing: 1px;">think big. win big.</span>
+<h1 style="margin-bottom: 30px;">top categories</h1>
+<a class="button primary outline medium" href="#" style="margin: 0 5px;"><span>men</span></a>
+<a class="button primary outline medium" href="#" style="margin: 0 5px;"><span>women</span></a>
+<a class="button primary outline medium" href="#" style="margin: 0 5px;"><span>kids</span></a>
+<div class="spacer-medium">&nbsp;</div>
+</div>
+
+<div class="row"> 
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-out-hover ox-banner-content-overlay h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-01.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-out-hover ox-banner-content-overlay h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-02.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-out-hover ox-banner-content-overlay h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-03.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="a-center">
+<div class="spacer-medium">&nbsp;</div>
+<span class="small-subtitle" style="color:#d1d1d1; letter-spacing: 1px; margin-bottom: 10px;">most wanted</span>
+<h1 class="big">Featured</h1>
+{{widget type="Olegnax\ProductSlider\Block\FeaturedProducts" show_title="0" title_side_line="0" products_count="10" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="1" autoplay_time="3000" pause_on_hover="1" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - Featured Products List"}}
+</div>
+<div class="spacer-small">&nbsp;</div>
+<div class="row"> 
+    <div class="col-lg-6"> 
+        <div class="spacer-small">&nbsp;</div>
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-center h-left">
+            <a class="ox-banner-link" href="https://athlete.olegnax.com/index.php/">
+                <span class="ox-banner-animated-container">
+                    <span class="text">reach</span>
+                    <span class="text">the summit</span>
+                    <em class="link" style="background: #3d3d3d; color: #fff;">SHOP THE LOOK</em>
+                </span>
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-04.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+        <div class="spacer-medium">&nbsp;</div>
+        {{widget type="Olegnax\ProductSlider\Block\OnSaleProducts" show_title="1" title="Sale" title_align="center" title_tag="h2" title_side_line="1" products_count="5" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="3" columns_desktop_small="2" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - On Sale Products List"}}
+
+    </div>
+    <div class="col-lg-6"> 
+        <div class="spacer-small">&nbsp;</div>
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-center h-left">
+            <a class="ox-banner-link" href="https://athlete.olegnax.com/index.php/">
+                <span class="ox-banner-animated-container">
+                    <span class="text">complete</span>
+                    <span class="text">your kit</span>
+                    <em class="link">LEARN MORE</em>
+                </span>
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-05.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+        <div class="spacer-medium">&nbsp;</div>
+        {{widget type="Olegnax\ProductSlider\Block\NewProducts" show_title="1" title="What&#039;s new" title_align="center" title_tag="h2" title_side_line="1" products_count="5" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="3" columns_desktop_small="2" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - New Products List"}}
+    </div>
+</div>
+
+<div class="spacer-medium">&nbsp;</div>
+<div class="row fullwidth-background-block" style="padding: 50px 0 40px;">
+<div class="spacer-regular hide-on-mobile">&nbsp;</div>
+<div class="col-lg-8">{{widget type="Magefan\Blog\Block\Widget\Recent" number_of_posts="1" category_id="0" tag_id="0" author_id="0" custom_template="Magefan_Blog::widget/recent-big.phtml" type_name="Recent Blog Posts"}}</div>
+<div class="col-lg-4 col-align-vertical" style="padding: 20px 0 0 40px;"><div class="d-inline-block"><span class="small-subtitle" style="color:#d1d1d1; letter-spacing: 1px;margin-bottom: 10px;">Latest News</span>
+<h1>From <em class="hightlighted-text">Blog</em></h1>{{widget type="Magefan\Blog\Block\Widget\Featured" posts_ids="23,24" custom_template="Magefan_Blog::widget/recent-titles.phtml" type_name="Featured Blog Posts"}}</div></div>
+<div class="spacer-small hide-on-mobile">&nbsp;</div>
+</div>
+
+<div class="a-center">
+<div class="spacer-medium">&nbsp;</div>
+<span class="small-subtitle" style="color:#d1d1d1; letter-spacing: 1px;margin-bottom: 10px;">A Few Of The Reasons</span>
+<h1>why <em class="hightlighted-text">buy</em> from us?</h1>
+<div class="spacer-small" style="height:20px;">&nbsp;</div>
+</div>
+<div class="row std a-center">
+<div class="col-md-4">    
+    <svg style="margin-bottom: 20px;"  viewBox="0 -66 512.00035 512" height="85px" xmlns="http://www.w3.org/2000/svg"><path d="m461.285156 226.507812-76.492187-5.464843-50.554688-84.214844-25.273437-42.167969v-11.679687c.007812-12.675781-10.261719-22.957031-22.9375-22.964844-2.839844-.003906-5.65625.523437-8.300782 1.546875l-72.6875 28.039062 5.492188-18.433593c4.335938-15.496094-2.699219-31.921875-16.90625-39.476563l-57.035156-30.640625c-4.148438-2.226562-9.316406-.804687-11.742188 3.230469l-83.660156 133.96875-1.765625-1.023438c-4.226563-2.429687-9.621094-.96875-12.046875 3.257813-.054688.089844-.101562.179687-.152344.273437l-26.191406 49.308594c-2.257812 4.257813-.683594 9.535156 3.53125 11.867188l318.535156 176.550781c1.308594.722656 2.777344 1.101563 4.273438 1.101563h131.664062c29.238282-.027344 52.9375-23.722657 52.964844-52.964844v-45.65625c-.09375-28.609375-22.183594-52.328125-50.714844-54.457032zm-94.941406-1.890624-10.082031 3.363281-78.988281-102.699219 20.304687-15.246094zm-230.691406-204.03125 49.621094 26.632812c6.878906 3.636719 10.316406 11.550781 8.28125 19.058594l-7.292969 24.578125-50.671875-30.386719-17.546875-10.53125zm-52.265625 84.25 4.519531-7.0625 29.042969 21.601562c14.78125 11.097656 22.328125 29.375 19.683593 47.671875l-1.101562 25.511719-78.894531-45.472656zm375.648437 257.097656h-129.394531l-308.964844-171.257813 17.839844-33.542969 292.519531 168.3125c1.34375.773438 2.863282 1.179688 4.414063 1.175782h158.894531c0 19.5-15.808594 35.3125-35.308594 35.3125zm35.308594-52.96875h-156.539062l-60.546876-34.859375 20.355469-20.753907c3.363281-3.527343 3.230469-9.117187-.300781-12.480468-3.457031-3.296875-8.910156-3.242188-12.304688.121094l-23.550781 24.011718-33.546875-19.332031 33.644532-26.914063c3.804687-3.046874 4.421874-8.605468 1.375-12.414062-3.046876-3.804688-8.605469-4.421875-12.410157-1.375l-39.046875 31.242188-28.742187-16.527344 43.609375-36.34375c3.75-3.121094 4.257812-8.6875 1.140625-12.4375-3.121094-3.75-8.691407-4.257813-12.441407-1.140625l-48.621093 40.527343-13.648438-7.855468 1.429688-33.886719c3.269531-24.414063-6.960938-48.679687-26.71875-63.382813l-30.078125-22.363281 11.363281-17.839843 78.140625 46.882812c1.050781.605469 2.214844.980469 3.417969 1.105469.210937 0 .394531.070312.609375.085937.210937.019532.34375.0625.511718.0625 1.089844.003906 2.175782-.195312 3.195313-.589844l89.421875-34.488281c1.636719-.625 3.46875-.410156 4.917969.574219 1.453125.996094 2.316406 2.648438 2.304687 4.414062v9.710938l-31.78125 23.832031c-3.898437 2.929688-4.683594 8.464844-1.753906 12.359375.019531.027344.039062.054688.058594.078125l88.277344 114.761719c2.28125 2.988281 6.214843 4.191406 9.78125 2.992188l24.8125-8.273438 79.328124 5.667969c19.304688 1.429687 34.261719 17.46875 34.335938 36.828125zm0 0"/><path d="m52.964844 256h-44.136719c-4.875 0-8.828125 3.953125-8.828125 8.828125s3.953125 8.828125 8.828125 8.828125h44.136719c4.875 0 8.828125-3.953125 8.828125-8.828125s-3.953125-8.828125-8.828125-8.828125zm0 0"/><path d="m0 317.792969c0 4.875 3.953125 8.828125 8.828125 8.828125h114.757813c4.875 0 8.828124-3.953125 8.828124-8.828125s-3.953124-8.828125-8.828124-8.828125h-114.757813c-4.875 0-8.828125 3.953125-8.828125 8.828125zm0 0"/><path d="m220.691406 361.933594h-211.863281c-4.875 0-8.828125 3.949218-8.828125 8.824218s3.953125 8.828126 8.828125 8.828126h211.863281c4.875 0 8.824219-3.953126 8.824219-8.828126s-3.949219-8.824218-8.824219-8.824218zm0 0"/></svg>
+    <h5>sustainable material</h5>
+    <p style="font-size:16px; line-height:28px; font-weight:600">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+    <div class="spacer-regular">&nbsp;</div>
+</div>
+<div class="col-md-4">    
+        <svg style="margin-bottom: 20px;" height="85px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">
+                    <path d="M472,144h-24v-12c0-15.464-12.536-28-28-28c-4.16,0.023-8.261,0.983-12,2.808V96c0-17.673-14.327-32-32-32
+                            c-17.673,0-32,14.327-32,32v48h-32v-8c0.058-13.197-10.593-23.943-23.79-24.002c-5.995-0.027-11.781,2.201-16.21,6.242
+                            c-9.044-8.32-22.956-8.32-32,0c-9.044-8.32-22.956-8.32-32,0c-9.75-8.894-24.864-8.2-33.758,1.55
+                            c-4.04,4.429-6.268,10.215-6.242,16.21v8h-32V96c0-17.673-14.327-32-32-32c-17.673,0-32,14.327-32,32v10.808
+                            c-3.739-1.825-7.84-2.785-12-2.808c-15.464,0-28,12.536-28,28v12H8c-4.418,0-8,3.582-8,8v48c0,4.418,3.582,8,8,8h24v12
+                            c0,15.464,12.536,28,28,28c4.16-0.023,8.261-0.983,12-2.808V256c0,17.673,14.327,32,32,32c17.673,0,32-14.327,32-32v-48h16v26.744
+                            c-0.026,10.613,4.194,20.796,11.72,28.28L184,283.312V416h16V280c0-2.122-0.844-4.156-2.344-5.656l-22.624-22.632
+                            c-4.489-4.508-7.016-10.606-7.032-16.968V184h46.856c3.029-0.041,5.899,1.35,7.744,3.752c0.056,0.08,0.12,0.16,0.176,0.248
+                            c0.343,0.546,0.612,1.135,0.8,1.752c0.151,0.493,0.253,0.999,0.304,1.512c0.056,0.502,0.056,1.01,0,1.512
+                            c-0.018,0.269-0.053,0.536-0.104,0.8c-0.181,0.843-0.492,1.652-0.92,2.4c-1.395,2.477-4.013,4.013-6.856,4.024h-24
+                            c-4.418,0-8,3.582-8,8v16c-0.001,3.445,2.204,6.503,5.472,7.592l17.6,5.88C221.36,242.216,232,263.84,232,280h16
+                            c0-22.008-13.696-50.336-35.832-57.712L200,218.232V216h16c6.733-0.065,13.125-2.97,17.6-8H304v29.336
+                            c-0.01,5.191-1.693,10.241-4.8,14.4L281.6,275.2c-1.039,1.385-1.6,3.069-1.6,4.8v136h16V282.664l16-21.328
+                            c5.178-6.931,7.984-15.348,8-24V208h24v48c0,17.673,14.327,32,32,32c17.673,0,32-14.327,32-32v-10.808
+                            c3.739,1.825,7.84,2.785,12,2.808c15.464,0,28-12.536,28-28v-12h24c4.418,0,8-3.582,8-8v-48C480,147.582,476.418,144,472,144z
+                             M32,192H16v-32h16V192z M72,220c0,6.627-5.373,12-12,12s-12-5.373-12-12v-88c0-6.627,5.373-12,12-12s12,5.373,12,12V220z
+                             M120,256c0,8.837-7.163,16-16,16s-16-7.163-16-16V96c0-8.837,7.163-16,16-16s16,7.163,16,16V256z M160,168c-4.418,0-8,3.582-8,8
+                            v16h-16v-32h32c0.009,1.512,0.161,3.021,0.456,4.504c0.088,0.472,0.24,0.904,0.352,1.36c0.184,0.712,0.32,1.448,0.56,2.136H160z
+                             M200,160c0,4.418-3.582,8-8,8c-4.418,0-8-3.582-8-8v-24c0-4.418,3.582-8,8-8c4.418,0,8,3.582,8,8V160z M232,160
+                            c0,4.418-3.582,8-8,8c-4.418,0-8-3.582-8-8v-24c0-4.418,3.582-8,8-8c4.418,0,8,3.582,8,8V160z M280,136c0-4.418,3.582-8,8-8
+                            c4.418,0,8,3.582,8,8v24c0,4.418-3.582,8-8,8c-4.418,0-8-3.582-8-8V136z M248,136c0-4.418,3.582-8,8-8c4.418,0,8,3.582,8,8v24
+                            c0,4.418-3.582,8-8,8c-4.418,0-8-3.582-8-8V136z M344,192L344,192H240c0-0.08,0-0.144,0-0.224
+                            c-0.007-1.591-0.173-3.178-0.496-4.736c-0.048-0.216-0.152-0.416-0.2-0.64c-0.144-0.584-0.352-1.128-0.536-1.696
+                            c-0.338-1.025-0.747-2.024-1.224-2.992c-0.232-0.48-0.344-1.024-0.608-1.488c0.091-0.062,0.179-0.129,0.264-0.2
+                            c0.368-0.24,0.688-0.528,1.04-0.8c0.6-0.448,1.232-0.864,1.792-1.368c0.464,0.416,1,0.744,1.496,1.12
+                            c0.496,0.376,0.984,0.8,1.52,1.136c0.755,0.466,1.535,0.891,2.336,1.272c0.544,0.264,1.056,0.576,1.6,0.8
+                            c0.934,0.358,1.891,0.655,2.864,0.888c0.504,0.136,0.976,0.328,1.496,0.432c3.077,0.629,6.25,0.629,9.328,0
+                            c0.52-0.104,0.992-0.296,1.496-0.432c0.973-0.233,1.93-0.53,2.864-0.888c0.568-0.232,1.08-0.544,1.6-0.8
+                            c0.804-0.381,1.586-0.806,2.344-1.272c0.528-0.352,1.008-0.752,1.512-1.136c0.504-0.384,1.032-0.704,1.496-1.12
+                            c0.464,0.416,1,0.744,1.496,1.12c0.496,0.376,0.984,0.8,1.52,1.136c0.755,0.466,1.535,0.891,2.336,1.272
+                            c0.544,0.264,1.056,0.576,1.6,0.8c0.934,0.358,1.891,0.655,2.864,0.888c0.504,0.136,0.976,0.328,1.496,0.432
+                            c12.955,2.633,25.591-5.734,28.224-18.688c0.322-1.585,0.483-3.198,0.48-4.816h32V192z M392,256c0,8.837-7.163,16-16,16
+                            c-8.837,0-16-7.163-16-16V96c0-8.837,7.163-16,16-16c8.837,0,16,7.163,16,16V256z M432,220c0,6.627-5.373,12-12,12
+                            s-12-5.373-12-12v-88c0-6.627,5.373-12,12-12s12,5.373,12,12V220z M464,192h-16v-32h16V192z"/>
+    </svg>
+    <h5>See the difference</h5>
+    <p style="font-size:16px; line-height:28px; font-weight:600">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+    <div class="spacer-regular">&nbsp;</div>
+</div>
+<div class="col-md-4">    
+    <svg style="margin-bottom: 20px;" viewBox="0 0 496 496" height="85px" xmlns="http://www.w3.org/2000/svg"><path d="m350.246094 384h-45.183594l5.523438-44.121094c5.972656-47.847656 22.644531-94.757812 48.199218-135.640625l4.664063-7.460937-16.839844-8.417969c13.839844-19.984375 21.390625-43.894531 21.390625-68.359375 0-66.167969-53.832031-120-120-120s-120 53.832031-120 120c0 24.464844 7.542969 48.375 21.390625 68.359375l-16.839844 8.417969 4.664063 7.460937c25.554687 40.882813 42.226562 87.792969 48.199218 135.640625l5.523438 44.121094h-45.183594l-15.992187 64h-17.761719v48h272v-48h-17.761719zm-55.542969-46.105469-5.765625 46.105469h-23.496094l10.039063-60.238281c7.65625-45.953125 23.632812-89.425781 47.503906-129.320313l17.664063 8.832032c-24.199219 41.03125-40.046876 87.390624-45.945313 134.621093zm-47.925781 46.105469-10.480469-62.863281c-5.386719-32.335938-14.769531-63.472657-27.921875-93.105469l39.625-26.414062 39.625 26.414062c-13.152344 29.632812-22.535156 60.769531-27.921875 93.105469l-10.480469 62.863281zm-102.777344-264c0-57.34375 46.65625-104 104-104s104 46.65625 104 104c0 21.984375-7.089844 43.40625-19.9375 61.097656l-15-7.496094-3.847656 6.167969c-6.839844 10.933594-13.085938 22.152344-18.757813 33.597657l-46.457031-30.984376-46.457031 30.976563c-5.671875-11.449219-11.917969-22.664063-18.757813-33.597656l-3.847656-6.167969-14.992188 7.496094c-12.855468-17.683594-19.945312-39.113282-19.945312-61.089844zm57.296875 217.894531c-5.898437-47.230469-21.746094-93.589843-45.953125-134.621093l17.664062-8.832032c23.871094 39.894532 39.847657 83.367188 47.503907 129.320313l10.046875 60.238281h-23.496094zm166.703125 142.105469h-240v-16h184v-16h-165.761719l12.007813-48h179.507812l12.007813 48h-21.761719v16h40zm0 0"/><path d="m197.894531 190.96875 50.105469-27.695312 50.105469 27.695312-9.554688-58.585938 40.058594-41.046874-55.402344-8.472657-25.207031-53.695312-25.199219 53.695312-55.402343 8.472657 40.058593 41.046874zm2.707031-88.519531 33.054688-5.050781 14.34375-30.566407 14.34375 30.566407 33.054688 5.050781-23.941407 24.542969 5.550781 34.039062-29.007812-16.039062-29.007812 16.039062 5.550781-34.039062zm0 0"/><path d="m240 224h16v16h-16zm0 0"/><path d="m240 272h16v16h-16zm0 0"/><path d="m168 416h16v16h-16zm0 0"/><path d="m200 416h96v16h-96zm0 0"/><path d="m312 416h16v16h-16zm0 0"/><path d="m72 280h16v16h-16zm0 0"/><path d="m72 424h16v16h-16zm0 0"/><path d="m0 352h16v16h-16zm0 0"/><path d="m128 368v-16h-8c-17.648438 0-32-14.351562-32-32v-8h-16v8c0 17.648438-14.351562 32-32 32h-8v16h8c17.648438 0 32 14.351562 32 32v8h16v-8c0-17.648438 14.351562-32 32-32zm-48 5.519531c-3.558594-5.359375-8.160156-9.960937-13.519531-13.519531 5.359375-3.558594 9.960937-8.160156 13.519531-13.519531 3.558594 5.359375 8.160156 9.960937 13.519531 13.519531-5.359375 3.558594-9.960937 8.160156-13.519531 13.519531zm0 0"/><path d="m144 352h16v16h-16zm0 0"/><path d="m408 208h16v16h-16zm0 0"/><path d="m408 352h16v16h-16zm0 0"/><path d="m336 280h16v16h-16zm0 0"/><path d="m424 248v-8h-16v8c0 17.648438-14.351562 32-32 32h-8v16h8c17.648438 0 32 14.351562 32 32v8h16v-8c0-17.648438 14.351562-32 32-32h8v-16h-8c-17.648438 0-32-14.351562-32-32zm-8 53.519531c-3.558594-5.359375-8.160156-9.960937-13.519531-13.519531 5.359375-3.558594 9.960937-8.160156 13.519531-13.519531 3.558594 5.359375 8.160156 9.960937 13.519531 13.519531-5.359375 3.558594-9.960937 8.160156-13.519531 13.519531zm0 0"/><path d="m480 280h16v16h-16zm0 0"/><path d="m88 152h16v16h-16zm0 0"/><path d="m72 168h16v16h-16zm0 0"/><path d="m88 184h16v16h-16zm0 0"/><path d="m104 168h16v16h-16zm0 0"/><path d="m400 104h16v16h-16zm0 0"/><path d="m384 120h16v16h-16zm0 0"/><path d="m400 136h16v16h-16zm0 0"/><path d="m416 120h16v16h-16zm0 0"/></svg><h5>Unlock your creativity</h5>
+    <p style="font-size:16px; line-height:28px; font-weight:600">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+    <div class="spacer-regular">&nbsp;</div>
+</div>
+</div>
+
+<div class="a-center">
+    <a class="button primary medium" href="#"><span>want more reasons?</span></a>
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<hr style="border-color: #ececec;">
+<div class="spacer-regular">&nbsp;</div>
+
+<div class="row std a-center">
+<div class="col-12">
+<h3>CHOOSE BY CATEGORY</h3>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="col-6 col-sm-4 col-md-2">
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/brazil/landing1_banner_sm1.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <a href="#" class="h6 no-margin">Training</a>
+        </div>
+    </div>
+</div>
+<div class="col-6 col-sm-4 col-md-2">
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/brazil/landing1_banner_sm2.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <a href="#" class="h6 no-margin">Snowboarding</a>
+        </div>
+    </div>
+</div>
+<div class="col-6 col-sm-4 col-md-2">
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/brazil/landing1_banner_sm3.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <a href="#" class="h6 no-margin">Soccer</a>
+        </div>
+    </div>
+</div>
+<div class="col-6 col-sm-4 col-md-2">
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/brazil/landing1_banner_sm4.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <a href="#" class="h6 no-margin">Apparel</a>
+        </div>
+    </div>
+</div>
+<div class="col-6 col-sm-4 col-md-2">
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/brazil/landing1_banner_sm5.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <a href="#" class="h6 no-margin">Boxing</a>
+        </div>
+    </div>
+</div>
+<div class="col-6 col-sm-4 col-md-2">
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/brazil/landing1_banner_sm6.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <a href="#" class="h6 no-margin">Techfit</a>
+        </div>
+    </div>
+</div>
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<div class="a-center fullwidth-background-block page-bottom-padding">
+<div class="spacer-small hide-on-mobile">&nbsp;</div>
+<div class="spacer-medium">&nbsp;</div>
+<div class="ox-max-width-600">
+    <h1>What <br><em class="hightlighted-text lower">People</em> say</h1>
+    <div class="a-center owl-carousel" data-role="product-owlCarousel" data-mage-init='{"OXowlCarousel":{"margin":0,"loop":false,"dots":true,"nav":false,"items":3,"autoplay":false,"autoplayTimeout":5000,"autoplayHoverPause":false,"lazyLoad":true,"rewind":true,"responsive":{"0":{"items":1},"640":{"items":1},"1025":{"items":1},"1160":{"items":1}}}}'>
+        <div class="d-inline-block">            
+            <p class="big-text">“ There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable ”</p>
+            <div class="testimonial-name">
+            <span>John Doe</span>
+            <span>Professional Athlete</span>
+            </div>
+        </div>
+        <div class="d-inline-block">            
+            <p class="big-text">“Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable ”</p>
+            <div class="testimonial-name">
+            <span>Sarah Green</span>
+            <span>Gadget Addict</span>
+            </div>
+        </div>
+        <div class="d-inline-block">            
+            <p class="big-text">“ Variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable ”</p>
+            <div class="testimonial-name">
+            <span>Andy White</span>
+            <span>Just a Guy</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-big">&nbsp;</div>
+</div>]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Athlete2 Home V2 Brazil</title>
+			<page_layout>1column-fullwidth</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>athlete2-home-v2-brazil</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[{{block class="Nwdthemes\Revslider\Block\Revslider" alias="brazil-slider-home"}}
+<div class="promo-block-categories-grid a-center" style="background: #f3f3f3;">
+    <span class="small-subtitle">new arrivals</span>
+    <h1 class="big" style="line-height:0.9!important">our latest <br>& <em class="hightlighted-text lower">greatest</em></h1>
+    <div class="spacer-small">&nbsp;</div>
+    <div class="a-center owl-carousel" style="padding-left: 3%; padding-right: 3%" data-role="product-owlCarousel" data-mage-init='{"OXowlCarousel":{"itemClass":"d-inline-block","margin":0,"loop":false,"dots":true,"nav":false,"items":4,"autoplay":false,"autoplayTimeout":5000,"autoplayHoverPause":false,"lazyLoad":true,"rewind":true,"responsive":{"0":{"items":2},"640":{"items":2},"1025":{"items":3},"1160":{"items":4}}}}'>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp01.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Boots</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">Fast & Furious</p>
+        </div>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp02.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Cleats</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">Yellow-Grey huh</p>
+        </div>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp03.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Running</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">Crazy Comfortable</p>
+        </div>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp04.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary  ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Sport Style</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">The lighter you feel</p>
+        </div>
+    </div>
+</div>
+<div class="row no-spacing">
+    <div class="col-md-6"> 
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-top h-left">
+            <a class="ox-banner-link" href="#">
+                <span class="ox-banner-animated-container">
+                    <span class="text">reach</span>
+                    <span class="text">the summit</span>
+                    <em class="link" style="background: #3d3d3d; color: #fff;">SHOP THE LOOK</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-banner01.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6"> 
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-bottom h-left">
+            <a class="ox-banner-link" href="https://athlete.olegnax.com/index.php/">
+                <span class="ox-banner-animated-container">
+                    <span class="text">run free</span>
+                    <span class="text">with athlete</span>
+                    <em class="link">shop now</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-banner02.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+</div>
+<div class="a-center container">
+<div class="spacer-medium">&nbsp;</div>
+<span class="small-subtitle" style="color:#d1d1d1; letter-spacing: 1px; margin-bottom: 10px;">most wanted</span>
+<h1 class="big">Featured</h1>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="0" title_side_line="0" products_count="10" category_ids="110" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="1" autoplay_time="3000" pause_on_hover="1" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - Products List by Category"}}
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<div class="fullwidth-background-block row">
+<div class="spacer-small">&nbsp;</div>
+<div class="spacer-medium hide-on-tablet hide-on-mobile">&nbsp;</div>
+
+<div class="col-md-6 col-lg-7">
+    <div class="block-align-vertical ox-max-width-700" style="padding: 30px;">
+    <h1 class="big" style="line-height:0.9!important">What <br><em class="hightlighted-text lower">People</em> say</h1>
+    <div class="owl-carousel" data-role="product-owlCarousel" data-mage-init='{"OXowlCarousel":{"margin":0,"loop":false,"dots":true,"nav":false,"items":3,"autoplay":false,"autoplayTimeout":5000,"autoplayHoverPause":false,"lazyLoad":true,"rewind":true,"responsive":{"0":{"items":1},"640":{"items":1},"1025":{"items":1},"1160":{"items":1}}}}'>
+        <div class="d-inline-block">            
+            <p class="big-text">“ There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable ”</p>
+            <div class="testimonial-name">
+            <span>John Doe</span>
+            <span>Professional Athlete</span>
+            </div>
+        </div>
+        <div class="d-inline-block">            
+            <p class="big-text">“Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable ”</p>
+            <div class="testimonial-name">
+            <span>Sarah Green</span>
+            <span>Gadget Addict</span>
+            </div>
+        </div>
+        <div class="d-inline-block">            
+            <p class="big-text">“ Variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable ”</p>
+            <div class="testimonial-name">
+            <span>Andy White</span>
+            <span>Just a Guy</span>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="col-md-6 col-lg-5 col-align-vertical a-center" style="padding: 30px 45px;">
+    <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2--br-testimonials.jpg&quot;}}" style="margin:auto" alt=""/>
+</div>
+
+<div class="spacer-small">&nbsp;</div>
+<div class="spacer-medium hide-on-tablet hide-on-mobile">&nbsp;</div>
+</div>
+<div class="a-center">
+<h2 style="    padding: 50px 25px 40px; margin: 0;">Instagram feed</h2>
+</div>
+{{widget type="Olegnax\Athlete2\Block\Widget\Instagram" images_count="12" columns_desktop="3" columns_tablet="3" columns_mobile="2" template="Olegnax_Athlete2::instagram_list_2.phtml" type_name="Olegnax - Instagram Feed"}}]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Athlete2 Home V3 Brazil</title>
+			<page_layout>1column-fullwidth</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>athlete2-home-v3-brazil</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[{{block class="Nwdthemes\Revslider\Block\Revslider" alias="hero-brazil"}}
+<div class="row no-spacing">
+    <div class="col-lg-6"> 
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-top h-left">
+            <a class="ox-banner-link" href="#">
+                <span class="ox-banner-animated-container">
+                    <span class="text" style="background:#c9ee23">reach</span>
+                    <span class="text" style="background:#c9ee23">the summit</span>
+                    <em class="link" style="background: #3d3d3d; color: #fff;">SHOP THE LOOK</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-home3-banner-01.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3"> 
+        <div class="ox-banner banner-stretch ox-banner-animated-text">
+            <a class="ox-banner-link" href="#">
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-home3-banner-02.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3"> 
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-top h-left">
+            <a class="ox-banner-link" href="#">
+                <span class="ox-banner-animated-container">
+                    <span class="text">run free</span>
+                    <span class="text">with athlete</span>
+                    <em class="link">shop now</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-home3-banner-03.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+</div>
+<div class="promo-block-categories-grid a-center" style="background: #f3f3f3;">
+    <span class="small-subtitle">most popular</span>
+    <h1 class="big" style="line-height:0.9!important">shop by <br>& <em class="ox-animate hightlighted-text lower">category</em></h1>
+    <div class="spacer-small">&nbsp;</div>
+    <div class="a-center owl-carousel" style="padding-left: 3%; padding-right: 3%" data-role="product-owlCarousel" data-mage-init='{"OXowlCarousel":{"itemClass":"d-inline-block","margin":0,"loop":false,"dots":true,"nav":false,"items":4,"autoplay":false,"autoplayTimeout":5000,"autoplayHoverPause":false,"lazyLoad":true,"rewind":true,"responsive":{"0":{"items":2},"640":{"items":2},"1025":{"items":3},"1160":{"items":4}}}}'>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp01.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Boots</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">Fast & Furious</p>
+        </div>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp02.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Cleats</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">Yellow-Grey huh</p>
+        </div>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp03.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Running</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">Crazy Comfortable</p>
+        </div>
+        <div class="d-inline-block">
+            <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                <a class="ox-banner-link" href="#">			
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-grp04.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary  ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	
+                </a>
+            </div>
+            <h6 style="font-weight:800; margin: 20px 0 0;">Sport Style</h6>
+            <p style="font-weight: 600; color: #8e8e8e;">The lighter you feel</p>
+        </div>
+    </div>
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<div class="container"> 
+    <div class="row"> 
+        <div class="col-md-6">         
+            <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-center h-left">
+                <a class="ox-banner-link" href="#">
+                    <span class="ox-banner-animated-container">
+                        <span class="text">reach</span>
+                        <span class="text">the summit</span>
+                        <em class="link" style="background: #3d3d3d; color: #fff;">SHOP THE LOOK</em>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-04.jpg&quot;}}" alt="" />
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6"> 
+            <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-center h-left">
+                <a class="ox-banner-link" href="#">
+                    <span class="ox-banner-animated-container">
+                        <span class="text">complete</span>
+                        <span class="text">your kit</span>
+                        <em class="link">LEARN MORE</em>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-05.jpg&quot;}}" alt="" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="a-center container">
+<div class="spacer-medium">&nbsp;</div>
+<span class="small-subtitle" style="color:#d1d1d1; letter-spacing: 1px; margin-bottom: 10px;">most wanted</span>
+<h1 class="big">Featured</h1>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="0" title_side_line="0" products_count="10" category_ids="110" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="1" autoplay_time="3000" pause_on_hover="1" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - Products List by Category"}}
+</div>
+<div class="spacer-medium">&nbsp;</div>
+<!-- ONE FOURTH ------------------------------------------------------->
+<div class="row no-spacing" style="background:#f4f4f4;">
+    <div class="col-lg-7" style=" padding:60px 5% 0;">
+        <div class="block-align-vertical">
+        <div class="row">            
+            <div class="col-12 a-center">
+                <span class="small-subtitle" style=" margin-bottom: 10px;">reach the summit</span>
+                <h1>shop the look</h1>
+            </div>
+            <div class="col-6 a-center">
+                <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">
+                     <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-br-grp-01.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary big-wide ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	                    
+                    </a>
+                </div>
+                <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">
+                     <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-br-grp-03.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary big-wide ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	                    
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 a-center">
+                <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">
+                     <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-br-grp-02.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary big-wide ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	                    
+                    </a>
+                </div>
+                <div class="ox-banner ox-banner-content-overlay h-center v-center">
+                    <a class="ox-banner-link" href="#">
+                     <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-br-grp-04.jpg&quot;}}" alt="" />
+                    <span class="ox-banner-container">
+                        <span class="button primary big-wide ox-show-hover ox-moveup-hover">shop now</span>
+                    </span>	                    
+                    </a>
+                </div>
+            </div>
+         </div>
+        </div>           
+     </div>
+    <div class="col-lg-5">
+        <div class="ox-banner banner-stretch banner-stretch-vertical image-cover ox-banner-animated-text">
+            <a class="ox-banner-link" href="#">
+                <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-home3-sidebanner.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+</div>
+    
+<div class="ox-max-width-1000 a-center" style="padding:15px;">
+    <div class="spacer-regular hide-on-tablet hide-on-mobile">&nbsp;</div>
+    <div class="spacer-medium">&nbsp;</div>
+    <h3 style="letter-spacing: -0.03em; line-height:1.6; margin-bottom: 40px;">"Part of why Athlete has seen so much success over the past couple of years is largely due to one simple fact: The brand <em class="ox-animate hightlighted-text lower">listens to its customers.</em>"</h3>
+    <img src="{{media url=&quot;athlete2/Demos/brazil/sample-logo.png&quot;}}" alt="" />
+    <div class="spacer-medium">&nbsp;</div>
+</div>
+<div class="container"> 
+    <div class="row"> 
+        <div class="col-md-6">
+            <div class="ox-banner ox-banner-stores overlay-hover banner-stretch ox-banner-content-overlay" tabindex="0">
+                <div class="ox-banner-link">
+                    <div class="overlay-layer" style="background:rgb(201, 238, 35);">&nbsp;</div>
+                    <span class="ox-banner-container">
+                        <span class="h1 title xxl ox-show-hover ox-moveup-hover">new york</span>
+                        <span class="text ox-show-hover">34 New Clity 5655, Excel Tower<br/>OPG Rpad, 4538FH</span>                        
+                    </span>
+                    <span class="ox-banner-container bottom">
+                        <a class="button primary" href="#">visit store</a>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/a2-shop-01.jpg&quot;}}" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ox-banner ox-banner-stores overlay-hover banner-stretch ox-banner-content-overlay" tabindex="0">
+                <div class="ox-banner-link">
+                    <div class="overlay-layer" style="background:rgb(201, 238, 35);">&nbsp;</div>
+                    <span class="ox-banner-container">
+                        <span class="h1 title xxl ox-show-hover ox-moveup-hover">London</span>
+                        <span class="text ox-show-hover">34 New Clity 5655, Excel Tower<br/>OPG Rpad, 4538FH</span>                        
+                    </span>
+                    <span class="ox-banner-container bottom">
+                        <a class="button primary" href="#">visit store</a>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/a2-shop-02.jpg&quot;}}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-big">&nbsp;</div>
+<div class="fullwidth-background-block">
+<div class="spacer-small hide-on-mobile">&nbsp;</div>
+<div class="spacer-small">&nbsp;</div>
+<div class="container">
+<div class="a-center">
+    <span class="small-subtitle">latest news</span>
+    <h1 class="big" style="line-height:0.9!important;">From the <em class="ox-animate hightlighted-text lower">Blog</em></h1>
+</div>
+<div class="spacer-small">&nbsp;</div>
+{{widget type="Magefan\Blog\Block\Widget\Featured" posts_ids="23,25,26" type_name="Featured Blog Posts"}}
+<div class="spacer-small hide-on-mobile">&nbsp;</div>
+</div>
+</div>]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>faq</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>faq</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="spacer-medium">&nbsp;</div>
+<h6 style=font-weight:800;">have questions?<br>
+we've got answers</h6>
+<h1 class="huge">frequently asked<br>
+    <em class="hightlighted-text ox-animate lower">questions</em></h1>
+<div class="spacer-medium">&nbsp;</div>
+<div class="ox-max-width-900">
+    <h2>SHIPPING & DELIVERY</h2>
+    <div class="ox-toggle collapsible medium-left">
+        <div class="ox-toggle-title">
+            <div class="toggle-minus"><span>&nbsp;</span></div>
+            <strong class="h6">q: How Do I Order Internationally?</strong >
+        </div>
+        <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+            <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+    </div>
+    <div class="ox-toggle collapsible medium-left">
+        <div class="ox-toggle-title">
+            <div class="toggle-minus"><span>&nbsp;</span></div>
+            <strong class="h6">q: Shipping Options And Timeframes For Borderfree Orders:</strong >
+        </div>
+        <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+            <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+    </div>
+    <div class="ox-toggle collapsible medium-left">
+        <div class="ox-toggle-title">
+            <div class="toggle-minus"><span>&nbsp;</span></div>
+            <strong class="h6">q: Can I Use Promo Codes? </strong >
+        </div>
+        <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+            <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+    </div>
+    <div class="spacer-medium">&nbsp;</div>
+    <h2>ORDERS</h2>
+    <div class="ox-toggle collapsible medium-left">
+        <div class="ox-toggle-title">
+            <div class="toggle-minus"><span>&nbsp;</span></div>
+            <strong class="h6">q: How Can I Change Or Cancel My Order?</strong>
+        </div>
+        <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+            <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+    </div>
+    <div class="ox-toggle collapsible medium-left">
+        <div class="ox-toggle-title">
+            <div class="toggle-minus"><span>&nbsp;</span></div>
+            <strong class="h6">q: How Can I Track My Borderfree Order?</strong >
+        </div>
+        <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+            <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+    </div>
+    <div class="ox-toggle collapsible medium-left">
+        <div class="ox-toggle-title">
+            <div class="toggle-minus"><span>&nbsp;</span></div>
+            <strong class="h6">q: returns & exchanges</strong >
+        </div>
+        <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+            <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+    </div>
+    <div class="ox-toggle collapsible medium-left">
+        <div class="ox-toggle-title">
+            <div class="toggle-minus"><span>&nbsp;</span></div>
+            <strong class="h6">q: Billing And Payment Options</strong >
+        </div>
+        <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+            <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p>
+        </div>
+    </div>
+    <div class="spacer-medium">&nbsp;</div>
+    <div class="ox-banner image-cover ox-img-zoom-out-hover ox-banner-content-overlay h-left v-bottom">
+        <a class="ox-banner-link" href="#">
+           <img src="{{media url=&quot;athlete2/Demos/brazil/banner-green-bg.png&quot;}}" alt="" />
+           <span class="ox-banner-container top big-padding">
+                <span class="h6" style="font-weight:800;">get in touch</span> 
+            </span>
+            <span class="ox-banner-container big-padding">
+                <span class="row">
+                    <span class="col-12 col-sm-8 col-md-6 ox-margin ox-margin-sm-no">
+                        <span class="h2">couldn't find answers to your questions?</span>
+                    </span>
+                    <span class="col-12 col-sm-4 col-md-6">
+                        <span class="small-line blink" style=" position: absolute; bottom: 0;left: 20px;">&nbsp;</span>
+                    </span>
+                 </span>
+            </span>	
+        </a>
+    </div>
+</div>
+<div class="spacer-medium">&nbsp;</div>
+
+]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Faq v2</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>faq-v2</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="spacer-medium">&nbsp;</div>
+<h6 style=font-weight:800;">have questions?<br>
+we've got answers</h6>
+<h1 class="huge">frequently asked<br>
+    <em class="hightlighted-text ox-animate lower">questions</em></h1>
+<div class="spacer-medium">&nbsp;</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>SHIPPING & DELIVERY</h2>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: How Do I Order Internationally?</strong >
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: Shipping Options And Timeframes For Orders:</strong >
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: Can I Use Promo Codes? </strong >
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="spacer-medium">&nbsp;</div>
+        <h2>returns</h2>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: How Can I Change Or Cancel My Order?</strong>
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: returns & exchanges</strong >
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="spacer-medium">&nbsp;</div>
+    </div>
+    <div class="col-md-6">
+        <h2>ORDERS</h2>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: How Can I Change Or Cancel My Order?</strong>
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: How Can I Track My Borderfree Order?</strong >
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: returns & exchanges</strong >
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p></div>
+        </div>
+        <div class="ox-toggle collapsible medium-left">
+            <div class="ox-toggle-title">
+                <div class="toggle-minus"><span>&nbsp;</span></div>
+                <strong class="h6">q: Billing And Payment Options</strong >
+            </div>
+            <div class="ox-toggle-content"  style="font-size:16px; font-weight:600;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut volutpat tellus, nec posuere metus. Curabitur urna mi, tempor id tempus sed, sollicitudin sagittis odio. Curabitur eu feugiat ipsum. Morbi et mollis nisl. Duis metus sem, pretium vel lacinia sit amet, faucibus sit amet augue. Ut elementum massa at mauris consequat, et euismod neque suscipit. Nullam vel magna at ex dapibus pretium a quis turpis. Nunc justo magna, luctus sit amet accumsan nec, rutrum nec nisl. Nam at pretium tellus, ut placerat felis. Phasellus vitae urna in lectus gravida tincidunt eget eu neque. Vestibulum laoreet est ipsum.</p>
+                <p>Sed ut placerat sapien, et ullamcorper lorem. Sed ultrices venenatis sapien, eu molestie leo feugiat ac. Sed finibus ante eu lacinia ornare. Nam rutrum quam non justo bibendum, quis faucibus magna ornare. Curabitur in finibus tortor, a luctus est. Morbi eget metus id libero egestas tempor ut ac risus.</p>
+            </div>
+        </div>
+        <div class="spacer-medium">&nbsp;</div>
+    </div>    
+</div>
+<div class="row">
+    <div class="col-md-6">        
+        <div style="background: #f7f7f7; padding:12%;">
+            <div class="small-line" style="margin-bottom:12%;">&nbsp;</div>
+            <h2 style="max-width: 400px;    margin-bottom: 40px;">couldn't find answers to your questions?</h2>
+            <a href="#" class="button long h6 primary">get in touch</a>
+        </div>	
+    </div>    
+</div>
+<div class="spacer-medium">&nbsp;</div>
+
+]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Product Carousels</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>product-carousels</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="a-center">
+<div class="spacer-small">&nbsp;</div>
+<span class="small-subtitle">wide range of powerful</span>
+<h1 class="big">Product <em class="hightlighted-text lower">Carousel</em> Widgets</h1>
+<p class="big-text  ox-max-width-900">Show products by Categories, by ID, On Sale, New, Bestsellers, Most Viewed, Wishlist products, Featured or Recently Viewed. Lots of various carousel options, autoplay, rewind, loop, columns, dots, arrows, navigation position and align, title controls, choose layout and show hide different elements.</p>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Products By Category" title_align="center" title_tag="h3" title_side_line="1" products_count="7" category_ids="107" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="0" autoplay_time="3000" pause_on_hover="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+<div class="row">
+<div class="col-lg-6">
+{{widget type="Olegnax\ProductSlider\Block\FeaturedProducts" show_title="1" title="Featured Products" title_align="center" title_tag="h3" title_side_line="1" products_count="5" template="Olegnax_ProductSlider::carouselv2.phtml" columns_desktop="3" columns_desktop_small="2" columns_tablet="4" columns_mobile="2" loop="0" rewind="1" nav="0" dots="0" autoplay="0" show_addtocart="0" show_wishlist="0" show_compare="0" show_review="0" show_quickview="1" type_name="Olegnax - Featured Products List"}}
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="col-lg-6">
+{{widget type="Olegnax\ProductSlider\Block\BestSellerProducts" show_title="1" title="Best Seller Products" title_align="center" title_tag="h3" title_side_line="1" products_count="5" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="3" columns_desktop_small="2" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - Best Seller Products List"}}
+<div class="spacer-small">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-6">
+{{widget type="Olegnax\ProductSlider\Block\OnSaleProducts" show_title="1" title="Sale Products" title_align="center" title_tag="h3" title_side_line="1" products_count="5" template="Olegnax_ProductSlider::carouselv2.phtml" columns_desktop="3" columns_desktop_small="2" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="0" dots="0" autoplay="0" show_addtocart="0" show_wishlist="0" show_compare="0" show_review="0" show_quickview="1" type_name="Olegnax - On Sale Products List"}}
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="col-lg-6">
+{{widget type="Olegnax\ProductSlider\Block\NewProducts" show_title="1" title="New Products" title_align="center" title_tag="h3" title_side_line="1" products_count="5" template="Olegnax_ProductSlider::carouselv2.phtml" columns_desktop="3" columns_desktop_small="2" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="0" show_review="0" show_quickview="1" type_name="Olegnax - New Products List"}}
+<div class="spacer-small">&nbsp;</div>
+</div>
+</div>
+
+
+
+<div class="a-center">
+<div class="spacer-small">&nbsp;</div>
+<span class="small-subtitle">align title and dots, set position for arrows</span>
+<h1 class="big"><em class="hightlighted-text lower">Navigation</em> Alignment and Position</h1>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Arrows near title" title_align="center" title_tag="h3" title_side_line="q" products_count="8" category_ids="108" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="1" nav_position="title" dots="1" dots_align="center" autoplay="0" show_addtocart="0" show_wishlist="0" show_compare="0" show_review="0" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Title and Dots Align Left" title_align="left" title_tag="h3" title_side_line="q" products_count="8" category_ids="108" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="1" nav_position="title" dots="1" dots_align="left" autoplay="0" show_addtocart="0" show_wishlist="0" show_compare="0" show_review="0" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+<div class="a-center">
+<div class="spacer-small">&nbsp;</div>
+<span class="small-subtitle">set time and stop on hover</span>
+<h1 class="big">Carousel with <em class="hightlighted-text lower">Autoplay</em></h1>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="01" title="Carousel with autoplay" title_align="center" title_tag="h3" title_side_line="1" products_count="10" category_ids="107" template="Olegnax_ProductSlider::carousel.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="1" nav="1" nav_position="left-right" dots="1" dots_align="center" autoplay="1" autoplay_time="3000" pause_on_hover="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Product Grid Columns</title>
+			<page_layout>1column-fullwidth</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>product-grid-columns</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="a-center">
+<div class="spacer-regular">&nbsp;</div>
+<span class="small-subtitle">from 2 to 8 products per row</span>
+<h1 class="big">Product Grid <em class="hightlighted-text lower">Columns</em></h1>
+<p class="big-text">You can set different amount per row for different screen resolutions.</p>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Eight Columns" title_align="center" title_tag="h3" title_side_line="1" products_count="8" category_ids="41" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="8" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="0" show_review="0" show_quickview="0" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Six Columns" title_align="center" title_tag="h3" title_side_line="1" products_count="6" category_ids="11" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="6" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+<div class="container">
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Five Columns" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Four Columns" title_align="center" title_tag="h3" title_side_line="1" products_count="4" category_ids="108" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="4" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+<div class="row">
+<div class="col-md-6">
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Three Columns" title_align="center" title_tag="h3" title_side_line="1" products_count="3" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="3" columns_desktop_small="2" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="col-md-6">
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Two Columns" title_align="center" title_tag="h3" title_side_line="1" products_count="2" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="2" olumns_desktop_small="2" columns_tablet="2" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+<div class="spacer-small">&nbsp;</div>
+</div>
+</div>
+</div>
+
+<div class="spacer-regular">&nbsp;</div>]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Products Grid</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>products-grid</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="a-center">
+<div class="spacer-small">&nbsp;</div>
+<span class="small-subtitle">various</span>
+<h1 class="big">Product Widget<em class="hightlighted-text lower"> Layouts</em></h1>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V1, FULL" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V2, FULL" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::gridv2.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<span class="small-subtitle">from add to cart to reviews</span>
+<h1 class="big">Enable/Disable <em class="hightlighted-text lower">Any</em> Element</h1>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V1, Quickview Only" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="108" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="0" show_wishlist="0" show_compare="0" show_review="0" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V2, Quickview Only" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="108" template="Olegnax_ProductSlider::gridv2.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="0" show_wishlist="0" show_compare="0" show_review="0" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V1, Actions Only" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V2, Actions Only" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::gridv2.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="0" type_name="Olegnax - Products List by Category"}}
+
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V1, Wishlist and Add to Cart" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="110" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="0" show_review="1" show_quickview="0" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Layout V2, Wishlist and Quickview" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="110" template="Olegnax_ProductSlider::gridv2.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="0" show_wishlist="1" show_compare="0" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<span class="small-subtitle">choose position or remove</span>
+<h1 class="big">Title Align, Side Lines</h1>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid Title Left" title_align="left" title_tag="h3" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid NO Sidelines" title_align="center" title_tag="h3" title_side_line="0" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="0" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+
+
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<span class="small-subtitle">from Strong to H1</span>
+<h1 class="big">Widget <em class="hightlighted-text lower">Title</em> Size</h1>
+<div class="spacer-big">&nbsp;</div>
+</div>
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid TItle h1" title_align="center" title_tag="h1" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid TItle h2" title_align="center" title_tag="h2" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid TItle h3" title_align="center" title_tag="h3" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}
+{{widget type="Olegnax\ProductSlider\Block\ProductsByCategory" show_title="1" title="Grid TItle h4" title_align="center" title_tag="h4" title_side_line="1" products_count="5" category_ids="107" template="Olegnax_ProductSlider::grid.phtml" columns_desktop="5" columns_desktop_small="4" columns_tablet="3" columns_mobile="2" loop="0" rewind="0" nav="0" dots="0" autoplay="0" show_addtocart="1" show_wishlist="1" show_compare="1" show_review="1" show_quickview="1" type_name="Olegnax - Products List by Category"}}]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Typography</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>typography</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="spacer-regular">&nbsp;</div>
+<span class="small-subtitle no-margin">Heading H1 Huge and Huge Spacing:</span>
+<h1 class="huge huge-spacing"  style="margin-bottom:12px;">this is huge</h1>
+<pre><code>&lt;h1 class="huge huge-spacing"&gt;this is huge&lt;/h1&gt;</code></pre>
+<div class="spacer-small">&nbsp;</div>
+
+<h1 class="huge"  style="margin-bottom:12px;">Huge Heading </h1>
+<pre><code>&lt;h1 class="huge"&gt;Huge Heading&lt;/h1&gt;</code></pre>
+<div class="spacer-small">&nbsp;</div>
+
+<h1 class="big"  style="margin-bottom:12px;">Big Heading</h1>
+<pre><code>&lt;h1 class="big "&gtBig Heading&lt;/h1&gt;</code></pre>
+<div class="spacer-small">&nbsp;</div>
+
+<h1>Heading H1</h1>
+<h2>Heading H2</h2>
+<h3>Heading H3</h3>
+<h4>Heading H4</h4>
+<h5>Heading H5</h5>
+<h6>Heading H6</h6>
+
+<span class="small-subtitle">small subtitle</span>
+<pre><code>&lt;span class="small-subtitle"&gt;small subtitle&lt;/span&gt;</code></pre>
+
+<div class="spacer-big">&nbsp;</div>
+
+<h2>Heading classes on elements</h2>
+<p  style="font-size:16px;">You can add heading style to any element using following classes .h1, .h2, .h3, .h4, .h5, .h6.</p>
+<a href="#" class="h5 bg-hover">link h5 heading</a><span href="#" class="h3">span h3 heading</span>
+
+<div class="spacer-big">&nbsp;</div>
+
+<h2>Hightlight</h2>
+<div style="font-size:16px;">
+<p>Add <span class="at-highlight">at-highlight</span> class to element to wrap it with background</p>
+<span class="h5">header with</span> <span class="h5 at-highlight" style="color:white">hightlight</span>
+</div>
+<div class="spacer-big">&nbsp;</div>
+
+<h2>Alternative Hightlight</h2>
+<p style="font-size:16px;">Wrap text in <span class="at-highlight">&lt;em class="hightlighted-text"&gt; ... &lt;/em&gt;</span> class to element to add fat underline. Works best on big headings. Additionally you can add class <span class="at-highlight">lower</span> to move underline lower.</p>
+<span class="h3"><em class="hightlighted-text">Highlighted</em> Text</span> and <span class="h1"><em class="hightlighted-text lower">Highlighted</em> Text Lower</span>
+<div class="spacer-small">&nbsp;</div>
+<pre><code>&lt;span class="h3"&gt;&lt;em class="hightlighted-text"&gt;Highlighted&lt;/em&gt; Text&lt;/span&gt; and &lt;span class="h1"&gt;&lt;em class="hightlighted-text lower"&gt;Highlighted&lt;/em&gt; Text Lower&lt;/span&gt;</code></pre>
+
+<div class="spacer-big">&nbsp;</div>
+
+<h2>Link hover styles</h2>
+<div class="spacer-small">&nbsp;</div>
+<div style="font-size:16px;">
+<p class="no-margin">You can various ways to make link with bg on hover. You can add class <span class="at-highlight">bg-hover</span> directly to the a tag. </p>
+<p>Or you can add one of these classes to the wrapper element and all links inside will be with background on hover: <span class="at-highlight">std</span>,<span class="at-highlight">llinks-bg-hover</span>.</p>
+<p>You can clear links hover for specific link by applying  <span class="at-highlight">link-clear</span> class to link tag. Add <span class="at-highlight">clean-list</span> class to ul element or wrapper to remove dots and padding from all list elements.</p>
+<p>Alternatively you can add double underline on link hover by adding  <span class="at-highlight">underlined-links</span> class to wrapper. </p>
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<div class="row " style="font-size: 14px;">
+<div class="col-12 col-sm-6 col-md-3">
+<ul class="std clean-list"><li><h6>BG on HOVER</h6></li>
+<li><a href="#">Running</a></li>
+<li><a href="#">Basketball</a></li>
+<li><a href="#">Training</a></li>
+<li><a href="#">Soccer</a></li>
+</ul></div>
+<div class="col-12 col-sm-6 col-md-3">
+<ul class="std clean-list"><li><h6>BG on HOVER</h6></li>
+<li><a href="#">Shirts</a></li>
+<li><a href="#">T-Shirts</a></li>
+<li><a href="#">Hoodies</a></li>
+<li><a href="#">Jackets &amp; Vests</a></li>
+</ul></div>
+<div class="col-12 col-sm-6 col-md-3">
+<ul class="clean-list underlined-links">
+            <li><h6>UNDERLINED LINKS ON HOVER</h6></li>
+            <li><a href="#">Where's my order?</a></li>
+            <li><a href="#">What payment options can I use?</a></li>
+            <li><a href="#">What is personalisation policy?</a></li>
+            <li><a href="#">How do I get the latest high-demand sneakers?</a></li>
+        </ul></div>
+<div class="col-12 col-sm-6 col-md-3">
+<ul class="clean-list underlined-links">
+            <li><h6>UNDERLINED LINKS ON HOVER</h6></li>
+            <li><a href="#">Where's my order?</a></li>
+            <li><a href="#">What payment options can I use?</a></li>
+            <li><a href="#">What is personalisation policy?</a></li>
+            <li><a href="#">How do I get the latest high-demand sneakers?</a></li>
+        </ul></div>
+</div>
+
+<div class="spacer-big">&nbsp;</div>
+
+<h2>Bigger content text</h2>
+<p style="font-size:16px;">You can make content text bigger by adding <span class="at-highlight">big-text</span> class.</p>
+
+<p class="big-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+<div class="spacer-big">&nbsp;</div>
+
+
+<h2>Text alignment</h2>
+<p style="font-size:16px;">Use following classes to align text<span class="at-highlight">a-center, a-left, a-right</span></p>
+<div class="row " style="font-size: 14px;">
+<div class="col-sm-4 a-left">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</div>
+<div class="col-sm-4 a-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</div>
+<div class="col-sm-4 a-right">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</div>
+</div>
+
+<div class="spacer-big">&nbsp;</div>
+
+<h2>Spacers</h2>
+<p style="font-size:16px;">You can easily add some extra space by adding div with following classes: <span class="at-highlight">spacer-big, spacer-medium, spacer-regular, spacer-small</span></p>
+<pre><code>&lt;div class="spacer-big"&gt;&amp;nbsp;&lt;/div&gt;</code></pre>
+
+<div class="spacer-big">&nbsp;</div>
+
+<h2>Hide on mobile</h2>
+<p style="font-size:16px;">You can hide elements on mobile ot tablet by adding following classes to element: <span class="at-highlight">hide-on-tablet, hide-on-mobile</span></p>
+
+<div class="spacer-big">&nbsp;</div>
+<h2>Remove spacing from columns</h2>
+<p style="font-size:16px;">Add <span class="at-highlight">no-spacing</span> or <span class="at-highlight">no-gutters</span> class to row to remove padding and margin from row and columns .</p>
+<div class="spacer-small">&nbsp;</div>
+<div class="row no-spacing">
+<div class="col-lg-6"> 
+    <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay h-center v-center" tabindex="0">
+        <div class="ox-banner-link">
+            <div class="overlay-layer">&nbsp;</div>
+          <img src="{{media url=&quot;athlete2/Demos/greece/banner-blue-one-half-01-1.jpg&quot;}}" alt="" />
+            <span class="ox-banner-container">
+                <a href="#" class="button medium primary ox-show-hover ox-moveup-hover">shop now</a>
+            </span>	
+        </div>
+    </div>
+</div>
+<div class="col-lg-6"> 
+    <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay h-center v-center" tabindex="0">
+        <div class="ox-banner-link">
+            <div class="overlay-layer">&nbsp;</div>
+           <img src="{{media url=&quot;athlete2/Demos/greece/banner-blue-one-half-02.jpg&quot;}}" alt="" />
+            <span class="ox-banner-container">
+                <a href="#" class="button primary medium ox-show-hover ox-moveup-hover">shop now</a> <a href="#" class="button medium primary ox-show-hover ox-moveup-hover">explore</a>
+            </span>	
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="spacer-big">&nbsp;</div>
+<h2>Align vertical and Max width</h2>
+<p style="font-size:16px;">Adding <span class="at-highlight">ox-max-width-500</span> to element will make it centered and set max width to 500. You can add ox-max-width- classes from 500-1000 with step 100. To align content vertically use following classes: <span class="at-highlight">col-align-vertical</span> - on col element. <span class="at-highlight">block-align-vertical</span> - inside col element.</p>
+<pre><code>&lt;div class="row"&gt;
+    &lt;div class="col-md-6"&gt;
+		&lt;div class="block-align-vertical ox-max-width-500"&gt;
+		...
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>or</p>
+<pre><code>&lt;div class="row"&gt;
+    &lt;div class="col-md-6 col-align-vertical"&gt;
+		&lt;div class="ox-max-width-500"&gt;
+		...
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<div class="row no-margin">
+    <div class="col-md-6 a-center" style="padding: 5%;"> 
+        <div class="block-align-vertical ox-max-width-500">
+            <span class="small-subtitle">limited time offer</span>
+            <h3>SALE UP TO 50% OFF<br>
+            on new collection</h3>
+            <span class="hide-on-tablet"><p style="font-size:16px; line-height:30px; margin-bottom:35px;">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p></span>
+            <p><a class="button primary big" href="http://olegnax.com/"><span><span>shop now</span></span></a></p>
+        </div>
+    </div>
+    <div class="col-md-6 no-padding">
+        <a class="link-clear" href="#"><img src="{{media url=&quot;athlete2/Demos/us/collection.jpg&quot;}}" alt="" /></a>
+    </div>
+</div>
+
+
+
+
+<div class="spacer-big">&nbsp;</div>
+<h2>Clean margin, padding</h2>
+<p style="font-size:16px;"><span class="at-highlight">no-margin</span> - remove margin from element. <span class="at-highlight">no-padding</span> - remove padding from element. <span class="at-highlight">clear-p</span> - remove margin from all p elements.</p>
+<p>Additionally add or remove margin to elements depending on screen resolution:</p>
+<pre><code>ox-margin-lg, ox-margin-lg-no, ox-margin-md, ox-margin-md-no, ox-margin-sm, ox-margin-sm-no, ox-margin, ox-margin-no</code></pre>
+
+
+<div class="spacer-big">&nbsp;</div>
+<h2>Stick to page footer</h2>
+<p style="font-size:16px;">Use this class to remove page bottom spacing<span class="at-highlight">page-bottom-padding</span></p>
+<div class="spacer-small">&nbsp;</div>
+<div class="page-bottom-padding" style="background:#f5f5f5; padding:70px 50px; text-align:center"><h5 class="no-margin">stick to page bottom</h5></div>
+
+]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+		<item>
+			<title>Blog Widgets</title>
+			<page_layout>1column-fullwidth</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>blog-widgets</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="container">
+    <div class="a-center">
+        <div class="spacer-big">&nbsp;</div>
+        <span class="small-subtitle">various styles</span>
+        <h1 class="big">Blog <em class="hightlighted-text lower">Widgets</em></h1>
+        <p class="big-text">Blog widgets same as blog listing comes with different templates and styles. <br>Use blog widgets separately or mix them.</p>
+    </div>
+
+    <div class="a-center">
+        <div class="spacer-big">&nbsp;</div>
+        <h2>Default widget</h2>
+        <p class="big-text">You can set amount of columns and image size in theme settings. Big images will be cropped.</p>
+        <div class="spacer-small">&nbsp;</div>
+    </div>
+    {{widget type="Magefan\Blog\Block\Widget\Recent" number_of_posts="3" category_id="0" tag_id="0" author_id="0" type_name="Recent Blog Posts"}}
+
+    <div class="ox-max-width-900">
+        <div class="a-center">
+            <div class="spacer-small">&nbsp;</div>
+            <h2>Titles only</h2>
+            <p class="big-text">Add class following line to <strong>Custom template</strong> field in blog widget settings. </p>
+            <pre>Magefan_Blog::widget/recent-titles.phtml</pre>
+            <div class="spacer-small">&nbsp;</div>
+        </div>
+        {{widget type="Magefan\Blog\Block\Widget\Recent" number_of_posts="3" category_id="0" tag_id="0" author_id="0" custom_template="Magefan_Blog::widget/recent-titles.phtml" type_name="Recent Blog Posts"}}
+        <div class="spacer-small">&nbsp;</div>
+        <div class="a-center">
+            <p class="big-text">You can wrap it in a-center class to center text</p>
+            <pre><code>&lt;div class="a-center"&gt; ...widget here... &lt;/div&gt;</code></pre>
+            {{widget type="Magefan\Blog\Block\Widget\Recent" number_of_posts="3" category_id="0" tag_id="0" author_id="0" custom_template="Magefan_Blog::widget/recent-titles.phtml" type_name="Recent Blog Posts"}}
+        </div>
+    </div>
+
+    <div class="a-center">
+        <div class="spacer-big">&nbsp;</div>
+        <div class="a-center ox-max-width-900">
+            <h2>Big widget template</h2>
+            <p class="big-text">Add class following line to <strong>Custom template</strong> field in blog widget settings. </p>
+            <pre>Magefan_Blog::widget/recent-big.phtml</pre>
+        </div>        
+        <div class="spacer-small">&nbsp;</div>
+    </div>
+    {{widget type="Magefan\Blog\Block\Widget\Featured" posts_ids="2,9" custom_template="Magefan_Blog::widget/recent-big.phtml" type_name="Featured Blog Posts"}}
+</div>
+
+
+<div class="container-fluid" style="padding: 100px 7%;">
+    <div class="a-center ox-max-width-900">
+        <h2>Mixed Big and Titles Widgets</h2>
+        <p class="big-text">Use different widget styles together. Here is an example of "Big" and "Titles" widgets templates in two columns.</p>
+    </div>
+    <div class="spacer-small">&nbsp;</div>
+    <div class="row">
+        <div class="col-md-7 col-lg-8">{{widget type="Magefan\Blog\Block\Widget\Recent" number_of_posts="1" category_id="0" tag_id="0" author_id="0" custom_template="Magefan_Blog::widget/recent-big.phtml" type_name="Recent Blog Posts"}}</div>
+        <div class="col-md-5 col-lg-4 col-align-vertical" style="padding:40px">{{widget type="Magefan\Blog\Block\Widget\Recent" number_of_posts="3" category_id="0" tag_id="0" author_id="0" custom_template="Magefan_Blog::widget/recent-titles.phtml" type_name="Recent Blog Posts"}}</div>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="padding:0 7%;">
+    <div class="a-center ox-max-width-900">
+        <h2>Big in Two Columns</h2>
+        <p class="big-text">You can add specific post using <strong>Featured Blog Posts</strong> widget. Here is an example of two big widgets with different posts placed in columns</p>
+    </div>
+    <div class="spacer-small">&nbsp;</div>
+    <div class="row">
+        <div class="col-md-6">{{widget type="Magefan\Blog\Block\Widget\Featured" posts_ids="2" custom_template="Magefan_Blog::widget/recent-big.phtml" type_name="Featured Blog Posts"}}</div>
+        <div class="col-md-6">{{widget type="Magefan\Blog\Block\Widget\Featured" posts_ids="9" custom_template="Magefan_Blog::widget/recent-big.phtml" type_name="Featured Blog Posts"}}</div>
+    </div>
+</div>
+<div class="container">
+    <div class="a-center">
+        <div class="spacer-big">&nbsp;</div>
+        <h2>Default widget Classic Style</h2>
+        <p class="big-text">Default widget also comes in athlete classic style if you choose "classic" style for blog listing.</p>
+        <a class="button" href="https://athlete2.com/default/classic-blog-widget">Check it here</a>
+        <div class="spacer-small">&nbsp;</div>
+    </div>
+</div>
+<div class="spacer-regular">&nbsp;</div>]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+                <item>
+			<title>CMS Banners</title>
+			<page_layout>1column-fullwidth</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>cms-banners</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="a-center">
+<div class="spacer-medium">&nbsp;</div>
+<span class="small-subtitle">lots of variations</span>
+<h1 class="big">CMS Banners</h1>
+<p class="big-text no-margin">You can add various hover animations by adding following classes to banner wrapper: </p>
+<p class="big-text no-margin"><span class="at-highlight">ox-zoom-hover</span> or<span class="at-highlight">ox-zoom-out-hover</span> - to zoom the whole banner on hover or out.</p>
+<p class="big-text no-margin"><span class="at-highlight">ox-img-zoom-hover</span> or <span class="at-highlight">ox-img-zoom-out-hover</span> - to zoom only image on banner hover or out.</p>
+
+<p class="big-text">Align Content in banner by adding following classes (horizontal and vertical): h-center, h-left, h-right, v-bottom, v-top, v-center</p>
+</div>
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<h2>Content Overlay Image</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="container"> 
+<div class="row"> 
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-out-hover ox-banner-content-overlay h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-01.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-zoom-out-hover ox-banner-content-overlay h-center v-center">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-02.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">                    
+                    <span class="h4 d-block">Scale whole banner</span>
+                    <span class="h4 d-block ox-margin">with content</span>
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-hover ox-banner-content-overlay h-center v-top">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-03.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">image zoom in</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<h2>Show content on hover</h2>
+<p class="big-text">Add class <span class="at-highlight">ox-show-hover</span> to hide element and show it on hover. <br>Additionally add class <span class="at-highlight">ox-moveup-hover</span> animate it from bottom on hover.</p>
+<div class="spacer-small">&nbsp;</div>
+</div>
+
+<div class="container"> 
+<div class="row"> 
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-banner-content-overlay h-center v-center">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-01.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button primary big-wide ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-banner-content-overlay h-center v-center">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-02.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button primary big-wide ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-banner-content-overlay h-center v-center">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-03.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="button primary big-wide ox-show-hover ox-moveup-hover">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<h2>Overlay color on hover</h2>
+<p class="big-text">Add div with class <span class="at-highlight">overlay-layer</span> inside ox-banner-link to add overlay layer <br>and class <span class="at-highlight">overlay-hover</span> to banner wrapper for hover overlay animation.</p>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="container">
+<div class="row">
+    <div class="col-sm-4 ox-margin ox-margin-lg-no">
+        <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay h-center v-center">
+            <a class="ox-banner-link" href="#">
+               <div class="overlay-layer" style="background:rgba(42, 64, 255, 0.4)">&nbsp;</div>
+               <img src="{{media url=&quot;athlete2/Demos/greece/banner-4x-blue-01.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="h2" style="color:white">Shoes</span> 
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-4 ox-margin ox-margin-lg-no">
+        <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay h-center v-center">
+            <a class="ox-banner-link" href="#">
+               <div class="overlay-layer" style="background:rgba(42, 64, 255, 0.68)">&nbsp;</div>
+               <img src="{{media url=&quot;athlete2/Demos/greece/banner-4x-blue-02.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="h2" style="color:white">clothing</span> 
+                </span>	
+            </a>
+        </div>
+    </div>  
+    <div class="col-sm-4 ox-margin ox-margin-lg-no">
+        <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay h-center v-center">
+            <a class="ox-banner-link" href="#">
+               <div class="overlay-layer" style="background:rgba(42, 64, 255, 1)">&nbsp;</div>
+                <img src="{{media url=&quot;athlete2/Demos/greece/banner-4x-blue-03.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container">
+                    <span class="h2" style="color:white">gear</span> 
+                </span>	
+            </a>
+        </div>
+    </div>  
+</div>  
+</div>
+<div class="container a-center">
+<div class="spacer-big">&nbsp;</div>
+<h2>Overlay color and content on hover</h2>
+<p class="big-text">Change ox-banner-link selector to div if you want to add mutliple buttons with different links in content.</p>
+<div class="spacer-small">&nbsp;</div>
+<div class="row no-spacing">
+<div class="col-lg-6"> 
+    <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay h-center v-center"  tabindex="0">
+        <div class="ox-banner-link">
+            <div class="overlay-layer">&nbsp;</div>
+          <img src="{{media url=&quot;athlete2/Demos/greece/banner-blue-one-half-01-1.jpg&quot;}}" alt="" />
+            <span class="ox-banner-container">
+                <a href="#" class="button medium primary ox-show-hover ox-moveup-hover">shop now</a>
+            </span>	
+        </div>
+    </div>
+</div>
+<div class="col-lg-6"> 
+    <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay h-center v-center"  tabindex="0">
+        <div class="ox-banner-link">
+            <div class="overlay-layer">&nbsp;</div>
+           <img src="{{media url=&quot;athlete2/Demos/greece/banner-blue-one-half-02.jpg&quot;}}" alt="" />
+            <span class="ox-banner-container">
+                <a href="#" class="button primary medium ox-show-hover ox-moveup-hover">shop now</a> <a href="#" class="button medium primary ox-show-hover ox-moveup-hover">explore</a>
+            </span>	
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<h2>Content Below Image</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="container"> 
+<div class="row"> 
+<div class="col-12 col-sm-4 a-center"> 
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/us/boots_01.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <h6 class="no-margin">basketball</h6>
+            <span>compare and shop</span>
+        </div>	
+    </div>
+</div>
+<div class="col-12 col-sm-4 a-center"> 
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/us/boots_02.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <h6 class="no-margin">basketball</h6>
+            <span>compare and shop</span>
+        </div>	
+    </div>
+</div>
+<div class="col-12 col-sm-4 a-center"> 
+    <div class="ox-banner ox-img-zoom-out-hover ox-banner-text-below">
+        <a class="ox-banner-link" href="#">			
+            <img src="{{media url=&quot;athlete2/Demos/us/boots_03.jpg&quot;}}" alt="" />
+        </a>
+        <div class="ox-banner-content">
+            <h6 class="no-margin">basketball</h6>
+            <span>compare and shop</span>
+        </div>	
+    </div>
+</div>
+</div>
+</div>
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<h2>Animated Text Banner</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="container">
+<div class="row no-spacing">
+    <div class="col-md-6"> 
+        <div class="ox-banner banner-stretch ox-banner-animated-text v-top h-left">
+            <a class="ox-banner-link" href="#">
+                <span class="ox-banner-animated-container">
+                    <span class="text">reach</span>
+                    <span class="text">the summit</span>
+                    <em class="link" style="background: #3d3d3d; color: #fff;">SHOP THE LOOK</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-banner01.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6"> 
+        <div class="ox-banner banner-stretch ox-banner-animated-text v-bottom h-left">
+            <a class="ox-banner-link" href="https://athlete.olegnax.com/index.php/">
+                <span class="ox-banner-animated-container">
+                    <span class="text">run free</span>
+                    <span class="text">with athlete</span>
+                    <em class="link">shop now</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-banner02.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+<div class="a-center">
+<div class="spacer-medium">&nbsp;</div>
+<p class="big-text">Add class <span class="at-highlight">ox-banner-medium</span>, <span class="at-highlight">ox-banner-big</span> or <span class="at-highlight">ox-banner-huge</span> for bigger text and paddings:</p>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="row no-spacing">
+    <div class="col-md-6"> 
+        <div class="ox-banner banner-stretch ox-banner-medium ox-banner-animated-text v-top h-left">
+            <a class="ox-banner-link" href="#">
+                <span class="ox-banner-animated-container">
+                    <span class="text">reach</span>
+                    <span class="text">the summit</span>
+                    <em class="link" style="background: #3d3d3d; color: #fff;">SHOP THE LOOK</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-banner01.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6"> 
+        <div class="ox-banner banner-stretch ox-banner-huge ox-banner-animated-text v-bottom h-left">
+            <a class="ox-banner-link" href="https://athlete.olegnax.com/index.php/">
+                <span class="ox-banner-animated-container">
+                    <span class="text">run free</span>
+                    <span class="text">with athlete</span>
+                    <em class="link">shop now</em>
+                </span>
+              <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-banner02.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container"> 
+<div class="a-center">
+<div class="spacer-big">&nbsp;</div>
+<h2>Overlay Banner Variations</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+    <div class="row"> 
+        <div class="col-md-6">
+            <div class="ox-banner ox-banner-stores overlay-hover banner-stretch ox-banner-content-overlay" tabindex="0">
+                <div class="ox-banner-link">
+                    <div class="overlay-layer" style="background:rgb(201, 238, 35);">&nbsp;</div>
+                    <span class="ox-banner-container">
+                        <span class="h1 title xxl ox-show-hover ox-moveup-hover">Huge Text</span>
+                        <span class="text ox-show-hover">34 New Clity 5655, Excel Tower<br/>OPG Rpad, 4538FH</span>                        
+                    </span>
+                    <span class="ox-banner-container bottom">
+                        <a class="button primary" href="#">visit store</a>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/a2-shop-01.jpg&quot;}}" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ox-banner ox-banner-stores overlay-hover banner-stretch ox-banner-content-overlay" tabindex="0">
+                <div class="ox-banner-link">
+                    <div class="overlay-layer" style="background:rgb(201, 238, 35);">&nbsp;</div>
+                    <span class="ox-banner-container">
+                        <span class="h1 title ox-show-hover ox-moveup-hover">Normal Text</span>
+                        <span class="text ox-show-hover">34 New Clity 5655, Excel Tower<br/>OPG Rpad, 4538FH</span>                        
+                    </span>
+                    <span class="ox-banner-container bottom">
+                        <a class="button primary" href="#">visit store</a>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/a2-shop-02.jpg&quot;}}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer-small">&nbsp;</div>
+    <div class="row"> 
+        <div class="col-md-6">
+            <div class="ox-banner overlay-hover banner-stretch ox-banner-content-overlay" tabindex="0">
+                <div class="ox-banner-link">
+                    <div class="overlay-layer" style="background:rgb(201, 238, 35);">&nbsp;</div>
+                    <div class="ox-banner-container">
+                        <p class="h1 title ox-show-hover ox-moveup-hover">Text Inside</p>
+                        <p class="text ox-show-hover" style="font-weight: 700;font-size: 16px;">34 New Clity 5655, Excel Tower<br/>OPG Rpad, 4538FH</p>                        
+                    </div>
+                    <span class="ox-banner-container bottom">
+                        <a class="button primary" href="#">visit store</a>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/a2-shop-01.jpg&quot;}}" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ox-banner  overlay-hover banner-stretch ox-banner-content-overlay" tabindex="0">
+                <div class="ox-banner-link">
+                    <div class="overlay-layer" style="background:rgb(201, 238, 35);">&nbsp;</div>
+                    <div class="ox-banner-container">
+                        <p class="h1 title ox-show-hover ox-moveup-hover">Text Inside</p>
+                        <p class="text ox-show-hover" style="font-weight: 700;font-size: 16px;">34 New Clity 5655, Excel Tower<br/>OPG Rpad, 4538FH</p>                        
+                    </div>
+                    <span class="ox-banner-container bottom">
+                        <a class="button primary" href="#">visit store</a>
+                    </span>
+                   <img src="{{media url=&quot;athlete2/Demos/brazil/a2-shop-02.jpg&quot;}}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ox-max-width-900">
+    <div class="a-center">
+    <div class="spacer-big">&nbsp;</div>
+    <h2>Two Contents in Banner</h2>
+    <p class="big-text">Add class <span class="at-highlight">top</span> or <span class="at-highlight">bottom</span> to content container (ox-banner-container) for positioninng.</p>
+    <div class="spacer-small">&nbsp;</div>
+    </div>
+    <div class="ox-banner image-cover ox-img-zoom-out-hover ox-banner-content-overlay h-left v-bottom">
+        <a class="ox-banner-link" href="#">
+           <img src="{{media url=&quot;athlete2/Demos/brazil/banner-green-bg.png&quot;}}" alt="" />
+           <span class="ox-banner-container top big-padding">
+                <span class="h6" style="font-weight:800;">get in touch</span> 
+            </span>
+            <span class="ox-banner-container big-padding">
+                <span class="row">
+                    <span class="col-12 col-sm-8 col-md-6 ox-margin ox-margin-sm-no">
+                        <span class="h2">couldn’t find answers to your questions?</span>
+                    </span>
+                    <span class="col-12 col-sm-4 col-md-6">
+                        <span class="small-line blink" style=" position: absolute; bottom: 0;left: 20px;">&nbsp;</span>
+                    </span>
+                 </span>
+            </span>	
+        </a>
+    </div>
+</div>
+<div class="a-center">
+    <div class="spacer-big">&nbsp;</div>
+    <h2>Banner and Image Stretch</h2>
+    <p class="big-text no-margin">Add class <span class="at-highlight">banner-stretch</span> and <span class="at-highlight">banner-stretch-v</span> or <span class="at-highlight">banner-stretch-vertical</span> to banner wrapper to fit stretch banner to fit container size.</p>
+    <p class="big-text no-margin">Add class <span class="at-highlight">image-cover</span> to banner wrapper to name image cover banner container even if it is smaller than banner.</p>
+    <p class="big-text no-margin a-underlined-links">You can use all these classes together. Example below or on <a href="https://athlete2.com/us/sports.html">Sport Category</a></p>
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<div class="row no-margin">
+    <div class="col-md-6 no-padding"> 
+        <div class="ox-banner ox-banner-medium image-cover banner-stretch banner-stretch-v ox-banner-animated-text v-center h-right">
+            <a class="ox-banner-link" href="#">
+                <span class="ox-banner-animated-container">
+                        <span class="text">are you beach</span>
+                        <span class="text">body ready?</span>
+                        <em class="link">shop the look</em>
+                </span>
+               <img src="{{media url=&quot;athlete2/Demos/brazil/athlete2-homev2-br-banner01.jpg&quot;}}" alt="" />
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6 a-center" style="padding: 5%;"> 
+        <div class="block-align-vertical ox-max-width-500">
+            <span class="small-subtitle">limited time offer</span>
+            <h3>SALE UP TO 50% OFF<br>
+            on new collection</h3>
+            <p class="hide-on-tablet" style="font-size:16px; line-height:30px; margin-bottom:35px;">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+            <p><a class="button primary big" href="#"><span><span>shop now</span></span></a></p>
+        </div>
+    </div>
+</div>
+]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+		</item>
+                <item>
+			<title>404 Not Found</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords>Page keywords</meta_keywords>
+			<meta_description>Page description</meta_description>
+			<identifier>no-route</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="spacer-small">&nbsp;</div>
+<div class="a-center">
+<h1 class="huge-6vw">Whoooops!</h1>
+<p class="h3">Sorry, we can't find that page. </p>
+<p class="h3" style="font-size:20px;">Go <a href="#" onclick="history.go(-1); return false;" style="border-bottom:2px solid;"><span>Back</span></a>, <a href="{{store url=""}}" style="border-bottom:2px solid;"><span>Home</span></a> or Try Here:</p>
+</div>
+<div class="spacer-small">&nbsp;</div>
+
+<div class="row"> 
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-out-hover ox-banner-content-overlay h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-01.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-out-hover ox-banner-content-overlay h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-02.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 a-center"> 
+        <div class="ox-banner ox-img-zoom-out-hover ox-banner-content-overlay h-center v-bottom">
+            <a class="ox-banner-link" href="#">			
+               <img src="{{media url=&quot;athlete2/Demos/brazil/banner-br-03.jpg&quot;}}" alt="" />
+                <span class="ox-banner-container" style="margin-bottom: 20px;">
+                    <span class="button primary medium">shop now</span>
+                </span>	
+            </a>
+        </div>
+    </div>
+</div>]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+			<layout_update_selected></layout_update_selected>
+		</item>
+                		<item>
+			<title>Expand Content</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>expand-content</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="a-center ox-max-width-900">
+<div class="spacer-small">&nbsp;</div>
+<h1 class="big"><em class="ox-animate hightlighted-text ">Expand</em> Long Content</h1>
+<p class="big-text">You can wrap any content in ox-expand wrappers and set max-height to it. <br>See examples below.</p>
+<div class="spacer-small">&nbsp;</div>
+</div>
+
+<div class="a-center">
+<div class="spacer-regular">&nbsp;</div>
+<h2>Default max height, 90px</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="ox-expand minimized">
+	<div class="ox-expand__inner" aria-expanded="false">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et varius ligula. Nulla facilisi. Maecenas at egestas dolor. Mauris sed tellus ultricies, aliquet sem ut, feugiat leo. Sed nec ipsum ut ligula maximus accumsan at eu ante. Proin vel faucibus tortor. Phasellus a rutrum erat, quis pharetra nisi. Morbi auctor diam eu diam aliquet laoreet. Nullam eget mauris ac ex aliquet congue. Mauris semper congue porttitor. Maecenas ullamcorper vestibulum massa, in rhoncus tellus ornare imperdiet.
+
+Curabitur ac diam ut ante maximus pellentesque iaculis eget justo. Praesent non gravida arcu. Nullam massa nunc, egestas nec nisi in, tincidunt venenatis dui. Ut ante purus, suscipit et tempus id, molestie at lacus. Fusce eget elementum tortor, at fermentum nisi. Sed ut turpis mi. Morbi ultricies, nisl malesuada aliquam posuere, tortor lacus lacinia est, non maximus lorem velit at ante. Etiam nisi leo, tincidunt nec lacinia ac, vehicula ut lectus.
+
+Ut ultrices nunc a justo iaculis, eu malesuada ligula molestie. Pellentesque ac pretium arcu, eu tincidunt nibh. Sed posuere mauris ut felis sollicitudin tincidunt. Aliquam ut tortor rutrum, consectetur felis et, scelerisque massa. Vivamus congue magna et convallis tempus. Duis ac dolor sit amet leo pulvinar condimentum eu ut nisl. Proin maximus non nunc eu fringilla. Curabitur eu orci enim. Praesent tincidunt eleifend justo quis hendrerit. Morbi sit amet rutrum massa, a ullamcorper sem. Quisque mollis mi id tortor condimentum, a iaculis tortor eleifend. Donec facilisis efficitur urna at convallis. Curabitur eget urna velit. In pharetra libero eget erat volutpat, sit amet dapibus purus vestibulum. Praesent ultrices sapien vel elit commodo pulvinar.
+	</div>
+	<div class="ox-expand__link">
+		<span class="more">Show more</span>
+		<span class="less">Show less</span>
+	</div>
+</div>
+
+
+<div class="a-center">
+<div class="spacer-regular">&nbsp;</div>
+<h2>Max height 200px</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="ox-expand minimized" data-max-height="200">
+	<div class="ox-expand__inner" aria-expanded="false" style="max-height:200px">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et varius ligula. Nulla facilisi. Maecenas at egestas dolor. Mauris sed tellus ultricies, aliquet sem ut, feugiat leo. Sed nec ipsum ut ligula maximus accumsan at eu ante. Proin vel faucibus tortor. Phasellus a rutrum erat, quis pharetra nisi. Morbi auctor diam eu diam aliquet laoreet. Nullam eget mauris ac ex aliquet congue. Mauris semper congue porttitor. Maecenas ullamcorper vestibulum massa, in rhoncus tellus ornare imperdiet.
+
+Curabitur ac diam ut ante maximus pellentesque iaculis eget justo. Praesent non gravida arcu. Nullam massa nunc, egestas nec nisi in, tincidunt venenatis dui. Ut ante purus, suscipit et tempus id, molestie at lacus. Fusce eget elementum tortor, at fermentum nisi. Sed ut turpis mi. Morbi ultricies, nisl malesuada aliquam posuere, tortor lacus lacinia est, non maximus lorem velit at ante. Etiam nisi leo, tincidunt nec lacinia ac, vehicula ut lectus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et varius ligula. Nulla facilisi. Maecenas at egestas dolor. Mauris sed tellus ultricies, aliquet sem ut, feugiat leo. Sed nec ipsum ut ligula maximus accumsan at eu ante. Proin vel faucibus tortor. Phasellus a rutrum erat, quis pharetra nisi. Morbi auctor diam eu diam aliquet laoreet. Nullam eget mauris ac ex aliquet congue. Mauris semper congue porttitor. Maecenas ullamcorper vestibulum massa, in rhoncus tellus ornare imperdiet.
+
+Curabitur ac diam ut ante maximus pellentesque iaculis eget justo. Praesent non gravida arcu. Nullam massa nunc, egestas nec nisi in, tincidunt venenatis dui. Ut ante purus, suscipit et tempus id, molestie at lacus. Fusce eget elementum tortor, at fermentum nisi. Sed ut turpis mi. Morbi ultricies, nisl malesuada aliquam posuere, tortor lacus lacinia est, non maximus lorem velit at ante. Etiam nisi leo, tincidunt nec lacinia ac, vehicula ut lectus.
+
+Ut ultrices nunc a justo iaculis, eu malesuada ligula molestie. Pellentesque ac pretium arcu, eu tincidunt nibh. Sed posuere mauris ut felis sollicitudin tincidunt. Aliquam ut tortor rutrum, consectetur felis et, scelerisque massa. Vivamus congue magna et convallis tempus. Duis ac dolor sit amet leo pulvinar condimentum eu ut nisl. Proin maximus non nunc eu fringilla. Curabitur eu orci enim. Praesent tincidunt eleifend justo quis hendrerit. Morbi sit amet rutrum massa, a ullamcorper sem. Quisque mollis mi id tortor condimentum, a iaculis tortor eleifend. Donec facilisis efficitur urna at convallis. Curabitur eget urna velit. In pharetra libero eget erat volutpat, sit amet dapibus purus vestibulum. Praesent ultrices sapien vel elit commodo pulvinar.
+Ut ultrices nunc a justo iaculis, eu malesuada ligula molestie. Pellentesque ac pretium arcu, eu tincidunt nibh. Sed posuere mauris ut felis sollicitudin tincidunt. Aliquam ut tortor rutrum, consectetur felis et, scelerisque massa. Vivamus congue magna et convallis tempus. Duis ac dolor sit amet leo pulvinar condimentum eu ut nisl. Proin maximus non nunc eu fringilla. Curabitur eu orci enim. Praesent tincidunt eleifend justo quis hendrerit. Morbi sit amet rutrum massa, a ullamcorper sem. Quisque mollis mi id tortor condimentum, a iaculis tortor eleifend. Donec facilisis efficitur urna at convallis. Curabitur eget urna velit. In pharetra libero eget erat volutpat, sit amet dapibus purus vestibulum. Praesent ultrices sapien vel elit commodo pulvinar.
+	</div>
+	<div class="ox-expand__link a-center">
+		<span class="more">Show more</span>
+		<span class="less">Show less</span>
+	</div>
+</div>
+
+<div class="spacer-regular">&nbsp;</div>]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+			<layout_update_selected></layout_update_selected>
+		</item>
+		<item>
+			<title>Brands Widget</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>brands-widget</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<div class="a-center ox-max-width-900">
+<div class="spacer-small">&nbsp;</div>
+<h1 class="big"><em class="ox-animate hightlighted-text">Brands</em> Widget</h1>
+<p class="big-text">You can add brands as slider or grid anywhere with our widget. You can set brand image size for each widget, grid columns, and set what brands to show exactly by their names. Additionally you can choose hover effect.</p>
+<div class="spacer-small">&nbsp;</div>
+</div>
+
+<div class="a-center">
+<div class="spacer-regular">&nbsp;</div>
+<h2>Brands Slider</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+{{widget type="Olegnax\BrandSlider\Block\BrandSlider" items_list="" height="140" width="178" auto_scroll="3" scroll_items="1" rewind="1" nav="show" image_hover="default" template="Olegnax_BrandSlider::brandslider.phtml"}}
+
+<div class="a-center">
+<div class="spacer-regular">&nbsp;</div>
+<h2>Brands Grid</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+{{widget type="Olegnax\BrandSlider\Block\BrandSlider" items_list="" height="100" width="100" scroll_items="1" rewind="0" nav="show" image_hover="default" template="Olegnax_BrandSlider::brandsgrid.phtml" columns_desktop="10" columns_desktop_small="8" columns_tablet="6" columns_mobile="4"}}
+
+<div class="a-center">
+<div class="spacer-regular">&nbsp;</div>
+<h2>Brands Grid with Selected Brands only.</h2>
+<div class="spacer-small">&nbsp;</div>
+</div>
+{{widget type="Olegnax\BrandSlider\Block\BrandSlider" items_list="CC Shoes,Abibas, Athlete2,Holy Haters,Okey,Puma,Salaman" height="140" width="178" scroll_items="1" rewind="0" nav="show" image_hover="overlay" template="Olegnax_BrandSlider::brandsgrid.phtml" columns_desktop="7" columns_desktop_small="7" columns_tablet="4" columns_mobile="4"}}]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+			<layout_update_selected></layout_update_selected>
+		</item>
+		<item>
+			<title>Buttons</title>
+			<page_layout>1column</page_layout>
+			<meta_keywords></meta_keywords>
+			<meta_description></meta_description>
+			<identifier>buttons</identifier>
+			<content_heading></content_heading>
+			<content><![CDATA[<style>ul.list-wm > li{ margin-bottom:5px; } ul.list-wm { padding:0; list-style:none;}</style>
+<div class="a-center ox-max-width-900">
+<div class="spacer-small">&nbsp;</div>
+<h1 class="big">Theme <em class="ox-animate hightlighted-text">Buttons</em></h1>
+<p class="big-text">Athlete 2 Theme comes with 5 button styles, 7 sizes, plus two mobile sizes. Add <span class="at-highlight">medium-s</span> or <span class="at-highlight">small-s </span>class to button to change its size on mobile.</p>
+<div class="spacer-small">&nbsp;</div>
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<div class="row">
+<div class="col-md-6 col-lg-4">
+<h4>Default Button</h4>
+<ul class="list-wm">
+<li><a href="#" class="button small">Small</a></li>
+<li><a href="#" class="button">Normal</a></li>
+<li><a href="#" class="button medium">Medium</a></li>
+<li><a href="#" class="button big">Big</a></li>
+<li><a href="#" class="button big-wide">Big Wider</a></li>
+<li><a href="#" class="button long">Long</a></li>
+<li><a href="#" class="button slider-long">Longer</a></li>
+<ul>
+</div>
+<div class="col-md-6 col-lg-4">
+<h4>Outline Button</h4>
+<ul class="list-wm">
+<li><a href="#" class="button outline small">Small</a></li>
+<li><a href="#" class="button outline ">Normal</a></li>
+<li><a href="#" class="button outline medium">Medium</a></li>
+<li><a href="#" class="button outline big">Big</a></li>
+<li><a href="#" class="button outline big-wide">Big Wider</a></li>
+<li><a href="#" class="button outline long">Long</a></li>
+<li><a href="#" class="button outline slider-long">Longer</a></li>
+<ul>
+</div>
+<div class="col-md-6 col-lg-4">
+<h4>Simple Hover Button</h4>
+<ul class="list-wm">
+<li><a href="#" class="button simple small">Small</a></li>
+<li><a href="#" class="button simple">Normal</a></li>
+<li><a href="#" class="button simple medium">Medium</a></li>
+<li><a href="#" class="button simple big">Big</a></li>
+<li><a href="#" class="button simple big-wide">Big Wider</a></li>
+<li><a href="#" class="button simple long">Long</a></li>
+<li><a href="#" class="button simple slider-long">Longer</a></li>
+<ul>
+</div>
+</div>
+<div class="spacer-regular">&nbsp;</div>
+<div class="row">
+<div class="col-md-6 col-lg-4">
+<h4>Naked Button</h4>
+<ul class="list-wm">
+<li><a href="#" class="button naked small">Small</a></li>
+<li><a href="#" class="button naked ">Normal</a></li>
+<li><a href="#" class="button naked medium">Medium</a></li>
+<li><a href="#" class="button naked big">Big</a></li>
+<li><a href="#" class="button naked big-wide">Big Wider</a></li>
+<li><a href="#" class="button naked long">Long</a></li>
+<li><a href="#" class="button naked slider-long">Longer</a></li>
+<ul>
+</div>
+<div class="col-md-6 col-lg-4">
+<h4>Underlined Button</h4>
+<ul class="list-wm">
+<li><a href="#" class="button underline small" style="color:black">Small</a></li>
+<li><a href="#" class="button underline" style="color:black">Normal</a></li>
+<li><a href="#" class="button underline medium" style="color:black">Medium</a></li>
+<li><a href="#" class="button underline big" style="color:black">Big</a></li>
+<li><a href="#" class="button underline big-wide" style="color:black">Big Wider</a></li>
+<li><a href="#" class="button underline long" style="color:black">Long</a></li>
+<li><a href="#" class="button underline slider-long" style="color:black">Longer</a></li>
+<ul>
+</div>
+<div class="col-md-6 col-lg-4">
+<h4>Secondary Color Button</h4>
+<ul class="list-wm">
+<li><a href="#" class="button secondary small">Small</a></li>
+<li><a href="#" class="button secondary ">Normal</a></li>
+<li><a href="#" class="button secondary medium">Medium</a></li>
+<li><a href="#" class="button secondary big">Big</a></li>
+<li><a href="#" class="button secondary big-wide">Big Wider</a></li>
+<li><a href="#" class="button secondary long">Long</a></li>
+<li><a href="#" class="button secondary slider-long">Longer</a></li>
+<ul>
+</div>
+</div>]]></content>
+			<sort_order>0</sort_order>
+			<layout_update_xml></layout_update_xml>
+			<custom_theme></custom_theme>
+			<custom_root_template></custom_root_template>
+			<custom_layout_update_xml></custom_layout_update_xml>
+			<custom_theme_from></custom_theme_from>
+			<custom_theme_to></custom_theme_to>
+			<meta_title></meta_title>
+			<layout_update_selected></layout_update_selected>
+		</item>
+	</pages>
+</root>

@@ -1,0 +1,20 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+	<head>
+        <title>Shipmentdelay</title>
+       
+    </head>
+
+    <body>
+
+        <!-- <referenceContainer name="sidebar.main">
+            <block class="Kellton\Shipmentdelay\Block\Index\Sidebar" name="shipmentdelay_index_sidebar" before="-" template="Kellton_Shipmentdelay::shipmentdelay_index_sidebar.phtml"/>
+        </referenceContainer> -->
+
+        <referenceContainer name="content">
+            <block class="Kellton\Shipmentdelay\Block\Index\Index" name="shipmentdelay_index_index" template="Kellton_Shipmentdelay::shipmentdelay_index_index.phtml"/>
+        </referenceContainer>
+
+
+    </body>
+</page>

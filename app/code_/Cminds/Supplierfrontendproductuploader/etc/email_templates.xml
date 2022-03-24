@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="supplier_new_email"
+              label="New Supplier Email"
+              file="supplier_new.html"
+              type="html"
+              module="Cminds_Supplierfrontendproductuploader"
+              area="frontend"/>
+    <template id="order_new_email"
+              label="New Order Email"
+              file="order_new.html"
+              type="html"
+              module="Cminds_Supplierfrontendproductuploader"
+              area="frontend"/>
+    <template id="product_approved_email"
+              label="Product Approved Email"
+              file="product_approved.html"
+              type="html"
+              module="Cminds_Supplierfrontendproductuploader"
+              area="frontend"/>
+</config>

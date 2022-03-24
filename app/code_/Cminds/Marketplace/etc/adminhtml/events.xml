@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_customer_save_after">
+        <observer name="cminds_customer_save_shipping_costs"
+                  instance="Cminds\Marketplace\Observer\Adminhtml\CustomerSave\SaveShippingCosts"/>
+        <observer name="cminds_customer_save_categories"
+                  instance="Cminds\Marketplace\Observer\Adminhtml\CustomerSave\SaveCategories"/>
+        <observer name="cminds_customer_save_save_supplier_profile"
+                  instance="Cminds\Marketplace\Observer\Adminhtml\CustomerSave\SaveSupplierProfile"/>
+    </event>
+</config>

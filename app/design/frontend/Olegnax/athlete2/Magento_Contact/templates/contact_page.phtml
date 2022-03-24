@@ -1,0 +1,76 @@
+<?php
+$_helper		 = $this->helper( 'Olegnax\Athlete2\Helper\CssFiles' );
+$theme_helper	 = $this->helper( 'Olegnax\Athlete2\Helper\Helper' );
+$at_settings	 = $theme_helper->getConfig( 'athlete2_settings/contacts_page' );
+$firstBlock		 = $at_settings[ 'first_block_type' ];
+$secondBlock	 = $theme_helper->getBlockTemplateProcessor( $at_settings[ 'second_block_content' ] );
+$contactsLayout	 = $at_settings[ 'contacts_layout' ];
+$secondBlockShow = $at_settings[ 'second_block_show' ];
+$thirdBlockShow	 = $at_settings[ 'third_block_show' ];
+$thirdBlock		 = $theme_helper->getBlockTemplateProcessor( $at_settings[ 'third_block_content' ] );
+switch ( $firstBlock ) {
+	case 'google_map':
+		$firstBlock = $this->getChildHtml( 'google_map' );
+		break;
+	case 'image':
+		if ( $contactsLayout === 'left-right' ) {
+			$firstBlock = '<div style="min-height:500px;">&nbsp;</div>';
+		} else {
+			$firstBlock = '<img src="' . $_helper->getBaseMediaUrl( Olegnax\Athlete2\Model\Config\Backend\Image\Logo::UPLOAD_DIR ) . "/" . $at_settings[ 'contacts_page_image' ] . '" />';
+		}
+		break;
+	case 'content':
+		$firstBlock	 = '<div class="contacts-first-block-inner">' . $theme_helper->getBlockTemplateProcessor( $at_settings[ 'first_block_content' ] ) . '</div>';
+		break;
+	default:
+		$firstBlock	 = '';
+}
+
+if ( $contactsLayout === 'left-right' ) {
+	?>
+	<div class="contacts-wrapper">
+		<div class="row contacts-layout-split">
+			<?php if(!empty($firstBlock)) { ?>
+			<div class="col-md-6 contacts-first-block"><?= $firstBlock ?></div>
+			<?php } ?>
+			<div class="col-md-6 contacts-form-block">
+				<?php if ( $secondBlockShow ) {
+					echo '<div class="contacts-second-block">' . $secondBlock . '</div>';
+				} ?>
+				<?php echo $this->getChildHtml( 'contactForm' ) ?>
+			</div>
+
+			<?php if ( $thirdBlockShow ) {
+				echo '<div class="col-12 contacts-third-block">' . $thirdBlock . '</div>';
+			} ?>
+
+		</div>
+	</div>
+<?php } else { ?>
+	<div class="row contacts-layout-default">
+		<?php if(!empty($firstBlock)) { ?>
+		<div class="col-md-12 contacts-first-block"><?= $firstBlock ?></div>
+		<?php } ?>
+		<div class="container">
+			<div class="row contacts-page-row">
+		<?php if ( $secondBlockShow ) { ?>
+			<div class="col-md-6 contacts-form-block">
+				<?php echo $this->getChildHtml( 'contactForm' ) ?>
+			</div>
+			<div class="col-md-6 contacts-second-block">
+			<?= $secondBlock ?>
+			</div>
+		<?php } else { ?>
+			<div class="col-md-12">
+			<?php echo $this->getChildHtml( 'contactForm' ) ?>
+			</div>
+		<?php } ?>
+				</div>
+		<div class="row">
+		<?php if ( $thirdBlockShow ) {
+			echo '<div class="col-12 contacts-third-block">' . $thirdBlock . '</div>';
+		} ?>
+		</div>
+		</div>
+	</div>
+<?php } ?>

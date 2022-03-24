@@ -1,0 +1,37 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+
+/** @var $block \Jajuma\WebpImages\Block\Picture */
+$customSrcTag = $block->getCustomSrcTag();
+$customSrcSetTag = $block->getCustomSrcSetTag();
+$helper = $this->helper('Jajuma\WebpImages\Helper\Data');
+
+$originalTag = $block->getOriginalTag();
+
+$isLazyLoadEnabled = $helper->isNativeLazyLoadingEnabled();
+$excludeNativeLazyloadImageAttributes = $helper->getExcludeNativeLazyloadImageAttributes();
+$isImageInExcludeList = preg_match_all($excludeNativeLazyloadImageAttributes, $originalTag);
+
+if($isLazyLoadEnabled && !$isImageInExcludeList) {
+    // add loading="lazy" at the end of the img tag
+    $originalTag = preg_replace('/>$/', ' loading="lazy" />', $originalTag);
+}
+?>
+<?php if ($customSrcTag): ?>
+    <picture>
+        <source type="image/webp" <?= $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="<?= $block->getWebpImage() ?>">
+        <source type="<?= $block->getOriginalImageType() ?>" <?= $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="<?= $block->getOriginalImage() ?>">
+        <?= $originalTag ?>
+    </picture>
+<?php else: ?>
+    <picture>
+        <source type="image/webp" srcset="<?= $block->getWebpImage() ?>">
+        <source type="<?= $block->getOriginalImageType() ?>" srcset="<?= $block->getOriginalImage() ?>">
+        <?= $originalTag ?>
+    </picture>
+<?php endif; ?>
+

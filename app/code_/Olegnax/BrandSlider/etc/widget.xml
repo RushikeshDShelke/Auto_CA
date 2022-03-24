@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="ox_brand_slider" class="Olegnax\BrandSlider\Block\BrandSlider" is_email_compatible="true"
+                placeholder_image="Olegnax_BrandSlider::images/products_list.png" ttl="86400">
+        <label translate="true">Olegnax - Brand Slider</label>
+        <description translate="true"></description>
+        <parameters>
+            <parameter name="items_list" xsi:type="text" visible="true">
+                <label translate="true">List of Brands</label>
+                <description translate="true"><![CDATA[Optional. Add brand names separated by comma.]]></description>
+                <value></value>
+            </parameter>
+            <parameter name="height" xsi:type="text" visible="true">
+                <label translate="true">Image Height</label>
+                <value>200</value>
+            </parameter>
+            <parameter name="width" xsi:type="text" visible="true">
+                <label translate="true">Image Width</label>
+                <value>200</value>
+            </parameter>
+            <parameter name="auto_scroll" xsi:type="text" visible="true">
+                <label translate="true">Autoscroll</label>
+                <description translate="true"><![CDATA[Set to 0 to disable autoscroll</br>Set to 1-10 to enable autoscroll ( scroll timeout - autoscroll * 1000ms ) ]]></description>
+            </parameter>
+            <parameter name="scroll_items" xsi:type="select" visible="true">
+                <label translate="true">Items to scroll</label>
+                <options>
+                    <option name="item" value="1" selected="true">
+                        <label translate="true">Scroll per item</label>
+                    </option>
+                    <option name="page" value="page">
+                        <label translate="true">Scroll per page</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="rewind" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Rewind</label>
+                <description translate="true">Slide to first item or stop at last item</description>
+            </parameter>
+            <parameter name="nav" xsi:type="select" visible="true">
+                <label translate="true">Show Arrows</label>
+                <options>
+                    <option name="show" value="show" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="hide" value="hide">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="image_hover" xsi:type="select" visible="true">
+                <label translate="true">Image Hover</label>
+                <options>
+                    <option name="default" value="default" selected="true">
+                        <label translate="true">Default, Opacity and Overlay</label>
+                    </option>
+                    <option name="overlay" value="overlay">
+                        <label translate="true">Overlay Only</label>
+                    </option>
+                    <option name="none" value="none">
+                        <label translate="true">None</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                    <label translate="true">Template</label>
+                    <options>
+                            <option name="slider" value="Olegnax_BrandSlider::brandslider.phtml" selected="true">
+                                    <label translate="true">Slider</label>
+                            </option>
+                            <option name="grid" value="Olegnax_BrandSlider::brandsgrid.phtml">
+                                    <label translate="true">Grid</label>
+                            </option>
+                    </options>
+            </parameter>
+            <parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Grid Columns Desktop</label>
+                    <description translate="true">Columns are optional. You can use values up to 20.</description>
+            </parameter>
+            <parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Grid Desktop Small</label>
+                    <description translate="true">Columns are optional. You can use values up to 20.</description>
+            </parameter>
+            <parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Grid Tablet</label>
+                    <description translate="true">Columns are optional. You can use values up to 12.</description>
+            </parameter>
+            <parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Grid Mobile</label>
+                    <description translate="true">Columns are optional. You can use values up to 8.</description>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+        </parameters>
+    </widget>
+	
+</widgets>

@@ -1,0 +1,143 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+
+<?php if ($_product->isSaleable()) :?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()) :?>
+        <div class="field qty">
+            <label class="label" for="qty"><span><?= $block->escapeHtml(__('Quantity:')) ?></span></label>
+            <div class="control quantityControl">
+				<span class="decreaseQty qtybutton">-</span>
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       min="1"
+                       value="<?= $block->getProductDefaultQty() * 1 ?>"
+                       title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                       class="input-text qty qtybutton"
+                       data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>" readonly="readonly"
+                       />
+                       <span class="increaseQty qtybutton">+</span>
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="actions">
+            <button style="background-color:#d0980d;border: 1px solid #d0980d!important;" type="submit"
+                    title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button" disabled>
+                <span><?= $block->escapeHtml($buttonTitle) ?></span>
+            </button>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+</div>
+
+<div class="add-to-links nee "><a href="#" class="link-wishlist" data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_product) ?>' data-action="add-to-wishlist"></a>
+	<br><?php echo __('Add to wishlist')?>
+</div>
+
+<?php else: ?>
+<div class="add-to-cart-buttons out-stk">
+ <button type="button" title="Sold Out" class="button btn-cart">
+ 	<span style="font-size: small;">Sold Out</span>
+ </button>
+</div>
+<?php endif; ?>
+<?php $ids = $_product->getCategoryIds();
+        $category = $objectManager->create('Magento\Catalog\Model\Category')->load($ids[0]); 
+if ($taxAttribute = $_product->getCustomAttribute('tax_class_id')) {
+    $productRateId = $taxAttribute->getValue();        
+    $rate = $objectManager->create('\Magento\Tax\Api\TaxCalculationInterface')->getCalculatedRate($productRateId);
+    //$rate = $taxCalculation->getRate();
+    $priceIncludingTax = $_product->getPrice() + ($_product->getPrice() * ($rate / 100));
+    $productPrice = round($priceIncludingTax);
+}
+?>
+</br>
+<div class="detailship"><span>*Free shipping on orders above <span>&#8377;</span> 3,500</span></div>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+require(['jquery'],function(){
+	jQuery(document).ready(function(){
+		jQuery(".increaseQty").click(function(e){
+			e.preventDefault();
+			var qty=parseInt(jQuery("#qty").val());
+			qty+=1;
+			jQuery("#qty").val(qty);
+		});
+		jQuery(".decreaseQty").click(function(e){
+			e.preventDefault();
+			var qty=parseInt(jQuery("#qty").val());
+			if(qty<=1){
+				return;
+			}else{
+				qty-=1;
+				jQuery("#qty").val(qty);
+			}
+		});
+		function minicart_increaseQty(id)
+		{
+			var input = jQuery("#qinput-"+id);
+			var qty = parseInt(input.val())+1;
+			input.val(qty);
+			jQuery('#qbutton-'+id).trigger("click");
+		}
+		function minicart_decreaseQty(id)
+		{
+			var input = jQuery("#qinput-"+id);
+			if(input.val() > 1)
+			{
+				var qty = parseInt(input.val())-1;
+				input.val(qty);
+				jQuery('#qbutton-'+id).trigger("click");
+			}
+		}
+		function updateAjaxMiniCart(id,qty)
+		{
+			jQuery.ajax(
+			{
+				type: "POST",
+				url: "",
+				data: 'qty='+qty,
+				success: function(data)
+				{
+				}
+			});
+		}
+	});
+});
+var dataLayer = window.dataLayer || [];
+dataLayer.push({
+  "event": "productView",
+  "ecommerce": {
+    "currencyCode": "INR",
+    "detail": {
+      "products": [{
+        "id": "<?php echo $_product->getSku(); ?>",
+        "name": "<?php echo $_product->getName(); ?>",
+        "price": <?php echo $productPrice ?>,
+	"category": "<?php echo $category->getName() ?>"
+      }]
+    }
+  }
+});
+</script>

@@ -1,0 +1,99 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+    return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$helper = $block->getData('imageHelper');
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+$mainImageData = $mainImage ?
+    $mainImage->getData('medium_image_url') :
+    $helper->getDefaultPlaceholderUrl('image');
+
+?>
+<?php
+ $arId = $product->getArProductId();
+
+?>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <img
+        alt="main product photo"
+        class="gallery-placeholder__image"
+        src="<?= /* @noEscape */ $mainImageData ?>"
+    />
+</div>
+<style>
+div#helloar-button button {
+    background: url(https://www.craftmaestros.com/pub/media/images/360-degrees-n.png);
+    background-repeat: no-repeat;
+	position: relative;
+    top: -123px!important;
+    left: 16px;
+	height: 74px!important;
+    width: 151px!important;
+}
+
+div#helloar-button {
+    height: 35px!important;
+	margin-left: 30px;
+}
+@media screen and (min-width: 800px){
+div.threedee-containe {
+    width: 0%!important;
+    margin-left: -6px!important;
+	top: 0px!important;
+}
+}
+@media only screen and (max-width: 770px) {
+	div#helloar-button button {
+		top: -56px!important;
+	}
+}
+</style>
+<div id="helloar-button" class="threedee-containe"></div>
+<script
+    src="https://content.helloviewer.io/js/helloar_embed_button_0.4.min.js"
+    data-product-id=<?php echo $arId;?>
+    data-helloar-div="helloar-button"
+    data-button-width="-10%"
+    data-margin-top="0px"
+    data-font-size="15px"
+    data-button-color="#fff"
+    data-font-color="#fff"
+    data-button-text="º"
+    data-font-bold="true"
+	>
+ </script>
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @noEscape */ $block->getMagnifier() ?>,
+                "data": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */ $block->getGalleryOptions()->getOptionsJson() ?>,
+                "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                 "breakpoints": <?= /* @noEscape */ $block->getBreakpoints() ?>
+            }
+        }
+    }
+</script>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Olegnax\Carousel\Api\CarouselRepositoryInterface" type="Olegnax\Carousel\Model\CarouselRepository"/>
+	<preference for="Olegnax\Carousel\Api\Data\CarouselInterface" type="Olegnax\Carousel\Model\Data\Carousel"/>
+	<preference for="Olegnax\Carousel\Api\Data\CarouselSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Olegnax\Carousel\Model\ResourceModel\Carousel\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">olegnax_carousel_carousel</argument>
+			<argument name="resourceModel" xsi:type="string">Olegnax\Carousel\Model\ResourceModel\Carousel\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="olegnax_carousel_carousel_listing_data_source" xsi:type="string">Olegnax\Carousel\Model\ResourceModel\Carousel\Grid\Collection</item>
+				<item name="olegnax_carousel_slide_listing_data_source" xsi:type="string">Olegnax\Carousel\Model\ResourceModel\Slide\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="Olegnax\Carousel\Api\SlideRepositoryInterface" type="Olegnax\Carousel\Model\SlideRepository"/>
+	<preference for="Olegnax\Carousel\Api\Data\SlideInterface" type="Olegnax\Carousel\Model\Data\Slide"/>
+	<preference for="Olegnax\Carousel\Api\Data\SlideSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Olegnax\Carousel\Model\ResourceModel\Slide\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">olegnax_carousel_slide</argument>
+			<argument name="resourceModel" xsi:type="string">Olegnax\Carousel\Model\ResourceModel\Slide\Collection</argument>
+		</arguments>
+	</virtualType>
+</config>

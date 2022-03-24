@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Olegnax_LayeredNavigation::layered_navigation" title="Layered Navigation" translate="title"
+			 module="Olegnax_LayeredNavigation" sortOrder="999" parent="Olegnax_Core::Olegnax_Core"
+			 resource="Olegnax_LayeredNavigation::layered_navigation"/>
+		<add id="Olegnax_LayeredNavigation::config" title="Configuration" translate="title"
+			 module="Olegnax_LayeredNavigation" sortOrder="10"
+			 action="adminhtml/system_config/edit/section/olegnax_layered_navigation"
+			 parent="Olegnax_LayeredNavigation::layered_navigation" resource="Olegnax_LayeredNavigation::layered_navigation"/>
+	</menu>
+</config>

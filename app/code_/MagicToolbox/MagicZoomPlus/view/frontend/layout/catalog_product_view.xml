@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="head.additional.magiczoomplus">
+            <block class="MagicToolbox\MagicZoomPlus\Block\Html\Head" name="magiczoomplus-header" template="MagicToolbox_MagicZoomPlus::html/head.phtml">
+                <arguments>
+                    <argument name="page" xsi:type="string">product</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.media">
+            <block class="MagicToolbox\MagicZoomPlus\Block\Product\View\Gallery" name="product.info.media.magiczoomplus" template="product/view/gallery.phtml" />
+        </referenceContainer>
+
+        <!-- NOTE: to display product.info.media.video after product.info.media.image, product.info.media.magiczoomplus, etc -->
+        <move element="product.info.media.video" destination="product.info.media" after="-" />
+    </body>
+</page>

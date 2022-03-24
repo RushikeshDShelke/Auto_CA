@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="head.additional.magiczoomplus">
+            <block class="MagicToolbox\MagicZoomPlus\Block\Html\Head" name="magiczoomplus-header" template="MagicToolbox_MagicZoomPlus::html/head.phtml">
+                <arguments>
+                    <argument name="page" xsi:type="string">category</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="category.product.type.details.renderers">
+            <block class="MagicToolbox\MagicZoomPlus\Block\Product\Renderer\Listing\Configurable" name="configurable.magiczoomplus" template="Magento_Swatches::product/listing/renderer.phtml" before="-" />
+        </referenceBlock>
+    </body>
+</page>

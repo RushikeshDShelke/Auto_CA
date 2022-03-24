@@ -1,0 +1,24 @@
+{
+  "name": "wbcomdesigns/module-pincode-checker",
+  "description": "pincode checker for availability check delivery of products",
+  "require-dev": {
+    "wbcomdesigns/module-core": "dev-master"
+  },
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Wbcom",
+      "email": "support@wbcomdesigns.com",
+      "homepage": "https://zerodesk.wbcomdesigns.com",
+      "role": "Support"
+    }
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Wbcom\\PincodeChecker\\": ""
+    }
+  }
+}

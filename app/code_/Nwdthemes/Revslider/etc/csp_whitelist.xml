@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="connect-src">
+            <values>
+                <value id="google_fonts_api" type="host">https://fonts.googleapis.com</value>
+                <value id="google_fonts" type="host">https://fonts.gstatic.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="google_fonts" type="host">https://fonts.gstatic.com</value>
+            </values>
+        </policy>
+        <policy id="script-src">
+            <values>
+                <value id="vimeo_player_api" type="host">https://player.vimeo.com</value>
+                <value id="youtube_player_frame" type="host">https://www.youtube.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="google_fonts_api_secure" type="host">https://fonts.googleapis.com</value>
+                <value id="google_fonts_api_insecure" type="host">http://fonts.googleapis.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="themepunch_updates_server_images_secure" type="host">https://updates.themepunch.tools</value>
+                <value id="themepunch_updates_server_images_insecure" type="host">http://updates.themepunch.tools</value>
+                <value id="themepunch_updates_server_a_images_secure" type="host">https://updates.themepunch-ext-a.tools</value>
+                <value id="themepunch_updates_server_a_images_insecure" type="host">http://updates.themepunch-ext-a.tools</value>
+                <value id="themepunch_updates_server_b_images_secure" type="host">https://updates.themepunch-ext-b.tools</value>
+                <value id="themepunch_updates_server_b_images_insecure" type="host">http://updates.themepunch-ext-b.tools</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="vimeo_frame" type="host">https://player.vimeo.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

@@ -1,0 +1,55 @@
+<?php $shipments = $block->getShipments() ?>
+
+<h2 class="sub-header"><?= /* @escapeNotVerified */ __('Shipments') ?></h2>
+
+<div class="table-responsive">
+    <?php if($shipments->getSize() && count($shipments->getData()) > 0): ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><?= /* @escapeNotVerified */ __('Shipping Number') ?></th>
+                    <th><?= /* @escapeNotVerified */ __('Date') ?></th>
+                    <th><?= /* @escapeNotVerified */ __('Tracking Number') ?></th>
+                    <th><?= /* @escapeNotVerified */ __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($shipments as $shipment) : ?>
+                    <?php $continue = 0; ?>
+
+                    <?php foreach($shipment->getItems() as $item) : ?>
+                        <?php
+                        if ($block->checkProductOwn($item->getData('product_id'))) {
+                            $continue = 1;
+                        }
+                        ?>
+                    <?php endforeach; ?>
+
+                    <?php
+                    if ($continue === 0) {
+                        continue;
+                    }
+                    ?>
+
+                    <?php $tracks = $shipment->getAllTracks(); ?>
+                    <tr>
+                        <td><?= /* @escapeNotVerified */ $shipment->getIncrementId() ?></td>
+                        <td><?= /* @escapeNotVerified */ date('M d, Y g:i:s A', strtotime($shipment->getCreatedAt())) ?></td>
+                        <td><?= /* @escapeNotVerified */ count($tracks) > 0 ?  '#'.$tracks[0]->getData('track_number') : '' ?></td>
+                        <td>
+                            <a href="<?php echo $block->getUrl('*/shipment/view/', ['id' => $shipment->getId()]) ?>"
+                               class="btn btn-primary"><?= /* @escapeNotVerified */ __('View') ?></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <div class="notification-box"><?= /* @escapeNotVerified */ __('There are no shipments to display.') ?></div>
+    <?php endif; ?>
+</div>
+
+<?php if ($block->canCreateShipment()) : ?>
+    <a href="<?= /* @escapeNotVerified */ $block->getUrl('marketplace/shipment/create/', ['id' => $block->getOrder()->getId()]) ?>"
+       class="btn btn-primary"><?= /* @escapeNotVerified */ __('Create') ?></a>
+<?php endif; ?>

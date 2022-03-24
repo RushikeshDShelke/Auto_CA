@@ -1,0 +1,27 @@
+<?php
+/**
+ * Athlete2 Theme
+ *
+ * @author      Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (https://olegnax.com). All rights reserved.
+ * @license     https://www.olegnax.com/license
+ */
+
+use Magento\Framework\View\Element\Template;
+use Olegnax\Athlete2\Helper\Video;
+
+/** @var Template $block */
+$attributes = (array)$block->getVideoAttrs();
+$attributes = array_replace($attributes, [
+    'tabindex' => -1,
+    'playsinline' => true,
+    'class' => 'ox-grid-gallery-video',
+]);
+
+?>
+<video<?= Video::prepareAttributes($attributes) ?>>
+    <?php foreach ($block->getMimeFiles() as $mime => $url): ?>
+		<source src="<?= $url ?>" type="<?= $mime ?>">
+    <?php endforeach; ?>
+</video>

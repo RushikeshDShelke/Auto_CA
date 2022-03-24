@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Olegnax_Core::Olegnax_Core">
+					<resource id="Olegnax_Carousel::Carousel" sortOrder="10" title="Carousel">
+						<resource id="Olegnax_Carousel::Carousel_save" sortOrder="10" title="Save Carousel"/>
+						<resource id="Olegnax_Carousel::Carousel_delete" sortOrder="20" title="Delete Carousel"/>
+						<resource id="Olegnax_Carousel::Carousel_view" sortOrder="40" title="View Carousel"/>
+						<resource id="Olegnax_Carousel::Slide" sortOrder="60" title="Slide">
+							<resource id="Olegnax_Carousel::Slide_save" sortOrder="10" title="Save Slide"/>
+							<resource id="Olegnax_Carousel::Slide_delete" sortOrder="20" title="Delete Slide"/>
+							<resource id="Olegnax_Carousel::Slide_view" sortOrder="40" title="View Slide"/>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

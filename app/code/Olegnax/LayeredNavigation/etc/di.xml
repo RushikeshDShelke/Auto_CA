@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Olegnax
+ * @package     Olegnax_LayeredNavigation
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * @license     Proprietary License https://olegnax.com/license/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\Catalog\Model\Category\DataProvider" type="Olegnax\LayeredNavigation\Model\Category\DataProvider"/>
+
+
+
+	<virtualType name="categoryFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+		<arguments>
+			<argument name="filters" xsi:type="array">
+				<item name="attribute" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Attribute</item>
+				<item name="price" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Price</item>
+				<item name="category" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Category</item>
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="searchFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+		<arguments>
+			<argument name="filters" xsi:type="array">
+				<item name="attribute" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Attribute</item>
+				<item name="price" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Price</item>
+				<item name="category" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Category</item>
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\SearchCollection"
+				 type="Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\Collection">
+		<arguments>
+			<argument name="searchRequestName" xsi:type="string">quick_search_container</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="elasticsearchFulltextSearchCollectionFactory" type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollectionFactory">
+		<arguments>
+			<argument name="instanceName" xsi:type="string">Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\SearchCollection</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory"
+				 type="Magento\Catalog\Model\ResourceModel\Product\CollectionFactory">
+		<arguments>
+			<argument name="instanceName" xsi:type="string">
+				Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\Collection
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="elasticsearchCategoryCollectionFactory"
+				 type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollectionFactory">
+		<arguments>
+			<argument name="instanceName" xsi:type="string">
+				Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\Collection
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollection"
+				 type="Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\Collection">
+		<arguments>
+			<argument name="searchRequestName" xsi:type="string">quick_search_container</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Olegnax\LayeredNavigation\Block\Navigation\Category"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">categoryFilterList</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Olegnax\LayeredNavigation\Block\Navigation\Search"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">searchFilterList</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\LayeredNavigationStaging\Block\Navigation\Category"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">categoryFilterList</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\LayeredNavigationStaging\Block\Navigation\Search"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">searchFilterList</argument>
+		</arguments>
+	</virtualType>
+
+</config>

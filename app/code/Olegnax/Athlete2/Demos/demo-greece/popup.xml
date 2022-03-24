@@ -1,0 +1,65 @@
+<root>
+	<config>
+		<olegnax_newsletterpopupbasic>
+			<general>
+				<enable>1</enable>
+				<many_times>everytime</many_times>
+				<layout>-fullwidth</layout>
+				<timeout>1000</timeout>
+				<show_mobile>1</show_mobile>
+				<width>816</width>
+				<height></height>
+				<mobile_width></mobile_width>
+				<mobile_height></mobile_height>
+				<mobile_image_height></mobile_image_height>
+				<column_width></column_width>
+				<padding></padding>
+				<tablet_padding></tablet_padding>
+				<mobile_padding></mobile_padding>
+				<content_padding>80</content_padding>
+				<tablet_content_padding>52</tablet_content_padding>
+				<mobile_content_padding>40</mobile_content_padding>
+				<position_h>h-center</position_h>
+				<position_v>v-center</position_v>
+				<form_layout>one-line</form_layout>
+				<content_position_h>h-left</content_position_h>
+				<content_position_v>v-center</content_position_v>
+				<show_shadow>1</show_shadow>
+				<clickable_overlay>0</clickable_overlay>
+			</general>
+			<content>
+				<column_image></column_image>
+				<content><![CDATA[<h6 style="margin-bottom:30px">join the revolution</h6>
+<h1 class="huge-10">SIGN UP<br>&amp; GET 10% OFF. </h1>
+{{block class="Magento\Newsletter\Block\Subscribe" template="Magento_Newsletter::subscribe_form.phtml"}}
+<p class="no-margin"><a href="#" class="ox-newsletter-disable__link ox-grey-underline" >Thank you , I already subscribed.</a></p>
+]]></content>
+			</content>
+			<appearance>
+				<background_color>rgb(59, 58, 253)</background_color>
+				<bg_image_enabled>1</bg_image_enabled>
+				<background_image>Demos/greece/newsletter-greece.jpg</background_image>
+				<bg_position_y>top</bg_position_y>
+				<bg_position_x>center</bg_position_x>
+				<bg_repeat>no-repeat</bg_repeat>
+				<bg_size>contain</bg_size>
+				<newsletter_input_style>underlined</newsletter_input_style>
+				<newsletter_text_color>rgb(255, 255, 255)</newsletter_text_color>
+				<newsletter_titles_color>rgb(255, 255, 255)</newsletter_titles_color>
+				<close_button_bg>rgb(59, 58, 253)</close_button_bg>
+				<close_button_icon_color>rgb(255, 255, 255)</close_button_icon_color>
+				<close_button_bg_hover>rgb(0, 0, 0)</close_button_bg_hover>
+				<close_button_icon_color_hover>rgb(255, 255, 255)</close_button_icon_color_hover>
+				<newsletter_input_bg></newsletter_input_bg>
+				<newsletter_input_border_color>rgb(255, 255, 255)</newsletter_input_border_color>
+				<newsletter_input_border_focus>rgb(255, 255, 255)</newsletter_input_border_focus>
+				<newsletter_color></newsletter_color>
+				<newsletter_button_color>rgb(59, 58, 253)</newsletter_button_color>
+				<newsletter_button_bg>rgb(255, 255, 255)</newsletter_button_bg>
+				<newsletter_button_hover>rgb(255, 255, 255)</newsletter_button_hover>
+				<newsletter_button_hover_bg>rgb(17, 17, 17)</newsletter_button_hover_bg>
+				<newsletter_input_color>rgb(255, 255, 255)</newsletter_input_color>
+			</appearance>
+		</olegnax_newsletterpopupbasic>
+	</config>
+</root>

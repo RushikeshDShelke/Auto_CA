@@ -1,0 +1,310 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+@button-naked__color:@button-primary__color;
+@button-naked__background: @button-primary__background;
+@button-naked__hover__color:@button-primary__color;
+
+.ox-button-secondary(){
+    color: @button__color;
+    background: @button__background;
+    &:after{
+        background-color: @button__hover__background;
+    }
+    &:hover{
+        color: @button__hover__color;
+        &:after{
+            transform: scaleX(1);
+        }
+    }
+}
+.ox-button-primary(){
+    color:@button-primary__color;
+    background: @button-primary__background;
+    &:after{
+        background-color: @button-primary__hover__background;
+    }
+    svg{
+        fill:@button-primary__color;
+    }
+    &:hover{
+        color: @button-primary__hover__color;
+        svg{
+            fill: @button-primary__hover__color;
+        }
+    }
+    &.naked{
+        color:@button-naked__color;
+        &:after{
+            background: @button-naked__background;
+        }
+        &:hover{
+            color:@button-naked__hover__color;
+        }
+    }
+    &.outline{
+        border-color:@button-primary__color; 
+        &.white{
+             border-color:#fff;
+             color:#fff;
+        }
+    }
+}
+.ox-button(){
+    .button-hover1-out-fn();
+    position: relative;
+    outline: none;
+    display: inline-block;
+    padding: @button__padding;
+    font-weight: @button__font-weight;
+    letter-spacing: @button__letter-spacing;
+    text-transform: @button__text-transform;
+    line-height: 1;
+    transform: translateY(0);
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: top;
+    border:none;
+    border-radius: 0;
+    font-family: @main-font;
+    -moz-appearance: none!important;
+    -webkit-appearance: none!important;
+    appearance: none!important;
+    &:after{
+         .button-hover1-out-fn();
+        content: '';
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    &:hover{
+            text-decoration: none;
+            .button-hover1-fn();
+            &:after{
+                .button-hover1-fn();
+                transform: scaleX(1);
+            }
+    }
+    &.small{
+        .button__size-small-fn();
+    }
+    &.medium{
+        .button__size-medium-fn();
+    }
+    &.big{
+        .button__size-big-fn();
+    }
+    &.big-wide{
+        padding: 18px 34px;
+    }
+    &.long{
+        padding-right: 70px;
+    }
+    &.naked{
+        background:none!important;
+    }
+    &.outline{
+        background:none!important;
+        border: 2px solid;
+    }
+    &.simple{
+        &:after{
+            transform: scaleX(1);
+            opacity: 0;
+        }
+        &:hover{
+            &:after{
+                opacity: 1;
+            }
+        }
+    }
+    &.underline{
+        background: none!important;
+        border: none;
+        border-bottom: 2px solid;
+        padding: 4px 1px;        
+        &:after{
+            content:none;
+        }
+    }
+    &.slider-long{
+        padding:15px 90px 15px 26px;
+    }
+    &.white-hover{
+        &:after{
+            background-color: #ffffff!important;
+        }
+    }
+}
+.button-hover1-fn(){
+    -webkit-transition: all 256ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+    -moz-transition: all 256ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+    -o-transition: all 256ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+    transition: all 256ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+}
+.button-hover1-out-fn(){
+    -webkit-transition: all 512ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+    -moz-transition: all 512ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+    -o-transition: all 512ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+    transition: all 512ms cubic-bezier(0.330, 0.975, 0.245, 0.910);
+}
+.button__size-small-fn(){
+    padding: @button__padding__s;
+}
+.button__size-medium-fn(){
+    padding: @button__padding__m;
+}
+
+.button__size-big-fn(){
+    padding: @button__padding__b;
+}
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .button__size-small{
+        .button__size-small-fn();
+    }
+    .button__size-medium{
+        .button__size-medium-fn();
+    }                
+    .button__size-big{
+        .button__size-big-fn();
+    }
+    .button-hover1{
+        .button-hover1-fn();
+    }
+    .button-hover1-out{
+        .button-hover1-out-fn();
+    }
+    .primary > .action,
+    a.action.primary,
+    .action.primary,
+    .action.secondary,
+    .secondary > a.action,
+    .button.secondary,
+    .button.primary,
+    a.button.secondary,
+    a.button.primary,
+    a.button,
+    .button,
+    button {
+        .ox-button();
+        &.button__size-small{
+            .button__size-small-fn();
+        }
+        &.button__size-medium{
+            .button__size-medium-fn();
+        }                
+        &.button__size-big{
+            .button__size-big-fn();
+        }
+        &.button-hover1{
+            .button-hover1-fn();
+        }
+        &.button-hover1-out{
+            .button-hover1-out-fn();
+        }
+    }
+    input.action.primary{
+        &:hover{
+            background-color: @button-primary__hover__background;
+        }
+    }
+    .primary > .action,
+    a.action.primary,
+    .action.primary,
+    .button.primary,
+    a.button.primary,
+    a.button,
+    .button,
+    button {
+        .ox-button-primary();
+    }
+    .button.secondary,
+    a.button.secondary,
+    .action.secondary,
+    .action-secondary,
+    button.action-secondary,
+    button.action.secondary,
+    .secondary > a.action{
+        .ox-button-secondary();
+    }
+    .extended-review-button{
+        .action.primary{
+            .button__size-big();
+        }
+    }
+    button:hover, 
+    /*.cart.table-wrapper .actions-toolbar > .action:hover, */
+    .action-gift:hover{
+        background:none;
+    }
+    button,
+    .button{
+        .plus-icon{
+            content: "";
+            position: absolute;
+            right: 22px;
+            width: 10px;
+            top: 50%;
+            margin: -5px 0px 0px;
+            height: 10px;
+            &:before{
+                content: '';
+                position: absolute;
+                right: 4px;
+                top: 0;
+                width: 2px;
+                height: 10px;
+                background: #000000;
+            }
+            &:after{
+                content: '';
+                position: absolute;
+                right: 0px;
+                top: 4px;
+                width: 10px;
+                height: 2px;
+                background: #000000;
+            }
+            &.white{
+                &:before,
+                &:after{
+                    background: #ffffff;
+                }
+            }
+            &.green{
+                &:before,
+                &:after{
+                    background: #c9ee24;
+                }
+            }
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .button.secondary,
+    .button.primary,
+    a.button.secondary,
+    a.button.primary,
+    a.button,
+    .button,
+    button{
+        &.small-s{
+            .button__size-small-fn();
+        }
+        &.medium-s{
+            .button__size-medium-fn();
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sparsh_FacebookShopIntegration::facebook_shop_integration" title="Facebook Shop Integration" module="Sparsh_FacebookShopIntegration" sortOrder="51" resource="Sparsh_FacebookShopIntegration::facebook_shop_integration"/>
+        <add id="Sparsh_FacebookShopIntegration::attribute_mapping" title="Attribute Mapping" module="Sparsh_FacebookShopIntegration" sortOrder="10" action="facebook_shop_integration/mapping/" resource="Sparsh_FacebookShopIntegration::attribute_mapping" parent="Sparsh_FacebookShopIntegration::facebook_shop_integration"/>
+        <add id="Sparsh_FacebookShopIntegration::csv_log" title="CSV Log" module="Sparsh_FacebookShopIntegration" sortOrder="20" action="facebook_shop_integration/csvlog/" resource="Sparsh_FacebookShopIntegration::csv_log" parent="Sparsh_FacebookShopIntegration::facebook_shop_integration"/>
+        <add id="Sparsh_FacebookShopIntegration::configuration" title="Configurations" module="Sparsh_FacebookShopIntegration" sortOrder="30" action="adminhtml/system_config/edit/section/facebook_shop_integration" resource="Sparsh_FacebookShopIntegration::configuration" parent="Sparsh_FacebookShopIntegration::facebook_shop_integration"/>
+    </menu>
+</config>

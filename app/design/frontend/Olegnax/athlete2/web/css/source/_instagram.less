@@ -1,0 +1,243 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .ox-instagram-feed{
+        width: 100%;
+        .ox-instagram-item{
+            padding:4px;
+            width:100%;
+            position: relative;
+            -ms-flex: 0 0 100%/4;
+            flex: 0 0 100%/4;
+            max-width: 100%/4;
+        }
+        .generate-cols-m(12);
+        .generate-cols-m(@n, @i: 1) when (@i =< @n) {
+            &.columns-m-@{i} {
+                .ox-instagram-item{
+                    -ms-flex: 0 0 100%/@i;
+                    flex: 0 0 100%/@i;
+                    max-width: 100%/@i;
+                }
+            }
+            .generate-cols-m(@n, (@i + 1));
+        }
+        .ox-instagram-image{
+            width:100%;
+            transition: all 0.3s;
+            &.lazy:not(.lazy-loaded){
+                opacity:0!important;
+                visibility: hidden;
+            }
+        }
+        .ox-instagram-item-link{
+            transition: all 0.3s;
+            display: block;
+            line-height: 0;
+            padding:0;
+            margin: 0;
+            position:relative;
+            
+            &:hover{
+                .action{
+                    visibility: visible;
+                    animation: move-action-top 0.15s cubic-bezier(0.33, 0.975, 0.245, 0.91) forwards;
+                    &.view{
+                        animation-delay: 100ms;
+                    }
+                }
+
+                .ox-instagram-image{
+                    transform: scale(0.96);
+                }
+            }
+            .inner{
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 4;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+            .action{
+                min-width: 43px;
+                height: 42px;
+                display: flex;
+                align-items: center;
+                background: #000000;
+                color: #ffffff;
+                vertical-align: top;
+                transition: all 600ms ease-in-out;
+                transform: translateY(10px) perspective(1px);
+                position:relative;
+                opacity: 0;
+                visibility: hidden;
+                animation: move-action-bottom 0.15s cubic-bezier(0.33, 0.975, 0.245, 0.91) forwards;
+                will-change:transform;
+                &:before{                    
+                    font-family: "athlete2";
+                    font-size: 16px;
+                    line-height: 43px;
+                    color: #ffffff;
+                    width:100%;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    vertical-align: middle;
+                    display: inline-block;
+                    font-weight: normal;
+                    speak: none;                    
+                    text-align: center;
+                }
+                &.likes{
+                    span{
+                        display: none;
+                    }
+                    &:before{
+                        content: '\6b';
+                        margin-bottom: -2px;
+                    }
+                }
+                &.view{
+                    &:before{
+                        content: '\44';
+                    }
+                }
+            }
+
+        }
+        .ox-instagram-items{
+            padding:4px;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            .first-image{
+                -ms-flex: 0 0 40%;
+                flex: 0 0 40%;
+                max-width: 40%;
+                .ox-instagram-item{
+                    -ms-flex: 0 0 100%;
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                    img{
+                        width:100%;
+                    }
+                }
+            }
+            .other-images{
+                -ms-flex: 0 0 60%;
+                flex: 0 0 60%;
+                max-width: 60%;
+            }
+        }
+        &.resize-maxheight,
+        &.resize-square{
+            .ox-instagram-item-link{
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:after {
+                    content: "";
+                    display: block;
+                    padding-bottom: 100%;
+                }
+                img{
+                    position: absolute;
+                }     
+            }
+        }
+        &.resize-square{
+            .image-wrapper{
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.3s;
+                will-change:transform;
+                img{
+                    &.horizontal{
+                        width: auto;
+                        max-width: unset;
+                        height: 100%;
+                    }
+                }
+            }
+            .ox-instagram-item:hover{
+                .ox-instagram-item-link{
+                    .image-wrapper{
+                        transition: all 0.3s;
+                        transform: scale(0.96);
+                    }
+                    .ox-instagram-image{
+                        transform: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .ox-instagram-feed{
+        .generate-cols-s(12);
+        .generate-cols-s(@n, @i: 1) when (@i =< @n) {
+            &.columns-s-@{i} {
+                .ox-instagram-item{
+                    -ms-flex: 0 0 100%/@i;
+                    flex: 0 0 100%/@i;
+                    max-width: 100%/@i;
+                }
+            }
+            .generate-cols-s(@n, (@i + 1));
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__sm) {
+    .ox-instagram-feed{
+        .ox-instagram-items{
+        .other-images,
+            .first-image{
+                -ms-flex: 0 0 100%;
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .ox-instagram-feed{
+        .generate-cols(12);
+        .generate-cols(@n, @i: 1) when (@i =< @n) {
+            &.columns-@{i} {
+                .ox-instagram-item{
+                    -ms-flex: 0 0 100%/@i;
+                    flex: 0 0 100%/@i;
+                    max-width: 100%/@i;
+                }
+            }
+            .generate-cols(@n, (@i + 1));
+        }
+    }
+}

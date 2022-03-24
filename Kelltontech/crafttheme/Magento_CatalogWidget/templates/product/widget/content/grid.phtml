@@ -1,0 +1,90 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl();
+
+
+?>
+ 
+
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) : ?>
+    <?php
+    $type = 'widget-product-grid';
+
+    $mode = 'grid';
+
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $description = false;
+    ?>
+    
+    <div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
+        <?php if ($block->getTitle()) : ?>
+            <div class="block-title">
+                <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
+            <div class="category-products">
+                <ul class="products-grid products-grid--max-4-col first last odd">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item) : ?>
+						<?php $categories = $_item->getCategoryIds(); ?> 
+                        <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="item last">' : '</li><li class="item last">' ?>
+                        <?php if(in_array(11,$categories)): ?>
+							<div class="newarrival">
+									<span>NEW</span>
+							</div>
+						<?php endif; ?>	
+						<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-image">
+                                <?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                        <div class="product-info" style="padding-bottom: 75px; min-height: 131px;">
+                            <h2 class="product-name"><a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                             </a></h2>
+                             <div class="price-box">
+								 <?= $block->getProductPriceHtml($_item, $type) ?>
+								</div>
+							<div class="actions">
+								<div class="wishlist-new">
+									<ul class="add-to-links aaa">
+									<?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist) : ?>
+										<li><a href="#"
+										   data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+											<img src="<?php echo $this->getBaseUrl(); ?>pub/media/images/wishlist.png">
+										</a></li>
+									<?php endif; ?>
+									<li>
+                                        <a class="weltpixel-quickview weltpixel_quickview_button_v2" data-quickview-url="<?php echo $baseurl?>weltpixel_quickview/catalog_product/view/id/<?php echo $_item->getId();?>/" href="javascript:void(0);"><span>Quick Shop</span></a>
+
+                                    </li>
+									</ul>
+								</div>
+							</div>
+                       </div>
+                        <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </ul>
+            </div>
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+   
+<?php endif;?>

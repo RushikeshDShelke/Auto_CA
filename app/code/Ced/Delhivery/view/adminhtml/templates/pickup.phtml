@@ -1,0 +1,105 @@
+<?php $warehouse = $block->getWarehouse(); ?>
+<?php //if($warehouse){ ?>
+<button id="pickup" title="Pick Up" type="button" class="action- scalable primary ced-pickup" data-ui-id="pickup-button">
+    <span>Pick Up</span>
+</button>
+<?php //} ?>
+<div id="message-content" class="delhivery-popup" style="display:none">
+<form id="pickup-request" action="<?php echo $block->getUrl("delhivery/index/pickup") ?>" method="post">
+		<?php echo $block->getBlockHtml('formkey'); ?>
+    <?php if(!$warehouse){ ?>
+<p class="message message-error error">Please set your shipping origin before you send pick up request.</p>
+    <?php } ?>
+<div class="panel-body">
+	<div class="fieldset">
+		<div class="form-group col-md-12">
+	    	<label><?php echo __('Pickup Date') ?> * : </label>
+	    	<div class="input-box">
+	    		<input readonly type="text" id="pickup_date" name="pickup_date" class="required-entry" data-validate='{
+                       "validate-date":true,
+                   }'/>
+	    		<span class="required"></span>
+	    	</div>
+	    </div>
+	   	<div class="form-group col-md-12">
+	    	<label><?php echo __('Pickup Time') ?> * : </label>
+	    	<div class="input-box">
+	    		<input readonly type="text" id="pickup_time" name="pickup_time" class="required-entry" data-validate='{
+                       "required-entry":true,
+                   }'/>
+                 
+	    		<span class="required"></span>
+	    	</div>
+	    </div>
+	    <div class="form-group col-md-12">
+	    	<label><?php echo __('Pickup Location') ?> * : </label>
+	    	<div class="input-box">
+	    		<input type="text" id="location" name="location" class="required-entry" value="<?php echo $warehouse ?>" readOnly data-validate='{
+                       "required-entry":true,
+                   }'/>
+	    		<span class="required"></span>
+	    	</div>
+	    </div>
+	    <div class="form-group col-md-12">
+	    	<label><?php echo __('Package Count') ?> * : </label>
+	    	<div class="input-box">
+	    		<input type="text" id="package_count" name="package_count" class="required-entry validate-number validate-greater-than-zero" data-validate='{
+                       "required-entry":true,
+                   }'/>
+	    		<span class="required"></span>
+	    	</div>
+	    </div>
+	    
+	</div>
+</div>
+</form>
+
+</div>
+<script type="text/x-magento-init">
+    {
+       "#pickup-request" : {
+            "validation" : {}
+       }
+    }
+
+</script>
+<script>
+     require([
+          "jquery",
+          "mage/calendar"
+     	],function($){
+	        $("#pickup_date").calendar({
+	              dateFormat: "yy-mm-dd"
+	              
+	        });
+	        
+	        $("#pickup_time").datetimepicker({
+                 dateFormat: "Hi",
+                 showsDate: false,
+                 showsTime: true,
+                 timeOnly: true
+
+             });
+	        
+	        $(".ced-pickup").on( "click", function(){
+			    require(['jquery','Magento_Ui/js/modal/modal'], function ($,modal) {
+		        var options = {
+		                type: 'popup',
+		                responsive: true,
+		                innerScroll: true,
+		                title: 'Send Pick-Up Information To Delhivery',
+		                buttons: [{
+		                	class: 'footer-btn',
+		                    text: $.mage.__('Submit'),
+		                    click: function () {
+		                        
+                                $("#pickup-request").submit();
+		                    }
+		                }]
+		            };       
+		            var popup = modal(options, $('#message-content'));
+		            $('#message-content').modal('openModal');
+		        });
+			});
+    	});
+</script>

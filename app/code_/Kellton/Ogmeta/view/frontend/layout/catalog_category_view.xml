@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="head.additional">
+			<block as="ogmetacat" class="Kellton\Ogmeta\Block\OgmetaCat" name="ogmetacat" template="Kellton_Ogmeta::ogmetacat.phtml"/>
+		</referenceBlock>
+	</body>
+</page>

@@ -1,0 +1,27 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+?>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/confirm'
+    ], function ($, confirm) {
+        window.clearWebpImage = function() {
+            confirm({
+                title: '<?= __("Clear Image") ?>',
+                content: '<?= __("Do you want to delete all generated webp images") ?>',
+                actions: {
+                    confirm: function(){ window.location.href = "<?= $block->getAdminUrl() ?>"},
+                    cancel: function(){ return false },
+                    always: function(){ return false }
+                }
+            });
+        }
+    });
+</script>
+
+<?php echo $block->getButtonHtml() ?>

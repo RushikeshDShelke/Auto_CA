@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php $_shipment = $block->getShipment() ?>
+<?php
+/* @var \Magento\Sales\Model\Order $_order */
+$_order = $block->getOrder() ?>
+<?php if ($_shipment && $_order) : ?>
+    <?php $trackCollection = $_order->getTracksCollection($_shipment->getId()) ?>
+    <?php if ($trackCollection) : ?>
+        
+        
+            <?php foreach ($trackCollection as $_item) : ?>
+               
+				<?php //echo $_item->getCarrierCode();
+				if($_item->getCarrierCode() == 'delhivery'){?>
+	        <h2 style="font-family:adobe-garamond-pro,serif;font-weight:800;font-style: italic;color:#cb9f07;font-size:56px;margin-bottom: 18px;margin-top:24px;">Track your item here :</h2>
+              <p style="font-size:16px;font-family: 'Lato',sans-serif;font-weight:600;"> Shipped By  Craft Maestros Logistics </p>
+			  <p style="font-size:16px;font-family: 'Lato',sans-serif;font-weight:600;max-width:140px;background:#cb9f07;margin:0 auto;padding:5px 40px;border-radius:50px;color:#fff">Tracking Number <br><span>
+			  
+			<a style="text-decoration:none;" href="https://www.delhivery.com/track/package/<?= $block->escapeHtml($_item->getNumber()) ?>" target="_blank"><span style="color:#ffffff;text-decoration:none;"><?= $block->escapeHtml($_item->getNumber()) ?></span></a>
+  			  
+			  </span></h3>		
+			
+			
+			<?php	
+			}
+			elseif($_item->getCarrierCode() == 'craft_handdelivery'){
+				echo '';
+			}
+			
+			else{		
+            ?>
+                    <h2 style="font-family:adobe-garamond-pro,serif;font-weight:800;font-style: italic;color:#cb9f07;font-size:56px;margin-bottom: 18px;margin-top:24px;">Track your item here :</h2>
+              <p style="font-size:16px;font-family: 'Lato',sans-serif;font-weight:600;"> Shipped By  Craft Maestros Logistics </p>
+			  <p style="font-size:16px;font-family: 'Lato',sans-serif;font-weight:600;max-width:140px;background:#cb9f07;margin:0 auto;padding:5px 40px;border-radius:50px;color:#fff">Tracking Number <br><span>
+			  
+	   <a href="<?= $block->escapeUrl($block->getTrackingUrl()->getUrl($_item)) ?>" target="_blank">
+                            <?= $block->escapeHtml($_item->getNumber()) ?>
+                        </a>
+                    		  
+			  </span></h3>	
+                     
+			<?php } ?>
+                
+            <?php endforeach ?>
+            
+    <?php endif; ?>
+<?php endif; ?>

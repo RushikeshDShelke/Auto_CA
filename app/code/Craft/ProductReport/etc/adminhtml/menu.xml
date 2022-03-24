@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Craft_ProductReport::reports" title="Custom Reports" module="Craft_ProductReport" sortOrder="90" resource="Craft_ProductReport::reports"/>
+        <add id="Craft_ProductReport::productreport" title="Product Reports" module="Craft_ProductReport" sortOrder="10" action="productreport/index" resource="Craft_ProductReport::productreport" parent="Craft_ProductReport::reports"/>        
+    </menu>
+</config>

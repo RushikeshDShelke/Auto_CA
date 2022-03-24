@@ -1,0 +1,324 @@
+<?php $shipment = $block->getShipment(); ?>
+<?php $orderResource = $shipment->getOrder(); ?>
+<?php $order = $block->getOrder($orderResource->getId()); ?>
+<?php $items = $block->getItems(); ?>
+<?php $shippingAddress = $order->getShippingAddress(); ?>
+<?php $billingAddress = $order->getBillingAddress(); ?>
+<?php $trackings = $block->getTrackResourceCollection($shipment->getId()); ?>
+<?php
+    $canUpdateTracking = true;
+    foreach($shipment->getItems() as $item) {
+        if(!$block->checkProductOwn($item->getData('product_id'))) {
+            $canUpdateTracking = false;
+            break;
+        }
+    }
+?>
+
+<div class="container-fluid main-container vendor-container ">
+    <div class="col-md-10 col-sm-10 col-sm-offset-2 nopadding">
+        <h2 class="text-left"><?php echo $block->escapeHtml(__('Shipment for Order')); ?>#<?php echo $block->escapeHtml($order->getIncrementId()); ?></h2>
+    </div>
+        <div class="container">
+            <div class="row  text-left col-md-offset-2">
+                <div class="col-md-5">
+                    <h3><?php echo $block->escapeHtml(__("Order Information")); ?></h3>
+                    <p>
+                        <?php
+                        $createdAt = date(
+                            'M d, Y g:i:s A',
+                            strtotime($order->getCreatedAt())
+                        );
+                        ?>
+                        <strong><?php echo $block->escapeHtml(__('Order Date')); ?>:</strong> <?php echo $block->escapeHtml($createdAt); ?></p>
+                    <p>
+                        <strong><?php echo $block->escapeHtml(__('Order Status')); ?>:</strong>
+                        <?php if ($order->getStatus() === 'canceled') : ?>
+                            <span
+                                class="text-danger"
+                            ><?php echo ucfirst($order->getStatus()); ?></span>
+                        <?php else : ?>
+                            <?php echo ucfirst($order->getStatus()); ?>
+                        <?php endif; ?>
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <h3><?php echo $block->escapeHtml(__('Account Information')); ?></h3>
+                    <p>
+                        <strong><?php echo $block->escapeHtml(__('Customer Name')); ?>:</strong> <?php echo $block->escapeHtml($order->getCustomerFirstname()); ?> <?php echo $block->escapeHtml($order->getCustomerLastname()); ?>
+                    </p>
+                    <p>
+                        <strong><?php echo $block->escapeHtml(__('Email')); ?>: </strong> <a href="mailto:<?php echo $block->escapeHtml($order->getCustomerEmail()); ?>"><?php echo $block->escapeHtml($order->getCustomerEmail()); ?></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="container">
+        <div class="row text-left col-md-offset-2">
+            <div class="col-md-5">
+                <h3><?php echo $block->escapeHtml(__('Billing Address')); ?></h3>
+                <p><?php echo $block->getFormatedBillingAddress($orderResource->getId()); ?></p>
+            </div>
+            <div class="col-md-5">
+                <h3><?php echo $block->escapeHtml(__('Shipping Address')); ?></h3>
+                <p><?php echo $block->getFormatedShippingAddress($orderResource->getId()); ?></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container col-md-7 col-md-offset-2">
+        <h2 class="sub-header text-left"><?php echo $block->escapeHtml(__('Tracking Codes')); ?></h2>
+        <div class="table-responsive">
+            <?php if ($canUpdateTracking) : ?>
+                <?php if (count($trackings) == 0) : ?>
+                    <form action="<?php echo $block->getUrl("*/*/saveTracking"); ?>"
+                          id="createShipmentTrackingForm" method="post">
+                        <input type="hidden" name="order_id" value="<?php echo $order->getId()?>" />
+                        <input type="hidden" name="shipment_id" value="<?php echo $shipment->getId()?>" />
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th><?php echo $block->escapeHtml(__('Carrier')); ?></th>
+                                <th><?php echo $block->escapeHtml(__('Title')); ?></th>
+                                <th><?php echo $block->escapeHtml(__('Number')); ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <select name="carrier_code" id="trackingC1" class="select carrier">
+                                        <option value="custom">Custom Value</option>
+                                        <option value="dhl">DHL (Deprecated)</option>
+                                        <option value="fedex">Federal Express</option>
+                                        <option value="ups">United Parcel Service</option>
+                                        <option value="usps">United States Postal Service</option>
+                                        <option value="dhlint">DHL</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" name="title" class="form-control"/></td>
+                                <td><input type="text" name="number" class="form-control"/></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-md-3 col-sm-4 col-sm-offset-3 col-md-offset-4">
+                            <input type="submit" name="submit" class="btn btn-primary"
+                                   value="<?php echo $block->escapeHtml(__('Create Tracking'))?>" />
+                        </div>
+                    </form>
+                <?php else : ?>
+                    <form action="<?php echo $block->getUrl("*/*/saveTracking"); ?>"
+                          id="createShipmentTrackingForm" method="post">
+                        <input type="hidden" name="order_id" value="<?php echo $order->getId()?>" />
+                        <input type="hidden" name="shipment_id" value="<?php echo $shipment->getId()?>" />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th><?php echo $block->escapeHtml(__('Carrier')); ?></th>
+                                    <th><?php echo $block->escapeHtml(__('Title')); ?></th>
+                                    <th><?php echo $block->escapeHtml(__('Number')); ?></th>
+                                    <th><?php echo $block->escapeHtml(__('Actions')); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($trackings as $item) : ?>
+                                <input type="hidden" name="track_id" value="<?php echo $item->getId()?>" />
+                                <tr>
+                                    <td>
+                                        <select disabled name="carrier_code" id="trackingC1" class="select carrier">
+                                            <option
+                                                <?php if ($item->getCarrierCode() == 'custom') {
+                                                    echo 'selected';
+                                                }
+                                                ?>
+                                            value="custom">Custom Value</option>
+                                            <option
+                                                <?php if ($item->getCarrierCode() == 'dhl') {
+                                                    echo 'selected';
+                                                }
+                                                ?>
+                                            value="dhl">DHL (Deprecated)</option>
+                                            <option
+                                                <?php if ($item->getCarrierCode() == 'fedex') {
+                                                    echo 'selected';
+                                                }
+                                                ?>
+                                            value="fedex">Federal Express</option>
+                                            <option
+                                                <?php if ($item->getCarrierCode() == 'ups') {
+                                                    echo 'selected';
+                                                }
+                                                ?>
+                                            value="ups">United Parcel Service</option>
+                                            <option
+                                                <?php if ($item->getCarrierCode() == 'usps') {
+                                                    echo 'selected';
+                                                }
+                                                ?>
+                                            value="usps">United States Postal Service</option>
+                                            <option
+                                                <?php if ($item->getCarrierCode() == 'dhlint') {
+                                                    echo 'selected';
+                                                }
+                                                ?>
+                                            value="dhlint">DHL</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" disabled name="title" value="<?php echo $item->getTitle(); ?>" class="form-control"/></td>
+                                    <td><input type="text" name="number" value="<?php echo $item->getNumber(); ?>" class="form-control"/></td>
+                                    <td>
+                                        <?php
+                                        $url = $block->getUrl(
+                                            'marketplace/shipment/printlabel/',
+                                            ['id' => $item->getId()]
+                                        );
+                                        ?>
+                                        <a href="<?php echo $url ?>"
+                                           class="btn"><?php echo $block->escapeHtml(__('Print Label')); ?></a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <div class="col-md-3 col-sm-4 col-sm-offset-3 col-md-offset-4">
+                            <input type="submit" name="submit" class="btn btn-primary"
+                                   value="<?php echo $block->escapeHtml(__('Update Tracking'))?>" />
+                        </div>
+                    </form>
+                <?php endif; ?>
+            <?php else : ?>
+                <form action="#" id="createShipmentTrackingForm" method="post">
+                    <input type="hidden" name="order_id" value="<?php echo $order->getId()?>" />
+                    <input type="hidden" name="shipment_id" value="<?php echo $shipment->getId()?>" />
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><?php echo $block->escapeHtml(__('Carrier')); ?></th>
+                                <th><?php echo $block->escapeHtml(__('Title')); ?></th>
+                                <th><?php echo $block->escapeHtml(__('Number')); ?></th>
+                                <th><?php echo $block->escapeHtml(__('Actions')); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($trackings as $item) : ?>
+                            <input type="hidden" name="track_id" value="<?php echo $item->getId()?>" />
+                            <tr>
+                                <td>
+                                    <select disabled readonly name="carrier_code" id="trackingC1" class="select carrier">
+                                        <option
+                                            <?php if ($item->getCarrierCode() == 'custom') {
+                                                echo 'selected';
+                                            }
+                                            ?>
+                                        value="custom">Custom Value</option>
+                                        <option
+                                            <?php if ($item->getCarrierCode() == 'dhl') {
+                                                echo 'selected';
+                                            }
+                                            ?>
+                                        value="dhl">DHL (Deprecated)</option>
+                                        <option
+                                            <?php if ($item->getCarrierCode() == 'fedex') {
+                                                echo 'selected';
+                                            }
+                                            ?>
+                                        value="fedex">Federal Express</option>
+                                        <option
+                                            <?php if ($item->getCarrierCode() == 'ups') {
+                                                echo 'selected';
+                                            }
+                                            ?>
+                                        value="ups">United Parcel Service</option>
+                                        <option
+                                            <?php if ($item->getCarrierCode() == 'usps') {
+                                                echo 'selected';
+                                            }
+                                            ?>
+                                        value="usps">United States Postal Service</option>
+                                        <option
+                                            <?php if ($item->getCarrierCode() == 'dhlint') {
+                                                echo 'selected';
+                                            }
+                                            ?>
+                                        value="dhlint">DHL</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" disabled readonly name="title" value="<?php echo $item->getTitle(); ?>" class="form-control"/></td>
+                                <td><input type="text" disabled readonly name="number" value="<?php echo $item->getNumber(); ?>" class="form-control"/></td>
+                                <td>
+                                    <?php
+                                    $url = $block->getUrl(
+                                        'marketplace/shipment/printlabel/',
+                                        ['id' => $item->getId()]
+                                    );
+                                    ?>
+                                    <a href="<?php echo $url ?>"
+                                       class="btn"><?php echo $block->escapeHtml(__('Print Label')); ?></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <div class="container notification-box col-md-7 col-md-offset-2">
+                        <?php echo $block->escapeHtml(__('Can not update tracking number. Please contact Admin for further assistance.'))?>
+                    </div>
+                </form>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="container col-md-7 col-md-offset-2">
+        <h2 class="sub-header text-left"><?php echo $block->escapeHtml(__('Shipped Items')); ?></h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><?php echo /* @escapeNotVerified */ __('Product'); ?></th>
+                    <th><?php echo /* @escapeNotVerified */ __('SKU'); ?></th>
+                    <th><?php echo /* @escapeNotVerified */ __('Qty Shipped'); ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($items as $item) : ?>
+                    <?php
+                    if ($item->getData('parent_item_id')) {
+                        continue;
+                    }
+
+                    $isOwner = $block
+                        ->getMarketplaceHelper()
+                        ->isOwner($item->getProductId());
+
+                    if (!$isOwner) {
+                        continue;
+                    }
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $block->escapeHtml($item->getName()); ?>
+                            <?php
+                            $data = $item->getData('product_options');
+                            if (is_string($data)) {
+                                $data = unserialize($data);
+                            }
+                            ?>
+                            <?php if (isset($data['attributes_info'])) : ?>
+                                <dl>
+                                    <?php foreach ($data['attributes_info'] as $attribute): ?>
+                                        <dt><?php echo $attribute['label']; ?></dt>
+                                        <dd><?php echo $attribute['value']; ?></dd>
+                                    <?php endforeach; ?>
+
+                                </dl>
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo $this->escapeHtml($item->getSku()); ?></td>
+                        <td><?php echo number_format($item->getQty()); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

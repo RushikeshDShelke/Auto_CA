@@ -1,0 +1,17 @@
+{
+  "name": "Dotzotfront/module-shippingtracking",
+  "description": "N/A",
+  "require": {
+    "php": "~5.6.5 || >=7.0"
+  },
+  "type": "magento2-module",
+  "version": "1.0.1",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Dotzotfront\\ShippingTracking\\": ""
+    }
+  }
+}

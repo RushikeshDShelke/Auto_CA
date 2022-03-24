@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="instagram" translate="label" sortOrder="10">
+            <label>Instragram</label>
+        </tab>
+        <section id="instagram" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Instagram Configuration</label>
+            <tab>instagram</tab>
+            <resource>Kellton_Instagram::instagram_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Instagramslider Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="user_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>User Id</label>
+                    <comment>User Id of Instagram.</comment>
+                </field>
+                <field id="token" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                   <label>Access Token</label>
+                   <comment>Access Token of Instagram</comment>
+                </field>
+                <field id="items" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>No. Item to show</label>
+                    <comment>No. Item to show.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

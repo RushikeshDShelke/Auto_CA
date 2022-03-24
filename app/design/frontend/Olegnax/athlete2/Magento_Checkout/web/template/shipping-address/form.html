@@ -1,0 +1,65 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form class="form form-shipping-address insideapp" id="co-shipping-form" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+    <!-- ko foreach: getRegion('before-fields') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div id="shipping-new-address-form" class="fieldset address pramod testing">
+        <!-- ko foreach: getRegion('additional-fieldsets') -->
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- ko with: getChild('firstname') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <div class="col-sm-4">
+                <!-- ko with: getChild('lastname') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <div class="col-sm-4">
+                <!-- ko with: getChild('telephone') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <div class="col-sm-4">
+                <!-- ko with: getChild('postcode') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div>            
+            <div class="col-sm-4">
+                <!-- ko with: getChild('region_id') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div>    
+            <div class="col-sm-4">
+                <!-- ko with: getChild('city') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div>       
+            <div class="col-sm-4">
+                <!-- ko with: getChild('country_id') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div> 
+            <div class="col-sm-8" id="streetaddress">
+                <!-- ko with: getChild('street') -->
+                <!-- ko template: {name: getTemplate(), data: $data, as: 'element'} --><!-- /ko -->
+                <!-- /ko -->
+            </div>
+        </div>
+        <!--/ko-->
+        <!-- ko if: (isCustomerLoggedIn) -->
+        <div class="field choice" data-bind="visible: !isFormInline">
+            <input type="checkbox" class="checkbox" id="shipping-save-in-address-book" data-bind="checked: saveInAddressBook" />
+            <label class="label" for="shipping-save-in-address-book">
+                <span data-bind="i18n: 'Save in address book'"></span>
+            </label>
+        </div>
+        <!-- /ko -->
+    </div>
+</form>

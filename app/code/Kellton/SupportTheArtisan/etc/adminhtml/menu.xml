@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Kellton_SupportTheArtisan::parent" title="Support The Artisan" module="Kellton_SupportTheArtisan" sortOrder="100" resource="Kellton_SupportTheArtisan::parent"/>
+		<add id="Kellton_SupportTheArtisan::supporttheartisan" title="Support The Artisan" module="Kellton_SupportTheArtisan" sortOrder="20" parent="Kellton_SupportTheArtisan::parent" action="supporttheartisan/supporttheartisan" resource="Kellton_SupportTheArtisan::supporttheartisan"/>
+
+    </menu>
+</config>

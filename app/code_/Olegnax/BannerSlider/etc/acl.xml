@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Olegnax_Core::Olegnax_Core">
+					<resource id="Olegnax_BannerSlider::bannerslider" sortOrder="10" title="Banners">
+						<resource id="Olegnax_BannerSlider::Group_Index" sortOrder="10" title="Groups">
+							<resource id="Olegnax_BannerSlider::Group_New" sortOrder="10" title="Create New Group"/>
+							<resource id="Olegnax_BannerSlider::Group_Edit" sortOrder="20" title="Edit Group"/>
+							<resource id="Olegnax_BannerSlider::Group_Delete" sortOrder="40" title="Delete Group"/>
+						</resource>
+						<resource id="Olegnax_BannerSlider::Slide_Index" sortOrder="20" title="Slides">
+							<resource id="Olegnax_BannerSlider::Slide_New" sortOrder="10" title="Create New Slide"/>
+							<resource id="Olegnax_BannerSlider::Slide_Edit" sortOrder="20" title="Edit Slide"/>
+							<resource id="Olegnax_BannerSlider::Slide_Delete" sortOrder="40" title="Delete Slide"/>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

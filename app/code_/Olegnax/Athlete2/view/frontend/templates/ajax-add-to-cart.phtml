@@ -1,0 +1,17 @@
+<?php
+
+use Olegnax\Athlete2\Helper\Helper;
+
+/** @var Helper $_helper */
+$_helper = $this->helper(Helper::class);
+$js = [];
+if ('1' == $_helper->getModuleConfig('products_listing/catalog_ajax_add_to_cart')) {
+    $js[] = 'window.OXNAjaxCatalog = true;';
+}
+
+if ('1' == $_helper->getModuleConfig('products_listing/show_minicart_after_added_product')) {
+    $js[] = 'window.OXAjaxNShowMCart = true;';
+}
+if (!empty($js)) {
+    echo sprintf('<script>%s</script>', implode('', $js));
+}

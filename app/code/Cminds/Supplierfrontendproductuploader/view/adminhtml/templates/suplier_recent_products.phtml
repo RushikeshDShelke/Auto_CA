@@ -1,0 +1,25 @@
+<?php
+$collection = $block->getRecentProducts();
+?>
+<div class="dashboard-item">
+    <div class="dashboard-item-title">Last 5 Products Added By Suppliers</div>
+        <div class="dashboard-item-content">
+            <table class="admin__table-primary dashboard-data" id="topAddedProductsGrid_table">
+                <thead>
+                    <tr>
+                        <th class="data-grid-th col-search-query no-link col-search_query"><span>Product SKU Term</span></th>          
+                        <th class="data-grid-th  no-link col-num_results"><span>Product Name</span></th><th class="data-grid-th  no-link col-popularity"><span>Supplier Name</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<?php foreach ($collection as $product) { ?>
+   	                    <tr class="even _clickable" title="<?php echo $block->getRowUrl($product); ?>">
+	                        <td class=" col-search-query col-search_query "><?php echo $product->getSku();?></td>
+	                        <td class=" col-num_results col-number "><?php echo $product->getName();?></td>
+	                        <td class=" col-popularity col-number last"><?php echo $product->getSupplierFirstname() . " " . $product->getSupplierLastname();?></td>
+	                    </tr>
+	                <?php } ?>
+                </tbody>
+            </table>
+    	</div>
+</div>

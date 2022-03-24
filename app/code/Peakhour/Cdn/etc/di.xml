@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <type name="Magento\CacheInvalidate\Model\PurgeCache">
+      <plugin name="peakhour_disable_inbuilt_varnish_calls" type="Peakhour\Cdn\Model\PageCache\PageCachePlugin" />
+  </type>
+  <type name="Magento\PageCache\Model\Config">
+      <plugin name="peakhour_emulate_varnish" type="Peakhour\Cdn\Model\PageCache\ConfigPlugin"/>
+  </type>
+    <type name="Magento\Framework\HTTP\PhpEnvironment\RemoteAddress">
+        <arguments>
+            <argument name="alternativeHeaders" xsi:type="array">
+                <item name="http_x_peakhour_ip" xsi:type="string">HTTP_X_PEAKHOUR_IP</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

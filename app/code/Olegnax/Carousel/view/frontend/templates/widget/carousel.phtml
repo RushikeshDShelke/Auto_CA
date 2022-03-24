@@ -1,0 +1,347 @@
+<?php
+/*
+Content Wrappers:
+- With container. Slider content will have max width same as website. Use when your website is full width.
+- No container, use when slider is in content.
+- raw, no additional wrappers at all. Build your own slide. (no paddings)
+
+* no container will have paddings. maybe add 2 variations of paddins: small big?
+
+2 cols layouts with 
+
+custom css for each element
+
+rework widget options to yes no
+ *  */
+
+use Olegnax\Carousel\Block\Widget\Carousel;
+use Olegnax\Carousel\Helper\Helper;
+
+/** @var Carousel $block */
+/** @var Helper $helper */
+$helper		 = $this->helper( Helper::class );
+$carousel	 = $block->getCarousel();
+$slides		 = $block->getSlide();
+if ( !$carousel || 0 == count( $slides ) ) {
+	return;
+}
+$baseUrl = $escaper->escapeUrl(rtrim($block->getBaseUrl(),"/"));
+$slider_id	 = $block->getCarouselId();
+$nolazy		 = ($block->getLazyLoad() === 'exclude') ?: 0;
+$progress = (bool) $block->getProgress();
+$autoscroll = $block->getAutoScroll();
+$dotsData = false;
+$dotsStyle = $block->getDotsStyle();
+$sliderHeight = $escaper->escapeHtmlAttr($block->getSliderHeight());
+$classes = $customStyles = [];
+if((bool) $block->getNav()){
+	$classes[] = 'ox-nav__' . $block->getNavStyle();
+	$classes[] = $block->getNavAlways() ? 'ox-nav__always' : '';
+}
+if((bool) $block->getDots()){
+$classes[] = 'ox-dots__a-' . $block->getDotsAlign();
+$classes[] = 'ox-dots__p-' . $block->getDotsPosition();
+$classes[] = 'ox-dots__s-' . $dotsStyle;
+$classes[] = ($block->getDotsOverlay() == 'true') ? 'ox-dots__overlay' : '';
+}
+if($progress){
+	$classes[] = 'ox-progress__p-' . $block->getProgressPosition();
+}
+$classes[] = 'ox-transition__' . $block->getSlideTransition();
+$classes[] = 'ox-slider-height__' . $sliderHeight;
+$pauseHover = (bool)($autoscroll && !$block->getPauseOnHover() && $progress);
+if($dotsStyle == 'lines_text' || $dotsStyle == 'lines_text_big' || $dotsStyle == 'lines_text_full'){
+	$dotsData = true;
+}
+$topProgress = '';
+if($progress && $autoscroll && ($block->getProgressPosition() == 'top' || $block->getProgressPosition() == 'bottom')) {
+	$topProgress = true;
+}
+$placeholder = "";
+
+$excludeFirst =$block->getLazyExcludeFirst(); 
+$cssonly = false;
+$mobile_theme = false;
+$cssOnlyEnabled =  $block->getCssOnly();
+if($cssOnlyEnabled){
+	$mobile_theme = $this->helper( 'Olegnax\Core\Helper\Helper' )->isMobileTheme();
+	if($mobile_theme){
+		$cssonly = true;
+		$classes[] = 'owl-loaded';
+	}
+}
+
+$index = 1;
+$cssNavDots = [];
+?>
+
+<div id="<?= $slider_id ?>" class="block widget owl-carousel ox-carousel <?= implode(' ', $classes ) ?>" <?php if(!$cssonly) { ?> data-mage-init='{"OXCarousel":<?=
+json_encode( [
+	'autoScroll' => $autoscroll,
+	'loop'	 => (bool) $block->getLoop(),
+	'rewind'	 => (bool) $block->getRewind(),
+	'lazyLoad'	 => !(bool) $nolazy,
+	'responsive' => $block->getResponsive( false ),
+	'dotsData'	 => ($dotsData && (bool)$block->getDots()),
+	'dots'		 => (bool) $block->getDots(),
+	'nav'		 => (bool) $block->getNav(),
+	'progress'	 => $progress,
+	'autoHeight' => (bool) $block->getAutoHeight(),
+	'autoplayHoverPause' => !$pauseHover,
+	'smartSpeed' => 450,
+] );
+?>}' <?php } ?>>
+	<?php if($cssonly) { ?>
+	<div class="ox-carousel-css-only">
+	<?php } ?>
+	<?php
+	/** @var \Olegnax\Carousel\Model\Slide $slide */
+    foreach ( $slides as $slide ) : ?>
+		<?php
+		$slide_link = $escaper->escapeUrl($slide->getSlideLink());
+		$title = $escaper->escapeHtmlAttr($slide->getTitle());
+		$customStyles[] = $block->customStyles($slider_id, $slide);
+		$dotsContent = $progressItem = '';
+		if($dotsData){
+			if($progress && $autoscroll && $block->getProgressPosition() == 'nav'){
+				$progressItem = '<span class=\'progress\'></span>';
+			}
+			$dotsContent = 'data-dot="<button role=\'button\' class=\'owl-dot dot\'><span class=\'title\'>' . $escaper->escapeHtml($slide->getNavTitle()) . '</span>' . $progressItem . '</button>"';
+		}
+		$image = $slide->getImageUrl();
+        $imageMobile =  $slide->getImageUrl('mobile_image');
+		$bgImage = '';
+        if($sliderHeight == 'settings'  && $image){ $bgImage = 'url(' . $image . ')'; }
+		$slideClasses	 = [];
+		$slideClasses[]	 = 'ox-slide-item';
+		$slideClasses[]	 = '-v-center';
+		$slideClasses[]	 = 'slide-layout-' . $slide->getContentWrappers();
+		$slideClasses[]	 = 'slide-content-' . $slide->getLayout();
+		$slideClasses[]	 = 'slide' . $slide->getData( 'slide_id' );
+		$slideClasses[]	 = 'margins-' . $slide->getMargins();
+		$slideClasses[]	 = 'align-s-' . $slide->getMobileAlign();
+		
+		$slideClasses[]	 = $block->getCustomClass();
+		$itemId = 'id="ox-carousel-slide' . $slide->getData( 'slide_id' ) . '-' . $index . '"'; 
+		$cssNavDots[] = '<a href="#ox-carousel-slide' . $slide->getData( 'slide_id' ) . '-' . $index . '"><span>' . ($escaper->escapeHtmlAttr($slide->getNavTitle()) ?: $index) . '</span></a>'; 
+		?>
+		<div <?= $itemId ?> class="<?= implode(' ', $slideClasses ) ?>" style="<?= $block->prepareStyle( [ 'background-color' => $slide->getSlideBg() ] ) ?>" <?php if(!$cssonly){ echo $dotsContent; } ?> >
+			<?php if($slide_link != ''){ ?>
+			<a href="<?=  $slide_link ?>" class="overlay-link"></a>
+			<?php } ?>
+			<?php if($image){ ?>
+				<?php if(!(bool) $nolazy && (($excludeFirst && $index>1) || !$excludeFirst)) { ?>
+					<img src="<?= $baseUrl . $image; ?>"
+						 <?php if($imageMobile) { ?> data-originalset="<?= $baseUrl . $imageMobile . ' 768w, ' . $baseUrl . $image; ?>"<?php } ?>
+						 class="ox-carousel__img" alt="<?= $title ?>">
+                <?php } else { ?>
+					<img src="<?= $baseUrl . $image; ?>" class="ox-carousel__img" alt="<?= $title ?>"
+					<?php if($imageMobile) { ?>srcset="<?= $baseUrl . $imageMobile . ' 768w, ' . $baseUrl . $image; ?>"<?php } ?>
+						 data-ox-image>
+                <?php } ?>
+			<?php } ?>
+			<?php if($topProgress) { ?>
+				<span class="progress"></span>
+			<?php } ?>
+            <?php if ($slide->getContentWrappers() == 'container') { ?>
+				<?php if ($slide->getLayout() == '2-col') { ?>
+					<div class="ox-carousel__wrapper container">
+						<div class="ox-carousel__row">
+							<div class="ox-carousel__col">
+								<?php echo $helper->getLayoutTemplateHtmlbyValue($block, 'content', null, ['slide' => $slide]); ?>
+							</div>
+							<div class="ox-carousel__col">
+								<?= $slide->getContent2(); ?>
+							</div>
+						</div>
+					</div>
+				<?php } else { ?>
+					<div class="ox-carousel__wrapper container">
+						<div class="ox-carousel__inner">
+						<?php echo $helper->getLayoutTemplateHtmlbyValue($block, 'content', null, ['slide' => $slide]); ?>
+						</div>
+					</div>
+				<?php } ?>
+			<?php } ?>
+			<?php if($slide->getContentWrappers()=='no-container') { ?>	
+				<?php if ($slide->getLayout() == '2-col') { ?>
+					<div class="ox-carousel__row">
+						<div class="ox-carousel__col">
+							<?php echo $helper->getLayoutTemplateHtmlbyValue($block, 'content', null, ['slide' => $slide]); ?>
+						</div>
+						<div class="ox-carousel__col">
+							<?= $slide->getContent2(); ?>
+						</div>
+					</div>
+				<?php } else { ?>
+					<div class="ox-carousel__inner">
+						<?php echo $helper->getLayoutTemplateHtmlbyValue($block, 'content', null, ['slide' => $slide]); ?>
+					</div>
+				<?php } ?>
+			<?php } ?>
+			<?php if($slide->getContentWrappers()=='raw') { ?>	
+				<?= $slide->getContent(); ?>
+			<?php } ?>
+		</div>
+	<?php 		
+	$index++;
+	endforeach; ?>
+	<?php if($cssonly) { ?>
+	</div>
+	<?php } ?>
+	<?php if($cssonly && count($cssNavDots) > 1 && (bool)$block->getDots()): ?>
+	<div class="owl-dots ox-css-dots">
+	<?= implode('', $cssNavDots); ?>
+	</div>
+	<?php 
+	$customStyles[] ='.ox-carousel .ox-css-dots{
+		    padding-top: 15px;
+			margin-left: -5px;
+			display:block;
+			z-index: 2;
+		}
+		.ox-carousel .ox-css-dots > a span{
+			width: 27px;
+			height: 2px;
+			display: inline-block;
+			background-color: black;
+			transition: all 0.2s;
+		}
+		.ox-carousel .ox-css-dots > a{
+			display: inline-block;
+			padding: 10px 5px;
+			font-size: 0;
+		}
+		.ox-carousel.ox-dots__s-lines_text .ox-css-dots > a span{
+			background-color: white;
+		}
+		@supports (scroll-snap-type) {
+		  .ox-carousel .css-dots > a {
+			display: none;
+		  }
+		}';
+	?>
+	<?php endif; ?>
+	
+		<?php
+		if($progress && $autoscroll  && !$cssonly){
+			$customStyles[] = '#'. $slider_id . ' .owl-dot.active .progress:before{ animation: ' . $this->getData( 'autoplay' ) . 's linear 0s 1 normal forwards running progress-horizontal }';
+			if(!$pauseHover){
+				$customStyles[] = '#' . $slider_id . ':hover .owl-dot.active .progress:before{ animation-play-state: paused; }';
+			}
+		}
+		if($topProgress  && !$cssonly) { 
+			$customStyles[] = '#'. $slider_id . ' .owl-item.active .ox-slide-item > .progress:before{ animation: ' . $this->getData( 'autoplay' ) . 's linear 0s 1 normal forwards running progress-horizontal }';
+			if(!$pauseHover){
+				$customStyles[] = '#' . $slider_id . ':hover .owl-item.active .ox-slide-item > .progress:before{ animation-play-state: paused; }';
+			}			
+		}
+		if($sliderHeight == 'settings'){
+			if(!empty($block->getHeightDesktop())){
+				$customStyles[] = '#' . $slider_id. ', #' . $slider_id. ' .ox-slide-item { height:' . $block->getHeightDesktop() . 'px}';
+			}
+			if(!empty($block->getHeightDesktopSmall())){
+				$customStyles[] = '@media (max-width: 1160px){ #' . $slider_id. ', #' . $slider_id. ' .ox-slide-item { height:' . $block->getHeightDesktopSmall() . 'px} }';
+			}
+			if(!empty($block->getHeightTablet())){
+				$customStyles[] = '@media (max-width: 1024px){ #' . $slider_id. ', #' . $slider_id. ' .ox-slide-item { height:' . $block->getHeightTablet() . 'px} }';
+			}
+			if(!empty($block->getHeightMobile())){
+				$customStyles[] = '@media (max-width: 768px){ #' . $slider_id. ', #' . $slider_id. ' .ox-slide-item { height:' . $block->getHeightMobile() . 'px} }';
+			}
+		}
+		if(!empty($block->getDotGradientOne()) && !empty($block->getDotGradientTwo())) {
+			$customStyles[] = '#' . $slider_id . '.ox-carousel.ox-dots__p-over.ox-dots__overlay .ox-slide-item:before{background: linear-gradient(to top, '. $block->getDotGradientOne(). ' 10%, '. $block->getDotGradientTwo(). ' 100%);}';
+		}
+		if(!empty($block->getDotTextColor())) {
+			if($cssonly) {
+				$customStyles[] = '#' . $slider_id . '.ox-carousel .ox-css-dots  > a span { color:' . $block->getDotTextColor() . ' }';
+			} else {
+			$customStyles[] = '#' . $slider_id . '.ox-carousel.ox-dots__s-lines_text_full .owl-dots button.dot span.title,' .
+			'#' . $slider_id . '.ox-carousel.ox-dots__s-lines_text_big .owl-dots button.dot span.title,'.
+			'#' . $slider_id . '.ox-carousel.ox-dots__s-lines_text .owl-dots button.dot span.title{ color: ' . $block->getDotTextColor() . '}';
+			}
+		}
+		if(!empty($block->getDotColor())  && !$cssonly) {
+			$customStyles[] = '#' . $slider_id . '.ox-carousel .owl-dots button.owl-dot span{ background: ' . $block->getDotColor() . ' }';
+		}
+		if(!empty($block->getDotActiveColor())) {
+			if($cssonly) {
+				$customStyles[] = '#' . $slider_id . '.ox-carousel .ox-css-dots  > a span {background:' . $block->getDotActiveColor() . ' }';
+			} else {
+				$customStyles[] = '#' . $slider_id . '.ox-carousel .owl-dots .active button.owl-dot span, #' . 
+				$slider_id . '.ox-carousel .owl-dots button.owl-dot.active span, #' . 
+				$slider_id . '.ox-carousel .owl-dots button.dot:hover span.progress{ background: ' . $block->getDotActiveColor() . ' }';
+			}
+		}		
+		if(!empty($block->getProgressLine())  && !$cssonly) {
+			$customStyles[] = '#' . $slider_id . '.ox-carousel .owl-item.active .ox-slide-item > .progress:before, #' . 
+			$slider_id . '.ox-carousel.ox-progress__p-nav .owl-dots button.dot span.progress:before { background: ' . $block->getProgressLine() . '}';
+		}
+		if(!empty($block->getArrowsIconColor())  && !$cssonly) {
+			$customStyles[] =  '#' . $slider_id . '.ox-carousel .owl-nav button.owl-next span:before,'. 
+			'#' . $slider_id . '.ox-carousel .owl-nav button.owl-prev span:before,' .
+			'#' . $slider_id . '.ox-carousel .owl-nav button.owl-next span:after,' .
+			'#' . $slider_id . '.ox-carousel .owl-nav button.owl-prev span:after,'.
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-next span:before,' .
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-prev span:before,' .
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-next span:after,' . 
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-prev span:after{ background: ' . $block->getArrowsIconColor() .' }';
+		}
+		if(!empty($block->getArrowsIconColorHover()) && !$cssonly) {
+			$customStyles[] =  '#' . $slider_id . '.ox-carousel .owl-nav button.owl-next:hover span:before,'. 
+			'#' . $slider_id . '.ox-carousel .owl-nav button.owl-prev:hover span:before,' .
+			'#' . $slider_id . '.ox-carousel .owl-nav button.owl-next:hover span:after,' .
+			'#' . $slider_id . '.ox-carousel .owl-nav button.owl-prev:hover span:after,'.
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-next:hover span:before,' .
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-prev:hover span:before,' .
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-next:hover span:after,' . 
+			'#' . $slider_id . '.ox-carousel.ox-nav__simple .owl-nav button.owl-prev:hover span:after{ background: ' . $block->getArrowsIconColorHover() .' }';
+		}	
+		if(!empty($block->getArrowsIconBg())  && !$cssonly) {
+			$customStyles[] = '#' . $slider_id . '.ox-carousel.ox-nav__theme .owl-nav button.owl-next,'.
+			'#' . $slider_id . '.ox-carousel.ox-nav__theme .owl-nav button.owl-prev { background: ' . $block->getArrowsIconBg() .' }';
+		}
+		if(!empty($block->getArrowsIconBgHover())  && !$cssonly) {
+			$customStyles[] = '#' . $slider_id . '.ox-carousel.ox-nav__theme .owl-nav button.owl-next:after,' .
+			'#' . $slider_id . '.ox-carousel.ox-nav__theme .owl-nav button.owl-prev:after { background: ' . $block->getArrowsIconBgHover() .' }';
+		}	
+		if($cssonly) {
+		$customStyles[] ='
+		.ox-carousel-css-only{
+			display: flex;
+			flex-wrap: nowrap;
+			overflow-y: hidden;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			scroll-behavior: smooth;
+			-webkit-overflow-scrolling: touch;
+		}
+		.ox-carousel-css-only::-webkit-scrollbar {
+		  width: 0px;
+		  height: 4px;
+		}
+		
+		.ox-carousel-css-only::-webkit-scrollbar-thumb {
+		  background: black;
+		  border-radius: 0;
+		}
+		.ox-carousel-css-only::-webkit-scrollbar-track {
+			background-color: #f4f4f4;
+		}
+		.ox-carousel-css-only .ox-slide-item {
+			-ms-flex: 0 0 100%;
+			flex: 0 0 100%;
+			max-width: 100%;
+			padding-right: 0;
+			padding-left: 0;
+			margin-bottom: 4px;
+			scroll-snap-align: start;
+		}';
+		}
+		if ( !empty($customStyles) ){
+			echo '<style>' . implode(' ', $customStyles) . '</style>';
+		}
+		unset($customStyles);
+		?>
+</div>

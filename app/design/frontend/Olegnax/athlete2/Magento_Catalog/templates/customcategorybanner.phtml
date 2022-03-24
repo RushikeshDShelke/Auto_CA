@@ -1,0 +1,12 @@
+<?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+    $_imgHtml   = '';
+    if ($_imgUrl = $category->getImageUrl()) {
+        $_helper    = $this->helper('Magento\Catalog\Helper\Output');
+        $_imgHtml = '<div class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->escapeHtml($category->getName()).'" title="'.$this->escapeHtml($category->getName()).'" /></div>';
+        $_imgHtml = $_helper->categoryAttribute($category, $_imgHtml, 'image');
+    }?>
+<?php if($_imgUrl): ?>
+    <?php echo $_imgHtml ?>
+<?php endif; ?>

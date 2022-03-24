@@ -1,0 +1,70 @@
+form.magictoolbox-config .form-inline .fieldset > .field > .label {
+  width: 33%;
+}
+form.magictoolbox-config .form-inline .fieldset > .field > .control {
+  width: 44%;
+}
+form.magictoolbox-config .form-inline .fieldset > .field > .field-status {
+  box-sizing: border-box;
+  float: left;
+  width: 20%;
+  padding: 7px 0 0 15px;
+  color: #999;
+  font-size: 12px;
+  letter-spacing: .05em;
+}
+
+.magictoolbox-switcher {
+  vertical-align: middle;
+  float: right;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+}
+.magictoolbox-switcher input[type="checkbox"] {
+  position: absolute;
+  left: -999em;
+}
+.magictoolbox-switcher-label {
+  cursor: pointer;
+  width: 34px;
+}
+.magictoolbox-switcher-label:after {
+  display: inline-block;
+  vertical-align: middle;
+  width: 34px;
+  height: 17px;
+  background: url(../images/switcher.png) no-repeat;
+  content: '';
+}
+.magictoolbox-switcher input[type="checkbox"]:checked + .magictoolbox-switcher-label:after {
+  background-position: -34px 0;
+}
+
+form.magictoolbox-config input[type="radio"][disabled] {
+  opacity: 0.01;
+}
+
+#desktop-product-magicscroll-note:before {
+  display: inline-block;
+  width: 61px;
+  height: 38px;
+  background: url(../images/magicscroll.png) no-repeat;
+  content: '';
+  float: left;
+  margin: 0 5px 5px 0;
+}
+.advanced-radios-hidden-note {
+  display: none;
+}
+.note .note-alert:before {
+  content: ' ';
+}
+.note .note-alert {
+  color: red;
+}

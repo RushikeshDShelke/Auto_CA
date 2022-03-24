@@ -1,0 +1,128 @@
+/**
+ * Dotzot Shipping
+ *
+ *
+ */
+
+.shippingtracking .control {
+  max-width: 350px;
+}
+
+.shippingtracking .primary {
+  float: right;
+}
+.pr-shipp .page-title h1{
+  margin-bottom: 0;
+}
+.pr-shipp .page-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.pr-shipp .page-title img {
+  padding-right: 10px;
+  width: 50px;
+  height: 50px;
+}
+.pr-shipp .page-title .pr-track-number{
+  font-size: .7em;
+}
+
+.pr-shipp .form-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pr-shipp .data-table thead {
+  background-color: #f7f7f7;
+}
+
+.pr-shipp tr {
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.pr-track-form .field {
+  max-width: 350px;
+  margin-bottom: 10px;
+}
+
+.pr-track-form label {
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.pr-track-form p.required {
+  color: #f00;
+  float: right;
+  font-size: 12px;
+}
+
+.pr-track-form .required em {
+  padding-right: 3px;
+  color: #f00;
+  font-size: 12px;
+}
+
+.pr-track-form .actions-toolbar .secondary {
+  padding: 7px 15px 7px 0;
+  vertical-align: middle;
+  line-height: 1.2;
+  float: left;
+}
+
+.pr-track-form .back-link small {
+  vertical-align: top;
+}
+
+.pr-track-form .actions-toolbar .primary {
+  float: right;
+}
+.pr-track-form .actions-toolbar::before,
+.pr-track-form .actions-toolbar:after{
+  clear: both;
+  content: '';
+  display: table;
+}
+.pr-track-form-wrapper{
+  background:#f7f7f7; 
+  padding:12px;
+}
+.order.tracking td>a{
+  font-size: 0;
+  word-break: word-break;
+}
+.order.tracking td>a:before{
+  content: 'View Details';
+  display: inline;
+  font-size: 14px;
+}
+.pr-shipp-table tr>td:nth-child(2),
+.pr-shipp-table tr>td:nth-child(3){
+  white-space: nowrap;
+}
+@media (min-width: 768px){
+  .pr-shipp .page-title h1{
+  margin-bottom: 0;
+  }
+  .pr-shipp .page-title{
+    margin-bottom: 40px;
+  }
+}
+@media (max-width:768px){
+  .pr-track-form p.required{
+    font-size: 10px;
+  }
+  .pr-shipp .pr-shipp-table{
+    font-size: 12px;
+  }
+}
+@media (max-width:450px){
+  .pr-shipp .pr-shipp-table{
+    font-size: 10px;
+  }
+  .pr-shipp .pr-shipp-table th,
+  .pr-shipp .pr-shipp-table td{
+    padding: 11px 3px;
+  }
+}

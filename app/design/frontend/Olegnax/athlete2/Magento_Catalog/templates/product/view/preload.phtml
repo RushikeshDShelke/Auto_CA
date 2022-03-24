@@ -1,0 +1,13 @@
+<?php 
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+	return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+	$mainImage = $block->getGalleryImages()->getFirstItem();
+}
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ? $mainImage->getData('medium_image_url') :	$helper->getDefaultPlaceholderUrl('image');
+?>
+<link rel="preload" as="image" href="<?= $block->escapeUrl($mainImageData) ?>">

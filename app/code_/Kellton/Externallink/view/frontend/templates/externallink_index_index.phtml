@@ -1,0 +1,29 @@
+<?php
+echo '==='.$form_url =  $this->helper('Kellton\Externallink\Helper\Data')->getFormAction();
+$arr  = array(); 
+$arr = $this->helper('Kellton\Externallink\Helper\Data')->getFormFields();
+
+ echo '<pre>'; print_r($arr); echo '</pre>'; exit;
+
+?>
+
+<?php if($arr["status"] == 1){ ?>
+	<div style="width:100%; text-align:center;"><b><?php echo $this->helper('Kellton\Externallink\Helper\Data')->__('You will be redirected to Paytm Payment Gateway in a few seconds.'); ?></b>
+	<form name="paytm_checkout" id="paytm_checkout" action="<?php echo $form_url;?>" method="POST">
+
+	<?php if (is_array($arr["data"])): ?>
+		<?php foreach ($arr["data"] as $name => $value): ?>
+			<input type="hidden" name="<?php echo $name; ?>" <?php if (!is_null($value)) { echo 'value="'. $value . '"'; } ?> />
+		<?php endforeach; ?>
+	<?php endif; ?>
+	</form>
+<?php }else{ ?>
+	<div style="width:100%; text-align:center;"><b><?php echo $this->helper('Kellton\Externallink\Helper\Data')->__('Something went wrong.'); ?></b>
+<?php } ?>
+
+<script type="text/javascript">
+//<![CDATA[
+    var paymentform = document.getElementById('paytm_checkout');
+    window.onload = paymentform.submit();
+//]]>
+</script>

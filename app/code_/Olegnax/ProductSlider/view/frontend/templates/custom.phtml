@@ -1,0 +1,32 @@
+<?php
+/**
+ *
+ */
+$showTitle = $this->getShowTitle();
+$titleTag = 'strong';
+$navPosition = $this->getNavPosition();
+if ($this->getTitleTag()) {
+	$titleTag = $this->getTitleTag();
+}
+?>
+<div id="ox_<?= $block->getUnderlineNameInLayout() ?>" class="block widget">
+	<?php if ($showTitle && $block->getTitle()): ?>
+	<div class="block-title">
+		<<?= $titleTag ?>><?= $block->escapeHtml(__($block->getTitle())) ?></<?= $titleTag ?>>
+	<?php if ($navPosition == 'title') { ?>
+		<div class="owl-nav ox-owl-nav">
+			<button type="button" role="presentation" class="owl-prev ox-owl-prev"><span aria-label="Previous">‹</span>
+			</button>
+			<button type="button" role="presentation" class="owl-next ox-owl-next"><span aria-label="Next">›</span>
+			</button>
+		</div>
+	<?php } ?>
+</div>
+<?php endif ?>
+<div class="block-content">
+	<div class="owl-carousel" data-role="custom-owlCarousel"
+		 data-mage-init='{"OXowlCarousel":<?= $block->getCarouselOptions() ?>}'>
+		<?= $block->getContent() ?>
+	</div>
+</div>
+</div>

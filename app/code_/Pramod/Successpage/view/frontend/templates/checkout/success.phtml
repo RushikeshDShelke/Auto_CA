@@ -1,0 +1,60 @@
+<?php /** @var $block \Vendor\Module\Block\Success */ ?>
+
+
+
+
+<div class="row a-center d-tab-deskkk" style="padding: 32px 0 20px 0;">
+    <div class="col-1 col-lg-1"></div>
+
+    <div class="col-10 col-lg-10" style="padding:0; border-bottomm: solid 1px grey;">
+        
+    <div class="row">
+        <div class="col-8 a-center marbot10" style="border:solid 1px #dddddd;padding: 3em ;" >
+            <img class="fs20 " src="http://uat.craftmaestros.com/magentoathelet/pub/media/cm-athlete2/ShapeTY.png" style="max-width:360px;"/>
+            <div class="success-icon-wrapper"><div class="success-icon"><!-- success-icon --></div></div>
+            <span class="spacer-small"></span>
+            <h2 style="font-family:GilroyB;">Order Placed Successfully</h2>
+            <h4 style="font-family:GilroyB;">Thank you for shopping with us. You’ve made a great choice</h4>
+            <p>You can track your order its status in My Orders section. We will deliver your order on
+or before the delivery date mentioned in the My Orders section.</p>
+
+            <h3 style="font-family:GilroyB;">Order ID: 5635524</h3>
+
+            <button class="button btn-naked-maroon">Continue Shopping</button>
+            <button class="button btn-maroon">View Order</button>
+        </div>
+        <div class="col-4 a-left marbot10">
+            <h3 style="font-family:GilroyB;">Order Details Block</h3>
+            <span class="spacer-small"></span>
+            <h3 style="font-family:GilroyB;">Item Totals Block</h3>
+            
+        </div>
+    </div>
+
+
+
+        
+    </div>
+
+    
+
+    <div class="col-1 col-lg-1"></div>
+</div>
+
+<?php 
+
+echo $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId('success_page_you_might_like')
+->toHtml();
+?>
+
+
+
+
+
+
+
+
+
+

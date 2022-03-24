@@ -1,0 +1,12 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default>
+    <system>
+      <full_page_cache>
+        <peakhour>
+            <peakhour_api_url>https://www.peakhour.io/api/v1/</peakhour_api_url>
+            <peakhour_enable_debug>0</peakhour_enable_debug>
+        </peakhour>
+      </full_page_cache>
+    </system>
+  </default>
+</config>

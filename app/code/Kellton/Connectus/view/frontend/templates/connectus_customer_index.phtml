@@ -1,0 +1,14 @@
+<?php $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2"></script>
+
+<div class="fb-like" data-href="https://www.craftmaestros.com" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+<div class="instagram"><a href="https://www.instagram.com/craftmaestros/" title="Instagram"><img src="<?php echo $mediaUrl; ?>images/instagram.png" alt="Instagram"/></a></div>
+<div class="instagram"><a href="https://www.pinterest.co.uk/craftmaestros/" title="pinterest"><img src="<?php echo $mediaUrl; ?>images/pinterest.png" alt="pinterest"/></a></div>
+<p>+91-124 4307447</p>
+<p>care@craftmaestros.com</p>

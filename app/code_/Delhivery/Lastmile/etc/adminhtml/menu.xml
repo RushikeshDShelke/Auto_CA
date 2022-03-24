@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Delhivery_Lastmile extension
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category  Delhivery
+ * @package   Delhivery_Lastmile
+ * @copyright Copyright (c) 2018
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Delhivery_Lastmile::lastmile" title="Delhivery" module="Delhivery_Lastmile" sortOrder="60" resource="Delhivery_Lastmile::lastmile"/>
+        <add id="Delhivery_Lastmile::lastmile_awb" title="Manage AWBs" module="Delhivery_Lastmile" sortOrder="10" action="delhivery_lastmile/awb" resource="Delhivery_Lastmile::lastmile_awb" parent="Delhivery_Lastmile::lastmile"/>
+        <add id="Delhivery_Lastmile::lastmile_pincode" title="Manage Pincodes" module="Delhivery_Lastmile" sortOrder="20" action="delhivery_lastmile/pincode" resource="Delhivery_Lastmile::lastmile_pincode" parent="Delhivery_Lastmile::lastmile"/>
+        <add id="Delhivery_Lastmile::lastmile_location" title="Manage Locations" module="Delhivery_Lastmile" sortOrder="30" action="delhivery_lastmile/location" resource="Delhivery_Lastmile::lastmile_location" parent="Delhivery_Lastmile::lastmile"/>
+    </menu>
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  * @author Evince Team
+  * @copyright Copyright (c) 2018 Evince (http://DotTrack.com/)
+  */
+ -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <title>Track Order</title>
+    <css src="DotTrack_Trackorder::css/trackorder.css"/>
+  </head>
+  <body>
+      <referenceContainer name="content">
+          <block class="DotTrack\Trackorder\Block\View" name="trackorder-form"/>
+      </referenceContainer>
+  </body>
+</page>

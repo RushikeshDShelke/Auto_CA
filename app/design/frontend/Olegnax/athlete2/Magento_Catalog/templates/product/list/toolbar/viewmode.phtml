@@ -1,0 +1,69 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$gridIcon = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 12 12" style="enable-background:new 0 0 12 12;" xml:space="preserve">
+<path d="M5,0H0v5h5V0z"/>
+<path d="M12,0H7v5h5V0z"/>
+<path d="M5,7H0v5h5V7z"/>
+<path d="M12,7H7v5h5V7z"/>
+</svg>';
+$listIcon = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<path d="M7,9H2v5h5V9z"/>
+<rect x="9" y="2" width="5" height="2"/>
+<rect x="9" y="5" width="5" height="2"/>
+<rect x="9" y="9" width="5" height="2"/>
+<rect x="9" y="12" width="5" height="2"/>
+<path d="M7,2H2v5h5V2z"/>
+</svg>';
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+
+?>
+<?php if ($block->isEnabledViewSwitcher()): ?>
+<div class="modes">
+    <?php $_modes = $block->getModes(); ?>
+    <?php if ($_modes && count($_modes) > 1): ?>
+    <strong class="modes-label" id="modes-label"><?= $block->escapeHtml(__('View as')) ?></strong>
+    <?php foreach ($block->getModes() as $_code => $_label): ?>
+        <?php if ($block->isModeActive($_code)): ?>
+            <strong title="<?= $block->escapeHtmlAttr($_label) ?>"
+                class="modes-mode active mode-<?= $block->escapeHtmlAttr(strtolower($_code)) ?>"
+                data-value="<?= $block->escapeHtmlAttr(strtolower($_code)) ?>">
+				<?php if( strtolower($_code) === 'grid') { 
+					echo $gridIcon;
+				} elseif ( strtolower($_code) === 'list' ) { 
+					echo $listIcon;
+				} ?>
+				<span><?= $block->escapeHtml($_label) ?></span>
+            </strong>
+        <?php else: ?>
+            <a class="modes-mode mode-<?= $block->escapeHtmlAttr(strtolower($_code)) ?>"
+               title="<?= $block->escapeHtmlAttr($_label) ?>"
+               href="#"
+               data-role="mode-switcher"
+               data-value="<?= $block->escapeHtmlAttr(strtolower($_code)) ?>"
+               id="mode-<?= $block->escapeHtmlAttr(strtolower($_code)) ?>"
+               aria-labelledby="modes-label mode-<?= $block->escapeHtmlAttr(strtolower($_code)) ?>">
+				<?php if( strtolower($_code) === 'grid') { 
+					echo $gridIcon;
+				} elseif ( strtolower($_code) === 'list' ) { 
+					echo $listIcon;
+				} ?>
+				<span><?= $block->escapeHtml($_label) ?></span>
+            </a>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

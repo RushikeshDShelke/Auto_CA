@@ -1,0 +1,117 @@
+<?php
+/**
+ * Cminds Supplierfrontendproductuploader product list template.
+ *
+ * @category Cminds
+ * @package  Cminds_Supplierfrontendproductuploader
+ */
+?>
+<?php
+/**
+ * @var \Cminds\Supplierfrontendproductuploader\Block\Product\Productlist $block
+ */
+?>
+<?php $items = $block->getItems(); ?>
+<?php $status = $block->getItemStatus(); ?>
+<?php $canEditProducts = $block->getCmindsHelper()->canEditProducts(); ?>
+<?php $objectManager =\Magento\Framework\App\ObjectManager::getInstance();
+$helperImport = $objectManager->get('\Magento\Catalog\Helper\Image');
+ ?>
+
+<div class="container-fluid main-container  vendor-container">
+    <h1 class="text-center"><?php /* @escapeNotVerified */ echo __('List of All Products') ?></h1>
+    <div class="jumbotron">
+        <div class="row">
+            <form name="report_filter" id="report_filter" action="" method="get" enctype="multipart/form-data">
+                <div class="col-sm-3">
+                    <input name="name"
+                           id="name"
+                           type="text"
+                           placeholder="<?php /* @escapeNotVerified */ echo __('Search by Name');?>"
+                           value="<?php echo $this->getRequest()->getParam('name'); ?>"
+                           class="form-control input-text">
+                </div>
+                <div class="col-sm-3">
+                    <input name="sku"
+                           id="sku"
+                           type="text"
+                           placeholder="<?php /* @escapeNotVerified */ echo __('Search by Sku');?>"
+                           value="<?php echo $this->getRequest()->getParam('sku'); ?>"
+                           class="form-control input-text">
+                </div>
+                <div class="col-sm-3">
+                    <select name="status" id="status">
+                        <option value=""><?php echo __('Search by Status'); ?></option>
+                        <option <?php if($this->getRequest()->getParam('status') == 'active') echo 'selected'; ?> value='active'><?php /* @escapeNotVerified */echo __('Active'); ?></option>
+                        <option <?php if($this->getRequest()->getParam('status') == 'pending') echo 'selected'; ?> value='pending'><?php /* @escapeNotVerified */ echo __('Pending'); ?></option>
+                        <option <?php if($this->getRequest()->getParam('status') == 'inactive') echo 'selected'; ?> value='inactive'><?php /* @escapeNotVerified */ echo __('Inactive'); ?></option>
+                        <option <?php if($this->getRequest()->getParam('status') == 'disapproved') echo 'selected'; ?> value='disapproved'><?php /* @escapeNotVerified */ echo __('Disapproved'); ?></option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" name="submit" class="btn btn-primary btn-small" value="<?php echo __('Filter') ?>" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class='table-responsive'>
+                <table class="table table-striped">
+                    <thead>
+                    <th><?php /* @escapeNotVerified */ echo __('Name') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('SKU') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Image') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Quantity') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('MC Price') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Status') ?></th>
+                    </thead>
+                    <tbody>
+                    <?php if (!empty($items->getData())) : ?>
+                        <?php foreach ($items->getData() as $_item): ?>
+                            <?php $item = $block->getProductModel()->load($_item['entity_id']); ?>
+
+                            <tr class="item<?php echo ($item->isSalable() && $item->getSupplierActivedProduct() == 1 && $item->getFrontendproductProductStatus() == 1) ? ' success' : '' ?>">
+                                <td><?php echo $item->getName(); ?><?php echo $item->getAdminProductNote() ? ' <span class="badge pull-right badge-important" data-toggle="tooltip" data-placement="top" title="' . $item->getAdminProductNote() . '">!</span>' : "" ?></td>
+                                <td><?php echo $item->getSku(); ?></td>
+                                <?php $imageUrl = $helperImport->init($item, 'product_page_image_small')
+                                    ->setImageFile($item->getImage()) // image,small_image,thumbnail
+                                    ->resize(150)
+                                    ->getUrl(); ?>
+                                <td><img height="100" width="100" src="<?php echo $imageUrl; ?>"></td>
+                                <td><?php echo $block->getQty($item->getId()) ?></td>
+                                <td><?php echo $block->getCurrencyHelper()->currency($item->getData('marketplace_fee')); ?></td>
+                                <td><?php echo $block->getStatusLabel($item->getData('frontendproduct_product_status')); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <td colspan="7"><?php /* @escapeNotVerified */ echo __('No results') ?></td>
+                    <?php endif; ?>
+                    </tbody>
+                    <tfoot>
+                    <th><?php /* @escapeNotVerified */ echo __('Name') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('SKU') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Image') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Quantity') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('MC Price') ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Status') ?></th>
+                    </tfoot>
+                </table>
+                <?php if ($block->getPagerHtml()): ?>
+                    <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+                <?php endif ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    jQuery(document).ready(function () {
+        if (jQuery("[data-toggle=tooltip]").length) {
+            jQuery("[data-toggle=tooltip]").tooltip().on('hidden.bs.popover', function () {
+                jQuery(this).show();
+            });
+        }
+    });
+</script>

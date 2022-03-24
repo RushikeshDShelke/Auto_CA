@@ -1,0 +1,176 @@
+<?php
+
+// $date = new \DateTime($historyDate.' +00'); 
+// $date->setTimezone(new \DateTimeZone('Asia/Kolkata')); 
+// return $date->format('Y-m-d H:i:s');   
+     $helper = $this->helper('Kellton\Shipmentdelay\Helper\Data');
+      //$values = $helper->getModuleStatus($code, $storeId = null);
+
+     date_default_timezone_set('Asia/Kolkata');
+     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+     //$storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+	 //$storeId       = $storeManager->getStore()->getStoreId();
+	/** 
+	@var Kellton\Shipmentdelay\Model\ResourceModel\Shipmentdelay\Collection $shipmentdelayCollection 
+
+	 */
+	// $shipmentdelayCollection = $objectManager->create('Kellton\Shipmentdelay\Model\ResourceModel\Shipmentdelay\Collection');
+	// /** Apply filters here */
+	// $shipmentdelayCollection->load();
+	$shipmentdelayCollection = $block->getshipmentdelayCollection()->load();
+
+	$shipmentdelayCollection->addFieldToFilter('status',0);
+	$crtdate=date('Y-m-d H:i:s');
+    
+	 if(count($shipmentdelayCollection)>0){
+		 foreach($shipmentdelayCollection as $items){
+			 $sid=$items->getId();
+			 $shipmentid=$items->getShipmentid();
+			 $orderid=$items->getOrderid();
+			 $createdat=$items->getCreatedat();
+			 echo $delay=$items->getDelay();
+			 $date1=date_create($createdat);
+			 $date2=date_create($crtdate);
+			 $diff=date_diff($date1,$date2);
+			 echo $days=$diff->format("%R%a");
+			 echo $messagedetails1='shipmentid='.$shipmentid.' days='.$days;
+			 
+			 if($days>=$delay){
+			 	   
+				   // $shipments = $objectManager->create('Magento\Sales\Model\Order\Shipment')->loadByIncrementId($shipmentid);
+			 	    $shipments = $block->getshipments($shipmentid);					
+
+					$orderId = $shipments->getOrderId();
+					
+				    
+				    //$order = $objectManager->create('Magento\Sales\Model\Order')->load($orderId);
+				    $order = $block->getorder($orderId);
+					
+					$incrementid = $order->getIncrementId();
+					
+
+					$mobile=$order->getShippingAddress()->getTelephone();
+					$username= $order->getShippingAddress()->getFirstname().' '.$order->getShippingAddress()->getLastname();
+					$shippingAddress = $order->getShippingAddress();
+					$custemail=$shippingAddress->getEmail();					
+
+					$custname=$shippingAddress->getName();
+					$street = $order->getShippingAddress()->getStreetFull();
+					$city = $order->getShippingAddress()->getCity();
+					$postcode = $order->getShippingAddress()->getPostcode();
+					$state = $order->getShippingAddress()->getRegion();
+					$getCountryId = $order->getShippingAddress()->getCountryId();
+					$orderdate=date('d/M/y', strtotime($order->getCreatedAt()));					
+					$shippingaddresshtml=$custname.'<br>'.$street.'<br>'.$city.','.$state.','.$postcode.'<br>'.$getCountryId.'<br>T: '.$mobile;
+					// Transactional Email Template's ID
+					$templateId = 17;
+					// Set sender information
+					$storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
+
+					//$senderName = $objectManager->create('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('trans_email/ident_support/name', $storeScope);getScopeconfig
+
+					//$senderName = $block->getScopeconfig()->getValue('trans_email/ident_support/name', $storeScope);
+
+					$senderName = $helper->getModuleStatus('name', $storeId = null);
+
+					$senderEmail = $helper->getModuleStatus('email', $storeId = null);
+
+					//$senderEmail = $block->getScopeconfig()->getValue('trans_email/ident_support/email', $storeScope);
+					        
+					$sender = array('name' => $senderName,
+								'email' => $senderEmail);
+
+					$itemdetails='';
+					$productnamecoll='';
+					$itemsCollection = $shipments->getItemsCollection();
+					foreach($itemsCollection as $item){
+					   $productid=$item->getProductId();	
+					   $_product = $item->getProduct();
+					   $productname= $item->getName();
+						if($productnamecoll==''){
+							$productnamecoll.= $productname;
+						}else{
+							$productnamecoll.= ', '. $productname;
+						}
+						$productQty= intval($item->getQty());
+						$item_id=$item->getOrder_item_id();
+						$orderItem = $block->getorderItem($item_id);
+
+						$deliverydate=$orderItem->getItemdeliverydate();
+						$itemdetails.='<p>Product Name: '.$productname.'</p>';
+						$itemdetails.='<p>Product Quantity: '.$productQty.'</p>';
+						$itemdetails.='<p>Expected Delivery Date: '.$deliverydate.'</p>';
+					}
+					
+					    $templateVars = array('incrementid' => $incrementid,'orderdate' => $orderdate,'customername' => $custname,'itemdetails' => $itemdetails,'shippingaddress' => $shippingaddresshtml);
+
+					    print_r($templateVars);
+
+                        exit;
+
+
+					    $templateOptions = array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $helper->getStoreId());
+						// $templateVars = array(
+						// 					'store' => $storeManager->getStore(),
+						// 					'customer_name' => $custname,
+						// 					'message'	=> 'Shipment details!!.'
+						// 				);
+						$from = $sender;
+
+						$this->inlineTranslation->suspend();
+
+						$to = $custemail;
+
+						//$transport = $this->_transportBuilder->setTemplateIdentifier($templateId)
+						//				->setTemplateOptions($templateOptions)
+						//				->setTemplateVars($templateVars)
+						//				->setFrom($from)
+						//				->addTo($to)
+						//				->getTransport();
+						//$transport->sendMessage();
+						//$this->inlineTranslation->resume();
+
+						//$adminemail='care@craftmaestros.com';
+						$adminemail='brijnandan.pandey@kelltontech.com';
+						$adminname ='care';
+						
+						$transport = $this->_transportBuilder->setTemplateIdentifier($templateId)
+								->setTemplateOptions($templateOptions)
+								->setTemplateVars($templateVars)
+								->setFrom($from)
+								->addTo($adminemail)
+								->getTransport();
+						$transport->sendMessage();
+						$this->inlineTranslation->resume();
+					 
+						
+					$modelLoad = $block->getshipmentdelay($sid);
+					
+					$modelLoad->setStatus(1);
+					$modelLoad->save();
+					$messagedetails='shipmentid='.$shipmentid.' email='.$custemail;
+					
+					echo $msg='Dear '.$username.', 
+
+					Thank you for purchasing your master piece at CraftMaestros.com. 
+					Your order is out for delivery. 
+					Order number: '.$incrementid.'
+
+					Product Name: '.$productnamecoll.'
+					Track your delivery here 
+					For more details: Login to your account on CraftMaestros.com.
+
+					With appreciation, 
+					care@craftmaestros.com';
+					exit;
+
+     //                $path="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi?feedid=374549&username=9810411189&password=Craft@biz!sm5&To=".$mobile."&Text=".urlencode($msg);
+					// $ch = curl_init($path);
+					// curl_setopt($ch, CURLOPT_HEADER, 0);
+					// curl_exec($ch);
+					// curl_close($ch); 
+			  }  
+		 }
+	 }	 
+?>

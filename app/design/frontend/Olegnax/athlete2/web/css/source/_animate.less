@@ -1,0 +1,22 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Base
+//  _____________________________________________
+& when (@media-common = true) {
+    .ox-animate{
+        &.animated{
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        &.forwards{
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+    }
+}

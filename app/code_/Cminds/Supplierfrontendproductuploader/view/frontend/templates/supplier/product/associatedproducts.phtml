@@ -1,0 +1,342 @@
+<?php $attributes = $block->getAttributes(); ?>
+<?php $notAssociatedProducts = $block->getNotAssociatedProducts(); ?>
+
+<div class="container-fluid main-container vendor-container">
+    <div class="page-header">
+        <h2><?php /* @escapeNotVerified */ echo __('Quick Create Associated Product') ?></h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-container">
+            <form name="product_create_form"
+                  id="product_create_form"
+                  action="<?php /* @escapeNotVerified */ echo $block->getUrl('supplier/product/saveassociatedproduct') ?>"
+                  method="post"
+                  enctype="multipart/form-data">
+                <div class="container-fluid">
+                    <div class="col-md-6">
+                        <input type="hidden" name="super_product_id"
+                               value="<?php echo $block->getConfigurableProductId(); ?>" />
+
+                        <div class="cold-md-5">
+                            <?php if (count($notAssociatedProducts) > 0) : ?>
+                                <div class="container form-group">
+                                    <div class="col-md-3 label-container">
+                                        <label for="name">
+                                            <?php echo $block->getLabel('Existing Product', 'Existing Product', false); ?>:
+                                        </label>
+                                    </div>
+                                    <div class="col-md-5 input-container">
+                                        <select name="product_id" id="product_id">
+                                            <option value="0">----------</option>
+                                            <?php foreach ($notAssociatedProducts as $product) : ?>
+                                                <option value="<?php /* @escapeNotVerified */ echo $product->getId(); ?>" <?php /* @escapeNotVerified */ echo $block->areOptionsExists($product) ? "disabled" : ""; ?> ><?php /* @escapeNotVerified */ echo $product->getName(); ?>, <?php /* @escapeNotVerified */ echo __('SKU'); ?>: <?php /* @escapeNotVerified */ echo $product->getSku(); ?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <div class="container form-group">
+                                <div class="col-md-4 label-container">
+                                    <label for="name">
+                                        <?php /* @escapeNotVerified */ echo $block->getLabel('name', 'Name', false); ?>
+                                        <span class="required">*</span>:
+                                    </label>
+                                </div>
+                                <div class="col-md-5 input-container">
+                                    <input type="text"
+                                           id="name"
+                                           name="name"
+                                           class="input-text form-control required-entry"
+                                           value="<?php echo (isset($data['name']) ? $data['name'] : ''); ?>"/>
+                                </div>
+                            </div>
+                            <div class="container form-group">
+                    <?php
+                        // if only one source specified
+                        if($block->inventoryIsSingleSourceMode()): ?>
+                            <div class="col-md-3 label-container">
+                                <label for="qty">
+                                    <?php /* @escapeNotVerified */ echo $block->getLabel('qty', 'QTY Available', false); ?>
+                                    <span class="required">*</span>:
+                                </label>
+                            </div>
+                            <div class="col-md-5 input-container">
+                                <input type="text"
+                                       id="qty"
+                                       name="qty"
+                                       value="<?php echo (isset($data['qty']) ? $data['qty'] : ''); ?>"
+                                       class="input-text form-control required-entry validate-number validate-greater-than-zero" />
+                            </div>
+                        <?php else: ?>
+                            <div class = 'source-container'>
+                                <div class="col-md-3 label-container">
+                                    <label for="qty">
+                                        <?php /* @escapeNotVerified */ echo $block->getLabel('qty', __('Assigned Sources'), false); ?>
+                                        <!-- <span class="required">*</span> -->:
+                                    </label>
+                                </div>
+                                <div class="col-md-5 input-container">
+                                    <div class="col-md-8 ">
+                                        <select class="source-selector">
+                                        <?php
+                                        $cnt=1;
+                                        foreach ($block->getInventorySourcesArray() as $option):
+                                        ?>
+                                        <option value="<?= $option['code'] ?>"
+                                            data-code="<?= $option['code'] ?>"
+                                            data-id="<?= $cnt++ ?>"
+                                            data-enabled="<?= $option['enabled'] ?>"><?= $option['name'] ?></option>
+                                        <?php
+                                        endforeach;
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <button type='button' class = 'add-source'><?php /* @escapeNotVerified */ echo $block->getLabel('qty', __('Assign'), false); ?></button>
+                                    </div>
+                                </div>
+                                <div class="label-container source-list col-md-5"></div>
+                            </div>
+                          <script>
+    require([
+      'jquery'
+    ], function ($) {
+        $(document).ready(function ()  {
+            $(document).on('click', '.source-container .add-source', function (e) {
+                var $container = $(this).closest('.source-container');
+                var $option = $container.find('.source-selector').children("option:selected");
+                var optionId = 'source-option-' + $option.data('id');
+                // if option not added
+                if( !$container.find('#' + optionId ).length ) {
+                    var html = $('<div>', {
+                      'class' : 'option-row'
+                    });
+                    $(html).append(
+                        $("<div></div>",{
+                            'class': 'name col-md-4',
+                            text: $option.html()
+                        })
+                    ).append(
+                        $("<div></div>",{
+                            'class': 'status col-md-2',
+                            text: $option.data('enabled') ? 'enabled' : 'disabled'
+                        })
+                    ).append(
+                        $("<div></div>",{
+                            'class': 'value col-md-2',
+                        }).append(
+                            $('<input>', {
+                                'id': optionId,
+                                'name' : 'sources['+$option.data('code')+'][inv]',
+                                'value' : 0
+                            })
+                        )
+                    ).append(
+                        $("<div></div>",{
+                            'class': 'value col-md-3',
+                        }).append(
+                            $('<select>', {
+                                'id': optionId + '-status',
+                                'name' : 'sources['+$option.data('code')+'][status]',
+                            }).append('<option value="1" selected="selected"><?php /* @escapeNotVerified */ echo $block->getLabel('qty', __('In Stock'), false); ?></option>')
+                            .append('<option value="0"><?php /* @escapeNotVerified */ echo $block->getLabel('qty', __('Out Of Stock'), false); ?></option>')
+                        )
+                    ).append(
+                        $("<div></div>",{
+                            'class': 'action col-md-1'
+                        }).append(
+                            $('<a>', {
+                                html: "<b>X</b>",
+                                'title': "<?php /* @escapeNotVerified */ echo $block->getLabel('qty', __('Unassign'), false); ?>",
+                                'class': 'remove-row',
+                                'href': '#'
+                            })
+                        )
+                    );
+                    $container.find('.source-list').append(html);
+                }
+            });
+
+            $(document).on('click', '.option-row a.remove-row', function(e){
+                e.preventDefault();
+                $( this ).closest( ".option-row" ).remove();
+            });
+        });
+    });
+
+                          </script>
+
+                        <?php endif; ?>
+                            </div>
+                            <div class="container form-group">
+                                <div class="col-md-3 label-container">
+                                    <label for="weight">
+                                        <?php /* @escapeNotVerified */ echo $block->getLabel('weight', 'Product Weight', false); ?>
+                                        <span class="required">*</span>:
+                                    </label>
+                                </div>
+                                <div class="col-md-5 input-container">
+                                    <input type="text"
+                                           id="weight"
+                                           name="weight"
+                                           value="<?php echo (isset($data['weight']) ? $data['weight'] : ''); ?>"
+                                           class="input-text form-control required-entry validate-number" />
+                                </div>
+                            </div>
+                            <div class="custom-attributes">
+                                <?php foreach ($attributes as $attribute) : ?>
+                                    <?php $attributeObj = $block->getAttribute($attribute['attribute_code']); ?>
+
+                                    <input type="hidden"
+                                           name="options[<?php echo $attribute['attribute_code']; ?>][id]"
+                                           value="<?php echo $attribute['id'] ?>"
+                                           style="" />
+                                    <input type="hidden"
+                                           name="options[<?php echo $attribute['attribute_code']; ?>][attribute_id]"
+                                           value="<?php echo $attribute['attribute_id']; ?>"
+                                           style="" />
+                                    <div class="container form-group">
+                                        <div class="col-md-3 label-container">
+                                            <label for="<?php /* @escapeNotVerified */ echo $attribute['attribute_code'] ?>">
+                                                <?php echo $block->escapeHtml($block->getLabel($attributeObj)); ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-5 input-container">
+                                            <?php echo $block->getAttributeHtml($attributeObj, []); ?>
+                                            <div class="priceContainer"
+                                                 style="display:none;">
+                                                <label><?php /* @escapeNotVerified */ echo __('Price'); ?></label>
+                                                <input type="text"
+                                                       name="options[<?php echo $attributeObj->getAttributeCode(); ?>][price]"
+                                                       class="input-text form-control  attribute-price validate-number price"
+                                                       style="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td></td>
+                                    <td><strong><?php /* @escapeNotVerified */ echo __('ID'); ?></strong></td>
+                                    <td class="text-center"><strong><?php /* @escapeNotVerified */ echo __('Name'); ?></strong></td>
+                                    <td class="text-center"><strong><?php /* @escapeNotVerified */ echo __('SKU'); ?></strong></td>
+                                    <?php foreach ($attributes as $attribute) : ?>
+                                        <td class="text-center"><strong><?php /* @escapeNotVerified */ (isset($attribute['label'])) ? $label = $attribute['label'] : $label = ''; echo $label; ?></strong></td>
+                                    <?php endforeach; ?>
+                                    <td class="text-center"><strong><?php /* @escapeNotVerified */ echo __('Action'); ?></strong></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php if (count($block->getChildrenProducts()) > 0) : ?>
+                                    <?php foreach ($block->getChildrenProducts() as $product) : ?>
+                                        <?php $p = $block->getCatalogProductModel()->load($product->getId()); ?>
+                                        <tr>
+                                            <td><input class="associated" type="checkbox" value="<?php echo $block->escapeHtml($product->getId()); ?>" checked="true"/></td>
+                                            <td><?php echo $block->escapeHtml($product->getId()); ?></td>
+                                            <td><?php echo $block->escapeHtml($p->getName()); ?></td>
+                                            <td class="text-center"><?php echo $block->escapeHtml($product->getSku()); ?></td>
+                                            <?php $productAttributes = $p->getAttributes()?>
+                                            <?php foreach ($attributes as $attribute) : ?>
+                                                <?php
+                                                    if (isset($productAttributes[$attribute['attribute_code']])) {
+                                                        $attributeValue = $productAttributes[$attribute['attribute_code']]->getFrontend()->getValue($p);
+                                                    } else {
+                                                        $attributeValue = '';
+                                                    }
+                                                 ?>
+                                                <td class="text-center"><strong><?php /* @escapeNotVerified */ echo $attributeValue; ?></strong></td>
+                                            <?php endforeach; ?>
+                                            <td class="text-center">
+                                                <a class="btn btn-default btn-sm"
+                                                   href="<?php echo $block->getUrl('supplier/product/edit/', ['id' => $product->getId(),'type' => 'simple'])?>"><?php /* @escapeNotVerified */ echo __('Edit Product'); ?></a>
+                                                <a class="btn btn-danger btn-sm"
+                                                   href="<?php echo $block->getUrl('supplier/product/removeassociatedproduct/', ['product_id' => $product->getId(),'configurable_id' => $block->getConfigurableProductId()])?>"><?php /* @escapeNotVerified */ echo __('Remove Product'); ?></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else : ?>
+                                    <tr>
+                                        <td colspan="5">
+                                            <span style="text-align:center;width:100%;display:inline-block;"><?php /* @escapeNotVerified */ echo __('There Are No Associated Products To Display') ?></span>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-12 col-md-offset-5">
+                        <input type="submit"
+                               name="submit"
+                               class="btn btn-primary"
+                               value="<?php /* @escapeNotVerified */ echo __('Save Product') ?>" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#product_create_form": {
+            "validation": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+    //< ![CDATA[
+    jQuery(document).ready(function(){
+        jQuery('.custom-attributes input, .custom-attributes select, .custom-attributes textarea').not('.price').on('change', function(){
+            jQuery(this).next().show().find('input').addClass('required-entry');
+        });
+
+        jQuery('.associated').change(function(){
+            var checkbox = jQuery(this)[0];
+            var checked = checkbox.checked;
+            var productId = checkbox.value;
+
+            var configurableId = "<?php /* @escapeNotVerified */ echo $block->getConfigurableProductId(); ?>";
+
+            jQuery(checkbox).attr('disabled', true);
+            jQuery.ajax({
+                type : 'POST',
+                url: '<?php /* @escapeNotVerified */ echo $block->getUrl("*/*/changeAssociatedStatus")?>',
+                data : {
+                    product_id : productId,
+                    configurable_id : configurableId,
+                    status : checked,
+                },
+                success : function(){
+                    jQuery(checkbox).removeAttr('disabled');
+                }
+            });
+        });
+
+        jQuery('#product_id').change(function(){
+            if(jQuery(this).val() != 0) {
+                jQuery('#name').attr('disabled', '').removeClass('required-entry');
+                jQuery('#qty').attr('disabled', '').removeClass('required-entry');
+                jQuery('#weight').attr('disabled', '').removeClass('required-entry');
+                jQuery('#sku').attr('disabled', '').removeClass('required-entry');
+                jQuery('.associated-dropdown').attr('disabled', '').removeClass('required-entry');
+                jQuery('.attribute-value-input').attr('disabled', '').removeClass('required-entry');
+            } else {
+                jQuery('#name').removeAttr('disabled').addClass('required-entry');
+                jQuery('#qty').removeAttr('disabled').addClass('required-entry');
+                jQuery('#weight').removeAttr('disabled').addClass('required-entry');
+                jQuery('#sku').removeAttr('disabled').addClass('required-entry');
+                jQuery('.attribute-value-input').removeAttr('disabled', '').addClass('required-entry');
+            }
+        });
+    });
+    //]]>
+</script>

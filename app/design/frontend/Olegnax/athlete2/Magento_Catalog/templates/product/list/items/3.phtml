@@ -1,0 +1,359 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+// phpcs:disable Generic.WhiteSpace.ScopeIndent.Incorrect
+
+/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+?>
+
+<?php
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\ActionInterface;
+
+/** @var \Magento\Framework\Url\Helper\Data $theme_helper */
+$urlHelper		 = $this->helper( \Magento\Framework\Url\Helper\Data::class );
+/** @var \Olegnax\Athlete2\Helper\ProductList $theme_helper */
+$theme_helper = $this->helper(\Olegnax\Athlete2\Helper\ProductList::class);
+$at_settings = $theme_helper->getModuleConfig();
+$width = $at_settings[ 'product_images' ][ 'listing_image_width' ];
+$height =  $at_settings[ 'product_images' ][ 'listing_image_height' ];
+$cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" class="minicart-icon-1" width="14" height="16" viewBox="0 0 14 16">
+  <path d="M11,3V0H3V3H0V16H14V3H11ZM5,2H9V3H5V2Zm7,12H2V5H3V7H5V5H9V7h2V5h1v9Z"></path>
+</svg>';
+$showOutofstock = $at_settings['products_listing']['outofstock'];
+$preloaderEnabled= $at_settings['products_listing']['preloader_enabled'];
+$preloaderClasses = $preloaderEnabled ? 'lazy-loader' : '';
+switch ($type = $block->getType()) {
+
+    case 'related-rule':
+        if ($exist = $block->hasItems()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+			$image_hover = 'category_page_grid_hover';
+            $title = __('Related Products');
+            $items = $block->getAllItems();
+            $limit = $block->getPositionLimit();
+            $shuffle = (int) $block->isShuffled();
+            $canItemsAddToCart = $block->canItemsAddToCart();
+
+            $showAddTo = true;
+            $showCart = false;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+        }
+    break;
+
+    case 'related':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
+        if ($exist = $block->getItems()->getSize()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+			$image_hover = 'category_page_grid_hover';
+            $title = __('Related Products');
+            $items = $block->getItems();
+            $limit = 0;
+            $shuffle = 1;
+            $canItemsAddToCart = $block->canItemsAddToCart();
+
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+        }
+    break;
+
+    case 'upsell-rule':
+        if ($exist = $block->hasItems()) {
+            $type = 'upsell';
+            $class = $type;
+
+            $image = 'upsell_products_list';
+			$image_hover = 'category_page_grid_hover';
+            $title = __('We found other products you might like!');
+            $items = $block->getAllItems();
+            $limit = $block->getPositionLimit();
+            $shuffle = (int) $block->isShuffled();
+
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'upsell':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Upsell $block */
+        if ($exist = count($block->getItemCollection()->getItems())) {
+            $type = 'upsell';
+            $class = $type;
+
+            $image = 'upsell_products_list';
+			$image_hover = 'category_page_grid_hover';
+            $title = __('We found other products you might like!');
+            $items = $block->getItemCollection()->getItems();
+            $limit = $block->getItemLimit('upsell');
+            $shuffle = 0;
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'crosssell-rule':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        if ($exist = $block->hasItems()) {
+            $type = 'crosssell';
+            $class = $type;
+
+            $image = 'cart_cross_sell_products';
+			$image_hover = 'category_page_grid_hover';
+            $title = __('More Choices:');
+            $items = $block->getItemCollection();
+
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'crosssell':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        if ($exist = count($block->getItems())) {
+            $type = 'crosssell';
+            $class = $type;
+
+            $image = 'cart_cross_sell_products';
+			$image_hover = 'category_page_grid_hover';
+            $title = __('More Choices:');
+            $items = $block->getItems();
+
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'new':
+        if ($exist = $block->getProductCollection()) {
+            $type = 'new';
+            $mode = 'grid';
+            $type = $type . ' ' . $mode;
+
+            $class = 'widget' . ' ' . $type;
+
+            $image = 'new_products_content_widget_grid';
+			$image_hover = 'category_page_grid_hover';
+            $title = __('New Products');
+            $items = $exist;
+
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = ($mode == 'list') ? true : false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    default:
+        $exist = null;
+}
+$showQuickview = $at_settings['products_listing']['quickview'] && $theme_helper->isActivePlugin( 'Olegnax_Quickview' );
+$showCategory = $at_settings['products_listing']['category_name'];
+$showRating= $at_settings['products_listing']['rating'];
+$showPrice = $at_settings['products_listing']['price'];
+$showCart = $at_settings['products_listing']['add_to_cart'];
+$showWishlist = $at_settings['products_listing']['wishlist'];
+$showCompare = $at_settings['products_listing']['compare'];
+$carousel_items_s = $at_settings['product']['related_columns_s'];
+$carousel_items_m = $at_settings['product']['related_columns_m'];
+$carousel_items_l = $at_settings['product']['related_columns_l'];
+$carousel_items = $at_settings['product']['related_columns'];
+$nav = (bool)$at_settings['product']['related_arrows'];
+$dots = (bool)$at_settings['product']['related_dots'];
+$title_lines = $at_settings['product']['related_title_lines'];
+$navPosition = $nav ? $at_settings[ 'product' ][ 'related_arrows_position' ] : '';
+$showBrand = $at_settings['products_listing']['brand'];
+$showReviewCount = $at_settings['products_listing']['review_count'];
+$alignDetailsCenter = $at_settings['products_listing']['products_layout_centered'];
+$quickviewPosition = $at_settings['products_listing']['quickview_position'];
+if($showBrand){
+	$brandImageSize ='';
+	$altBrandImage = !$at_settings['products_listing']['brand_image_alt'];
+	$brandImageWidth = $at_settings['products_listing']['brand_image_width'];
+	$brandImageHeight = $at_settings['products_listing']['brand_image_height'] ?: $at_settings['products_listing']['brand_image_width'];
+	if($brandImageWidth && $brandImageHeight) {
+		$brandImageSize = [$brandImageWidth, $brandImageHeight];
+	}
+}
+$classes = [];
+$classes[] = 'owl-dots--align-' . ($dots ? $at_settings[ 'product' ][ 'related_dots_align' ] : '');
+$classes[] = 'owl-nav--position-' . $navPosition;
+$classes[] = 'title--align-' . ($title_lines ? $at_settings[ 'product' ][ 'related_title_align' ] : '');
+$classes[] = $dots ? 'owl-dots--show' : '';
+$classes[] = $title_lines ? 'title--sideline' : '';
+$layoutClasses = [];
+$layoutClasses[] = $alignDetailsCenter ? 'align-details-center' : '';
+$layoutClasses[] = $showReviewCount ? 'show-review-count' : '';
+$layoutClasses[] = $quickviewPosition ? ('quickview-' . $quickviewPosition) : '';
+?>
+<?php if ($exist):?>
+    <div class="block additional-products at-carousel <?= $block->escapeHtmlAttr($class. ' ' . implode( ' ', $classes ))?>">
+    <div class="block-title title">
+        <strong id="block-<?= $block->escapeHtmlAttr($class) ?>-heading" role="heading" aria-level="2"><?= $block->escapeHtml($title) ?></strong>
+		<?php if( $navPosition == 'title' && $nav ) { ?> 
+			<div class="owl-nav ox-owl-nav">
+				<button type="button" role="presentation" class="owl-prev ox-owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next ox-owl-next"><span aria-label="Next">›</span></button>
+			</div>
+		<?php } ?>
+    </div>
+    <div class="block-content content" aria-labelledby="block-<?= $block->escapeHtmlAttr($class) ?>-heading">
+        <div class="products-grid__layout-default products-grid__buttons-below products wrapper grid products-grid products-<?= $block->escapeHtmlAttr($type) ?> <?= $block->escapeHtmlAttr(implode( ' ', $layoutClasses ))?>">
+            <div class="products__listing-wrapper products list items product-items owl-carousel" data-mage-init='{"OXowlCarousel":
+            <?= json_encode([
+                "items" => $carousel_items,
+                "nav" => $nav,
+                "dots" => $dots,
+				"itemClass" => 'item product product-item',
+                "wrapperSelectorClass" => ".at-carousel",
+				"responsive" => [
+					'0' => [
+						 "items" => $carousel_items_s,
+					],
+					'640' => [
+						 "items" => $carousel_items_m,
+					],
+					'1025' => [
+						 "items" => $carousel_items_l,
+					],
+					'1160' => [
+						 "items" => $carousel_items,
+					]
+				]
+            ])?>
+            }'>
+                <?php foreach ($items as $_item): ?>
+                <?php $available = ''; ?>
+                <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related'): ?>
+                    <?php if (!$_item->getRequiredOptions()): ?>
+                        <?php $available = 'related-available'; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+					<div class="product-item-info <?= /* @noEscape */ $available ?>">
+						<div class="product-grid__image-wrapper">
+							<?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
+							<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product photo product-item-photo <?= $preloaderClasses ?>">
+								<?= $this->helper(\Olegnax\Athlete2\Helper\ProductImage::class)->getResizedImageHover($_item, $image, $image_hover, [$width, $height] )->toHtml(); ?>
+							</a>
+							<?php if ($showCompare || $showWishlist || $showQuickview): ?>
+							<div class="product-item-inner">
+									<div class="product actions product-item-actions">
+										<?php if ($showCompare || $showWishlist): ?>
+											<div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+												<?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+													<?= $addToBlock->setProduct($_item)->getChildHtml() ?>
+												<?php endif; ?>									
+											</div>      
+										<?php endif; ?>
+										<?php
+										if ( $showQuickview ) {
+											echo $this->helper( 'Olegnax\Quickview\Helper\Helper' )->getButton( $_item, 'button quick-view' );
+										}
+										?>
+									</div>
+									<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" aria-label="View Product" class="overlay-link"><?= $block->escapeHtml($_item->getName()) ?></a>
+								</div>
+								<?php endif; ?>
+								<?php if ( $theme_helper->isActivePlugin( 'Olegnax_ProductLabel' ) ) {
+									echo $this->helper( 'Olegnax\ProductLabel\Helper\Helper' )->showLabels( $_item );
+								}  ?>
+						</div>
+						<div class="product-grid-overlay"></div>
+						<div class="product details product-item-details">
+							<?php if ( $showBrand && $theme_helper->isActivePlugin( 'Olegnax_BrandSlider' ) ) {
+								echo $this->helper( 'Olegnax\BrandSlider\Helper\Helper' )->getProductBrandImage( $_item, $altBrandImage, $brandImageSize );
+							}?>
+							<?php if ( $showCategory && $category = $theme_helper->getLastCategory( $_item ) ) : ?>
+								<div class="ox-product-grid__categories"><a href="<?= $block->escapeUrl($category->getUrl()); ?>" class="ox-product-grid__category-link"><?= $block->escapeHtml($category->getName()); ?></a></div>
+								<?php endif; ?>
+							<strong class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtmlAttr($_item->getName()) ?>" href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
+								<?= $block->escapeHtml($_item->getName()) ?></a>
+							</strong>
+
+							<?php if ( $showPrice ) { echo /* @noEscape */ $block->getProductPrice($_item); } ?>
+
+							<?= $block->getProductDetailsHtml( $_item ) ?>
+							<?php if ($templateType && $showRating ): ?>
+								<?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+							<?php endif; ?>
+							<div class="product actions product-item-actions">
+								<?php if ( $_item->isSaleable() && $showCart ): ?>						
+									<div class="actions-primary">
+										<?php
+										$url		 = $block->getAddToCartUrl( $_item );
+										$postParams	 = [
+											'action' => $url,
+											'data'	 => [
+												'product'								 => $_item->getEntityId(),
+												ActionInterface::PARAM_NAME_URL_ENCODED	 => $urlHelper->getEncodedUrl( $url ),
+											]
+										];
+										?>
+										<form data-role="tocart-form" 
+											  data-product-sku="<?= $block->escapeHtmlAttr( $_item->getSku() ) ?>" 
+											  action="<?= $block->escapeUrl($postParams['action']) ?>"
+											  method="post">
+											<input type="hidden" name="product" value="<?= /* @noEscape */ $postParams[ 'data' ][ 'product' ] ?>">
+											<input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @noEscape */ $postParams[ 'data' ][ Action::PARAM_NAME_URL_ENCODED ] ?>">
+											<?= $block->getBlockHtml( 'formkey' ) ?>
+											<button type="submit"
+													title="<?= $block->escapeHtmlAttr(__( 'Add to Cart' )) ?>"
+													class="action tocart primary">
+                                                <?= $cartIcon ?><span><?= $block->escapeHtml(__( 'Add to Cart' )) ?></span>
+											</button>
+										</form>
+									</div>
+								<?php else: ?>
+									<?php if ($_item->getIsSalable()): ?>
+										<div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+									<?php else: ?>
+										<?php if($showOutofstock): ?>
+												<div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+												<?php endif; ?>
+									<?php endif; ?>
+								<?php endif; ?>							
+							</div>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+			</div>
+        </div>
+    </div>
+	<?php if ( !$block->isRedirectToCartEnabled() && !$at_settings['products_listing']['catalog_ajax_add_to_cart']) : ?>
+		<script type="text/x-magento-init">
+			{
+			"[data-role=tocart-form], .form.map.checkout": {
+			"catalogAddToCart": {
+			"product_sku": "<?= $block->escapeJs($_item->getSku()) ?>"
+			}
+			}
+			}
+		</script>
+	<?php endif; ?>
+</div>
+<?php endif;?>

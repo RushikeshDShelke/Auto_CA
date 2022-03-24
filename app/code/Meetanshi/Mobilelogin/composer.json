@@ -1,0 +1,29 @@
+{
+  "name": "meetanshi/magento2-mobile-login",
+  "description": "Mobbile Login",
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.2.0|~7.3.0",
+    "twilio/sdk": "*"
+  },
+  "type": "magento2-module",
+  "version": "1.0.4",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Jignesh Parmar",
+      "email": "help@meetanshi.com",
+      "homepage": "https://meetanshi.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Meetanshi\\Mobilelogin\\": ""
+    }
+  }
+}

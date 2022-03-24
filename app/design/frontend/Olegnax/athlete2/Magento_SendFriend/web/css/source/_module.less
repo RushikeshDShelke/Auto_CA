@@ -1,0 +1,74 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .form.send.friend {
+        &:extend(.abs-add-fields all);
+        .action.primary{
+            padding: 18px 27px;
+            /*min-width: 150px;*/
+            width: 100%;
+        }
+        .action.back{
+            display:none;
+        }
+        .action.add{
+            margin-top: 30px;
+        }
+        .fields.additional{
+            .secondary{
+                margin: 30px 0;
+            }
+            
+        }
+    }
+    .action.mailto.friend {
+        color:#000000;
+        margin-bottom: 10px;
+        .lib-icon-font(
+            @_icon-font: 'athlete2',
+            @_icon-font-content: '\63',
+            @_icon-font-size: 20px,
+            @_icon-font-line-height: 1,
+            @_icon-font-margin: 0 12px 0 0,
+            @_icon-font-vertical-align: middle
+        );
+        &:before{
+                width: 21px;
+        }
+        span {
+            display: inline-block;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: @font-weight__bold;
+            vertical-align: middle;
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__sm) {
+    .sendfriend-product-send{
+        .page-main{
+            max-width: 768px;
+            margin: 100px auto;
+            box-shadow: 0px 15px 70px -8px rgba(0, 0, 0, 0.11);
+            background: #ffffff;
+            padding: 55px;
+        }
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .form.send.friend {
+        &:extend(.abs-add-fields-desktop all);
+    }
+}

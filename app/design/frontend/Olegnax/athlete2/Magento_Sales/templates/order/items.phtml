@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var \Magento\Sales\Block\Order\Items $block */
+?>
+<div class="table-wrapper order-items">
+    
+            <?php if ($block->isPagerDisplayed()) : ?>
+                <tr>
+                    <td colspan="5" data-block="order-items-pager-top" class="order-pager-wrapper order-pager-wrapper-top">
+                        <?= $block->getPagerHtml() ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+        <?php $items = $block->getItems(); ?>
+        <?php $giftMessage = ''?>
+        <tbody>
+        <?php foreach ($items as $item) :
+            if ($item->getParentItem()) :
+                continue;
+            endif;
+            ?>
+                <?= $block->getItemHtml($item) ?>
+        <?php endforeach; ?>
+        </tbody>
+        <tfoot>
+            <?php if ($block->isPagerDisplayed()) : ?>
+                <tr>
+                    <td colspan="5" data-block="order-items-pager-bottom" class="order-pager-wrapper order-pager-wrapper-bottom">
+                        <?= $block->getPagerHtml() ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+            
+        </tfoot>
+    </table>
+</div>
+<?php if ($giftMessage) : ?>
+<script type="text/x-magento-init">
+    {
+        "a.action.show, a.action.close": {
+            "giftMessage": {}
+        }
+    }
+</script>
+<?php endif; ?>

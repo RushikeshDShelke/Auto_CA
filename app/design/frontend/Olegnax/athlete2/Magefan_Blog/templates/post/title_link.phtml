@@ -1,0 +1,22 @@
+<?php
+/**
+ * Blog post author template
+ *
+ * @var $block \Magefan\Blog\Block\Post\Info
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+?>
+<?php 
+$_post = $block->getPost();
+$_postUrl = $_post->getPostUrl();
+$_postName = $block->escapeHtml($_post->getTitle(), null, true);	
+?>
+<h2 class="post-title">
+	<a class="post-item-link" href="<?php echo $_postUrl ?>">
+		<?php echo $_postName; ?>
+	</a>
+</h2>

@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="meetanshi" translate="label" class="meetanshi" sortOrder="100">
+            <label></label>
+        </tab>
+        <section id="mobilelogin" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Mobile Login</label>
+            <tab>meetanshi</tab>
+            <resource>Meetanshi_Mobilelogin::mobilelogin</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Configurations</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Mobile Login</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="otptype" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>OTP Type</label>
+                    <source_model>Meetanshi\Mobilelogin\Model\Config\Source\Otptype</source_model>
+                    <depends>
+                        <field id="mobilelogin/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="otplength" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>OTP Length</label>
+                    <validate>required-entry validate-digits</validate>
+                    <depends>
+                        <field id="mobilelogin/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="apisetting" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="mobilelogin/general/enabled">1</field>
+                </depends>
+                <label>API Settings</label>
+                <field id="apiprovider" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>API Provider</label>
+                    <source_model>Meetanshi\Mobilelogin\Model\Config\Source\Apiprovider</source_model>
+                    <depends>
+                        <field id="mobilelogin/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="senderid" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Sender ID</label>
+                    <depends>
+                        <field id="apiprovider" separator=",">msg91,textlocal</field>
+                    </depends>
+                </field>
+                <field id="messagetype" translate="label" type="select" sortOrder="12" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Message Type</label>
+                    <source_model>Meetanshi\Mobilelogin\Model\Config\Source\Messagetype</source_model>
+                    <depends>
+                        <field id="apiprovider">msg91</field>
+                    </depends>
+                </field>
+                <field id="apiurl" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>API URL</label>
+                    <depends>
+                        <field id="apiprovider" separator=",">msg91,textlocal,bulkpush</field>
+                    </depends>
+                    <comment> <![CDATA[Msg91 URL is http://api.msg91.com/api/sendhttp.php. <br> Text Local URL is https://api.textlocal.in/send/.]]> </comment>
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>User</label>
+                    <depends>
+                        <field id="apiprovider">bulkpush</field>
+                    </depends>
+                    <comment> <![CDATA[]]> </comment>
+                </field>
+                <field id="password" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Password</label>
+                    <depends>
+                        <field id="apiprovider">bulkpush</field>
+                    </depends>
+                    <comment> <![CDATA[]]> </comment>
+                </field>
+                <field id="apikey" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Authorization Key</label>
+                    <depends>
+                        <field id="apiprovider" separator=",">msg91,textlocal</field>
+                    </depends>
+                </field>
+                <field id="sid" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>SID</label>
+                    <depends>
+                        <field id="apiprovider" separator=",">twilio,bulkpush</field>
+                    </depends>
+                </field>
+                <field id="token" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Token</label>
+                    <depends>
+                        <field id="apiprovider">twilio</field>
+                    </depends>
+                </field>
+                <field id="frommobilenumber" translate="label" type="text" sortOrder="24" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Admin Mobile Number</label>
+                    <depends>
+                        <field id="apiprovider">twilio</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="developer" translate="label" type="text" sortOrder="95" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="mobilelogin/general/enabled">1</field>
+                </depends>
+                <label>API Testing</label>
+                <field id="adminmobile" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Mobile Number With Country Code</label>
+                </field>
+                <field id="send" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label></label>
+                    <frontend_model>Meetanshi\Mobilelogin\Block\System\Config\Button</frontend_model>
+                    <comment>
+                        <![CDATA[After adding the  Mobile Number , save the configuration and than click SEND button. ]]></comment>
+                </field>
+            </group>
+
+            <group id="otpsend" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="mobilelogin/general/enabled">1</field>
+                </depends>
+                <label>OTP Custom SMS Settings</label>
+                <field id="loginmessage" translate="label" type="textarea" sortOrder="15" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Login OTP SMS Text</label>
+                    <comment>
+                        <![CDATA[You can make use of {{shop_name}},{{shop_url}},{{otp_code}} variables in your SMS text.]]></comment>
+                </field>
+
+                <field id="registrationmessage" translate="label" type="textarea" sortOrder="25" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Registration OTP SMS Text</label>
+                    <comment>
+                        <![CDATA[You can make use of {{shop_name}},{{shop_url}},{{otp_code}} variables in your SMS text.]]></comment>
+                </field>
+
+                <field id="forgotmessage" translate="label" type="textarea" sortOrder="35" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Forgot Password OTP SMS Text</label>
+                    <comment>
+                        <![CDATA[You can make use of {{shop_name}},{{shop_url}},{{otp_code}} variables in your SMS text.]]></comment>
+                </field>
+                <field id="updatemessage" translate="label" type="textarea" sortOrder="45" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Update Mobile Number OTP SMS Text</label>
+                    <comment>
+                        <![CDATA[You can make use of {{shop_name}},{{shop_url}},{{otp_code}} variables in your SMS text.]]></comment>
+                </field>
+            </group>
+
+             <group id="assign" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="mobilelogin/general/enabled">1</field>
+                </depends>
+                <label>Synchronize Telephone Number Field with Mobile Number </label>
+                <field id="sync" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label></label>
+                    <frontend_model>Meetanshi\Mobilelogin\Block\System\Config\Synchronize</frontend_model>
+                    <comment>Sync telephone numbers of the existing customers with the mobile numbers.</comment>
+                </field>
+            </group>
+
+            <group id="formsetting" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="mobilelogin/general/enabled">1</field>
+                </depends>
+                <label>Form Title Texts</label>
+                <field id="login_otp" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Login With OTP Title</label>
+                </field>
+                <field id="login_email" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Login With Password Title</label>
+                </field>
+                <field id="register" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Create Acoount Title</label>
+                </field>
+                <field id="forgot" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Forgot Password Title</label>
+                </field>
+            </group>
+
+            <group id="layout" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="mobilelogin/general/enabled">1</field>
+                </depends>
+                <label>Form Layout Settings</label>
+                <field id="background" translate="label" type="image" sortOrder="10" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Upload Image</label>
+                    <backend_model>Meetanshi\Mobilelogin\Model\Backimage</backend_model>
+                    <base_url type="media">mobilelogin/backimage</base_url>
+                </field>
+                <field id="buttoncolor" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Button Text Color</label>
+                    <frontend_model>Meetanshi\Mobilelogin\Block\Color</frontend_model>
+                </field>
+                <field id="buttonbgcolor" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Button Background Color</label>
+                    <frontend_model>Meetanshi\Mobilelogin\Block\Color</frontend_model>
+                </field>
+                <field id="popupborderone" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Bottom Border Color 1</label>
+                    <frontend_model>Meetanshi\Mobilelogin\Block\Color</frontend_model>
+                </field>
+                <field id="popupbordertwo" translate="label" type="text" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Bottom Border Color 2</label>
+                    <frontend_model>Meetanshi\Mobilelogin\Block\Color</frontend_model>
+                </field>
+            </group>
+
+            <group id="flag" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="mobilelogin/general/enabled">1</field>
+                </depends>
+                <label>Country Flag Settings</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow" translate="label" type="multiselect" sortOrder="2" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Allowed Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="country_id" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Default Country</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

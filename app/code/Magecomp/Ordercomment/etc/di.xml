@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magecomp\Ordercomment\Api\Data\Ordercommentinterface" type="Magecomp\Ordercomment\Helper\Data\Ordercomment" />
+    <preference for="Magecomp\Ordercomment\Api\Ordercommentmanagementinterface" type="Magecomp\Ordercomment\Model\Ordercommentmanagement" />
+    <preference for="Magecomp\Ordercomment\Api\Guestordercommentmanagementinterface" type="Magecomp\Ordercomment\Model\Guestordercommentmanagement" />
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="magecomp_order_comment" xsi:type="string">sales_order.magecomp_order_comment</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="magecomp_load_ordercomment" type="Magecomp\Ordercomment\Plugin\Model\Order\Loadordercomment"/>
+    </type>
+</config>

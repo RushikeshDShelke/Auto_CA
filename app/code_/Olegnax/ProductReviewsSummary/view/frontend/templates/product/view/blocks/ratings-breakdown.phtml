@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Olegnax ProductReviewsSummary
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_ProductReviewsSummary
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+$enabled = $this->helper('Olegnax\ProductReviewsSummary\Helper\Helper')->getConfig('olegnax_productreviewssummary/general/rating_breakdown');
+
+if($enabled) {
+?>
+<?php if (count($block->getRatingVotes()) > 1 ): ?>
+	<div class="review-ratings">
+		<?php foreach ($block->getRatingVotes() as $_vote): ?>
+			<div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+				<span class="label rating-label"><span><?= $block->escapeHtml($_vote->getRatingCode()) ?></span></span>
+				<div class="rating-result" title="<?= $block->escapeHtmlAttr($_vote->getPercent()) ?>%">
+					<meta itemprop="worstRating" content = "1"/>
+					<meta itemprop="bestRating" content = "100"/>
+					<span style="width:<?= $block->escapeHtmlAttr($_vote->getPercent()) ?>%">
+						<span itemprop="ratingValue"><?= $block->escapeHtml($_vote->getPercent()) ?>%</span>
+					</span>
+				</div>
+			</div>
+		<?php endforeach; ?>
+	</div>
+<?php endif; ?>
+<?php } ?>

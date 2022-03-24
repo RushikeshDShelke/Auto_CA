@@ -1,0 +1,180 @@
+<?php
+$theme_settings	 = $this->helper( 'Olegnax\Athlete2\Helper\Helper' )->getConfig( 'athlete2_settings' );
+$productImageWidth			 = $theme_settings['product_images']['product_image_width'];
+$productImageHeight			 = $theme_settings['product_images']['product_image_height'];
+$thumbwidth = $block->getImageAttribute('product_page_image_small', 'width');
+$thumbheight = $block->getImageAttribute('product_page_image_small', 'height');
+
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+	return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+	$mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ?
+	$mainImage->getData('medium_image_url') :
+	$helper->getDefaultPlaceholderUrl('image');
+
+?>
+<style>
+	.fotorama-item .fotorama__nav--thumbs .fotorama__nav__frame {
+		height: <?php echo $thumbheight;?>px
+	}
+
+	.fotorama-item .fotorama__thumb-border {
+		height: <?php echo $thumbheight;?>px;
+	}
+	.product.media .fotorama__stage {max-height: <?php /* @escapeNotVerified */ echo ( $productImageHeight ?: $block->getImageAttribute('product_page_image_medium', 'height')); ?>px!important }
+	@media only screen and (max-width: 767px) {
+		.fotorama__nav__frame--thumb{display: none;}
+		.fotorama__thumb-border{display: none;}
+		.fotorama__arr--prev{display: none;}
+	}
+</style>
+<div class="gallery-placeholder _block-content-loading ox-gallery" data-gallery-role="gallery-placeholder">
+	<div class="fotorama-item" data-gallery-role="gallery">
+		<div data-gallery-role="fotorama__focusable-start" tabindex="-1"></div>
+		<div class="fotorama__wrap fotorama__wrap--css3 fotorama__wrap--slide fotorama__wrap--toggle-arrows">
+			<div class="fotorama__stage" data-fotorama-stage="fotorama__stage" style="">
+				<div class="fotorama__arr fotorama__arr--prev" tabindex="0" role="button" aria-label="Previous" data-gallery-role="arrow">
+					<div class="fotorama__arr__arr"></div>
+				</div>
+				<div class="fotorama__stage__shaft" tabindex="0" data-gallery-role="stage-shaft" >
+					<div class="fotorama__stage__frame fotorama__active fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img" aria-hidden="false" data-active="true" style="left: 0px;" href="<?php echo $mainImageData; ?>">
+						<img src="<?php echo $mainImageData; ?>" class="fotorama__img" aria-hidden="false">
+					</div>
+				</div>
+				<div class="fotorama__arr fotorama__arr--next" tabindex="-1" role="button"
+					 aria-label="Next" data-gallery-role="arrow">
+					<div class="fotorama__arr__arr"></div>
+				</div>
+				<div class="fotorama__video-close"></div>
+				<div class="fotorama__zoom-in" data-gallery-role="fotorama__zoom-in" aria-label="Zoom in" role="button" tabindex="0"></div>
+				<div class="fotorama__zoom-out" data-gallery-role="fotorama__zoom-out" aria-label="Zoom out" role="button" tabindex="0"></div>
+				<!-- <div class="fotorama__spinner"></div> -->
+			</div>
+			<div class="fotorama__nav-wrap" data-gallery-role="nav-wrap">
+				<div class="fotorama__nav fotorama__nav--thumbs">
+					<div class="fotorama__fullscreen-icon" data-gallery-role="fotorama__fullscreen-icon" tabindex="0" aria-label="Exit fullscreen" role="button"></div>
+					<div class="fotorama__thumb__arr fotorama__thumb__arr--left fotorama__arr--disabled" role="button" aria-label="Previous" data-gallery-role="arrow" tabindex = "-1">
+						<div class="fotorama__thumb--icon"></div>
+					</div>
+					<div class="fotorama__nav__shaft">
+						<div class="fotorama__thumb-border" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 1px; height: <?php echo $thumbheight?>px;"></div>
+
+					</div>
+					<div class="fotorama__thumb__arr fotorama__thumb__arr--right fotorama__arr--disabled" role="button" aria-label="Next" data-gallery-role="arrow" tabindex = "-1">
+						<div class="fotorama__thumb--icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-gallery-role="fotorama__focusable-end" tabindex="-1"></div>
+	</div>
+	<div class="magnifier-preview" data-gallery-role="magnifier" id="preview"></div>
+</div>
+<script>
+	var config = {
+			"width": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+			"thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+				?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+			"navtype": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/navtype"); ?>",
+			"height": <?php /* @escapeNotVerified */ echo ( $productImageHeight ?: $block->getImageAttribute('product_page_image_medium', 'height')); ?>
+
+		},
+		thumbBarHeight = 0,
+		loader = document.querySelectorAll('[data-gallery-role="gallery-placeholder"] [data-role="loader"]')[0];
+
+	if (config.navtype === 'horizontal') {
+		thumbBarHeight = config.thumbheight;
+	}
+	require(['jquery'], function($){
+		var width = $('.fotorama-item').width();
+		var ratio = config.width/config.height ;
+		var height = Math.round(width/ratio);
+		$('.fotorama__stage').css({'width': '100%', 'height': height});
+
+	});
+</script>
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "Magento_Catalog/js/gallery/custom_gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?php /* @escapeNotVerified */ echo $block->getMagnifier(); ?>,
+                "data": <?php /* @escapeNotVerified */ echo $block->getGalleryImagesJson(); ?>,
+                "options": {
+                    "nav": "<?php /* @escapeNotVerified */ echo $block->getVar("gallery/nav"); ?>",
+                    <?php if (($block->getVar("gallery/loop"))): ?>
+                        "loop": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/loop"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/keyboard"))): ?>
+                        "keyboard": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/keyboard"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/arrows"))): ?>
+                        "arrows": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/arrows"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/allowfullscreen"))): ?>
+                        "allowfullscreen": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/allowfullscreen"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/caption"))): ?>
+                        "showCaption": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/caption"); ?>,
+                    <?php endif; ?>
+                    "width": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'width'); ?>",
+                    "thumbwidth": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'width'); ?>",
+                    <?php if ($block->getImageAttribute('product_page_image_small', 'height') || $block->getImageAttribute('product_page_image_small', 'width')): ?>
+                        "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+		?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getImageAttribute('product_page_image_medium', 'height') || $block->getImageAttribute('product_page_image_medium', 'width')): ?>
+                        "height": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'height')
+		?: $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+                    <?php endif; ?>
+                    <?php if ( $productImageWidth ): ?>
+                        "width": <?php /* @escapeNotVerified */ echo $productImageWidth; ?>,
+                    <?php endif; ?>
+                    <?php if ($productImageHeight || $productImageWidth): ?>
+                        "height": <?php /* @escapeNotVerified */ echo $productImageHeight ?: $productImageWidth; ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/transition/duration")): ?>
+                        "transitionduration": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/transition/duration"); ?>,
+                    <?php endif; ?>
+                    "transition": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/transition/effect"); ?>",
+                    <?php if (($block->getVar("gallery/navarrows"))): ?>
+                        "navarrows": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/navarrows"); ?>,
+                    <?php endif; ?>
+                    "navtype": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/navtype"); ?>",
+                    "navdir": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/navdir"); ?>"
+                },
+                "fullscreen": {
+                    "nav": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/nav"); ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/loop")): ?>
+                        "loop": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/loop"); ?>,
+                    <?php endif; ?>
+                    "navdir": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/navdir"); ?>",
+                    <?php if ($block->getVar("gallery/transition/navarrows")): ?>
+                        "navarrows": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/navarrows"); ?>,
+                    <?php endif; ?>
+                    "navtype": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/navtype"); ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/arrows")): ?>
+                        "arrows": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/arrows"); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/caption")): ?>
+                        "showCaption": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/fullscreen/caption"); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/transition/duration")): ?>
+                        "transitionduration": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/transition/duration"); ?>,
+                    <?php endif; ?>
+                    "transition": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/transition/effect"); ?>"
+                },
+                "breakpoints": <?php /* @escapeNotVerified */ echo $block->getBreakpoints(); ?>
+            }
+        }
+    }
+</script>
+
+

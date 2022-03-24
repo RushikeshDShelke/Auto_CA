@@ -1,0 +1,84 @@
+<?php
+/**
+ * Blog related posts template
+ *
+ * @var $block \Magefan\Blog\Block\Post\View\RelatedPosts
+ * @var $block \Magefan\Blog\Block\Catalog\Product\RelatedPosts
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+	$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings');
+	$iWidth = $at_settings['blog_product_page']['related_image_width'] ?: $at_settings['blog_post']['related_image_width'];
+	$iHeight = $at_settings['blog_product_page']['related_image_height'] ?: $at_settings['blog_post']['related_image_height'];
+	$_hideCategories = $at_settings['blog_product_page']['hide_categories'];
+	$hide_image = $at_settings['blog_product_page']['hide_image'];
+	$relatedColumns = $at_settings['blog_product_page']['related_columns'] ?: $at_settings['blog_post']['related_columns'];
+	$_relatedTitleHide = $at_settings['blog_product_page']['related_title_hide'];	
+	if(!$relatedColumns) {
+		$relatedColumns = 3;
+	}
+	$blog_related_layout = $at_settings['blog_product_page']['blog_related_layout'] ? '-list-view' : 'blog-list--image-top';
+	if($at_settings['blog_product_page']['blog_related_layout']){
+		$_relatedColumns = '';
+	} else {
+		$_relatedColumns = 'columns-' . $relatedColumns;
+	}
+	if($blog_related_layout && $hide_image) {
+		$blog_related_layout = 'ox-blog-widget__titles-only';
+	}
+?>
+
+<?php if ($block->displayPosts()) { ?>
+    <?php $_postCollection = $block->getPostCollection(); ?>
+    <?php if ($_postCollection->count()) { ?>
+    <div class="block related">
+		<?php if (!$_relatedTitleHide) { ?>
+        <div class="a-center block-title title">
+            <strong id="block-relatedposts-heading" role="heading" aria-level="2">
+                <?php echo __('More about the Craft and the Maestro') ?>
+            </strong>
+        </div>
+		<?php } ?>
+        <div class="row a-center d-">
+            <?php foreach ($_postCollection as $_post) { ?>
+				<article class="post-holder col-3">
+					<?php if($iWidth && $iHeight && !$hide_image) {
+						$featuredImage = $_post->getFeaturedImage([$iWidth, $iHeight]);
+					} else {
+						$featuredImage = $_post->getFeaturedImage();
+					} ?>
+					<?php if ($featuredImage && !$hide_image) { ?>
+						<a class="post-image-wrapper" href="<?php echo $_post->getPostUrl() ?>" title="<?php echo $block->escapeHtml($_post->getTitle()) ?>">
+							<img src="<?php echo $featuredImage ?>" alt="<?php echo $block->escapeHtml($_post->getTitle()) ?>" />
+						</a>
+					<?php } ?>
+					<div class="post-content">
+						<?php if(!$_hideCategories) {
+							$_categoriesCount = $_post->getCategoriesCount();
+							?>
+							<?php if ( $_categoriesCount ) { ?>
+								<div class="item post-categories">
+									<?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
+										<a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>">
+											<?php echo $block->escapeHtml($ct->getTitle()) ?>
+										</a>
+									<?php } ?>
+								</div>
+							<?php } ?>
+						<?php } ?>
+						<h3 class="post-title">
+							<a class="post-item-link"
+							   href="<?php echo $_post->getPostUrl() ?>">
+								<?php echo $block->escapeHtml($_post->getTitle()); ?>
+							</a>
+						</h3>
+					</div>
+                </article>
+            <?php } ?>
+        </div>
+    </div>
+    <?php } ?>
+<?php } ?>

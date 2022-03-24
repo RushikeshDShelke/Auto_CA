@@ -1,0 +1,1134 @@
+<?php
+$helper = $this->helper('Meetanshi\Mobilelogin\Helper\Data');
+$buttonColor = $helper->getButtonColor();
+$buttonBGColor = $helper->getButtonBgColor();
+$borderOne = $helper->getBorderOne();
+$borderTwo = $helper->getBorderTwo();
+if ($helper->isMobileloginEnabled() == 1 && (!$helper->customerLoggedIn())) { ?>
+    <div class="mobile-sendotp-popup" style="display: none">
+        <div class="main-contai" loading="lazy">
+            <div class="left-img-part" style="background-image: url(<?php echo $helper->getImageUrl() ?>)">
+            </div>
+            <div class="right-contet-part">
+                <div class="main-title">
+                    <div class="tit-item">
+                        <span class="login-otp-title active">
+                            <?= $block->escapeHtml(__($helper->getOtpLoginTitle())) ?>
+                        </span>
+                        <span class="login-email-title">
+                            <?= $block->escapeHtml(__($helper->getLoginWithEmailTitle())) ?>
+                        </span>
+                    </div>
+                    <p class="err-msg" style="display: none"></p>
+                    <p class="success-msg" style="display: none"></p>
+                    <div class="frm-container">
+                        <div class="otl-login-form-contain">
+                            <form class="form form-otp-login"
+                                  method="post"
+                                  id="otp-login-form"
+                                  data-mage-init='{"validation":{}}'>
+                                <fieldset class="fieldset login-otp step1"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                                    <div class="field mobilenumber required">
+                                        <div class="control">
+                                            <input name="mobile_number"
+                                                   id="mobilenumber" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>"
+                                                   maxlength="15" minlength="10"
+                                                   data-validate="{required:true}">
+
+                                        </div>
+                                    </div>
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="request-otp-btn pop-bnt" name="send">
+                                                <span><?= $block->escapeHtml(__('Request OTP')) ?></span></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="fieldset login-otp step2"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                                          style="display: none">
+                                    <div class="field mobilenumber required">
+                                        <div class="control">
+                                            <input name="loginotp"
+                                                   id="loginotp" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('OTP')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('OTP')) ?>"
+                                                   data-validate="{required:true}">
+
+                                        </div>
+                                    </div>
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="resend-login-otp-btn withresend pop-bnt"
+                                                    name="send">
+                                                <span><?= $block->escapeHtml(__('Resend OTP')) ?></span></button>
+                                            <button type="button" class="submit-login-otp-btn withresend pop-bnt"
+                                                    name="send">
+                                                <span><?= $block->escapeHtml(__('Submit OTP')) ?></span></button>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="password-login-form-contain" style="display: none">
+                            <form class="form form-password-login"
+                                  method="post"
+                                  id="password-login-form"
+                                  data-mage-init='{"validation":{}}'>
+                                <fieldset class="fieldset login-password"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                                    <div class="field email required">
+                                        <div class="control">
+                                            <input name="emailmobile"
+                                                   id="emailmobilenumber" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('Email / Mobile Number')) ?>"
+                                                   data-validate="{required:true}"
+                                                   placeholder="<?= $block->escapeHtml(__('Email / Mobile Number')) ?>"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="field password required">
+                                        <div class="control">
+                                            <input name="mobpassword"
+                                                   type="password" autocomplete="off"
+                                                   class="input-text" id="logpassword"
+                                                   title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                                                   placeholder="<?= $block->escapeHtml(__('Password')) ?>"
+                                                   data-validate="{required:true}">
+                                        </div>
+                                    </div>
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="password-login-btn pop-bnt" name="send">
+                                                <span><?= $block->escapeHtml(__('Login')) ?></span></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="customer-create-form-contain" style="display: none">
+                            <form class="form form-create-account"
+                                  method="post"
+                                  id="create-account-form"
+                                  data-mage-init='{"validation":{}}'>
+
+                                <fieldset class="fieldset login-password register-step1"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+
+                                    <div class="field firstname required">
+                                        <div class="control">
+                                            <input name="firstname"
+                                                   id="firstname" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('First Name')) ?>"
+                                                   data-validate="{required:true}"
+                                                   placeholder="<?= $block->escapeHtml(__('First Name')) ?>"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <div class="field lastname required">
+                                        <div class="control">
+                                            <input name="lastname"
+                                                   id="lastname" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('Last Name')) ?>"
+                                                   data-validate="{required:true}"
+                                                   placeholder="<?= $block->escapeHtml(__('Last Name')) ?>"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <div class="field mobilenumber required">
+                                        <div class="control">
+                                            <input name="mobile_number"
+                                                   id="regmobilenumber" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>" maxlength="15" minlength="10"
+                                                   data-validate="{required:true}">
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="field email required">
+                                        <div class="control">
+                                            <input name="email"
+                                                   id="email" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                                                   data-validate="{required:true, 'validate-email':true}"
+                                                   placeholder="<?= $block->escapeHtml(__('Email')) ?>"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <div class="field password required">
+                                        <div class="control">
+                                            <input name="mobpassword"
+                                                   type="password" autocomplete="off"
+                                                   class="input-text" id="password"
+                                                   title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                                                   placeholder="<?= $block->escapeHtml(__('Password')) ?>"
+                                                   data-validate="{required:true}">
+                                        </div>
+                                    </div>
+
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="create-account-btn pop-bnt">
+                                                <span><?= $block->escapeHtml(__('Create Account')) ?></span></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="fieldset login-password register-step2"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                                          style="display: none">
+                                    <div class="field mobilenumber required">
+                                        <div class="control">
+                                            <input name="registerotp"
+                                                   id="registerotp" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('OTP')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('OTP')) ?>"
+                                                   data-validate="{required:true}">
+
+                                        </div>
+                                    </div>
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="resend-create-account-btn withresend pop-bnt"
+                                                    name="send">
+                                                <span><?= $block->escapeHtml(__('Resend OTP')) ?></span></button>
+                                            <button type="button" class="submit-create-account-btn withresend pop-bnt"
+                                                    name="send">
+                                                <span><?= $block->escapeHtml(__('Submit OTP')) ?></span></button>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </form>
+                        </div>
+
+                        <div class="forget-form-contain" style="display: none">
+
+                            <form class="form form-forget-password"
+                                  method="post"
+                                  id="forget-form"
+                                  data-mage-init='{"validation":{}}'>
+
+                                <fieldset class="fieldset forgot-pass-step1"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                                    <div class="field mobilenumber required">
+                                        <div class="control">
+                                            <input name="mobile_number"
+                                                   id="fogmobilenumber" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>"
+                                                   maxlength="15" minlength="10"
+                                                   data-validate="{required:true}">
+                                        </div>
+                                    </div>
+
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="forgot-btn-req pop-bnt">
+                                                <span><?= $block->escapeHtml(__('Request OTP')) ?></span></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="fieldset forgot-pass-step2"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                                          style="display: none">
+                                    <div class="field forgototp required">
+                                        <div class="control">
+                                            <input name="forgototp"
+                                                   id="forgototp" type="text" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('OTP Number')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('OTP Number')) ?>"
+                                                   data-validate="{required:true}">
+                                        </div>
+                                    </div>
+
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="resend-forgot-otp-btn withresend pop-bnt"
+                                                    name="send">
+                                                <span><?= $block->escapeHtml(__('Resend OTP')) ?></span></button>
+                                            <button type="button" class="forgot-btn-verify withresend pop-bnt">
+                                                <span><?= $block->escapeHtml(__('Verify OTP')) ?></span></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+
+                                <fieldset class="fieldset forgot-pass-step3"
+                                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                                          style="display: none">
+                                    <div class="field forgototp required">
+                                        <div class="control">
+                                            <input name="newpassword"
+                                                   id="newpassword" type="password" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('New Password')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('New Password')) ?>"
+                                                   data-validate="{required:true}">
+                                        </div>
+                                    </div>
+
+                                    <div class="field forgototp required">
+                                        <div class="control">
+                                            <input name="confirmnewpassword"
+                                                   id="confirmnewpassword" type="password" class="input-text"
+                                                   title="<?= $block->escapeHtmlAttr(__('Confirm New Password')) ?>"
+                                                   placeholder="<?= $block->escapeHtmlAttr(__('Confirm New Password')) ?>"
+                                                   data-validate="{required:true}">
+                                        </div>
+                                    </div>
+
+                                    <div class="actions-toolbar-otp">
+                                        <div class="primary">
+                                            <button type="button" class="forgot-submit-password-btn pop-bnt"
+                                                    name="send">
+                                                <span><?= $block->escapeHtml(__('Submit')) ?></span></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="footer-box-link">
+                        <span class="create-acc-title">
+                            <?= $block->escapeHtml(__($helper->getCreateAccountTitle())) ?>
+                        </span>
+                        <span class="for-accout-title">
+                            <?= $block->escapeHtml(__($helper->getForgetTitle())) ?>
+                        </span>
+
+                        <?php
+                        $blockObj= $block->getLayout()->createBlock('Mageplaza\SocialLogin\Block\Popup\Social');
+                        $availableSocials = $blockObj->getAvailableSocials();
+
+                        //echo '<pre>';print_r($availableSocials); echo '<pre>';
+                        $childBlock = $blockObj->getChildBlock('request.info');
+
+                        if ($blockObj->canShow() && sizeof($availableSocials)) :
+                            ?>
+                            <div class="block social-login-authentication-channel account-social-login">
+                                <div class="block-content">
+                                    <?php foreach ($availableSocials as $key => $social) : ?>
+                                        <div class="actions-toolbar social-btn social-btn-actions-toolbar <?= $key ?>-login">
+                                            <a class="btn btn-block btn-social btn-<?= $blockObj->getBtnKey($key) ?>"
+                                               data-mage-init='{"socialProvider": {"url": "<?= $social['login_url'] ?>", "label": "<?= __('Login By %1', $social['label']) ?>"}}'>
+                                                <span class="fa fa-<?= $blockObj->getBtnKey($key) ?>"></span>
+                                                <?= __('Sign in with %1', $social['label']) ?>
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <?php if ($helper->isFlagEnabled() == 1) { ?>
+        <script type="text/x-magento-init">
+            {
+                "input[name='mobile_number']": {
+                    "Meetanshi_Mobilelogin/js/internationalTelephoneInput": <?php echo $block->phoneConfig(); ?>
+                }
+            }
+
+
+
+
+        </script>
+    <?php } ?>
+
+    <script>
+        require(
+            [
+                'jquery',
+                'mage/url',
+                'Magento_Ui/js/modal/modal'
+            ],
+            function ($,
+                      url,
+                      modal) {
+                var sendoption = {
+                    type: 'popup',
+                    modalClass: 'mobile_login_popup',
+                    responsive: true,
+                    innerScroll: true,
+                    clickableOverlay: false,
+                    buttons: []
+                };
+
+                modal(sendoption, jQuery('.mobile-sendotp-popup'));
+
+                jQuery(window).load(function () {
+                    jQuery('.mt_signin').click(function (e) {
+                        jQuery('.mobile-sendotp-popup').modal('openModal');
+                        jQuery('.login-otp-title').click();
+                    });
+                    jQuery('.cusotom_wishlist').click(function (e) {                     
+                        jQuery('.mobile-sendotp-popup').modal('openModal');
+                        jQuery('.login-otp-title').click();
+                    });
+
+                    jQuery('.mt_create_account').click(function (e) {
+                        jQuery('.mobile-sendotp-popup').modal('openModal');
+                        jQuery('.create-acc-title').click();
+                    });
+
+                    if (window.location.href.indexOf("customer/account/create") > -1) {
+                        jQuery('.mobile-sendotp-popup').modal('openModal');
+                        jQuery('.create-acc-title').click();
+                    }
+
+                    if (window.location.href.indexOf("customer/account/login") > -1) {
+                        jQuery('.mobile-sendotp-popup').modal('openModal');
+                        jQuery('.login-otp-title').click();
+                    }
+
+                });
+
+                jQuery('.mt_signin').click(function (e) {
+                    jQuery('.mobile-sendotp-popup').modal('openModal');
+                    jQuery('.login-otp-title').click();
+                });
+                jQuery('.cusotom_wishlist').click(function (e) {
+                        jQuery('.mobile-sendotp-popup').modal('openModal');
+                        jQuery('.login-otp-title').click();
+                    });
+
+                jQuery('.mt_create_account').click(function (e) {
+                    jQuery('.mobile-sendotp-popup').modal('openModal');
+                    jQuery('.create-acc-title').click();
+                });
+
+                jQuery('.tit-item span').click(function (e) {
+                    jQuery('.tit-item span').removeClass('active');
+                    jQuery(this).addClass('active');
+                });
+
+                jQuery('.login-otp-title').click(function (e) {
+                    jQuery('.otl-login-form-contain').fadeIn();
+                    jQuery('.password-login-form-contain').hide();
+                    jQuery('.customer-create-form-contain').hide();
+                    jQuery('.forget-form-contain').hide();
+                });
+
+                jQuery('.login-email-title').click(function (e) {
+                    jQuery('.otl-login-form-contain').hide();
+                    jQuery('.password-login-form-contain').fadeIn();
+                    jQuery('.customer-create-form-contain').hide();
+                    jQuery('.forget-form-contain').hide();
+                });
+
+                jQuery('.create-acc-title').click(function (e) {
+                    jQuery('.otl-login-form-contain').hide();
+                    jQuery('.password-login-form-contain').hide();
+                    jQuery('.customer-create-form-contain').fadeIn();
+                    jQuery('.forget-form-contain').hide();
+                    jQuery('.tit-item span').removeClass('active');
+                });
+
+                jQuery('.for-accout-title').click(function (e) {
+                    jQuery('.otl-login-form-contain').hide();
+                    jQuery('.password-login-form-contain').hide();
+                    jQuery('.customer-create-form-contain').hide();
+                    jQuery('.forget-form-contain').fadeIn();
+                    jQuery('.tit-item span').removeClass('active');
+                });
+
+
+                jQuery('.request-otp-btn').click(function (e) {
+                    if (jQuery('#otp-login-form').valid()) {
+
+                        var mobilenumber = jQuery('#mobilenumber').val();
+                        var getUrl = url.build('mobilelogin/otp/send');
+                        var otptype = 'login';
+                        var resend = 0;
+
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                resendotp: resend,
+                                oldmobile: 0
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('fieldset.fieldset.login-otp.step1').hide();
+                                    jQuery('fieldset.fieldset.login-otp.step2').fadeIn();
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+
+                            }
+                        });
+                    }
+                });
+
+
+                jQuery('.resend-login-otp-btn').click(function (e) {
+                    var mobilenumber = jQuery('#mobilenumber').val();
+                    var getUrl = url.build('mobilelogin/otp/send');
+                    var otptype = 'login';
+                    var resend = 1;
+
+                    jQuery.ajax({
+                        url: getUrl,
+                        type: 'POST',
+                        data: {
+                            mobilenumber: mobilenumber,
+                            otptype: otptype,
+                            resendotp: resend,
+                            oldmobile: 0
+                        },
+                        showLoader: true,
+                        success: function (response) {
+                            if (response.succeess === "true") {
+                                jQuery('p.success-msg').text(response.successmsg);
+                                jQuery('p.success-msg').show().delay(5000).fadeOut();
+                            }
+                            else {
+                                jQuery('p.err-msg').text(response.errormsg);
+                                jQuery('p.err-msg').show().delay(5000).fadeOut();
+                            }
+                        },
+                        error: function (data) {
+
+                        }
+                    });
+                });
+
+
+                jQuery('.submit-login-otp-btn').click(function (e) {
+                    if (jQuery('#otp-login-form').valid()) {
+
+                        var mobilenumber = jQuery('#mobilenumber').val();
+                        var otpcode = jQuery('#loginotp').val();
+                        var getUrl = url.build('mobilelogin/otp/verify');
+                        var otptype = 'login';
+
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                otpcode: otpcode,
+                                oldmobile: 0
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                    location.href = response.customurl;
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+                            }
+                        });
+
+                    }
+                });
+
+
+                jQuery('.password-login-btn').click(function (e) {
+                    if (jQuery('#password-login-form').valid()) {
+
+                        var emailmobile = jQuery('#emailmobilenumber').val();
+                        var mobpassword = jQuery('#logpassword').val();
+                        var getUrl = url.build('mobilelogin/account/login');
+
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                emailmobile: emailmobile,
+                                mobpassword: mobpassword
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                    location.href = response.customurl;
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+                            }
+                        });
+
+                    }
+                });
+
+
+                jQuery('.create-account-btn').click(function (e) {
+                    if (jQuery('#create-account-form').valid()) {
+
+                        var mobilenumber = jQuery('#regmobilenumber').val();
+                        var getUrl = url.build('mobilelogin/otp/send');
+                        var otptype = 'register';
+                        var resend = 0;
+                        var email = jQuery('.login-password.register-step1 #email').val();
+
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                resendotp: resend,
+                                email: email,
+                                oldmobile: 0
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('fieldset.fieldset.login-password.register-step1').hide();
+                                    jQuery('fieldset.fieldset.login-password.register-step2').fadeIn();
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+
+                            }
+                        });
+                    }
+                });
+
+
+                jQuery('.resend-create-account-btn').click(function (e) {
+                    var mobilenumber = jQuery('#regmobilenumber').val();
+                    var getUrl = url.build('mobilelogin/otp/send');
+                    var otptype = 'register';
+                    var resend = 1;
+                    var email = jQuery('.login-password.register-step1 #email').val();
+
+
+                    jQuery.ajax({
+                        url: getUrl,
+                        type: 'POST',
+                        data: {
+                            mobilenumber: mobilenumber,
+                            otptype: otptype,
+                            resendotp: resend,
+                            email: email,
+                            oldmobile: 0
+                        },
+                        showLoader: true,
+                        success: function (response) {
+                            if (response.succeess === "true") {
+                                jQuery('p.success-msg').text(response.successmsg);
+                                jQuery('p.success-msg').show().delay(5000).fadeOut();
+                            }
+                            else {
+                                jQuery('p.err-msg').text(response.errormsg);
+                                jQuery('p.err-msg').show().delay(5000).fadeOut();
+                            }
+                        },
+                        error: function (data) {
+
+                        }
+                    });
+                });
+
+                jQuery('.submit-create-account-btn').click(function (e) {
+                    if (jQuery('#create-account-form').valid()) {
+
+                        var mobilenumber = jQuery('#regmobilenumber').val();
+                        var otpcode = jQuery('#registerotp').val();
+                        var getUrl = url.build('mobilelogin/otp/verify');
+                        var otptype = 'register';
+
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                otpcode: otpcode,
+                                oldmobile: 0
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+
+                                    var firstname = jQuery('#firstname').val();
+                                    var lastname = jQuery('#lastname').val();
+                                    var mobile = jQuery('#regmobilenumber').val();
+                                    var email = jQuery('.login-password.register-step1 #email').val();
+                                    var password = jQuery('#password').val();
+                                    var getUrl = url.build('mobilelogin/account/create');
+
+                                    jQuery.ajax({
+                                        url: getUrl,
+                                        type: 'POST',
+                                        data: {
+                                            firstname: firstname,
+                                            mobile: mobile,
+                                            email: email,
+                                            password: password,
+                                            lastname: lastname
+                                        },
+                                        showLoader: true,
+                                        success: function (response) {
+                                            if (response.succeess === "true") {
+                                                jQuery('p.success-msg').text(response.successmsg);
+                                                jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                                location.href = response.customurl;
+                                            }
+                                            else {
+                                                jQuery('p.err-msg').text(response.errormsg);
+                                                jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                            }
+                                        },
+                                        error: function (data) {
+                                        }
+                                    });
+
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+                            }
+                        });
+
+                    }
+                });
+
+
+                jQuery('.forgot-btn-req').click(function (e) {
+
+
+                    if (jQuery('#forget-form').valid()) {
+
+                        var mobilenumber = jQuery('#fogmobilenumber').val();
+                        var getUrl = url.build('mobilelogin/otp/send');
+                        var otptype = 'forgot';
+                        var resend = 0;
+
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                resendotp: resend,
+                                oldmobile: 0
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('fieldset.fieldset.forgot-pass-step1').hide();
+                                    jQuery('fieldset.fieldset.forgot-pass-step2').fadeIn();
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+
+                            }
+                        });
+                    }
+                });
+
+                jQuery('.resend-forgot-otp-btn').click(function (e) {
+
+                    var mobilenumber = jQuery('#fogmobilenumber').val();
+                    var getUrl = url.build('mobilelogin/otp/send');
+                    var otptype = 'forgot';
+                    var resend = 1;
+
+                    jQuery.ajax({
+                        url: getUrl,
+                        type: 'POST',
+                        data: {
+                            mobilenumber: mobilenumber,
+                            otptype: otptype,
+                            resendotp: resend,
+                            oldmobile: 0
+                        },
+                        showLoader: true,
+                        success: function (response) {
+                            if (response.succeess === "true") {
+                                jQuery('fieldset.fieldset.forgot-pass-step1').hide();
+                                jQuery('fieldset.fieldset.forgot-pass-step2').fadeIn();
+                                jQuery('p.success-msg').text(response.successmsg);
+                                jQuery('p.success-msg').show().delay(5000).fadeOut();
+                            }
+                            else {
+                                jQuery('p.err-msg').text(response.errormsg);
+                                jQuery('p.err-msg').show().delay(5000).fadeOut();
+                            }
+                        },
+                        error: function (data) {
+
+                        }
+                    });
+                });
+
+                jQuery('.forgot-btn-verify').click(function (e) {
+                    if (jQuery('#forget-form').valid()) {
+
+                        var mobilenumber = jQuery('#fogmobilenumber').val();
+                        var otpcode = jQuery('#forgototp').val();
+                        var getUrl = url.build('mobilelogin/otp/verify');
+                        var otptype = 'forgot';
+
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                otpcode: otpcode,
+                                oldmobile: 0
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('fieldset.fieldset.forgot-pass-step2').hide();
+                                    jQuery('fieldset.fieldset.forgot-pass-step3').fadeIn();
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+                            }
+                        });
+
+                    }
+                });
+
+                jQuery('.forgot-submit-password-btn').click(function (e) {
+                    if (jQuery('#forget-form').valid()) {
+
+                        var mobilenumber = jQuery('#fogmobilenumber').val();
+                        var password = jQuery('#newpassword').val();
+                        var confirmpassword = jQuery('#confirmnewpassword').val();
+                        var getUrl = url.build('mobilelogin/otp/resetpassword');
+
+                        if (password == confirmpassword) {
+                            jQuery.ajax({
+                                url: getUrl,
+                                type: 'POST',
+                                data: {
+                                    mobilenumber: mobilenumber,
+                                    password: password
+                                },
+                                showLoader: true,
+                                success: function (response) {
+                                    if (response.succeess === "true") {
+                                        jQuery('fieldset.fieldset.forgot-pass-step3').hide();
+                                        jQuery('fieldset.fieldset.forgot-pass-step1').fadeIn();
+                                        jQuery('.login-email-title').click();
+                                        jQuery('p.success-msg').text(response.successmsg);
+                                        jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                    }
+                                    else {
+                                        jQuery('p.err-msg').text(response.errormsg);
+                                        jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                    }
+                                },
+                                error: function (data) {
+                                }
+                            });
+                        } else {
+                            jQuery('p.err-msg').text('Password and confirm password are not same.');
+                            jQuery('p.err-msg').show().delay(5000).fadeOut();
+                        }
+                    }
+                });
+
+
+            }
+        );
+    </script>
+
+    <style>
+        .tit-item {
+            float: left;
+            width: 100%;
+        }
+
+        .withresend.pop-bnt {
+            width: 48%;
+            float: left;
+            margin-right: 4%;
+        }
+
+        .mobile_login_popup.modal-slide .action-close {
+            margin: 15px;
+            padding: 0;
+        }
+
+        button.submit-login-otp-btn.withresend.pop-bnt {
+            margin-right: 0;
+        }
+
+        p.err-msg {
+            float: left;
+            width: 100%;
+            margin-top: 25px;
+            margin-bottom: 0;
+            color: #f00;
+            font-weight: bold;
+        }
+
+        p.success-msg {
+            float: left;
+            width: 100%;
+            margin-top: 25px;
+            margin-bottom: 0;
+            color: #006400;
+            font-weight: bold;
+        }
+
+        button.submit-create-account-btn.withresend.pop-bnt {
+            margin-right: 0;
+        }
+
+        button.forgot-btn-verify.withresend.pop-bnt {
+            margin-right: 0;
+        }
+
+        .footer-box-link {
+            float: left;
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        input#mobilenumber, input#fogmobilenumber, #forget-form input, .frm-container input {
+            height: 40px;
+        }
+
+        fieldset.fieldset.login-password input {
+            height: 40px;
+        }
+
+        button.pop-bnt {
+            color: <?php echo $buttonColor?>;
+            background-color: <?php echo $buttonBGColor?>;
+            width: 100%;
+            font-size: 13px;
+            padding: 12px 0;
+            font-weight: bold;
+            border: snow;
+            box-shadow: 0px 0px 3px 1px #8f8f8f;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .frm-container {
+            float: left;
+            width: 100%;
+            margin: 30px 0;
+        }
+
+        .right-contet-part .fieldset > .field, .right-contet-part .fieldset > .fields > .field {
+            margin: 0 0 10px;
+        }
+
+        fieldset.fieldset.login-otp {
+            text-align: center;
+        }
+
+        fieldset.fieldset.login-password {
+            text-align: center;
+        }
+
+        .main-title {
+            float: left;
+            width: 100%;
+        }
+
+        .mobile_login_popup header.modal-header {
+            position: absolute;
+            top: 0px;
+            right: -42px;
+            background-color: #fff;
+        }
+
+        .mobile_login_popup .modal-content {
+            padding: 0;
+        }
+
+        .mobile_login_popup .modal-inner-wrap {
+            max-width: 750px;
+        }
+
+        .mobile-sendotp-popup {
+            width: 100%;
+            float: left;
+            border-bottom: 8px solid<?php echo $borderTwo?>;
+        }
+
+        .main-contai {
+            float: left;
+            width: 100%;
+            border-bottom: 8px solid<?php echo $borderOne?>;
+        }
+
+        span.create-acc-title {
+            float: left;
+            width: 100%;
+            font-size: 15px;
+            color: #1979c3;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 7px;
+        }
+
+        span.for-accout-title {
+            float: left;
+            width: 100%;
+            font-size: 15px;
+            color: #012b72;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tit-item span {
+            width: calc(50% - 20px);
+            float: left;
+            text-align: center;
+            font-weight: bold;
+            margin: 0 10px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: border-bottom 0.5s ease;
+            padding: 5px 0;
+        }
+
+        .tit-item span.active {
+            border-bottom: 4px solid<?php echo $borderOne?>;
+        }
+
+        .left-img-part {
+            width: 350px;
+            float: left;
+            height: 545px;
+            background-position: center;
+        }
+
+        img.bacx-image {
+            float: left;
+            width: 100%;
+            background-size: cover;
+            max-height: 505px;
+        }
+
+        .right-contet-part {
+            width: 360px;
+            float: left;
+            padding-top: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .modal-popup .action-close:before {
+            font-size: 17px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .mobile_login_popup .modal-inner-wrap {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 840px) {
+            .mobile_login_popup .modal-inner-wrap {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .left-img-part {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .mobile_login_popup.modal-popup.modal-slide._inner-scroll .modal-inner-wrap {
+                min-height: auto;
+                margin: 3rem auto;
+                overflow-y: initial;
+                background-color: #fff;
+            }
+
+            .mobile_login_popup.modal-popup.modal-slide {
+                left: 0;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .right-contet-part {
+                width: calc(100% - 40px);
+            }
+
+            .mobile_login_popup header.modal-header {
+                top: -34px;
+                right: 0px;
+            }
+
+            .mobile_login_popup.modal-popup.modal-slide .action-close {
+                margin: 15px 20px;
+                padding: 0;
+            }
+        }
+
+    </style>
+<?php } ?>

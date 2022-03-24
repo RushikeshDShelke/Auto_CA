@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/footer');
+$newsletterLabelAria = $at_settings['newsletter_label'] ? $at_settings['newsletter_label'] : $at_settings['newsletter_title'];
+; //__('Get the latest deals and more')
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+?>
+<div class="block newsletter form-only">
+	<form class="form subscribe"
+		novalidate
+		action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+		method="post"
+		data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+		id="newsletter-widget-validate-detail">
+		<div class="field newsletter">
+			<div class="control">
+				<label for="newsletter-widget">
+					<span class="label">
+						<?= $block->escapeHtml($newsletterLabelAria) ?>
+					</span>
+				</label>
+				<input name="email" type="email" id="newsletter-widget"
+					   placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>"
+					   data-validate="{required:true, 'validate-email':true}"
+				/>	
+			</div>
+		</div>
+		<div class="actions">
+			<button class="action subscribe primary"
+					title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"
+					type="submit"
+					aria-label="Subscribe">
+				<span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+			</button>
+		</div>
+	</form>
+</div>

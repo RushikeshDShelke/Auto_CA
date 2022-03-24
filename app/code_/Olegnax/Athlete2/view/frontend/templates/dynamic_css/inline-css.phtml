@@ -1,0 +1,11 @@
+<?php
+if ($this->getConfig('athlete2_design/appearance_custom/inline_css')) {
+    $content = $this->getChildHtml('athlete2_dynamic_css');
+    if (!empty($content)) {
+        $content = preg_replace('/[\r\n\t]/', ' ', $content);
+        $content = preg_replace('/[\r\n\t ]{2,}/', ' ', $content);
+        $content = preg_replace('/\s+(\:|\;|\{|\})\s+/', '\1', $content);
+        $content = preg_replace('/<[^<>]+>(.*?)<\/[^<>]+>/m', '/* Forbidden tags in styles */', $content);
+        echo '<style type="text/css">' . $content . '</style>';
+    }
+}

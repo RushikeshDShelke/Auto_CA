@@ -1,0 +1,29 @@
+<?php
+$theme_helper = $this->helper('Olegnax\Athlete2\Helper\Helper');
+$at_settings = $block->getConfig('athlete2_settings');
+$headerLayout = $at_settings['header']['header_layout'];
+$show_toplinks = $at_settings['header']['show_top_links'];
+$topline_block_left = $theme_helper->getBlockTemplateProcessor( $at_settings['header']['top_left_static'] );
+$topline_block_right = $theme_helper->getBlockTemplateProcessor( $at_settings['header']['top_right_static'] );
+$topline_block_middle = $theme_helper->getBlockTemplateProcessor( $at_settings['header']['top_middle_static'] );
+?>
+<div class="top-bar flex-row<?php if (  ! empty( $topline_block_middle ) ) { echo ' topline-3col'; } ?>">
+	<div class="flex-left modal__left">
+	<?php
+	$language		 = $this->getChildHtml( 'store_language' );
+	$currency		 = $this->getChildHtml( 'currency' );
+	echo $language . $currency;
+	?>
+	<?php if (  ! empty( $topline_block_left ) ) { echo '<div class="topline-block">' . $topline_block_left . '</div>'; } ?>
+	</div>
+	<?php if (  ! empty( $topline_block_middle ) ) { ?>
+	<div class="flex-center flex-row">
+		 <div class="topline-block"><?= $topline_block_middle; ?></div>				
+	</div>
+	<?php } ?>
+	<div class="flex-right flex-row modal__right" data-move-desktop="header.main.right" data-move-back="header.main.right">
+		<?php if (  ! empty( $topline_block_right ) ) { echo '<div class="topline-block">' . $topline_block_right . '</div>'; } ?>
+		<?php if ( $show_toplinks ) { echo $this->getChildHtml( 'top_links' ); } ?>		
+		<?php echo $this->getChildHtml( 'minicart' ); ?>
+	</div>
+</div>

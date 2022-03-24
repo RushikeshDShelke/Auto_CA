@@ -1,0 +1,30 @@
+<?php
+/**
+ * Blog post share template
+ *
+ * @var $block \Magefan\Blog\Block\Post\Info
+ *
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+$_hideShare = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/blog/blog_list_social');
+if (!$_hideShare) {
+	$_post = $block->getPost();
+	$_postUrl = $_post->getPostUrl();
+	$_postName = $block->escapeHtml($_post->getTitle(), null, true);
+	?>
+	<div class="social-share__content">
+		<a target="_blank" class="ox-social-button" href="https://twitter.com/intent/tweet?<?=
+		http_build_query(array( // WPCS: xss ok.
+			'text' => $_postName,
+			'url' => $_postUrl,
+		))
+		?>"><i class="athlete2-icon-twitter"></i><span><?= __('Twitter') ?></span></a>
+		<a target="_blank" class="ox-social-button"
+		   href="https://www.facebook.com/sharer/sharer.php?<?= http_build_query(array('u' => $_postUrl)) ?>"><i
+					class="athlete2-icon-facebook"></i><span><?= __('Facebook') ?></span></a>
+	</div>
+<?php } ?>

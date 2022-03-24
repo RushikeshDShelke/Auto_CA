@@ -1,0 +1,414 @@
+<?php
+/**
+ * Blog related posts template
+ *
+ * @var $block \Magefan\Blog\Block\Post\View\RelatedProducts
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+?>
+
+<?php
+if ($exist = $block->getItems()->getSize() && $this->displayProducts()) {
+	$theme_helper = $this->helper('Olegnax\Athlete2\Helper\ProductList');
+	$at_settings = $theme_helper->getConfig('athlete2_settings');
+	$width = $at_settings[ 'product_images' ][ 'listing_image_width' ];
+	$height =  $at_settings[ 'product_images' ][ 'listing_image_height' ];
+	$cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" class="minicart-icon-1" width="14" height="16" viewBox="0 0 14 16">
+	  <path d="M11,3V0H3V3H0V16H14V3H11ZM5,2H9V3H5V2Zm7,12H2V5H3V7H5V5H9V7h2V5h1v9Z"></path>
+	</svg>';
+	$compareIcon ='<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16">
+	  <g>
+		<polygon points="2 2 8 2 8 0 0 0 0 12 3 12 3 10 2 10 2 2"></polygon>
+		<rect x="8" y="2" width="2" height="1"></rect>
+		<polygon points="13 6 13 14 6 14 6 6 13 6 13 4 4 4 4 16 15 16 15 6 13 6"></polygon>
+	  </g>
+	</svg>';
+
+    $type = 'related';
+    $class = $type;
+
+    $image = 'related_products_list';
+	$image_hover = 'category_page_grid_hover';
+    $title = __('Related Products');
+    $items = $block->getItems();
+    $limit = 0;
+    $shuffle = 0;
+    $canItemsAddToCart = true;
+	
+	$showRating = $at_settings['products_listing']['rating'];
+	$showPrice = $at_settings['products_listing']['price'];
+	$showCart = $at_settings['products_listing']['add_to_cart'];
+	$showWishlist = $at_settings['products_listing']['wishlist'];
+	$showCompare = $at_settings['products_listing']['compare'];
+	$showCategory = $at_settings['products_listing']['category_name'];
+	$showQuickview = $at_settings['products_listing']['quickview'] && $theme_helper->isActivePlugin( 'Olegnax_Quickview' );
+	$gridLayout = $at_settings['products_listing']['products_layout'];
+	$showBrand = $at_settings['products_listing']['brand'];
+	$showReviewCount = $at_settings['products_listing']['review_count'];
+	$alignDetailsCenter = $at_settings['products_listing']['products_layout_centered'];
+	$quickviewPosition = $at_settings['products_listing']['quickview_position'];
+
+if($showBrand){
+	$brandImageSize ='';
+	$altBrandImage = !$at_settings['products_listing']['brand_image_alt'];
+	$brandImageWidth = $at_settings['products_listing']['brand_image_width'];
+	$brandImageHeight = $at_settings['products_listing']['brand_image_height'] ?: $at_settings['products_listing']['brand_image_width'];
+	if($brandImageWidth && $brandImageHeight) {
+		$brandImageSize = [$brandImageWidth, $brandImageHeight];
+	}
+}
+	$classes = [];
+	$classes[] = 'product-columns-' . $at_settings['blog_post']['blog_related_product_columns'];
+	$classes[] = 'product-columns-s-' . $at_settings['products_listing']['grid_columns_s'];
+	$classes[] = 'product-columns-m-' . $at_settings['products_listing']['grid_columns_m'];
+	$classes[] = 'product-columns-l-' . $at_settings['blog_post']['blog_related_product_columns'];
+	$classes[] = $alignDetailsCenter ? 'align-details-center' : '';
+	$classes[] = $showReviewCount ? 'show-review-count' : '';
+	$classes[] = $quickviewPosition ? ('quickview-' . $quickviewPosition) : '';
+	if($gridLayout === '2'){
+		$classes[] = 'products-grid__layout-2';
+	} else {
+		$classes[] = 'products-grid__layout-default';
+	}
+	if($gridLayout === '5'){
+		$classes[] = 'secondary-top-right';
+	}
+	if($gridLayout === '4' || $gridLayout === '2' || $gridLayout === '5'){
+		$classes[] = 'products-grid__buttons-below';
+	}
+	$templateType = null;
+    $description = false;
+}
+?>
+
+<?php if ($exist):?>
+
+    <?php if ($type == 'related' || $type == 'upsell'): ?>
+        <?php if ($type == 'related'): ?>
+            <div class="block <?php echo $class; ?>" data-mage-init='{"relatedProducts":{"relatedCheckbox":".related.checkbox"}}' data-limit="<?php echo $limit; ?>" data-shuffle="<?php echo $shuffle; ?>">
+        <?php else: ?>
+            <div class="block <?php echo $class; ?>" data-mage-init='{"upsellProducts":{}}' data-limit="<?php echo $limit; ?>" data-shuffle="<?php echo $shuffle; ?>">
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="block <?php echo $class; ?>">
+    <?php endif; ?>
+    <div class="block-title title">
+        <strong id="block-<?php echo $class?>-heading" role="heading" aria-level="2"><?php echo $title; ?></strong>
+    </div>
+    <div class="block-content content" aria-labelledby="block-<?php echo $class?>-heading">
+        <div class="products wrapper grid products-grid products-<?php echo $type; ?> <?php echo implode( ' ', $classes ) ?>">
+            <ol class="products__listing-wrapper products list items product-items">
+                <?php $iterator = 1; ?>
+                <?php foreach ($items as $_item): ?>
+                <?php $available = ''; ?>
+                <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related'): ?>
+                    <?php if (!$_item->getRequiredOptions()): ?>
+                        <?php $available = 'related-available'; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($type == 'related' || $type == 'upsell'): ?>
+                    <?php echo($iterator++ == 1) ? '<li class="item product product-item" style="display: none;">' : '</li><li class="item product product-item" style="display: none;">' ?>
+                <?php else: ?>
+                    <?php echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <?php endif; ?>
+                <div class="product-item-info <?php echo $available; ?>">
+					<div class="product-grid__image-wrapper">
+						<?= /* @escapeNotVerified */ '<!-- ' . $image . '-->' ?>
+						<a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+							<?= $this->helper( 'Olegnax\Athlete2\Helper\ProductImage' )->getResizedImageHover($_item, $image, $image_hover, [$width, $height] )->toHtml(); ?>
+						</a>
+						
+						<?php if($gridLayout === '2') { ?>
+						
+							<?php if ($showCart || $showQuickview): ?>
+								<div class="product-item-inner">
+                                <div class="product actions product-item-actions">
+									<div class="actions-primary">
+										<?php if ( $_item->isSaleable() && $showCart ): ?>
+											<?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+												<button class="action tocart primary"
+														data-mage-init='{"redirectUrl": {"url": "<?= $block->escapeUrl($block->getAddToCartUrl($_item)) ?>"}}'
+														type="button"
+														title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+													<span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+												</button>
+											<?php else: ?>
+												<?php $postDataHelper = $this->helper(Magento\Framework\Data\Helper\PostHelper::class);
+														$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()]);
+												?>
+												<button class="action tocart primary"
+														data-post='<?= $block->escapeHtml($postData); ?>'
+														type="button" title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+													<?= $cartIcon ?><span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+												</button>
+											<?php endif; ?>
+										<?php else: ?>
+											<?php if ($_item->getIsSalable()): ?>
+												<div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+											<?php else: ?>
+												<div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+											<?php endif; ?>
+										<?php endif; ?>	
+									</div>
+									<?php
+									if ( $showQuickview ) {
+										echo $this->helper( 'Olegnax\Quickview\Helper\Helper' )->getButton( $_item, 'button quick-view' );
+									}
+									?>
+                                </div>
+								<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="overlay-link"></a>
+							</div>
+							<?php endif; ?>
+						<?php } elseif($gridLayout === '3') { ?>
+							<?php if ($showCompare || $showWishlist || $showQuickview): ?>
+								<div class="product-item-inner">
+									<div class="product actions product-item-actions">
+										<?php if ($showCompare || $showWishlist): ?>
+										<div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+										<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+											<a href="#" data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'  class="action towishlist" data-action="add-to-wishlist" title="<?php echo __('Add to Wish List') ?>">
+												<span><?php echo __('Add to Wish List') ?></span>
+											</a>
+										<?php endif; ?>
+										<?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+											<?php
+											$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+											?>
+											<a href="#" class="action tocompare"
+											   data-post='<?php echo $compareHelper->getPostDataParams($_item);?>'
+											   data-role="add-to-links"
+											   title="<?php echo __('Add to Compare'); ?>">
+												<span class="icon"><?= $compareIcon ?></span><span><?php echo __('Add to Compare') ?></span>
+											</a>
+										<?php endif; ?>
+									</div>  
+										<?php endif; ?>
+										<?php
+										if ( $showQuickview ) {
+											echo $this->helper( 'Olegnax\Quickview\Helper\Helper' )->getButton( $_item, 'button quick-view' );
+										}
+										?>
+									</div>
+									<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="overlay-link"></a>
+								</div>
+							<?php endif; ?>
+						<?php } elseif($gridLayout === '4') { ?>
+							<?php if ($showQuickview): ?>
+								<div class="product-item-inner">
+									<?php echo $this->helper( 'Olegnax\Quickview\Helper\Helper' )->getButton( $_item, 'button quick-view' ); ?>
+									<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="overlay-link"></a>
+								</div>
+							<?php endif; ?>
+						<?php } elseif($gridLayout === '5') { ?>
+							<?php if ($showCompare || $showWishlist || $showQuickview): ?>
+								<div class="product-item-inner">
+									<?php if ($showCompare || $showWishlist): ?>
+										<div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+										<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+											<a href="#" data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'  class="action towishlist" data-action="add-to-wishlist" title="<?php echo __('Add to Wish List') ?>">
+												<span><?php echo __('Add to Wish List') ?></span>
+											</a>
+										<?php endif; ?>
+										<?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+											<?php
+											$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+											?>
+											<a href="#" class="action tocompare"
+											   data-post='<?php echo $compareHelper->getPostDataParams($_item);?>'
+											   data-role="add-to-links"
+											   title="<?php echo __('Add to Compare'); ?>">
+												<span class="icon"><?= $compareIcon ?></span><span><?php echo __('Add to Compare') ?></span>
+											</a>
+										<?php endif; ?>
+									</div>  
+									<?php endif; ?>
+									<?php
+									if ( $showQuickview ) {
+										echo $this->helper( 'Olegnax\Quickview\Helper\Helper' )->getButton( $_item, 'button quick-view' );
+									}
+									?>
+									<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="overlay-link"></a>
+								</div>
+							<?php endif; ?>
+						<?php } else { ?>
+												
+							<?php if ($showCompare || $showCart || $showWishlist || $showQuickview): ?>
+								<div class="product-item-inner">
+                                <div class="product actions product-item-actions">
+									<div class="actions-primary">
+										<?php if ( $_item->isSaleable() && $showCart ): ?>
+											<?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+												<button class="action tocart primary"
+														data-mage-init='{"redirectUrl": {"url": "<?= $block->escapeUrl($block->getAddToCartUrl($_item)) ?>"}}'
+														type="button"
+														title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+													<span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+												</button>
+											<?php else: ?>
+												<?php $postDataHelper = $this->helper(Magento\Framework\Data\Helper\PostHelper::class);
+														$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()]);
+												?>
+												<button class="action tocart primary"
+														data-post='<?= $block->escapeHtml($postData); ?>'
+														type="button" title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+													<?= $cartIcon ?><span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+												</button>
+											<?php endif; ?>
+										<?php else: ?>
+											<?php if ($_item->getIsSalable()): ?>
+												<div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+											<?php else: ?>
+												<div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+											<?php endif; ?>
+										<?php endif; ?>
+										<?php if ($showCompare || $showWishlist): ?>
+										<div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+											<?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+												<?= $addToBlock->setProduct($_item)->getChildHtml() ?>
+											<?php endif; ?>									
+										</div>      
+										<?php endif; ?>
+									</div>
+									<?php
+									if ( $showQuickview ) {
+										echo $this->helper( 'Olegnax\Quickview\Helper\Helper' )->getButton( $_item, 'button quick-view' );
+									}
+									?>
+                                </div>
+								<a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="overlay-link"></a>
+							</div>
+								<?php endif; ?>
+						
+							<?php } ?>
+							<?php if ( $theme_helper->isActivePlugin( 'Olegnax_ProductLabel' ) ) {
+								echo $this->helper( 'Olegnax\ProductLabel\Helper\Helper' )->showLabels( $_item );
+							}  ?>
+					</div>
+					<div class="product-grid-overlay"></div>
+                    <div class="product details product-item-details">
+						<?php if($gridLayout === '2') { ?>
+							<?php if ($showWishlist || $showCompare): ?>
+								<div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+									<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+										<a href="#" data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'  class="action towishlist" data-action="add-to-wishlist" title="<?php echo __('Add to Wish List') ?>">
+											<span><?php echo __('Add to Wish List') ?></span>
+										</a>
+									<?php endif; ?>
+									<?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+										<?php
+										$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+										?>
+										<a href="#" class="action tocompare"
+										   data-post='<?php echo $compareHelper->getPostDataParams($_item);?>'
+										   data-role="add-to-links"
+										   title="<?php echo __('Add to Compare'); ?>">
+											<span class="icon"><?= $compareIcon ?></span><span><?php echo __('Add to Compare') ?></span>
+										</a>
+									<?php endif; ?>
+								</div>
+							<?php endif; ?>
+						<?php } ?>
+                        <strong class="product name product-item-name"><a class="product-item-link" title="<?php echo $block->escapeHtml($_item->getName()) ?>" href="<?php echo $block->getProductUrl($_item) ?>">
+                            <?php echo $block->escapeHtml($_item->getName()) ?></a>
+                        </strong>
+						<?php if ( $showPrice ) { echo /* @escapeNotVerified */ $block->getProductPrice($_item); } ?>
+						<?php if ($templateType && $showRating): ?>
+							<?php echo $block->getReviewsSummaryHtml($_item, $templateType) ?>
+						<?php endif; ?>
+						<?php if($gridLayout === '4') { ?>
+							<div class="product actions product-item-actions">								
+								<?php if ( $_item->isSaleable() && $showCart ): ?>						
+									<div class="actions-primary">
+										<?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+											<button class="action tocart primary"
+													data-mage-init='{"redirectUrl": {"url": "<?= $block->escapeUrl($block->getAddToCartUrl($_item)) ?>"}}'
+													type="button"
+													title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+												<span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+											</button>
+										<?php else: ?>
+											<?php $postDataHelper = $this->helper(Magento\Framework\Data\Helper\PostHelper::class);
+													$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()]);
+											?>
+											<button class="action tocart primary"
+													data-post='<?= $block->escapeHtml($postData); ?>'
+													type="button" title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+												<?= $cartIcon ?><span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+											</button>
+										<?php endif; ?>
+									</div>
+								<?php else: ?>
+									<?php if ($_item->getIsSalable()): ?>
+										<div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+									<?php else: ?>
+										<div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+									<?php endif; ?>
+								<?php endif; ?>
+								<?php if ($showCompare || $showWishlist): ?>
+											<div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+										<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+											<a href="#" data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'  class="action towishlist" data-action="add-to-wishlist" title="<?php echo __('Add to Wish List') ?>">
+												<span><?php echo __('Add to Wish List') ?></span>
+											</a>
+										<?php endif; ?>
+										<?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+											<?php
+											$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+											?>
+											<a href="#" class="action tocompare"
+											   data-post='<?php echo $compareHelper->getPostDataParams($_item);?>'
+											   data-role="add-to-links"
+											   title="<?php echo __('Add to Compare'); ?>">
+												<span class="icon"><?= $compareIcon ?></span><span><?php echo __('Add to Compare') ?></span>
+											</a>
+										<?php endif; ?>
+									</div>  
+								<?php endif; ?>
+							</div>
+						<?php } ?>
+						<?php if($gridLayout === '3' || $gridLayout === '5') { ?>
+						<div class="product actions product-item-actions">
+								<?php if ( $_item->isSaleable() && $showCart ): ?>	
+							
+									<div class="actions-primary">
+										<?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+											<button class="action tocart primary"
+													data-mage-init='{"redirectUrl": {"url": "<?= $block->escapeUrl($block->getAddToCartUrl($_item)) ?>"}}'
+													type="button"
+													title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+												<span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+											</button>
+										<?php else: ?>
+											<?php $postDataHelper = $this->helper(Magento\Framework\Data\Helper\PostHelper::class);
+													$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()]);
+											?>
+											<button class="action tocart primary"
+													data-post='<?= $block->escapeHtml($postData); ?>'
+													type="button" title="<?= $block->escapeHtml(__('Add to Cart')) ?>">
+												<?= $cartIcon ?><span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+											</button>
+										<?php endif; ?>
+									</div>
+								<?php else: ?>
+									<?php if ($_item->getIsSalable()): ?>
+										<div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+									<?php else: ?>
+										<div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+									<?php endif; ?>
+								<?php endif; ?>							
+							</div>
+						<?php } ?>
+                        </div>
+                    </div>
+                    <?php echo($iterator == count($items)+1) ? '</li>' : '' ?>
+                <?php endforeach ?>
+            </ol>
+        </div>
+    </div>
+</div>
+<?php endif;?>

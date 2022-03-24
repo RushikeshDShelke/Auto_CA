@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components"
+                   name="customer_account_edit_head_components"
+                   template="Magento_Customer::js/components.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument
+                        translate="true"
+                        name="title"
+                        xsi:type="string">Rate Vendor</argument>
+            </action>
+        </referenceBlock>
+        <!--<referenceBlock name="authentication-popup" remove="true"/>
+        <referenceBlock name="porto_header" remove="true"/>-->
+        <referenceContainer name="content">
+            <block class="Cminds\Marketplace\Block\Supplier\Rate\Ratelist"
+                   name="marketplace.supplier.ratelist"
+                   template="Cminds_Marketplace::marketplace/customer/account/ratelist.phtml"
+                   cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

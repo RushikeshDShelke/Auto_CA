@@ -1,0 +1,32 @@
+{
+    "name": "landofcoder/module-pincodechecker",
+    "description": "Magento 2 Pincode Checker Module",
+    "require": {
+        "landofcoder/module-all" : "1.*"
+    },
+    "keywords": [
+    "landofcoder",
+    "landofcoder pincode checker",
+    "magento 2 pincode checker extension"
+    ],
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "email": "landofcoder@gmail.com",
+            "name": "Extension Provider",
+            "homepage": "https://landofcoder.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lof\\PincodeChecker\\": ""
+        }
+    }
+}

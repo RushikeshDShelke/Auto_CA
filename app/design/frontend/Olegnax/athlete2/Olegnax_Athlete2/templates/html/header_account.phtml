@@ -1,0 +1,27 @@
+<?php
+$icon = '<i class="athlete2-icon-login"></i>';
+?>
+<div class="header__item header__item-account" data-move-desktop="header.myaccount" id="header__item-account">
+	<a class="button js-item-myaccount-action" id="customclickbutton" href="<?= $block->escapeUrl($block->getUrl('customer/account')); ?>">
+			<?= $icon; ?>
+			<span class="label">
+					<?= $block->escapeHtml(__('My Account')) ?>
+			</span>
+	</a>
+	<a href="<?= $block->escapeUrl($block->getUrl('customer/account')); ?>" style="display:none" id="aftersigninatag">a</a>
+	<?php echo $this->getChildHtml("header_account_drop"); ?>
+</div>
+
+<style>
+@media screen and (max-width: 768px){
+	#aftersigninatag{
+		display : block !important;
+		opacity : 0;
+		height: 20px;
+        padding: 30px 15px;
+		max-width : 25px;
+        position: absolute;
+        top: 0;
+	}
+}
+</style>

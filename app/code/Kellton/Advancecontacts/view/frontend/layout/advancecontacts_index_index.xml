@@ -1,0 +1,30 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+	<head>
+        <title>CONTACT INFORMATION</title>
+        <!--
+		demo
+		<css src="Kellton_Advancecontacts::css/css.css"/>
+		<script src="Kellton_Advancecontacts::js/js.js"/>
+		<css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+		<script src="path/file.js" defer="defer"/>
+		<link src="http://url.com" src_type="url"/>
+		<remove src="path/remove/file.css"/>
+
+		-->
+    </head>
+
+    <body>
+
+
+        <referenceContainer name="sidebar.main">
+            <block class="Kellton\Advancecontacts\Block\Index\Sidebar" name="advancecontacts_index_sidebar" before="-" template="Kellton_Advancecontacts::advancecontacts_index_sidebar.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Kellton\Advancecontacts\Block\Index\Index" name="advancecontacts_index_index" template="Kellton_Advancecontacts::advancecontacts_index_index.phtml"/>
+        </referenceContainer>
+
+
+    </body>
+</page>

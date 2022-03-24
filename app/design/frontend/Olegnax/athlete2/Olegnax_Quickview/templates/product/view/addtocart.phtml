@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+$actionPosition = '';
+$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product');
+if ( ('2' == $at_settings[ 'actions_position' ] || $at_settings[ 'product_social_min' ]) && $this->helper('Magento\Wishlist\Helper\Data')->isAllow() ) {
+	$actionPosition='actions--right-to-cart';
+}
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php $buttonIcon = '<svg id="cart-icon-small" data-name="cart-icon-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 16"><rect class="svg-fill-none" x="5" y="2" width="4" height="1"/><polygon class="svg-fill-none" points="11 7 9 7 9 5 5 5 5 7 3 7 3 5 2 5 2 14 12 14 12 5 11 5 11 7"/><path d="M12,3V0H4V3H1V16H15V3H12ZM6,2h4V3H6V2Zm7,12H3V5H4V7H6V5h4V7h2V5h1v9Z" transform="translate(-1)"/></svg>' ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart <?= $block->escapeHtmlAttr($actionPosition) ?>">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="field qty">
+            <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+            <div class="control qty-controls-wrap">
+				<a class="icon-minus qty-minus"></a>
+				<a class="icon-plus qty-plus"></a>
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       value="<?= $block->escapeHtmlAttr($block->getProductDefaultQty() * 1) ?>"
+                       title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                       class="input-text qty"
+                       data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       />				
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="actions">
+            <button type="submit"
+                    title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button">
+                <?= /* @noEscape */ $buttonIcon ?><span><?= $block->escapeHtml($buttonTitle) ?></span>
+            </button>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Olegnax_Quickview/js/validate-product": {}
+        }
+    }
+</script>

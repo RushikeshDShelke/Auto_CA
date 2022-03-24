@@ -1,0 +1,247 @@
+<?php $vendor = $block->getRegistry('current_customer'); ?>
+<?php $customFields = $block->getCustomFieldsValues(true); ?>
+<?php $newCustomFields = $block->getNewCustomFieldsValues(true); ?>
+<script type="text/javascript">
+    //<![CDATA[
+    jQuery(document).ready(function($){
+        function saveAndContinueEdit(urlTemplate) {
+            $('#save_and_continue').trigger('click');
+        }
+
+        if($('#button_add_remark')) {
+            $('#button_add_remark').click(function (e) {
+                e.preventDefault();
+                $('#remark').show();
+            });
+        }
+
+        if($('#button_activate')) {
+            $('#button_activate').click(function (e) {
+                e.preventDefault();
+                $('#form_action').val('approve');
+                saveAndContinueEdit('<?php echo $block->escapeHtml($this->getSaveAndContinueUrl()); ?>');
+            });
+        }
+
+        $('#button_approve_changes').click(function(e){
+            if(!$('#supplier_profile_name_new').val()
+                && !$('#supplier_profile_name_new').val()
+            ) {
+                if(!confirm('New data is empty, do you want to continue ?')) {
+                    return;
+                }
+            }
+            e.preventDefault();
+
+            $('#form_action').val('approve_changes');
+            saveAndContinueEdit('<?php echo $block->escapeHtml($this->getSaveAndContinueUrl()); ?>');
+        });
+
+        if($('#button_add_remark_save')) {
+            $('#button_add_remark_save').click(function (e) {
+                e.preventDefault();
+                $('#form_action').val('save_remark');
+                saveAndContinueEdit('<?php echo $block->escapeHtml($this->getSaveAndContinueUrl()); ?>');
+            });
+        }
+
+        if($('#button_disapprove')) {
+            $('#button_disapprove').click(function (e) {
+                e.preventDefault();
+                $('#form_action').val('disapprove');
+                saveAndContinueEdit('<?php echo $block->escapeHtml($this->getSaveAndContinueUrl()); ?>');
+            });
+        }
+    });
+    //]]>
+</script>
+
+<div class="entry-edit">
+    <div id="messages">
+        <ul class="messages">
+            <?php if ($vendor->getSupplierProfileApproved()) : ?>
+                <li class="success-msg">
+                    <ul>
+                        <li>
+                            <span>
+                                <?php
+                                /* @escapeNotVerified */ echo $block
+                                    ->escapeHtml(__('This profile is activate'));
+                                ?>
+                            </span>
+                            <button type="button"
+                                    id="button_disapprove"
+                                    class="scalable delete"
+                                    style="float:right;">
+                                <span><span>
+                                    <span>
+                                        <?php
+                                        /* @escapeNotVerified */ echo $block
+                                            ->escapeHtml(__('Disapprove'));
+                                        ?>
+                                    </span>
+                                </span></span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            <?php else : ?>
+                <li class="warning-msg">
+                    <ul>
+                        <li>
+                            <span>
+                                <?php
+                                /* @escapeNotVerified */ echo $block
+                                    ->escapeHtml(__('This profile is not approved'));
+                                ?>
+                            </span>
+                            <button type="button"
+                                    id="button_activate"
+                                    class="scalable save"
+                                    style="float:right;">
+                                <span><span>
+                                    <span>
+                                        <?php
+                                        /* @escapeNotVerified */ echo $block
+                                            ->escapeHtml(__('Approve'));
+                                        ?>
+                                    </span>
+                                </span></span>
+                            </button>
+
+                            <button type="button"
+                                    id="button_add_remark"
+                                    class="scalable"
+                                    style="float:right; margin-right: 5px;">
+                                <span><span>
+                                    <span>
+                                        <?php
+                                        /* @escapeNotVerified */ echo $block
+                                            ->escapeHtml(__('Add Remark'));
+                                        ?>
+                                    </span>
+                                </span></span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+                <div id="remark" style="display: none;">
+                    <p>
+                        <h4>
+                            <?php
+                            /* @escapeNotVerified */ echo $block
+                                ->escapeHtml(
+                                    __('Add Remark to This Vendor Profile')
+                                );
+                            ?>
+                        </h4>
+                    </p>
+
+                    <p>
+                        <textarea
+                            name="remark"
+                            data-form-part="customer_form"
+                            id="remark"
+                            cols="30"
+                            rows="10"></textarea>
+                    </p>
+
+                    <p>
+                        <button type="button"
+                                id="button_add_remark_save"
+                                class="scalable save"
+                                style="">
+                            <span><span>
+                                <span>
+                                    <?php
+                                    /* @escapeNotVerified */ echo $block
+                                        ->escapeHtml(__('Save Remark'));
+                                    ?>
+                                </span>
+                            </span></span>
+                        </button>
+                    </p>
+                    <hr>
+                </div>
+            <?php endif; ?>
+        </ul>
+    </div>
+
+    <input type="hidden"
+           name="action"
+           data-form-part="customer_form"
+           id="form_action"
+           value=""/>
+
+    <?php if ($vendor->getSupplierName()) : ?>
+        <p>
+            <strong>
+                <?php echo $block->escapeHtml($vendor->getSupplierName()); ?>
+            </strong>
+            <small>
+                [<a
+                    href="javascript:void();"
+                    title="<?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Current Supplier Name')); ?>"
+                >?</a>]
+            </small>
+        </p>
+    <?php endif; ?>
+
+    <p>
+        <a href="<?php echo $block->getHelper()->getSupplierRawPageUrl($vendor->getId(),'adminhtml'); ?>"
+           target="_blank"><?php /* @escapeNotVerified */ echo  __('Supplier page'); ?></a>
+    </p>
+
+    <?php if ($vendor->getSupplierLogo()) : ?>
+        <p>
+            <img style="width: 100px"
+                 src="<?php echo $block->getHelper()->getSupplierLogo($vendor->getId()); ?>"
+                 alt="<?php echo $block->escapeHtml($vendor->getSupplierName()); ?>"/>
+        </p>
+    <?php else : ?>
+        <p style="clear:both;">
+            <img src="http://placehold.it/100x100" />
+        </p>
+    <?php endif; ?>
+
+    <?php if ($vendor->getSupplierDescription()) : ?>
+        <p>
+            <?php echo $block->escapeHtml($vendor->getSupplierDescription()); ?>
+            <small>
+                [<a
+                    href="javascript:void();"
+                    title="<?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Current Supplier Description')); ?>">?</a>
+                ]</small>
+        </p>
+    <?php endif; ?>
+    <?php if($customFields) {
+        foreach ($customFields as $customField) {
+            if( $customField['value'] !== '' ){
+    ?>
+            <br><div><strong><?php echo $block->getFieldLabel($customField['name']); ?></strong></div>
+            <div><?php echo $customField['value']; ?></div>
+    <?php
+            }
+        }
+    } ?>
+</div>
+
+<div class="entry-edit">
+    <h3 style="margin-top: 40px;"><?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Data Waiting For Approval')); ?>
+        <button type="button"
+                class="scalable save"
+                id="button_approve_changes"
+                style="float:right;">
+            <span><span>
+                    <span>
+                        <?php
+                        /* @escapeNotVerified */ echo $block
+                            ->escapeHtml(__('Approve Changes'));
+                        ?>
+                    </span>
+            </span></span>
+        </button>
+    </h3>
+
+    <?php echo $block->getFormHtml();?>
+</div>

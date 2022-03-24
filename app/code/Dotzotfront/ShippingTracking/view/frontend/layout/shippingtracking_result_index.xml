@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dotzot Shipping
+ *
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Dotzotfront_ShippingTracking::css/shippingtracking.css" />
+        <css src="Dotzotfront_ShippingTracking::css/shippingtracking-custom.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Dotzotfront\ShippingTracking\Block\Tracking" name="pr_shippingtracking_result" template="result.phtml" />
+        </referenceContainer>
+    </body>
+</page>

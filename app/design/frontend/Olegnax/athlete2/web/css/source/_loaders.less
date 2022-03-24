@@ -1,0 +1,165 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .ox-lazy{
+        .product-image-photo{
+            /*&.owl-lazy:not(.lazy-loaded),*/
+            &.lazy:not(.lazy-loaded){
+                width:44px;
+                height:3px;
+                opacity:1;
+            }
+        }
+        img{
+            opacity:1;
+            transition:opacity 0.2s;
+            &.lazy{
+                opacity:0;
+            }
+        }
+        rs-module{
+             img{
+                &.lazy{
+                    opacity:1;
+                }
+             }
+        }
+        .product-second-image-photo.lazy:not(.lazy-loaded){
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+    .load.indicator {
+        .lib-loader();
+        position: absolute;
+
+        > span {
+            display: none;
+        }
+    }
+    .loading-mask {
+        .lib-loading-mask();
+        background: rgba(0, 0, 0, .1);
+
+        .loader {
+            width:80px;
+            height:30px;
+            > img {
+                .lib-loading-mask();
+                box-sizing: border-box;
+                width: 80px;
+                height: 30px;
+                padding-left: 80px;
+                background:url('@{baseDir}images/preloader.svg') left top no-repeat;
+            }
+
+            > p {
+                display: none;
+            }
+        }
+    }
+
+    .pswp__preloader{
+        display:none;
+        &.pswp__preloader--active{
+            display:block;
+        }
+        .pswp__preloader__icn{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -40px;
+            margin-top: -15px;
+            box-sizing: border-box;
+            width: 80px;
+            height: 30px;
+            padding-left: 80px;
+            background:url('@{baseDir}images/preloader.svg') left top no-repeat;
+        }
+    }
+    body {
+        > .loading-mask {
+            z-index: @loader-overlay__z-index;
+        }
+    }
+
+    ._block-content-loading {
+        position: relative;
+    }
+    .lazy-wrapper{
+        .std .ox-banner .ox-banner-link&,
+        .ox-banner .ox-banner-link&, 
+        &{
+            display: block;
+            height: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            line-height: 0;
+            padding-bottom:100%;
+            background:#f8f8f8;
+            > img{
+                display: block;
+                height: auto;
+                margin: auto;
+                max-width: 100%;
+                position: absolute;
+                right: 0;
+                left: 0;
+                top:0;
+                bottom: 0;
+            }
+        }
+    }
+
+    .lazy-loader{
+        position:relative;
+        &:before{
+            content:'';
+            width:44px;
+            height:3px;
+            display: block;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            margin: auto;
+            max-width: 100%;
+            position: absolute;
+            background-image: url('@{baseDir}Olegnax_Core/images/preloader-img.svg');
+        }
+    }
+    
+    [style*="--aspect-ratio"]  {
+        > :first-child{
+            width: 100%;
+        }
+        > img {  
+            height: auto;
+        } 
+    }
+    @supports (--custom:property) {
+      [style*="--aspect-ratio"] {
+        position: relative;
+        &::before {
+            content: "";
+            display: block;
+            padding-bottom: ~"calc(100% / (var(--aspect-ratio)))";
+        }  
+        > :first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }  
+      }
+    }
+
+}

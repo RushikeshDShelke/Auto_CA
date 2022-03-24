@@ -1,0 +1,70 @@
+<root>
+	<config>
+				<olegnax_newsletterpopupbasic>
+			<general>
+				<enable>1</enable>
+				<many_times>everytime</many_times>
+				<layout>-fullwidth</layout>
+				<timeout>1000</timeout>
+				<show_mobile>0</show_mobile>
+				<width>740</width>
+				<height></height>
+				<mobile_width></mobile_width>
+				<mobile_height></mobile_height>
+				<mobile_image_height></mobile_image_height>
+				<column_width></column_width>
+				<padding></padding>
+				<tablet_padding></tablet_padding>
+				<mobile_padding></mobile_padding>
+				<content_padding>70</content_padding>
+				<tablet_content_padding></tablet_content_padding>
+				<mobile_content_padding>30</mobile_content_padding>
+				<position_h>h-center</position_h>
+				<position_v>v-center</position_v>
+				<form_layout>one-line</form_layout>
+				<content_position_h>h-left</content_position_h>
+				<content_position_v>v-center</content_position_v>
+				<show_shadow>0</show_shadow>
+				<clickable_overlay>0</clickable_overlay>
+			</general>
+			<content>
+				<column_image></column_image>
+				<content><![CDATA[<div class="spacer" style="height:30px;"></div>
+<div class="ox-unlock-newsletter">
+<img src="{{media url="athlete2/Demos/default/newsletter-unlock-text.jpg"}}" alt="" />
+<div class="-form-wrapper">
+{{block class="Magento\Newsletter\Block\Subscribe" template="Magento_Newsletter::subscribe_form.phtml"}}
+</div>
+</div>
+<h4 style="font-family: 'Roboto', 'Open Sans', Helvetica, Arial, sans-serif;    letter-spacing: 0; ">subscribe and get best deals and discounts</h4>
+<a href="#" class="ox-newsletter-disable__link ox-grey-underline">Don’t show this popup again</a>
+<div class="spacer" style="height:10px;"></div>]]></content>
+			</content>
+			<appearance>
+				<background_color>rgb(0, 0, 0)</background_color>
+				<bg_image_enabled>0</bg_image_enabled>
+				<background_image></background_image>
+				<bg_position_y>center</bg_position_y>
+				<bg_position_x>center</bg_position_x>
+				<bg_repeat>no-repeat</bg_repeat>
+				<bg_size>cover</bg_size>
+				<newsletter_input_style>normal</newsletter_input_style>
+				<newsletter_text_color>rgb(255, 255, 255)</newsletter_text_color>
+				<newsletter_titles_color>rgb(255, 255, 255)</newsletter_titles_color>
+				<close_button_bg></close_button_bg>
+				<close_button_icon_color></close_button_icon_color>
+				<close_button_bg_hover></close_button_bg_hover>
+				<close_button_icon_color_hover></close_button_icon_color_hover>
+				<newsletter_input_bg>rgb(251, 230, 45)</newsletter_input_bg>
+				<newsletter_input_border_color></newsletter_input_border_color>
+				<newsletter_input_border_focus></newsletter_input_border_focus>
+				<newsletter_color></newsletter_color>
+				<newsletter_button_color>rgb(0, 0, 0)</newsletter_button_color>
+				<newsletter_button_bg>rgba(251, 230, 45, 0)</newsletter_button_bg>
+				<newsletter_button_hover>rgb(0, 0, 0)</newsletter_button_hover>
+				<newsletter_button_hover_bg>rgba(251, 230, 45, 0)</newsletter_button_hover_bg>
+				<newsletter_input_color>rgba(0, 0, 0, 0.76)</newsletter_input_color>
+			</appearance>
+		</olegnax_newsletterpopupbasic>
+	</config>
+</root>

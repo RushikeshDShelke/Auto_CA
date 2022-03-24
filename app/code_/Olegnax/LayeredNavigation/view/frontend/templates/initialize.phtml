@@ -1,0 +1,23 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_LayeredNavigation
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * @license     Proprietary License https://olegnax.com/license/
+ */
+
+use Olegnax\LayeredNavigation\Block\Template;
+
+/** @var Template $block */
+?>
+
+<script>
+    requirejs(['jquery', 'OXAjaxNav'],
+        function ($) {
+            "use strict";
+
+            $(function () {
+                $('body').OXAjaxNav(<?= $block->getNavConfig(); ?>);
+            });
+        });
+</script>

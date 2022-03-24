@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <block class="Wbcom\PincodeChecker\Block\Adminhtml\Import\Edit\Tabs" name="pincode_create_tabs"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Wbcom\PincodeChecker\Block\Adminhtml\Import\Before" template="Wbcom_PincodeChecker::before.phtml" name="wbcom.import.before" as="import_form_before"/>
+            <block class="Wbcom\PincodeChecker\Block\Adminhtml\Import\Edit" name="pincode_create"/>
+            <block class="Wbcom\PincodeChecker\Block\Adminhtml\Import\After" template="Wbcom_PincodeChecker::after.phtml" name="wbcom.import.after" as="import_form_after"/>
+        </referenceContainer>
+    </body>
+</page>

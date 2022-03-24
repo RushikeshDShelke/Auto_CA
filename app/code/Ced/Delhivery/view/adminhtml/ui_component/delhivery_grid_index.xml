@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Delhivery
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="context" xsi:type="configurableObject">
+        <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\Context</argument>
+        <argument name="namespace" xsi:type="string">delhivery_grid_index</argument>
+        <!-- this should be same as the file name or uicomponentname -->
+    </argument>
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">delhivery_grid_index.delhivery_grid_index_data_source</item>
+             <!-- the format here is uicomponentname.datasourcename -->
+            <item name="deps" xsi:type="string">delhivery_grid_index.delhivery_grid_index_data_source</item>
+            <!-- the format here is uicomponentname.datasourcename -->
+        </item>
+        <item name="spinner" xsi:type="string">delhivery_ced_columns</item>
+        <!-- the format here is columns name defined below -->
+        <item name="buttons" xsi:type="array">
+            <!-- here we can add buttons -->
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Download Pincode</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">delhivery/grid/fetchpincode</item>
+            </item>
+        </item>
+    </argument>
+
+    <dataSource name="delhivery_grid_index_data_source">
+        <!-- this is data source name, this is used at many places -->
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Ced\Delhivery\Ui\DataProvider\PincodeProvider</argument>
+            <argument name="name" xsi:type="string">delhivery_grid_index_data_source</argument>
+            <!-- the same data source name as above -->
+            <argument name="primaryFieldName" xsi:type="string">delhivery_grid_index_data_source</argument>
+            <!-- our model's primary key -->
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <!-- the field used in ajax url's of grid. just define this as id -->
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="filter_url_params" xsi:type="array">
+                        <item name="status" xsi:type="string">*</item>
+                    </item>
+                </item>
+            </argument>
+            <!-- keep above same always -->
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="sticky" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <filterSelect name="store_id">
+                <argument name="optionsProvider" xsi:type="configurableObject">
+                    <argument name="class" xsi:type="string">Magento\Store\Ui\Component\Listing\Column\Store\Options</argument>
+                </argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="provider" xsi:type="string">${ $.parentName }</item>
+                        <item name="dataScope" xsi:type="string">store_id</item>
+                        <item name="caption" xsi:type="string" translate="true">All Store Views</item>
+                        <item name="label" xsi:type="string" translate="true">Store View</item>
+                    </item>
+                </argument>
+            </filterSelect>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="delhivery_ced_columns">
+         
+        <!-- this is for the first column which allows to select multiple columns -->
+        <!-- below are different column types based on our models -->
+        <column name="district">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">District</item>
+                </item>
+            </argument>
+        </column>
+        <column name="pin">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Pincode</item>
+                </item>
+            </argument>
+        </column>
+       <column name="pre_paid">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Pre Paid</item>
+                </item>
+            </argument>
+
+        </column>
+        <column name="pickup">
+         <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Pickup</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="cash">
+         <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Cash</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="cod">
+         <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">COD</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="state_code">
+         <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">State Code</item>
+                </item>
+            </argument>   
+        </column>
+    </columns>
+</listing>

@@ -1,0 +1,104 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+?>
+<style>
+    body .menu-wrapper {
+        display: none;
+    }
+    .webp-container-compare {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    body {
+        background: #ffffff;
+    }
+</style>
+<?php
+/**
+ * @var $block \Jajuma\WebpImages\Block\Adminhtml\ConversionTool\Test\Result
+ */
+$result = $block->convert();
+if (is_array($result)) :
+?>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'twentytwenty',
+    ], function () {
+        jQuery(document).ready(function() {
+            jQuery("#compare-image").twentytwenty({
+                default_offset_pct: 0.5,
+                orientation: 'horizontal',
+                before_label: 'ORIGINAL',
+                after_label: 'WEBP',
+                no_overlay: false,
+                move_slider_on_hover: false,
+                move_with_handle_only: true,
+                click_to_move: false
+            });
+        });
+    });
+</script>
+<div id="test-success-message">
+    <div class="messages">
+        <div class="message message-success success">
+            <div data-ui-id="messages-message-success">
+                <p><?= __('Success!') ?></p>
+                <p><?= __('Selected conversion tool works.') ?></p>
+                <p><?= __('WebP Image File was created using configured quality level / custom conversion command.') ?></p>
+                <p><?= __('See below for comparison Original vs WebP:') ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php if (strpos($result['original'], 'Jajuma_WebpImages/images/test.png') !== false) : ?>
+    <div id="test-notice-message">
+        <div class="messages">
+            <div class="message message-notice notice">
+                <div data-ui-id="messages-message-notice">
+                    <p><?= __('Product ID used for testing is invalid or that product has no image.<br>') ?>
+                       <?= __('Hence, below we can only show some sample image.<br>') ?>
+                       <?= __('Please use another Product ID, so we can show the conversion result with your own image.') ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<div class="webp-container-compare">
+    <div id="compare-image" class="twentytwenty-container">
+        <!-- The before image is first -->
+        <img src="<?= $result['original'] ?>" />
+        <!-- The after image is last -->
+        <picture>
+            <source srcset="<?= $result['webp'] ?>" type="image/webp">
+            <img src="<?= $block->getUnsupportWebpImage() ?>" />
+        </picture>
+    </div>
+</div>
+<?php else: ?>
+    <div id="test-notice-message">
+        <div class="messages">
+            <div class="message message-warning">
+                <div data-ui-id="message message-warning">
+                    <?php if ($message = $block->getError()): ?>
+                        <p><?= $message ?></p>
+                    <?php else : ?>
+                    <p><?= __('Sorry, Image conversion failed.') ?></p>
+                    <p><?= __('Seems selected conversion tool is not available on your server.') ?></p>
+                    <p><?= __('Can you please:') ?></p>
+                    <ul style="margin-left:20px;">
+                        <li><?= __('Try another conversion tool') ?></li>
+                        <li><?= __('And/or test with another image') ?></li>
+                        <li><?= __('Check the extension manual regrading conversion tool requirements') ?></li>
+                    </ul>
+                    <a href="https://www.jajuma.de/en/jajuma-develop/extensions/webp-optimized-images-extension-for-magento-2" target="_blank">Link To Manual</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

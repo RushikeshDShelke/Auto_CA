@@ -1,0 +1,44 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .breadcrumbs {
+        font-family: @tiny-font;
+        font-size:12px;
+        padding: 20px;
+        padding-bottom:0;
+        .item{
+            color:@text__color__muted;
+            display:inline;
+            &:not(:last-child):after {
+                content: '';
+                display: inline-block;
+                overflow: hidden;            
+                speak: none;
+                width: 1px;
+                height: 10px;
+                margin: 0 7px 0 4px;
+                background: @text__color__muted;
+                transform: rotate(25deg);
+
+            }
+            &:first-child{
+                a{
+                    margin-left:-3px;
+                }
+            }
+            strong{
+                font-weight:normal;
+            }
+            a:not(:hover){
+                color:@text__color__muted;
+            }
+        }
+    }
+}

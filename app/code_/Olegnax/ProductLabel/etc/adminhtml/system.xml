@@ -1,0 +1,172 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="olegnax" sortOrder="999" translate="label">
+            <label>Olegnax</label>
+        </tab>
+        <section id="olegnax_productlabel" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Product Label</label>
+            <tab>olegnax</tab>
+            <resource>Olegnax_ProductLabel::productlabel</resource>
+            <group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <frontend_model>Olegnax\ProductLabel\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+            </group>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
+                <field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enable</label>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Label</label>
+                <field id="label_position" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Labels Position on Grid</label>
+                    <source_model>Olegnax\ProductLabel\Model\Config\Position</source_model>
+                </field>
+                <field id="label_position_product" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Labels Position on Product Page</label>
+                    <source_model>Olegnax\ProductLabel\Model\Config\Position</source_model>
+                </field>
+                <field id="new" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Label "New"</label>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="new_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>Label "New" Text</label>
+                    <depends>
+                        <field id="new">1</field>
+                    </depends>
+                </field>
+                <field id="new_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+                    <label>Label "New" Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="new">1</field>
+                    </depends>
+                </field>
+                <field id="new_background_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>Label "New" Background Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="new">1</field>
+                    </depends>
+                </field>
+                <field id="sale" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="select">
+                    <label>Show Label "Sale"</label>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sale_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="text">
+                    <label>Label "Sale" Text</label>
+                    <comment><![CDATA[{{discount}}, {{discount_percent}}, {{special_price}}, {{attribute:sku}}]]></comment>
+                    <depends>
+                        <field id="sale">1</field>
+                    </depends>
+                </field>
+                <field id="sale_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="text">
+                    <label>Label "Sale" Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="sale">1</field>
+                    </depends>
+                </field>
+                <field id="sale_background_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="text">
+                    <label>Label "Sale" Background Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="sale">1</field>
+                    </depends>
+                </field>
+                <field id="featured" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90" translate="label" type="select">
+                    <label>Show Label "Featured"</label>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="featured_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label" type="text">
+                    <label>Label "Featured" Text</label>
+
+                    <depends>
+                        <field id="featured">1</field>
+                    </depends>
+                </field>
+                <field id="featured_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110" translate="label" type="text">
+                    <label>Label "Featured" Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="featured">1</field>
+                    </depends>
+                </field>
+                <field id="featured_background_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="120" translate="label" type="text">
+                    <label>Label "Featured" Background Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="featured">1</field>
+                    </depends>
+                </field>
+                <field id="bestseller" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="130" translate="label" type="select">
+                    <label>Show Label "Bestseller"</label>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="bestseller_period" translate="label comment" type="select" sortOrder="133"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bestsellers Period</label>
+                    <source_model>Olegnax\ProductLabel\Model\Config\Period</source_model>
+                </field>
+                <field id="bestseller_count" translate="label comment" type="text" sortOrder="136" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Max Number of Bestsellers</label>
+                    <comment>This is not the number of bestsellers this is amount of bestsellers requested from database. This value is shared with all store views and not guarantee the exact match of bestseller products.</comment>
+                </field>
+                <field id="bestseller_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="140" translate="label" type="text">
+                    <label>Label "Bestseller" Text</label>
+                    <depends>
+                        <field id="bestseller">1</field>
+                    </depends>
+                </field>
+                <field id="bestseller_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="150" translate="label" type="text">
+                    <label>Label "Bestseller" Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="bestseller">1</field>
+                    </depends>
+                </field>
+                <field id="bestseller_background_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="160" translate="label" type="text">
+                    <label>Label "Bestseller" Background Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="bestseller">1</field>
+                    </depends>
+                </field>
+                <field id="custom" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="170" translate="label" type="select">
+                    <label>Show Label Custom</label>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="custom_text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="180" translate="label" type="text">
+                    <label>Label Custom Text</label>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="custom_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="190" translate="label" type="text">
+                    <label>Label Custom Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="custom_background_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="200" translate="label" type="text">
+                    <label>Label Custom Background Color</label>
+                    <frontend_class>ox-ss-colorpicker</frontend_class>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cminds Supplierfrontendproductuploader cache config.
+ *
+ * @category Cminds
+ * @package  Cminds_Supplierfrontendproductuploader
+ * @author   Piotr Pierzak <piotrek.pierzak@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+    <type name="cminds_vendor_panel"
+          translate="label,description"
+          instance="Cminds\Supplierfrontendproductuploader\Model\VendorPanel\Cache\Type">
+        <label>Cminds Vendor Panel</label>
+        <description>Various vendor panel configurations, collected data, navigation cache.</description>
+    </type>
+</config>

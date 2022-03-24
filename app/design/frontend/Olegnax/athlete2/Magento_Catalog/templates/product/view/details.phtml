@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// echo "<pre>";
+// $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+// /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+// $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+// /** Apply filters here */
+// $collection = $productCollection->addAttributeToSelect('*')		
+// 			->setPageSize(1400)	
+//             ->load();
+
+// foreach ($collection as $product){
+// 	echo 'Name  =  '.$product->getName().'<br>';
+// 	$StockState = $objectManager->get('\Magento\InventorySalesAdminUi\Model\GetSalableQuantityDataBySku');
+// 	$qty = $StockState->execute($product->getSku());
+// 	if(isset($qty[0]['qty'])){
+// 		echo 'qty = '.($qty[0]['qty']).'<br>'.'<br>';
+// 	}
+// }
+
+// exit();
+$theme_settings		 = $this->helper( 'Olegnax\Athlete2\Helper\Helper' )->getConfig( 'athlete2_settings/product' );
+$tabsClosed = '';
+if( $theme_settings[ 'product_tabs_accordion' ] ) {
+	$tabType = 'accordion'; 
+	$tabsClosed = $theme_settings[ 'product_tabs_closed' ] ? ',"active":false' : '';
+} else {
+	$tabType = 'tabs'; 
+}
+/** @var \Magento\Catalog\Block\Product\View\Details $block */
+?>
+<?php if ($detailedInfoGroup = $block->getGroupSortedChildNames('detailed_info', 'getChildHtml')): ?>
+	<div class="product info detailed">
+		<?php $layout = $block->getLayout(); ?>
+		<div class="product data items <?= $tabType ?>" data-mage-init='{"<?= $tabType ?>":{"openedState":"active"<?= $tabsClosed ?>}}'>
+			<?php foreach ($detailedInfoGroup as $name): ?>
+				<?php
+                $html = $layout->renderElement($name);
+                if (!trim($html)) {
+                    continue;
+                }
+                $alias = $layout->getElementAlias($name);
+                $label = $block->getChildData($alias, 'title');
+                ?>
+				<div class="data item title"
+					data-role="collapsible" id="tab-label-<?= $block->escapeHtmlAttr($alias) ?>">
+					<a class="data switch"
+					   tabindex="-1"
+					   data-toggle="trigger"
+					   href="#<?= $block->escapeUrl($alias) ?>"
+					   id="tab-label-<?= $block->escapeHtmlAttr($alias) ?>-title">
+						<?= /* @noEscape */ $label ?>
+					</a>
+				</div>
+				<div class="data item content"
+					 aria-labelledby="tab-label-<?= $block->escapeHtmlAttr($alias) ?>-title" id="<?= $block->escapeHtmlAttr($alias) ?>" data-role="content">
+					<?= /* @noEscape */ $html ?>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+<?php endif; ?>

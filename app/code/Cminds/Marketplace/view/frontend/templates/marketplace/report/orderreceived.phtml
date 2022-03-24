@@ -1,0 +1,105 @@
+<?php 
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+
+//$items = $block->getFlatCollection();
+
+$orders = $block->getOrderReceivedCollection(); 
+
+
+
+
+$supplierid = $objectManager->create('Cminds\Supplierfrontendproductuploader\Helper\Data')->getSupplierId(); 
+
+$supplier = $objectManager->create('Magento\Customer\Model\Customer')->load($supplierid);
+
+$supplierCustomFeilds = unserialize($supplier->getCustomFieldsValues());
+
+$merchantId = "MCID";
+$GSTN='';
+
+/*
+foreach ($supplierCustomFeilds as $customFieldsValue) 
+{
+    if ('merchant_id' === $customFieldsValue['name']) 
+    {
+        $merchantId = $customFieldsValue['value'];
+    }
+  if('gstn' === $customFieldsValue['name']){
+		$GSTN = $customFieldsValue['value'];
+	}
+}
+*/
+
+?>
+
+<div class="container-fluid main-container vendor-container">
+    <h1><?php echo __('Orders Received') ?></h1>
+
+ <div class="row">
+        <div class='col-md-12'>
+            <div class="table-responsive table-vendar-box">
+                <table class="table table-striped table-vendar">
+                    <thead>
+                        <tr>
+                            <th><?php echo __('MC Order No.'); ?></th>
+                            <th><?php echo __('Order Date'); ?></th>
+                            <th><?php echo __('Product Name'); ?></th>                           
+                            <th><?php echo __('Image'); ?></th>
+                            <th><?php echo __('Quantity'); ?></th>                           
+                            <th><?php echo __('Shipped Date'); ?></th> 
+                            <th><?php echo __('Price Per Piece'); ?></th>
+                            <th><?php echo __('Total Amount'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                  <?php if (count($orders->getData()) >=1): ?>
+                     <?php  foreach($orders->getData() AS $order)
+                        { 
+                          $craftprice = 0;
+
+                          $product = $objectManager->get('Magento\Catalog\Model\Product')->load($order['product_id']);
+
+                          if($product->getMarketplaceFee()) { $craftprice = $product->getMarketplaceFee(); }
+
+                          
+                          $orderModel = $block->getSalesOrderModel()->load($order['entity_id']);
+
+                          $newshipdate='';
+                          foreach($orderModel->getAllItems() as $item) {
+                            $newshipdate=$item->getItemreadinessdate();
+                          }                          
+
+                          
+                           ?>
+                      <tr>
+                         <td><?php echo $merchantId."-".$order['increment_id'];?></td>                 
+                       <td><?php echo date('d/M/y',strtotime($order['created_at']));?></td>                     
+                        <td><?php echo $order['name'];?></td>                    
+                         <td>
+                            <img src="<?php echo $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage()?>" width="50">
+                                    </td>                     
+                         <td class="qty-value"><?php echo round($order['qty_ordered']);?></td>
+                        
+                         <td><?php if($newshipdate){ echo date('d/M/y', strtotime($newshipdate)); }else{ echo date('d/M/y', strtotime($order['created_at']. ' + 1 days'));} ?></td>
+                        
+                          <td><?php echo $priceHelper->currency($craftprice, true, false);?></td>
+                             
+                        <td><?php echo $priceHelper->currency($order['qty_ordered'] * ($craftprice), true, false);?>                          
+                        </td>
+                        
+                        
+                       </tr>   
+                    <?php } ?>    
+                     <?php else :?>
+                      <tr><td><?php echo __('No record found.'); ?></td></tr>
+                    <?php endif;?>                    
+                    </tbody>
+                </table>
+            </div> 
+        </div>
+    </div>
+

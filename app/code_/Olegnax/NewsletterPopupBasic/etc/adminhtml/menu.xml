@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Olegnax_NewsletterPopupBasic::top_level"
+			 module="Olegnax_NewsletterPopupBasic"
+			 resource="Olegnax_NewsletterPopupBasic::config"
+			 parent="Olegnax_Core::Olegnax_Core"
+			 sortOrder="9999"
+			 title="Newsletter Popup"/>
+		<add id="Olegnax_NewsletterPopupBasic::config" title="Configuration" translate="title"
+			 module="Olegnax_NewsletterPopupBasic" sortOrder="10"
+			 action="adminhtml/system_config/edit/section/olegnax_newsletterpopupbasic"
+			 parent="Olegnax_NewsletterPopupBasic::top_level"
+			 resource="Olegnax_NewsletterPopupBasic::config_olegnax_newsletterpopupbasic"/>
+	</menu>
+</config>

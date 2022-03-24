@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+
+		<referenceContainer name="head.additional">
+			<block name="athlete2_inline_css" class="Olegnax\Athlete2\Block\Template" template="Olegnax_Athlete2::dynamic_css/inline-css.phtml">
+				<block name="athlete2_dynamic_css" class="Olegnax\Athlete2\Block\Template" template="Olegnax_Athlete2::dynamic_css/settings.phtml"/>
+			</block>
+			<block name="athlete2_head.additional" class="Olegnax\Athlete2\Block\Template" template="html/head.additional.phtml" before="-"/>
+		</referenceContainer>
+		<referenceContainer name="page.wrapper">
+
+			<block name="athlete2_header" class="Olegnax\Athlete2\Block\Template" template="html/header.phtml" before="main.content">
+                                <arguments>
+                                    <argument name="sticky_allowed" xsi:type="string">yes</argument>
+                                </arguments>
+				<action method="setTemplate">
+					<argument name="template" xsi:type="helper" helper="Olegnax\Athlete2\Helper\UpdaterTemplate::setHeaderLayout"/>
+				</action>
+				<block class="Magento\Wishlist\Block\Customer\Sidebar" name="header_wishlist" template="Magento_Wishlist::header_wishlist.phtml"/>
+				<block name="top.search" class="Magento\Framework\View\Element\Template" template="Magento_Search::form.mini.phtml"/>
+				<block name="top.search.panel" class="Magento\Framework\View\Element\Template" template="Magento_Search::form.mini.panel.phtml"/>
+				<block name="top.menu" class="Magento\Theme\Block\Html\Topmenu" template="Magento_Theme::html/topmenu.phtml"/>
+				<block class="Olegnax\Athlete2\Block\TopLinks" name="athlete2_topline" template="html/topline.phtml">
+					<block class="Olegnax\Athlete2\Block\TopLinks" name="top_links" template="html/top_line/top_links.phtml"/>
+				</block>
+				<block class="Olegnax\Athlete2\Block\Template" name="header_account" template="html/header_account.phtml">
+					<block class="Olegnax\Athlete2\Block\Template" name="header_account_drop" template="html/header_account_drop.phtml">
+						<block class="Olegnax\Athlete2\Block\TopLinks" name="account-drop-links" template="html/header_account_links.phtml"/>
+					</block>
+				</block>
+				<block class="Olegnax\Athlete2\Block\Template" name="header_compare" template="Magento_Catalog::product/compare/header_compare.phtml">
+					<arguments>
+						<argument name="jsLayout" xsi:type="array">
+							<item name="components" xsi:type="array">
+								<item name="compareProducts" xsi:type="array">
+									<item name="component" xsi:type="string">Magento_Catalog/js/view/compare-products
+									</item>
+								</item>
+							</item>
+						</argument>
+					</arguments>
+				</block>
+			</block>
+
+			<block name="athlete2_navigation" class="Olegnax\Athlete2\Block\Template" template="html/sections.phtml" after="athlete2_header">
+				<arguments>
+					<argument name="group_css" xsi:type="string">ox-nav-sections</argument>
+				</arguments>
+				<block name="store.menu" class="Magento\Framework\View\Element\Template" template="Olegnax_Athlete2::html/container.phtml">
+					<arguments>
+						<argument name="title" translate="true" xsi:type="string">Menu</argument>
+					</arguments>
+				</block>
+				<block name="store.links" class="Magento\Framework\View\Element\Template" template="Olegnax_Athlete2::html/container.phtml">
+					<arguments>
+						<argument name="title" translate="true" xsi:type="string">Account</argument>
+					</arguments>
+				</block>
+				<block name="store.settings" class="Magento\Framework\View\Element\Template" template="Olegnax_Athlete2::html/container.phtml">
+					<arguments>
+						<argument name="title" translate="true" xsi:type="string">Settings</argument>
+					</arguments>
+				</block>
+			</block>
+			<container name="athlete2_after_header" after="athlete2_header">
+				<block class="Olegnax\Athlete2\Block\Template" name="header_banner" template="html/header_banner.phtml" after="athlete2_header"/>
+			</container>
+			<container name="above_footer" htmlTag="div" htmlClass="above_footer_block" before="footer-container">
+				<block class="Olegnax\Athlete2\Block\Template" name="above_footer_block" template="html/above_footer_block.phtml" before="-"/>
+				<block class="Olegnax\Athlete2\Block\Template" name="above_footer_banner" template="html/above_footer_banner.phtml" after="-"/>
+			</container>
+			<block class="Olegnax\Athlete2\Block\SimpleTemplate" name="totop" template="html/totop.phtml"/>
+		</referenceContainer>
+		<referenceContainer name="footer">
+			<block name="athlete2_footer" class="Olegnax\Athlete2\Block\SimpleTemplate" template="html/footer.phtml" before="-">
+			</block>
+		</referenceContainer>
+		<referenceContainer name="before.body.end">
+                        <block ifconfig="athlete2_settings/general/videojs" class="Olegnax\Athlete2\Block\SimpleTemplate" name="ox_videojs_init" template="Olegnax_Athlete2::html/videojs.phtml"/>
+                        <block ifconfig="athlete2_settings/general/waypoints" class="Olegnax\Athlete2\Block\SimpleTemplate" name="ox_waypoints_init" template="Olegnax_Athlete2::html/waypoints.phtml"/>
+			<block class="Olegnax\Athlete2\Block\SimpleTemplate" name="ox_move_style" template="Olegnax_Athlete2::move_style.phtml"/>
+			<block class="Olegnax\Athlete2\Block\SimpleTemplate" name="ox_athlete2_expand" template="Olegnax_Athlete2::expand.phtml" />
+		</referenceContainer>
+		<container name="ox_before_body_end" after="-">
+                        <block class="Olegnax\Athlete2\Block\Template" name="ox_modals_holder" template="html/modals_holder.phtml" />
+		</container>
+			
+		<move element="store.menu" destination="athlete2_navigation" before="-"/>
+		<move element="store.links" destination="athlete2_navigation" after="store.menu"/>
+		<move element="store.settings" destination="athlete2_navigation" after="store.links"/>
+		<move element="currency" destination="athlete2_topline"/>
+		<move element="store_language" destination="athlete2_topline"/>
+		<move element="logo" destination="athlete2_header"/>
+		<move element="minicart" destination="athlete2_header"/>
+
+		<move element="form.subscribe" as="subscribe" destination="athlete2_footer" before="-"/>
+		<referenceBlock name="footer_links" remove="true"/>
+		<move element="store_switcher" destination="athlete2_footer"/>
+		<move element="copyright" destination="footer-container" after="-"/>
+		<referenceContainer name="header.container" remove="1"/>
+		<referenceBlock name="navigation.sections" remove="1"/>
+		<referenceBlock name="report.bugs" remove="1"/>
+
+		<referenceBlock name="store.settings.language" remove="1"/>
+		<referenceBlock name="store.settings.currency" remove="1"/>
+		<referenceBlock name="catalog.topnav" remove="1"/>
+	</body>
+</page>

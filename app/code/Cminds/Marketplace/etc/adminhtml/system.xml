@@ -1,0 +1,1389 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="marketplace"
+             translate="label"
+             sortOrder="900"
+             class="cminds-logo">
+            <label>Cminds Marketplace</label>
+        </tab>
+        <section id="configuration_marketplace"
+                 translate="label"
+                 type="text"
+                 sortOrder="70"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Configuration</label>
+            <tab>marketplace</tab>
+            <resource>Cminds_Marketplace::configuration</resource>
+            <group id="configure"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Version</label>
+                    <backend_model>Cminds\Marketplace\Model\Config\Version</backend_model>
+                </field>
+                <field id="percentage_fee"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Default Percentage Fee</label>
+                </field>
+                <field id="fee_type"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <source_model>Cminds\Marketplace\Model\Config\Source\Fee\Type</source_model>
+                    <label>Fee Type</label>
+                </field>
+                <field id="is_discount_effective"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Is Discount Effective</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        If value is set to "No" suppliers commissions will be
+                        calculated ignoring discount.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="notify_supplier_when_his_profile_was_approved"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Notification For Supplier When Profile Is Approved</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_supplier_pages"
+                       translate="label comment"
+                       sortOrder="50"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Supplier Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow_suppliers_upload_images"
+                       translate="label comment"
+                       sortOrder="60"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow Supplier To Upload Logo</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable_supplier_pages">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="presentation"
+                   translate="label"
+                   type="text"
+                   sortOrder="2"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Presentation</label>
+                <field id="enable_supplier_rating"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Supplier Rating</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow_send_emails_to_customers_if_supplier_create_invoice"
+                       translate="label comment"
+                       sortOrder="3"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow To Send Email To Customers When Supplier Creates Invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow_supplier_manage_shipping_costs"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow Supplier To Manage Shipping Costs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="order_statuses_supplier_can_see"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="multiselect"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Order Statuses Visible For Supplier</label>
+                    <source_model>Cminds\Marketplace\Model\Config\Order\Statuses</source_model>
+                </field>
+                <field id="allow_send_emails_to_customers_if_supplier_create_shipment"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow To Send Emails To Customers When Supplier Creates Shipment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="shipping_labels_marketplace"
+                 translate="label"
+                 type="text"
+                 sortOrder="80"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Shipping Labels</label>
+            <tab>marketplace</tab>
+            <resource>Cminds_Marketplace::configuration</resource>
+            <group id="custom_label"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Custom Label</label>
+                <field id="number_down"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Down</label>
+                </field>
+                <field id="number_across"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Across</label>
+                </field>
+                <field id="page_height"
+                       translate="label comment"
+                       sortOrder="3"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 8.7.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="page_width"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 6.6.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_width"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.95.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_height"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="vertical_pitch"
+                       translate="label comment"
+                       sortOrder="7"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Vertical Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="horizontal_pitch"
+                       translate="label comment"
+                       sortOrder="8"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Horizontal Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 3.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_margin"
+                       translate="label comment"
+                       sortOrder="9"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="side_margin"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Side Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.3.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_padding"
+                       translate="label comment"
+                       sortOrder="11"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="left_padding"
+                       translate="label comment"
+                       sortOrder="12"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Left Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="font_size"
+                       translate="label comment"
+                       sortOrder="13"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Font Size</label>
+                    <comment>
+                        <![CDATA[
+                        For eg. 10.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="dhl_label"
+                   translate="label"
+                   type="text"
+                   sortOrder="2"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>DHL Label</label>
+                <field id="number_down"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Down</label>
+                </field>
+                <field id="number_across"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Across</label>
+                </field>
+                <field id="page_height"
+                       translate="label comment"
+                       sortOrder="3"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 8.7.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="page_width"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 6.6.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_width"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.95.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_height"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="vertical_pitch"
+                       translate="label comment"
+                       sortOrder="7"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Vertical Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="horizontal_pitch"
+                       translate="label comment"
+                       sortOrder="8"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Horizontal Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 3.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_margin"
+                       translate="label comment"
+                       sortOrder="9"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="side_margin"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Side Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.3.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_padding"
+                       translate="label comment"
+                       sortOrder="11"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="left_padding"
+                       translate="label comment"
+                       sortOrder="12"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Left Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="font_size"
+                       translate="label comment"
+                       sortOrder="13"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Font Size</label>
+                    <comment>
+                        <![CDATA[
+                        For eg. 10.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="fedex_label"
+                   translate="label"
+                   type="text"
+                   sortOrder="3"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Fedex Label</label>
+                <field id="number_down"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Down</label>
+                </field>
+                <field id="number_across"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Across</label>
+                </field>
+                <field id="page_height"
+                       translate="label comment"
+                       sortOrder="3"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 8.7.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="page_width"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 6.6.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_width"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.95.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_height"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="vertical_pitch"
+                       translate="label comment"
+                       sortOrder="7"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Vertical Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="horizontal_pitch"
+                       translate="label comment"
+                       sortOrder="8"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Horizontal Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 3.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_margin"
+                       translate="label comment"
+                       sortOrder="9"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="side_margin"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Side Margin</label>
+                    <comment>In inches, without any metric symbol. For eg. 0.3
+                    </comment>
+                </field>
+                <field id="top_padding"
+                       translate="label comment"
+                       sortOrder="11"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="left_padding"
+                       translate="label comment"
+                       sortOrder="12"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Left Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="font_size"
+                       translate="label comment"
+                       sortOrder="13"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Font Size</label>
+                    <comment>
+                        <![CDATA[
+                        For eg. 10.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="ups_label"
+                   translate="label"
+                   type="text"
+                   sortOrder="4"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>UPS Label</label>
+                <field id="number_down"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Down</label>
+                </field>
+                <field id="number_across"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Across</label>
+                </field>
+                <field id="page_height"
+                       translate="label comment"
+                       sortOrder="3"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 8.7.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="page_width"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 6.6.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_width"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.95.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_height"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="vertical_pitch"
+                       translate="label comment"
+                       sortOrder="7"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Vertical Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="horizontal_pitch"
+                       translate="label comment"
+                       sortOrder="8"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Horizontal Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 3.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_margin"
+                       translate="label comment"
+                       sortOrder="9"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="side_margin"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Side Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.3.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_padding"
+                       translate="label comment"
+                       sortOrder="11"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="left_padding"
+                       translate="label comment"
+                       sortOrder="12"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Left Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="font_size"
+                       translate="label comment"
+                       sortOrder="13"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Font Size</label>
+                    <comment>
+                        <![CDATA[
+                        For eg. 10.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="usps_label"
+                   translate="label"
+                   type="text"
+                   sortOrder="5"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>USPS Label</label>
+                <field id="number_down"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Down</label>
+                </field>
+                <field id="number_across"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Across</label>
+                </field>
+                <field id="page_height"
+                       translate="label comment"
+                       sortOrder="3"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 8.7.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="page_width"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 6.6.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_width"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.95.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_height"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="vertical_pitch"
+                       translate="label comment"
+                       sortOrder="7"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Vertical Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="horizontal_pitch"
+                       translate="label comment"
+                       sortOrder="8"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Horizontal Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 3.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_margin"
+                       translate="label comment"
+                       sortOrder="9"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="side_margin"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Side Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.3.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_padding"
+                       translate="label comment"
+                       sortOrder="11"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="left_padding"
+                       translate="label comment"
+                       sortOrder="12"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Left Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="font_size"
+                       translate="label comment"
+                       sortOrder="13"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Font Size</label>
+                    <comment>
+                        <![CDATA[
+                        For eg. 10.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="dhlint_label"
+                   translate="label"
+                   type="text"
+                   sortOrder="6"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>DHLint Label</label>
+                <field id="number_down"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Down</label>
+                </field>
+                <field id="number_across"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Number Across</label>
+                </field>
+                <field id="page_height"
+                       translate="label comment"
+                       sortOrder="3"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 8.7.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="page_width"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Page Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 6.6.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_width"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Width</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.95.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="label_height"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label Height</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="vertical_pitch"
+                       translate="label comment"
+                       sortOrder="7"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Vertical Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 2.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="horizontal_pitch"
+                       translate="label comment"
+                       sortOrder="8"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Horizontal Pitch</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 3.2.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_margin"
+                       translate="label comment"
+                       sortOrder="9"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="side_margin"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Side Margin</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.3.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="top_padding"
+                       translate="label comment"
+                       sortOrder="11"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Top Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="left_padding"
+                       translate="label comment"
+                       sortOrder="12"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Left Padding</label>
+                    <comment>
+                        <![CDATA[
+                        In inches, without any metric symbol. For eg. 0.1.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="font_size"
+                       translate="label comment"
+                       sortOrder="13"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Font Size</label>
+                    <comment>
+                        <![CDATA[
+                        For eg. 10.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+        <section id="carriers"
+                 translate="label"
+                 type="text"
+                 sortOrder="320"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Shipping Methods</label>
+            <tab>sales</tab>
+            <resource>Magento_Shipping::carriers</resource>
+            <group id="supplier"
+                   translate="label"
+                   type="text"
+                   sortOrder="6"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Supplier Marketplace</label>
+                <field id="active"
+                       translate="label comment"
+                       sortOrder="1"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title"
+                       translate="label comment"
+                       sortOrder="2"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="shipping_cost_non_supplier_products"
+                       translate="label comment"
+                       sortOrder="4"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Shipping Cost For Non-Supplier Products</label>
+                </field>
+                <field id="default_shipping_cost_supplier_not_set_shipping_prices"
+                       translate="label comment"
+                       sortOrder="5"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Default Supplier Shipping Cost</label>
+                </field>
+                <field id="minimum_price_supplier_shipped_products"
+                       translate="label comment"
+                       sortOrder="6"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Minimum Cost For Supplier Shipping Method</label>
+                </field>
+                <field id="shipping_methods_group_label"
+                       translate="label"
+                       type="select"
+                       sortOrder="7"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0">
+                    <label>Supplier Shipping Methods Group Label</label>
+                    <source_model>Cminds\Marketplace\Model\Config\Source\Shipping\GroupLabel</source_model>
+                    <comment>
+                        <![CDATA[
+                        If selected value will be empty, first name and last name will be displayed instead.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="displayed_error_message"
+                       translate="label comment"
+                       sortOrder="8"
+                       type="textarea"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Displayed Error Message</label>
+                </field>
+                <field id="ship_to_applicable_countries"
+                       translate="label"
+                       type="select"
+                       sortOrder="9"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0">
+                    <label>Ship to applicable countries</label>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="ship_to_specific_countries"
+                       translate="label"
+                       type="multiselect"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0">
+                    <label>Ship To Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="show_method_if_not_applicable"
+                       translate="label comment"
+                       sortOrder="11"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Show Method If Not Applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order"
+                       translate="label comment"
+                       sortOrder="12"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Sort order</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

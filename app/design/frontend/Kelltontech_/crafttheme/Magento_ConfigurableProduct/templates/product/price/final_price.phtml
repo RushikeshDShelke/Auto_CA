@@ -1,0 +1,104 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox$block */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $priceModel */
+$priceModel = $block->getPriceType('regular_price');
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $finalPriceModel */
+$finalPriceModel = $block->getPriceType('final_price');
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+$schema = ($block->getZone() == 'item_view') ? true : false;
+
+$objectManager1 = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager1->get('\Magento\Framework\App\Request\Http');
+$controller = $request->getControllerName();
+?>
+<?php if($controller == 'category' || $controller == 'result' || $controller == 'index'){?>
+<?php
+$productId = $block->getPriceId($idSuffix); 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->get('Magento\Catalog\Model\Product')->load($productId);
+
+
+$configMgr = $objectManager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable'); 
+$childProducts = $configMgr->getUsedProducts($_product,null);   
+$counter = 0;                    
+foreach($childProducts as $childProduct) {
+   if( $counter == 0 ) {
+    	$pprice = $childProduct->getPrice();
+	$taxValueArray = array("5"=>3,
+                                        "6"=>5,
+                                        "7"=>12,
+                                        "8"=>18,
+                                        "9"=>28
+                                );
+        $productTaxPercentage = 0;
+        if (array_key_exists($childProduct->getTaxClassId(),$taxValueArray))
+        {
+                $productTaxPercentage = $taxValueArray[$childProduct->getTaxClassId()];
+                $gst_value   = ((int)$childProduct->getPrice()*(int)$productTaxPercentage)/100; //Invoice GST value of Unit price
+                $pprice      = ((int)$childProduct->getPrice() + $gst_value); //Invoice Unit Price with GST
+
+        }
+   }
+	$counter = $counter + 1;
+}
+   
+   $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
+    $currencyModel = $objectManager->create('Magento\Directory\Model\Currency'); // Instance of Currency Model
+    $price =  $pprice; //Your Price
+    //get currency symbol by currency code
+    $currencyCode = 'INR';
+    $currencySymbol = $currencyModel->load($currencyCode)->getCurrencySymbol();
+    $precision = 2;   // for displaying price decimals 2 point
+    //get formatted price by currency
+    $formattedPrice = $currencyModel->format($price, ['symbol' => $currencySymbol, 'precision'=> $precision], false, false);
+
+ 
+?>
+<span class="normal-price">
+<!--span class="price-container price-final_price tax weee">
+<span class="price-label">From</span-->
+<span class="price"><?php echo $formattedPrice;?></span>
+</span>
+<?php }else{ ?>
+
+<span class="normal-price <?php echo $controller;?>">
+    <?= /* @noEscape */ $block->renderAmount($finalPriceModel->getAmount(), [
+        'display_label' => __('From'),
+        'price_id' => $block->getPriceId('product-price-' . $idSuffix),
+        'price_type' => 'finalPrice',
+        'include_container' => true,
+        'schema' => $schema,
+    ]);
+?>
+</span>
+
+<?php } ?>
+
+<?php if (!$block->isProductList() && $block->hasSpecialPrice()) : ?>
+    <span class="old-price sly-old-price no-display">
+        <?= /* @noEscape */ $block->renderAmount($priceModel->getAmount(), [
+            'display_label'     => __('Regular Price'),
+            'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+            'price_type'        => 'oldPrice',
+            'include_container' => true,
+            'skip_adjustments'  => true
+        ]); ?>
+    </span>
+<?php endif; ?>
+
+<?php if ($block->showMinimalPrice()) : ?>
+    <?php if ($block->getUseLinkForAsLowAs()) :?>
+        <a href="<?= $block->escapeUrl($block->getSaleableItem()->getProductUrl()) ?>" class="minimal-price-link">
+            <?= /* @noEscape */ $block->renderAmountMinimal() ?>
+        </a>
+    <?php else :?>
+        <span class="minimal-price-link">
+            <?= /* @noEscape */ $block->renderAmountMinimal() ?>
+        </span>
+    <?php endif?>
+<?php endif; ?>

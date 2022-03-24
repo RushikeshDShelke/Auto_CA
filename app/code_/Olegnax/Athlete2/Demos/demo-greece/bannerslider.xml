@@ -1,0 +1,307 @@
+<root>
+	<bannersliders>
+		<item>
+			<group_name>greece</group_name>
+			<slide_width>476</slide_width>
+			<slide_height>400</slide_height>
+			<identifier>greece-banner-slider</identifier>
+			<slides>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/greece/bannerslider/banner-slider-blue-07.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg>rgba(255, 255, 255, 0)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(43, 65, 255)</title_hover_bg>
+					<title_position>center</title_position>
+					<title>Essentials For
+Every Exerciser</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgb(43, 65, 255)</link_bg>
+					<link_text>build your kit</link_text>
+					<link_href>#</link_href>
+					<sort_order>10</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/greece/bannerslider/banner-slider-blue-02.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg>rgba(0, 0, 0, 0)</title_bg>
+					<title_hover_color>rgb(40, 40, 40)</title_hover_color>
+					<title_hover_bg>rgb(255, 255, 255)</title_hover_bg>
+					<title_position>center</title_position>
+					<title>spring sale
+30% off</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgba(0, 0, 0, 0)</link_bg>
+					<link_text>shop now</link_text>
+					<link_href>#</link_href>
+					<sort_order>20</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/greece/bannerslider/banner-slider-blue-03.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg>rgba(0, 0, 0, 0)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(43, 65, 255)</title_hover_bg>
+					<title_position>bottom-left</title_position>
+					<title>reach
+the summit</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgb(34, 34, 34)</link_bg>
+					<link_text>EXPLORE</link_text>
+					<link_href>#</link_href>
+					<sort_order>30</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/greece/bannerslider/banner-slider-blue-01.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg>rgba(0, 0, 0, 0)</title_bg>
+					<title_hover_color>#ffffff</title_hover_color>
+					<title_hover_bg>rgb(43, 65, 255)</title_hover_bg>
+					<title_position>bottom-left</title_position>
+					<title>Basketball
+Gear &amp; Clothing</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgb(43, 65, 255)</link_bg>
+					<link_text>SHOP THE LOOK</link_text>
+					<link_href>#</link_href>
+					<sort_order>40</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/greece/bannerslider/banner-slider-blue-06.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg>rgba(0, 0, 0, 0)</title_bg>
+					<title_hover_color>#ffffff</title_hover_color>
+					<title_hover_bg>rgb(43, 65, 255)</title_hover_bg>
+					<title_position>center</title_position>
+					<title>Bikes
+&amp; Cycling</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgba(9, 9, 9, 0)</link_bg>
+					<link_text>SHOP NOW</link_text>
+					<link_href>#</link_href>
+					<sort_order>50</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/greece/bannerslider/banner-slider-blue-04.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg>rgba(41, 41, 41, 0)</title_bg>
+					<title_hover_color>rgb(255, 255, 255)</title_hover_color>
+					<title_hover_bg>rgb(43, 65, 255)</title_hover_bg>
+					<title_position>top-left</title_position>
+					<title>SIGN UP
+&amp; GET 10% OFF.</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgb(43, 65, 255)</link_bg>
+					<link_text>SIGN UP</link_text>
+					<link_href>#</link_href>
+					<sort_order>60</sort_order>
+				</item>
+				<item>
+					<slide_bg></slide_bg>
+					<image>athlete2/Demos/greece/bannerslider/banner-slider-blue-05.jpg</image>
+					<imageX2></imageX2>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg>rgb(32, 32, 32)</title_bg>
+					<title_hover_color>#ffffff</title_hover_color>
+					<title_hover_bg>rgb(42, 64, 255)</title_hover_bg>
+					<title_position>center</title_position>
+					<title>We believe
+in Doing Things</title>
+					<link_color>rgb(255, 255, 255)</link_color>
+					<link_bg>rgb(42, 64, 255)</link_bg>
+					<link_text>PURCHASE</link_text>
+					<link_href>#</link_href>
+					<sort_order>70</sort_order>
+				</item>
+			</slides>
+		</item>
+	</bannersliders>
+<carousels>
+		<item>
+			<title>Home Categories Greece</title>
+			<identifier>home_categories_greece</identifier>
+			<slides>
+				<item>
+					<carousel>home_categories_greece</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">
+<div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+    <a class="ox-banner-link" href="#">			
+       <img src="{{media url=&quot;athlete2/Demos/greece/banner-category-group-v1.jpg&quot;}}" alt="" />
+        <span class="ox-banner-container">
+            <span class="button primary big-wide medium-s ox-show-hover ox-moveup-hover">shop now</span>
+        </span>	
+    </a>
+</div>
+<h6>Best Sellers</h6>
+</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home_categories_greece</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>20</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">
+<div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+    <a class="ox-banner-link" href="#">			
+       <img src="{{media url=&quot;athlete2/Demos/greece/banner-category-group-v2.jpg&quot;}}" alt="" />
+        <span class="ox-banner-container">
+            <span class="button primary big-wide medium-s ox-show-hover ox-moveup-hover">shop now</span>
+        </span>	
+    </a>
+</div>
+<h6>Sweatshirts & Jackets</h6>
+</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home_categories_greece</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>30</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">
+<div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+    <a class="ox-banner-link" href="#">			
+       <img src="{{media url=&quot;athlete2/Demos/greece/banner-category-group-v3.jpg&quot;}}" alt="" />
+        <span class="ox-banner-container">
+            <span class="button primary big-wide medium-s ox-show-hover ox-moveup-hover">shop now</span>
+        </span>	
+    </a>
+</div>
+ <h6>Sports Bras & Crops</h6>
+</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>home_categories_greece</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>40</sort_order>
+					<layout>left</layout>
+					<mobile_align>left</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">
+<div class="ox-banner image-auto ox-banner-content-overlay h-center v-center">
+    <a class="ox-banner-link" href="#">			
+       <img src="{{media url=&quot;athlete2/Demos/greece/banner-category-group-v4.jpg&quot;}}" alt="" />
+        <span class="ox-banner-container">
+            <span class="button primary big-wide medium-s ox-show-hover ox-moveup-hover">shop now</span>
+        </span>	
+    </a>
+</div>
+<h6>Dresses & Bodysuits</h6>
+</div>]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+	</carousels>
+</root>

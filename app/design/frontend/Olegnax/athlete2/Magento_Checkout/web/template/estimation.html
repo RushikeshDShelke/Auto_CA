@@ -1,0 +1,22 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="opc-estimated-wrapper" data-bind="blockLoader: isLoading">
+    <div class="estimated-block">
+        <span class="estimated-label" data-bind="i18n: 'Estimated Total'"></span>
+        <span class="estimated-price" data-bind="text: getValue()"></span>
+    </div>
+    <div class="minicart-wrapper">
+        <button type="button" class="action showcart" data-bind="click: showSidebar" data-toggle="opc-summary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="minicart-icon-1" width="14" height="16" viewBox="0 0 14 16">
+              <path d="M11,3V0H3V3H0V16H14V3H11ZM5,2H9V3H5V2Zm7,12H2V5H3V7H5V5H9V7h2V5h1v9Z"></path>
+            </svg>
+            <span class="counter qty">
+                <span class="counter-number" data-bind="text: getQuantity()"></span>
+            </span>
+        </button>
+    </div>
+</div>

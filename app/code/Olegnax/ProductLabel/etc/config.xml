@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <olegnax_productlabel>
+            <general>
+                <enable>1</enable>
+            </general>
+            <label>
+                <new>1</new>
+                <new_text>New</new_text>
+                <new_color/>
+                <new_background_color/>
+                <sale>1</sale>
+                <sale_text>Sale</sale_text>
+                <sale_color/>
+                <sale_background_color/>
+                <featured>1</featured>
+                <featured_text>Featured</featured_text>
+                <featured_color/>
+                <featured_background_color/>
+                <bestseller>1</bestseller>
+                <bestseller_period></bestseller_period>
+                <bestseller_count>200</bestseller_count>
+                <bestseller_text>Bestseller</bestseller_text>
+                <bestseller_color/>
+                <bestseller_background_color/>
+                <custom>0</custom>
+                <custom_text></custom_text>
+                <custom_color/>
+                <custom_background_color/>
+            </label>
+        </olegnax_productlabel>
+    </default>
+</config>

@@ -1,0 +1,153 @@
+<?php
+
+/**
+ * Olegnax Athlete Slideshow
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_AthleteSlideshow
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+
+$config = $block->getConfig('athleteslideshow/athlete');
+
+$slides = $this->getSlides();
+$slidesCount = $slides->getSize();
+if ($slidesCount): ?>
+<div class="athlete2slideshow athlete">
+    <div class="slideshow-container">
+        <div class="athlete-slideshow" id="athlete-slideshow" data-width="960">
+            <?php
+            $first = true;
+            foreach ($slides as $slide) :
+
+                $wrap_classes = [
+                    'slide',
+                    'slide-' . $slide->getId()];
+                if ($first) {
+                    $wrap_classes[] = 'first';
+                    $first = false;
+                }
+                $style = '';
+                if ($slide->hasImage()) {
+                    $imgSize = getimagesize($slide->getImagePath('image'));
+                    if ($imgSize) {
+                        $style = ' style=" background:url(\'' . $slide->getImageUrl('image') . '\') 50% 0 no-repeat; "';
+                        $style .= ' data-height="' . $imgSize[1] . '"';
+                    }
+                }
+                ?>
+                <div class="<?=
+                implode(' ', $wrap_classes);
+                ?>">
+                    <div class="slide-img"<?php echo $style; ?>>
+                        <img width="1" height="1" src="<?php echo $this->getViewFileUrl('Olegnax_Athlete2Slideshow::images/spacer.gif', array(
+                 'area' => 'frontend'));
+                ?>" alt=""  />
+                    </div>
+                    <div class="container clearfix">
+                        <div class="slide-content-container">
+                            <div class="controls-title">
+        <?php if (1 < $slidesCount) : ?>
+                                    <div class="controls">
+                                        <div class="slide-control slide-prev"><span></span></div>
+                                        <div class="slide-control slide-next"><span></span></div>
+                                        <div class="progress"></div>
+                                    </div>
+                                    <?php endif; ?>
+                                <div class="slide-title">
+                                    <?php
+                                    $title = $slide->getData('title');
+                                    if (!empty($title)) {
+                                        $title = explode("\n", $title);
+
+                                        $_style = $block->prepareStyle([
+                                            'color' => $slide->getData('title_color'),
+                                            'background-color' => $slide->getData('title_bg'),
+                                        ]);
+
+                                        echo '<span class="text" style="' . $_style . '">' . implode('</span><br/><span class="text" style="' . $_style . '">', $title) . '</span><br/>';
+                                    }
+                                    if ($slide->getData('link_text') && $slide->getData('link_href')) {
+                                        $_onMouseOver = $_onMouseOut = '';
+                                        $_style = $block->prepareStyle([
+                                            'color' => $slide->getData('link_color'),
+                                            'background-color' => $slide->getData('link_bg'),
+                                        ]);
+                                        if ($slide->getData('link_hover_color') || $slide->getData('link_hover_bg')) {
+                                            $_onMouseOver = $block->prepareStyle([
+                                                'this.style.color' => $slide->getData('link_hover_color'),
+                                                'this.style.backgroundColor' => $slide->getData('link_hover_bg'),
+                                                    ], '=\'', '\';');
+                                            if (!empty($_onMouseOver)) {
+                                                $_onMouseOver = sprintf(' onMouseOver="%s\'"', $_onMouseOver);
+                                            }
+                                            $_onMouseOut = $block->prepareStyle([
+                                                'this.style.color' => $slide->getData('link_color'),
+                                                'this.style.backgroundColor' => $slide->getData('link_bg'),
+                                                    ], '=\'', '\';');
+                                            if (!empty($_onMouseOut)) {
+                                                $_onMouseOut = sprintf(' onMouseOut="%s\'"', $_onMouseOut);
+                                            }
+                                        }
+                                        echo '<a href="' . $slide->getData('link_href') . '" class="link" style="' . $_style . '" ' . $_onMouseOver . ' ' . $_onMouseOut . ' >' . $slide->getData('link_text') . '<span></span></a>';
+                                    }
+                                    ?>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="slide-banners <?php  echo (!$config['responsive_banners'] ? 'hide-below-768' : '' ); ?>">
+                                <?php
+                                if ($slide->hasImage('banner_1_img')) {
+                                    list($width, $height, $type, $attr) = getimagesize($slide->getImagePath('banner_1_img'));
+                                    echo '<a class="slide-banner clearfix" href="' . $slide->getData('banner_1_href') . '"><img ' . $attr . ' ' . ($slide->hasImage('banner_1_imgX2') ? 'data-srcX2="' . $slide->getImageUrl('banner_1_imgX2') . '"' : '' ) . ' src="' . $slide->getImageUrl('banner_1_img') . '" alt="" /></a>';
+                                }
+                                if ($slide->hasImage('banner_2_img')) {
+                                    list($width, $height, $type, $attr) = getimagesize($slide->getImagePath('banner_2_img'));
+                                    echo '<a class="slide-banner clearfix" href="' . $slide->getData('banner_2_href') . '"><img ' . $attr . ' ' . ($slide->hasImage('banner_2_imgX2') ? 'data-srcX2="' . $slide->getImageUrl('banner_2_imgX2') . '"' : '' ) . ' src="' . $slide->getImageUrl('banner_2_img') . '" alt="" /></a>';
+                                }
+                                ?>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+    <?php endforeach; ?>
+        </div>
+        <script>
+            var ATHLETE_SLIDESHOW = {
+                allowWrap: <?php echo $config['allow_wrap']; ?>,
+                autoHeight: '<?php echo $config['auto_height']; ?>',
+                autoHeightSpeed: <?php echo (is_numeric($config['speed']) ? intval($config['speed'] / 2) : 600); ?>,
+                easing: '<?php echo $config['easing']; ?>',
+                fx: '<?php echo $config['fx']; ?>',
+                log: false,
+                loader: 'wait',
+                next: ' .controls .slide-next',
+                pauseOnHover: <?php echo $config['pause_on_hover']; ?>,
+                prev: ' .controls .slide-prev',
+                slideActiveClass: 'athlete-slide-active',
+                slideClass: 'athlete-slide',
+                slides: '> div.slide',
+                speed: <?php echo (is_numeric($config['speed']) ? $config['speed'] : 1200); ?>,
+                sync: <?php echo $config['sync']; ?>,
+                timeout: <?php echo (is_numeric($config['timeout']) ? $config['timeout'] : 8000); ?>,
+                swipe: <?php echo ($config['fx'] != 'scrollVert' ? 'true' : 'false' ); ?>
+            };
+        </script>
+		<script type="text/x-magento-init">{"#athlete-slideshow":{"athlete2slideshow":{}}}</script>
+    </div>
+</div>
+<?php endif;

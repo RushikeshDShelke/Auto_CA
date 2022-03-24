@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Kellton_Docket::parent" title="Docket" module="Kellton_Docket" sortOrder="100" resource="Kellton_Docket::parent"/>
+        <add id="Kellton_Docket::index" title="Docket Index" module="Kellton_Docket" sortOrder="10" action="docket/index" resource="Kellton_Docket::index" parent="Kellton_Docket::parent"/>
+		<add id="Kellton_Docket::docket" title="Docket Docket" module="Kellton_Docket" sortOrder="20" parent="Kellton_Docket::parent" action="docket/docket" resource="Kellton_Docket::docket"/>
+
+    </menu>
+</config>

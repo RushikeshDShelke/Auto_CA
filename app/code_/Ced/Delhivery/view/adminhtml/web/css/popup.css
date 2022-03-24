@@ -1,0 +1,66 @@
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsMarketplace
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+
+
+.modal-popup .modal-inner-wrap {
+  max-width: 900px;
+}
+.modal-popup .modal-inner-wrap .modal-header {
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 20px;
+  padding: 25px;
+  text-align: center;
+}
+.delhivery-popup .form-group::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.delhivery-popup {
+  margin: 20px auto 0;
+  width: 90%;
+}
+.delhivery-popup .form-group {
+  margin-top: 15px;
+}
+.delhivery-popup .form-group label, .delhivery-popup .form-group .input-box {
+  float: left;
+}
+.delhivery-popup .form-group label {
+  float: left;
+  margin-top: 7px;
+  width: 150px;
+}
+.delhivery-popup .form-group .input-box {
+  width: calc(100% - 200px);
+  position: relative;
+}
+.delhivery-popup .form-group .input-box input {
+  background: #ffffff none repeat scroll 0 0;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  padding: 8px;
+  width: 100%;
+}
+.modal-popup .modal-footer > button {
+  background: #eb5202 none repeat scroll 0 0;
+  border: 1px solid #eb5202;
+  color: #ffffff;
+}
+.delhivery-popup .form-group .input-box .ui-datepicker-trigger {
+  top: 3px;
+}

@@ -1,0 +1,39 @@
+<?php
+$response = $block->getPostParams();
+?>
+    <style type="text/css">
+        .list-group{
+            max-height: 300px;
+            margin-bottom: 10px;
+            overflow:scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+        #result_panel{
+            width: 750px;
+        }
+        h3.panel-title{
+            text-align: center;
+            font-size: 25px !important;
+            font-weight: bold !important;
+            color: #b9b7b4;
+        }
+    </style>
+
+<?php if((!empty($response)) && (array_key_exists('response', $response))) {?>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <div class="panel panel-primary" id="result_panel">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?= 'Pincode Import Result'?></h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <?php foreach($response['response'] as $key=> $data) {?>
+                    <li class="list-group-item">
+                        <strong><?= 'Index-'.$key?></strong>
+                        <p><?= $data[$key]?></p>
+                    </li>
+                <?php }?>
+            </ul>
+        </div>
+    </div>
+<?php }?>

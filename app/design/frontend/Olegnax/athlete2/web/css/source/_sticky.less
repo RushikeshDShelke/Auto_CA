@@ -1,0 +1,36 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .ox-sticky-static{
+        position: absolute!important;
+        bottom:0px;
+        top:auto;
+    }
+    .ox-sticky-fixed{
+        position: fixed!important;
+        z-index: 1;
+    }
+    .ox-sticky-sidebar{
+        display: flex;
+        flex-direction: column;
+    }
+    .page-layout-3columns .ox-3col-sticky-wrapper{
+            float:left;
+            display:block;
+            min-height: 1px;
+    }
+    .page-layout-2columns-right{
+        .ox-sticky-sidebar{
+            .sidebar{
+                margin-left:auto;
+            }
+        }
+    }
+}

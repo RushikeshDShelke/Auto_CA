@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Lof
+ * @package   Lof\PincodeChecker
+ * @author    Landofcoder <landofcoder@gmail.com>
+ * @copyright 2020 Landofcoder
+ * @license   https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+        <add id="Lof_PincodeChecker::top" module="Lof_PincodeChecker" resource="Magento_Backend::content" sortOrder="50" title="Pincode Checker"/>
+		<add action="lof_pincodechecker/pincodechecker/index" id="lof_pincodechecker::pincodechecker" module="Lof_PincodeChecker" parent="Lof_PincodeChecker::top" resource="Magento_Backend::content" sortOrder="10" title="Pincode Checker"/>
+        <add action="adminhtml/system_config/edit/section/pincode" id="lof_pincodechecker::pincodechecker_settings" module="Lof_PincodeChecker" parent="Lof_PincodeChecker::top" resource="Magento_Backend::content" sortOrder="20" title="Settings"/>
+	</menu>
+</config>

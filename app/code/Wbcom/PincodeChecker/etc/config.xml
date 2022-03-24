@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wbcompin>
+            <general>
+                <enable>0</enable>
+                <delivery_not>Delivery not available for this pincode.</delivery_not>
+                <delivery_possible>Delivery of product will take %s working days but COD is not available.</delivery_possible>
+                <delivery_possible_code>Delivery of product will take %s working days and COD is also available.</delivery_possible_code>
+            </general>
+            <pincolor>
+                <header_back>#bfbcbc</header_back>
+                <btn_color>#006bb4</btn_color>
+                <inner_field_color>#fff</inner_field_color>
+            </pincolor>
+        </wbcompin>
+    </default>
+</config>

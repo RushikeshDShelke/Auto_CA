@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+*  General template for displaying group of blocks devided into sections
+*/
+$groupCss = $block->getGroupCss();
+$groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"tabs":{"openedState":"active"}}';
+
+?>
+<?php if ( $childBlocks	 = $block->getChildNames()):?>
+
+    <div class="ox-sections no-display <?= $block->escapeHtmlAttr($groupCss) ?>" data-mage-init='{"mobileMenu":{}}'>
+        <?php $layout = $block->getLayout(); ?>
+        <div class="ox-section-items <?= $block->escapeHtmlAttr($groupCss) ?>-items" data-mage-init='<?= /* noEscape */ $groupBehavior ?>'>
+            <?php foreach ($childBlocks as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    /*if (!trim($html) && ($block->getUseForce() != true)) {
+                        continue;
+                    }*/
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+					if($alias =='store.menu'){
+						$theme_helper	 = $this->helper( 'Olegnax\Athlete2\Helper\Helper' );
+						$blockBefore = $theme_helper->getBlockTemplateProcessor( $theme_helper->getConfig('athlete2_settings/mobile_header/mobile_menu_content_before') );
+						$blockAfter = $theme_helper->getBlockTemplateProcessor( $theme_helper->getConfig('athlete2_settings/mobile_header/mobile_menu_content_after') );
+						if(!empty($blockBefore)){
+							$html .= '<div class="ox-menu__block-before">'. $blockBefore .'</div>';
+						}
+						if(!empty($blockAfter)){
+							$html .= '<div class="ox-menu__block-after">'. $blockAfter .'</div>';
+						}
+					}
+                ?>
+                <div class="ox-section-item-title <?= $block->escapeHtmlAttr($groupCss) ?>-item-title" data-role="collapsible">
+                    <a class="<?= $block->escapeHtmlAttr($groupCss) ?>-item-switch" data-toggle="switch" href="#<?= $block->escapeHtmlAttr($alias) ?>"><?= /* noEscape */ $label ?></a>
+                </div>
+                <div class="ox-section-item-content <?= $block->escapeHtmlAttr($groupCss) ?>-item-content" id="<?= $block->escapeHtmlAttr($alias) ?>" data-role="content" data-move-mobile="<?= $block->escapeHtmlAttr($alias) ?>"><?= /* noEscape */ $html ?></div>
+            <?php endforeach;?>
+        </div>
+    </div>
+<?php endif; ?>

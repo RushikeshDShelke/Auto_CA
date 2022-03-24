@@ -1,0 +1,100 @@
+<?php
+/**
+ * Copyright © Magento 2, Inc. All rights reserved.
+ * See COPYING.txt for license details.Kellton_Contact
+ * Author @Kellton Team
+ */
+
+/** @var \Magento\Contact\Block\ContactForm $block */
+?>
+<?php //= $block->escapeUrl($block->getFormAction()) ?>
+<?php
+    $option = '';
+    //$option .= '<option value="">'. $block->escapeHtml(__('Please Select Category'));
+    $option .= '<option value="Product Related">'. $block->escapeHtml(__('Product Related'));
+    $option .= '<option value="Shipping Related">'. $block->escapeHtml(__('Shipping Related'));
+    $option .= '<option selected value="Corporate Gifting">'. $block->escapeHtml(__('Corporate Gifting'));
+    $option .= '<option value="Others">'. $block->escapeHtml(__('Others'));   
+    
+    ?>
+<?php $blockObj= $block->getLayout()->createBlock('Kellton\Advancecontacts\Block\Index\Index');?>
+<div class="row">
+<form class="form contact pramodtesting col-md-6" action="<?= $blockObj->getFormAction()?>" id="contact-form-advancecontacts" method="post" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Inquiry Form')) ?></span></legend><br />
+        <div class="field first_name required">
+            <label class="label" for="first_name"><span><?= $block->escapeHtml(__('First Name')) ?></span></label>
+            <div class="control">
+                 <input name="first_name" id="first_name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= $block->escapeHtmlAttr($this->helper(\Magento\Contact\Helper\Data::class)->getPostValue('name') ?: $this->helper(\Magento\Contact\Helper\Data::class)->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true,'validate-alpha':true}"/>
+               
+            </div>
+        </div>
+       <div class="field last_name required">
+            <label class="label" for="last_name"><span><?= $block->escapeHtml(__('Last Name')) ?></span></label>
+            <div class="control">
+               <input name="last_name" id="last_name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= $block->escapeHtmlAttr($this->helper(\Magento\Contact\Helper\Data::class)->getPostValue('name') ?: $this->helper(\Magento\Contact\Helper\Data::class)->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true,'validate-alpha':true}"/>
+               
+            </div>
+        </div>
+        <div class="field telephone required">
+            <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+            <div class="control">
+                <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" value="<?= $block->escapeHtmlAttr($this->helper(\Magento\Contact\Helper\Data::class)->getPostValue('telephone')) ?>" class="input-text" type="text" data-validate="{required:true, 'validate-phoneLax':true}" />
+            </div>
+        </div>
+         <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email_id" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="<?= $block->escapeHtmlAttr($this->helper(\Magento\Contact\Helper\Data::class)->getPostValue('email') ?: $this->helper(\Magento\Contact\Helper\Data::class)->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+
+        <div class="field category">
+            <label class="label" for="category"><span><?= $block->escapeHtml(__('Department')) ?>  
+            </span></label>
+            <div class="control">
+                <select id="category" name="category" title="<?= $block->escapeHtml(__('Select Category')) ?>"/>
+                <?= $option;?>
+                </select>
+            </div>
+        </div>
+
+        <div class="field description required">
+            <label class="label" for="description"><span><?= $block->escapeHtml(__('Description')) ?></span></label>
+            <div class="control">
+                <textarea name="description" id="description" title="<?= $block->escapeHtmlAttr(__('Description')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"><?= $block->escapeHtml($this->helper(\Magento\Contact\Helper\Data::class)->getPostValue('comment')) ?></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <label for="image" ><?= $block->escapeHtml(__('Attachment')) ?></label>
+            <div class="control">
+                <input name="image" id="image" title="<?= $block->escapeHtml(__('Attachment')) ?>" value="" class="input-text" type="file" maxlength="255" />
+            </div>
+            <span><b>Allowed File Types (jpg, png, gif)</b></span>
+        </div>
+  
+        
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+<div class="col-md-6">
+<h2>Contact Info</h2>
+    <span class="spacer-small"></span>
+    <h4>Phone - <a href="tel:+911244307447">+91-124 4307447</a></h4><br/>
+    <h4>Email - <a href="mailto:care@craftmaestros.com">care@craftmaestros.com</a></h4><br/>
+    <h4>Address - Vipul Square, Block B, Sector 43, Gurugram, Haryana - 122009</h4>
+</div>
+
+
+</div>

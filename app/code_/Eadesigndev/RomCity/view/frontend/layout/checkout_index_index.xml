@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="city_id" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Eadesigndev_RomCity/js/form/element/city-select</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                                                                    </item>
+
+                                                                    <item name="label" xsi:type="string" translate="true">City</item>
+                                                                    <item name="sortOrder" xsi:type="string">110</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="required-entry" xsi:type="string">true</item>
+                                                                    </item>
+                                                                </item>
+
+                                                                <item name="city" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Eadesigndev_RomCity/js/form/element/city</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                    </item>
+                                                                    <item name="sortOrder" xsi:type="string">110</item>
+                                                                </item>
+
+                                                                <item name="vat_id" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">65</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

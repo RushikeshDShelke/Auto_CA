@@ -1,0 +1,81 @@
+<?php
+/**
+ * Cminds Marketplace rated supplier template.
+ *
+ * @category Cminds
+ * @package  Cminds_Marketplace
+ */
+?>
+<?php
+/**
+ * @var \Cminds\Marketplace\Block\Supplier\Rated $block
+ */
+?>
+<?php $rates = $block->getRates(); ?>
+
+<?php if (count($rates)) : ?>
+    <div class="my-account">
+        <div class="box-account box-recent">
+            <form method="POST">
+                <table class="data-table orders" id="my-rates-table">
+                    <colgroup>
+                        <col width="50%">
+                        <col width="50%">
+                    </colgroup>
+                    <thead>
+                    <tr class="first last">
+                        <th><?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Supplier Name')); ?></th>
+                        <th><?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Rate')); ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($rates as $rate) : ?>
+                        <?php
+                        $vendor = $block
+                            ->getCustomerById($rate->getSupplierId());
+
+                        $name = $vendor->getFirstname()
+                            . ' '
+                            . $vendor->getLastname();
+
+                        $rateInt = $rate->getRate();
+                        $id = $rate->getId();
+
+                        ?>
+                        <tr class="last">
+                            <td><?php echo $block->escapeHtml($name); ?></td>
+                            <td class="last rate-list">
+                                <?php for ($i = 1; $i < 6; $i++) : ?>
+                                    <?php
+                                    $selected = (int) $rateInt === (int) $i
+                                        ? 'checked'
+                                        : '';
+                                    ?>
+                                    <input type="radio"
+                                           name="ratings[<?php echo $id ?>]"
+                                           value="<?php echo $i ?>"
+                                           class="radio" <?php echo $selected ?>
+                                           title="<?php echo $i ?>"
+                                           id="rate-<?php echo $id . '-' . $i ?>"
+                                    />
+                                    <label
+                                        for="rate-<?php echo $id . '-' . $i ?>"
+                                    ><?php echo $i ?></label>
+                                <?php endfor; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <div class="buttons-set" style="margin: 10px 0 0 5px;">
+                    <input type="submit" class="action save primary">
+                </div>
+            </form>
+        </div>
+    </div>
+<?php else : ?>
+    <div class="message info empty">
+        <span><?php /* @escapeNotVerified */ echo $block->escapeHtml(__('There are not rates to display.')); ?></span>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+	<olegnax_productreviewssummary>
+            <enable_all>
+                <enabled>1</enabled>
+            </enable_all>
+            <general>
+                <rating_overall>1</rating_overall>
+                <write_btn_overall>0</write_btn_overall>
+                <rating_bystar_rating>1</rating_bystar_rating>
+                <stars_text>Stars</stars_text>
+                <show_rating_percent>1</show_rating_percent>
+                <show_rating_count>1</show_rating_count>
+                <rating_breakdown>1</rating_breakdown>
+                <write_btn_after>1</write_btn_after>
+            </general>
+	</olegnax_productreviewssummary>
+    </default>
+</config>

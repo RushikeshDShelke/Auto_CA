@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+if($this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product/show_category_name')) :
+$_product = $block->getProduct();
+$category = $this->helper('Olegnax\Athlete2\Helper\ProductList')->getLastCategory( $_product );
+if( $category ) :
+?>
+<div class="ox-product-page__categories">
+	<a href="<?= $block->escapeUrl($category->getUrl()); ?>" class="ox-product-page__category-link"><?= $block->escapeHtml($category->getName()); ?></a>
+</div>
+<?php endif;
+endif;

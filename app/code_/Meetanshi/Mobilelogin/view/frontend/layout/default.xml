@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Meetanshi_Mobilelogin::css/intlTelInput.css"/>
+    </head>
+    <body>
+       <!-- <referenceBlock name="authorization-link-login" remove="true" />
+        <referenceBlock name="register-link" remove="true"/>-->
+
+        <referenceBlock name="header.links">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="login-ajax"  template="Meetanshi_Mobilelogin::authorization.phtml">
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="before.body.end">
+            <block class="Meetanshi\Mobilelogin\Block\Mobilelogin" name="mobilelogin" template="Meetanshi_Mobilelogin::mobilelogin.phtml" />
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,68 @@
+<root>
+	<config>
+				<olegnax_newsletterpopupbasic>
+			<general>
+				<enable>1</enable>
+				<many_times>everytime</many_times>
+				<layout>-fullwidth</layout>
+				<timeout>1000</timeout>
+				<show_mobile>1</show_mobile>
+				<width>610</width>
+				<height></height>
+				<mobile_width></mobile_width>
+				<mobile_height></mobile_height>
+				<mobile_image_height></mobile_image_height>
+				<column_width></column_width>
+				<padding></padding>
+				<tablet_padding></tablet_padding>
+				<mobile_padding></mobile_padding>
+				<content_padding>35</content_padding>
+				<tablet_content_padding></tablet_content_padding>
+				<mobile_content_padding>30</mobile_content_padding>
+				<position_h>h-center</position_h>
+				<position_v>v-center</position_v>
+				<form_layout>one-line</form_layout>
+				<content_position_h>h-center</content_position_h>
+				<content_position_v>v-center</content_position_v>
+				<show_shadow>1</show_shadow>
+				<clickable_overlay>0</clickable_overlay>
+			</general>
+			<content>
+				<column_image></column_image>
+				<content><![CDATA[<img src="{{media url="athlete2/Demos/sp/newsletter-sp.jpg"}}" alt="" />
+<div class="spacer" style="height:35px;"></div>
+<h2>Get the latest<br>
+deals and more.</h2>
+<p class="hide-on-mobile"  style="font-weight: 500; max-width: 420px; margin: 0 auto;">Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. </p>
+<div class="spacer hide-on-mobile" style="height:35px;"></div>
+{{block class="Magento\Newsletter\Block\Subscribe" template="Magento_Newsletter::subscribe_form.phtml"}}
+<a href="#" class="ox-newsletter-disable__link ox-grey-underline" style="font-weight: 500;">Thank you , I already subscribed.</a>]]></content>
+			</content>
+			<appearance>
+				<background_color></background_color>
+				<bg_image_enabled>0</bg_image_enabled>
+				<background_image></background_image>
+				<bg_position_y>center</bg_position_y>
+				<bg_position_x>center</bg_position_x>
+				<bg_repeat>no-repeat</bg_repeat>
+				<bg_size>cover</bg_size>
+				<newsletter_input_style>normal</newsletter_input_style>
+				<newsletter_text_color></newsletter_text_color>
+				<newsletter_titles_color></newsletter_titles_color>
+				<close_button_bg>rgba(255, 255, 255, 0)</close_button_bg>
+				<close_button_icon_color>rgb(0, 0, 0)</close_button_icon_color>
+				<close_button_bg_hover>rgb(0, 0, 0)</close_button_bg_hover>
+				<close_button_icon_color_hover>rgb(255, 255, 255)</close_button_icon_color_hover>
+				<newsletter_input_bg>rgb(244, 244, 244)</newsletter_input_bg>
+				<newsletter_input_border_color></newsletter_input_border_color>
+				<newsletter_input_border_focus></newsletter_input_border_focus>
+				<newsletter_color></newsletter_color>
+				<newsletter_button_color></newsletter_button_color>
+				<newsletter_button_bg></newsletter_button_bg>
+				<newsletter_button_hover></newsletter_button_hover>
+				<newsletter_button_hover_bg></newsletter_button_hover_bg>
+				<newsletter_input_color>rgb(15, 15, 15)</newsletter_input_color>
+			</appearance>
+		</olegnax_newsletterpopupbasic>
+	</config>
+</root>

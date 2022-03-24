@@ -1,0 +1,15 @@
+.opc-payment .payment-group .actions-toolbar{
+    display: none;
+}
+
+#place-order-trigger-wrapper{
+    display: none;
+}
+
+#place-order-trigger-wrapper{
+    text-align: right;
+}
+.billing-address-details{
+    display:none;
+}
+

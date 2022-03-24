@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author      Olegnax
+ * @package     Olegnax_LayeredNavigation
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * @license     Proprietary License https://olegnax.com/license/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<olegnax_layered_navigation>
+			<general>
+				<enable>1</enable>
+				<filters_type/>
+				<abort_prev_request>1</abort_prev_request>
+			</general>
+			<category>
+				<depth>0</depth>
+			</category>
+			<price_slider>
+				<price_slider>1</price_slider>
+			</price_slider>
+			<loaders>
+				<loader_type_filters>theme</loader_type_filters>
+				<loader_filters/>
+				<loader_type_content>theme</loader_type_content>
+				<loader_content/>
+				<loader_content_selector/>
+				<loader_type_page/>
+				<loader_page/>
+			</loaders>
+		</olegnax_layered_navigation>
+	</default>
+</config>

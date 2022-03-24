@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget id="banner_slider" class="Olegnax\BannerSlider\Block\BannerSlider" is_email_compatible="true"
+			placeholder_image="Olegnax_BannerSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Banner Slider</label>
+		<description translate="true"></description>
+		<parameters>
+			<parameter name="slide_group" xsi:type="select" visible="true" source_model="Olegnax\BannerSlider\Model\Config\Source\GroupNameWidget">
+				<label translate="true">Group</label>
+			</parameter>
+			<parameter name="size_big" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Big Size</label>
+				<description translate="true">Make text and button bigger.</description>
+			</parameter>
+			<parameter name="auto_scroll" xsi:type="text" visible="true">
+				<label translate="true">Autoscroll</label>
+				<description translate="true"><![CDATA[Set to 0 to disable autoscroll</br>Set to 1-10 to enable autoscroll ( scroll timeout - autoscroll * 1000ms ) ]]></description>
+			</parameter>
+			<parameter name="scroll_items" xsi:type="select" visible="true">
+				<label translate="true">Items to scroll</label>
+				<options>
+					<option name="item" value="1" selected="true">
+						<label translate="true">Scroll per item</label>
+					</option>
+					<option name="page" value="page">
+						<label translate="true">Scroll per page</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item or stop at last item</description>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="arrows" xsi:type="select" visible="true">
+				<label translate="true">Show Arrows</label>
+				<options>
+					<option name="show" value="show" selected="true">
+						<label translate="true">Yes</label>
+					</option>
+					<option name="hide" value="hide">
+						<label translate="true">No</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="arrows_show_always" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Always show Arrows</label>
+				<depends>
+					<parameter name="arrows" value="true"/>
+				</depends>
+			</parameter>
+			<parameter name="image_hover" xsi:type="select" visible="true">
+				<label translate="true">Image Hover</label>
+				<options>
+					<option name="zoom" value="zoom" selected="true">
+						<label translate="true">Zoom</label>
+					</option>
+					<option name="none" value="none">
+						<label translate="true">Disable</label>
+					</option>
+				</options>
+			</parameter>
+                        <parameter name="lazy_load" xsi:type="select" visible="true">
+                                <label translate="true">Disable Lazy Load</label>
+                                <description translate="true">Disable carousel lazy load feature for images</description>
+                                <options>
+                                    <option name="noexclude" value="noexclude" selected="true">
+                                        <label translate="true">No</label>
+                                    </option>
+                                    <option name="exclude" value="exclude">
+                                        <label translate="true">Yes</label>
+                                    </option>
+                                </options>
+                        </parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+			</parameter>
+		</parameters>
+	</widget>
+	
+</widgets>

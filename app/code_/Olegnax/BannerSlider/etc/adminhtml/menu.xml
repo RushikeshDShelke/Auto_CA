@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Olegnax_BannerSlider::bannerslider" title="Banners" translate="title" module="Olegnax_BannerSlider" sortOrder="999" parent="Olegnax_Core::Olegnax_Core" resource="Olegnax_BannerSlider::bannerslider"/>
+		<add id="Olegnax_BannerSlider::group" title="Groups" translate="title" module="Olegnax_BannerSlider" sortOrder="10" action="bannerslider/group/index" parent="Olegnax_BannerSlider::bannerslider" resource="Olegnax_BannerSlider::Group_Index"/>
+		<add id="Olegnax_BannerSlider::slides" title="Slides" translate="title" module="Olegnax_BannerSlider" sortOrder="20" action="bannerslider/slides/index" parent="Olegnax_BannerSlider::bannerslider" resource="Olegnax_BannerSlider::Slide_Index"/>
+	</menu>
+</config>

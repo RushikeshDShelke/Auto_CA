@@ -1,0 +1,121 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var $block \Magento\Sales\Block\Order\Email\Items */
+?>
+<?php $_order = $block->getOrder();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+$total = 0;
+$taxes = 0;
+if($_order){
+$shippingamount = $_order->getShippingAmount();
+$grandtotal = $_order->getGrandTotal();
+}
+$discount=0;
+ ?>
+<?php if ($_order) : ?>
+    <?php $_items = $_order->getAllItems(); ?>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%" style="border:1px solid #eaeaea;border-collapse:collapse">
+        <thead>
+            <tr style="text-align:center">
+				<th width="33%" style="font-size: 12px; font-family: Lato; width: 75px; padding: 5px; border : 2px solid;">
+					<?= $block->escapeHtml(__('Sr.No.')) ?>
+				</th>
+                <th class="item-info" width="33%" style="font-size: 12px; font-family: Lato; width: 75px; padding: 5px; border : 2px solid;">
+                    <?= $block->escapeHtml(__('Description of Product')) ?>
+                </th>
+                <th class="item-qty" width="33%" style="font-size: 12px; font-family: Lato; width: 75px; padding: 5px; border : 2px solid;">
+                    <?= $block->escapeHtml(__('Quantity')) ?>
+                </th>
+                <th width="33%" style="font-size: 12px; font-family: Lato; width: 75px; padding: 5px; border : 2px solid;">
+                    <?= $block->escapeHtml(__('Rate/Unit')) ?>
+                </th>
+                <th width="33%" style="font-size: 12px; font-family: Lato; width: 75px; padding: 5px; border : 2px solid;">
+                    <?= $block->escapeHtml(__('Discount')) ?>
+                </th>
+                <th class="item-price" width="33%" style="font-size: 12px; font-family: Lato; width: 75px; padding: 5px; border : 2px solid;">
+                    <?= $block->escapeHtml(__('Total Price')) ?>
+                </th>
+            </tr>
+        </thead>
+        <?php $i=0; foreach ($_items as $_item) : 
+				$total = $total + ($_item->getRowTotal()-$_item->getDiscountAmount());
+				$discount +=$_item->getDiscountAmount();
+				$taxes += $_item->getTaxAmount();
+        ?>
+            <?php if (!$_item->getParentItem()) : 
+            $i++;
+            ?>
+                <tbody <?php echo $i%2 ? ' bgcolor="#F6F6F6"' : '' ?>>
+                <?php $_item->setSerialNumber($i); ?>
+                    <?= $block->getItemHtml($_item) ?>
+                </tbody>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <tr>
+            <td colspan="2" width="340" style="padding: 5px; border : 2px solid;"> <b>Total</b>
+            </td>
+            <td width="65" align="center" style="padding: 5px; border : 2px solid;"></td>
+            <td width="65" align="center" style="padding: 5px; border : 2px solid;"></td>
+            <td width="90" align="center" style="padding: 5px; border : 2px solid;"><?php echo $priceHelper->currency($discount, true, false); ?></td>
+            <td width="90" align="center" style="padding: 5px; border : 2px solid;"><?php echo $priceHelper->currency($total, true, false); ?></td>
+        </tr>
+		
+		<tr>
+            <td colspan="2" width="340" align="right" class="bottom-none" style="padding: 5px; border : 2px solid; border-bottom: 2px solid transparent ;">
+                <b>Shipping</b>
+            </td>
+            <td colspan="3"></td>
+            <td  align="center" class="bottom-none" style="padding: 5px; border-right : 2px solid; "><?php echo $priceHelper->currency($shippingamount, true, false); ?></td>
+        </tr>
+        <tr>
+            <td colspan="2" width="340" align="right" style="padding: 5px; border-left:2px solid;border-right:2px solid; ">&nbsp;</td>
+            <td colspan="4" align="right" style="padding: 5px; border-right:2px solid; "></td>
+	    </tr>
+        <tr>
+            <td colspan="2" width="340" align="right" class="bottom-none" style="padding: 5px; border : 2px solid; border-bottom: 2px solid transparent ;">
+                <b>Taxes</b>
+            </td>
+            <td colspan="3"></td>
+            <td  align="center" class="bottom-none" style="padding: 5px; border-right : 2px solid; "><?php echo $priceHelper->currency($taxes, true, false); ?></td>
+        </tr>
+        <tr>
+            <td colspan="2" width="340" align="right" style="padding: 5px; border-left:2px solid;border-right:2px solid; ">&nbsp;</td>
+            <td colspan="4" align="right" style="padding: 5px; border-right:2px solid; "></td>
+	    </tr>
+        <tr>
+            <td colspan="2" width="340" align="right" style="padding: 5px; border : 2px solid;">
+                <b>Grand Total</b>
+            </td>
+            <td colspan="3" style = "border: 2px solid ; border-right: 2px solid transparent ;"></td>
+            <td  align="center" style="padding: 5px; border : 2px solid; border-left: 2px solid transparent ; "><?php echo $priceHelper->currency($grandtotal, true, false); ?></td>
+	    </tr>
+    </table>
+    <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)
+            ->isMessagesAllowed('order', $_order, $_order->getStore())
+        && $_order->getGiftMessageId()
+    ) : ?>
+        <?php $_giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)
+            ->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php if ($_giftMessage) : ?>
+            <br />
+            <table class="message-gift">
+                <tr>
+                    <td>
+                        <h3><?= $block->escapeHtml(__('Gift Message for this Order')) ?></h3>
+                        <strong><?= $block->escapeHtml(__('From:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                        <br /><strong><?= $block->escapeHtml(__('To:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                        <br /><strong><?= $block->escapeHtml(__('Message:')) ?></strong>
+                        <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Olegnax\InstagramMin\Api\IntsPostRepositoryInterface" type="Olegnax\InstagramMin\Model\IntsPostRepository"/>
+	<preference for="Olegnax\InstagramMin\Api\Data\IntsPostInterface" type="Olegnax\InstagramMin\Model\Data\IntsPost"/>
+	<preference for="Olegnax\InstagramMin\Api\Data\IntsPostSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Olegnax\InstagramMin\Model\ResourceModel\IntsPost\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">olegnax_instagrammin_intspost</argument>
+			<argument name="resourceModel" xsi:type="string">Olegnax\InstagramMin\Model\ResourceModel\IntsPost\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="olegnax_instagrammin_intspost_listing_data_source" xsi:type="string">Olegnax\InstagramMin\Model\ResourceModel\IntsPost\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

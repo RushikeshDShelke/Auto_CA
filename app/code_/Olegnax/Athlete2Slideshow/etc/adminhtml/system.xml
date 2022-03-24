@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="olegnax" translate="label" sortOrder="15">
+			<label>Olegnax</label>
+		</tab>
+		<section id="athleteslideshow" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label">
+			<label>Slideshow</label>
+			<tab>olegnax</tab>
+			<resource>Olegnax_Athlete2Slideshow::athleteslideshow</resource>
+			<group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+				<frontend_model>Olegnax\Athlete2Slideshow\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+			</group>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Slideshow Config</label>
+				<field id="enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Enabled</label>
+					<comment>Enable/Disable slideshow</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                                        <frontend_class>on-off-trigger</frontend_class>
+				</field>
+				<field id="show" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+					<label>Show on</label>
+					<comment>Select pages to show slideshow</comment>
+					<source_model>Olegnax\Athlete2Slideshow\Model\Config\Source\Show</source_model>
+				</field>
+				<field id="slider" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Select slider</label>
+					<comment/>
+					<source_model>Olegnax\Athlete2Slideshow\Model\Config\Source\Slider</source_model>
+				</field>
+			</group>
+			<group id="athlete" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Athlete slider config</label>
+				<field id="allow_wrap" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Allow wrap</label>
+					<comment>This option determines whether or not a slideshow can advance from the last slide 	                            to the first (or vice versa). If set to false then once a slideshow reaches its last 	                            slide it can no longer be advanced forward, it can only advance backward. Likewise, 	                            when a slideshow is displaying the first slide it can not advance backward.</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="auto_height" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+					<label>autoHeight</label>
+					<comment>Animate slider automatically</comment>
+					<source_model>Olegnax\Athlete2Slideshow\Model\Config\Source\AutoHeight</source_model>
+				</field>
+				<field id="easing" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="select">
+					<label>Easing</label>
+					<comment>Name of the easing function to use for animations.</comment>
+					<source_model>Olegnax\Athlete2Slideshow\Model\Config\Source\Easing</source_model>
+				</field>
+				<field id="fx" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="select">
+					<label>Transition effect</label>
+					<comment>The name of the slideshow transition to use</comment>
+					<source_model>Olegnax\Athlete2Slideshow\Model\Config\Source\Fx</source_model>
+				</field>
+				<field id="pause_on_hover" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="select">
+					<label>Pause on hover</label>
+					<comment>If true an auto-running slideshow will be paused while the mouse is over the slideshow</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="speed" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="text">
+					<label>Transition speed</label>
+					<comment>The speed of the transition effect in milliseconds.</comment>
+				</field>
+				<field id="sync" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="select">
+					<label>Animation sync</label>
+					<comment>If true then animation of the incoming and outgoing slides will be synchronized. If false then the animation for the incoming slide will not start until the animation for the outgoing slide completes.</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="timeout" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="text">
+					<label>Slide timeout</label>
+					<comment>The time between slide transitions in milliseconds.</comment>
+				</field>
+				<field id="timeline" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110" translate="label" type="select">
+					<label>Show timeline</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="responsive_banners" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="120" translate="label" type="select">
+					<label>Show banners on devices</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+			<group id="revolutionslider" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Revolution slider Config</label>
+				<field id="slider_id" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Select slider id</label>
+					<comment/>
+					<source_model>Olegnax\Athlete2Slideshow\Model\Config\Source\SliderId</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

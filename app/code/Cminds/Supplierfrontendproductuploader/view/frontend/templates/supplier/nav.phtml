@@ -1,0 +1,123 @@
+<?php /** @var $block Cminds\Supplierfrontendproductuploader\Block\Navbar */ ?>
+<?php $items = $block->getMenuItems(); ?>
+
+<?php unset($items['settings']);  unset($items['back']);?>
+<?php 
+ $activeSubmenu = '';
+ $activeReportmenu = '';
+ $urlInterface = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\UrlInterface');
+ $urlId = $urlInterface->getCurrentUrl();
+
+ $activeSubmenu = explode('/', $urlId)[sizeof(explode('/', $urlId)) - 2];
+ $activeReportmenu = explode('/', $urlId)[sizeof(explode('/', $urlId)) - 3];
+
+ if($activeSubmenu=='orderreceived') { $activeSubmenu   = 'Orders Received';} 
+ if($activeSubmenu=='pendingorders') { $activeSubmenu   = 'Pending Orders';}
+ if($activeSubmenu=='paymentrecieved') { $activeSubmenu = 'Payments Received';}
+ if($activeSubmenu=='paymentspending') { $activeSubmenu = 'Payments Pending';}
+     
+ ?>
+
+<?php //echo '<pre>'; print_r($items); echo '</pre>';?>
+
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $(document).ready(function ($) {
+            $('.dropdown-toggle').dropdown();
+        });
+    });
+
+    var $j = jQuery.noConflict();
+</script>
+
+<div class="navbar navbar-inverse navbar-fixed-top vendor-container navbar-default"
+     role="navigation">
+    <div class="container">
+        <button type="button"
+                class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#navbar-collapse">
+            <span class="sr-only"><?php echo $block->escapeHtml(__('Toggle navigation')); ?></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <?php foreach ($items as $key => $item) : ?>
+                    <?php
+			if($key == 'reports')continue;
+                    $subItems = $block->getMenuItems($key);
+                    $class = '';
+                    $mainmenu='';
+                    if (count($subItems) > 0) {
+                        $class .= 'dropdown ';
+                    }
+                    if ($block->isActive($item)) {
+                        $class .= 'active ';
+                    }
+                    if($activeReportmenu==strtolower($item['label']))
+                        { $mainmenu ='active';}
+                    ?>
+                    <li class="<?php /* @escapeNotVerified */ echo $class.' '.$mainmenu; ?>">
+                        <?php if (count($subItems) > 0) : ?>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <?php echo __($item['label']); ?>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <?php foreach ($subItems as $subItem) : ?>
+                                    <?php
+                                    $class = '';
+                                    $clssub = '';
+                                    if ($block->hasKey($subItem, 'fix_label')) {
+                                        $class .= 'menu-item fix-dropdown ';
+                                    }
+                                    if ($block->hasKey($subItem, 'fix_label_children')) {
+                                        $class .= 'menu-item fix-dropdown-children ';
+                                    }
+                                    if($subItem['label']==$activeSubmenu){ 
+                                        $clssub = 'active';
+                                        }
+                                    ?>
+                                    <li class="<?php /* @escapeNotVerified */ echo $class.' '.$clssub?>">
+                                        <?php if (!$block->hasKey($subItem, 'fix_label')) : ?>
+                                            <a href="<?php echo __($block->getUrl($subItem['url'])) ?>">
+                                                <?php if ($block->hasKey($subItem, 'fix_label_children')) :?>
+                                                    <b> - </b>
+                                                <?php endif; ?>
+                                                <?php echo __($subItem['label']); ?>
+                                            </a>
+                                        <?php else : ?>
+                                            <?php echo __($subItem['label']); ?>
+                                        <?php endif; ?>
+                                    </li>
+                                <?php endforeach;?>
+                            </ul>
+                        <?php else : ?>
+                            <?php
+                            if (strpos($item['url'], 'http') === 0) {
+                                $url = $item['url'];
+                            } else {
+                                $url = $block->getUrl($item['url']);
+                            }
+                            ?>
+                            <a href="<?php /* @escapeNotVerified */ echo $url; ?>">
+                                    <?php echo __($item['label']); ?>
+                                    <?php if ($key == 'product_list') : ?>
+                                        <?php if ($block->hasMarkedProducts()) : ?>
+                                            <span class="badge pull-right badge-important">
+                                            <?php echo $this->getMarkedProductCount(); ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                            </a>
+                        <?php endif;?>
+                        </li>
+                <?php endforeach;?>
+                <li class="logout">
+                <a href="<?php echo $block->getUrl('customer/account/logout/')?>" title="Log Out"><font color="white">Logout</font></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

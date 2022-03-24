@@ -1,0 +1,13 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="opc-block-summary" data-bind="blockLoader: isLoading">
+    <span data-bind="i18n: 'Order Summary'" class="title"></span>
+    <!-- ko foreach: elems() -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+</div>
+<!--<span style="color:#d0980d;background-color: #F5F5F5;font-style: italic;font-weight: bold;padding: 2px;margin-left: 78px;">*Free shipping on Orders above <span>&#8377;</span> 3,500</span>-->

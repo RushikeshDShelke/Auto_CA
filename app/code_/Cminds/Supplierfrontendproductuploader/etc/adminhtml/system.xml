@@ -1,0 +1,547 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="supplierfrontend"
+             translate="label"
+             sortOrder="901"
+             class="cminds-logo">
+            <label>Cminds Supplier Product Uploader</label>
+        </tab>
+        <section id="configuration"
+                 translate="label"
+                 type="text"
+                 sortOrder="80"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Configuration</label>
+            <tab>supplierfrontend</tab>
+            <resource>Cminds_Supplierfrontendproductuploader::configuration</resource>
+            <group id="configure"
+                   translate="label"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="module_enabled"
+                       translate="label"
+                       sortOrder="10"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="products_auto_approval"
+                       translate="label"
+                       sortOrder="20"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Products Auto Approval</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="products_approval_reset_after_edit"
+                       translate="label"
+                       sortOrder="30"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Require Products Approval After Edit</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="products_auto_approval">0</field>
+                    </depends>
+                </field>
+                <field id="supplier_needs_to_be_approved"
+                       translate="label"
+                       sortOrder="40"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Suppliers Requires Approval</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="source_suggestion"
+                       translate="label"
+                       sortOrder="50"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable source suggestion</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        Allow suppliers to suggest sources for MSI functionality
+                        Requires Magento 2.3.x
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="presentation"
+                   translate="label"
+                   type="text"
+                   sortOrder="20"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Presentation</label>
+                <field id="link_label"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Supplier Panel Menu Item Name</label>
+                    <comment>
+                        <![CDATA[
+                        You can set custom name for supplier panel menu item
+                        displayed in customer dashboard menu.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="header_supplier_panel"
+                       translate="label"
+                       sortOrder="20"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Display Header In Supplier Panel</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Presentation\Visibility</source_model>
+                </field>
+                <field id="footer_supplier_panel"
+                       translate="label"
+                       sortOrder="30"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Display Footer In Supplier Panel</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Presentation\Visibility</source_model>
+                </field>
+                <field id="include_jquery"
+                       translate="label comment"
+                       sortOrder="40"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Include jQuery</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        If you are using custom theme and this theme is
+                        including itself, please select "No" option
+                        to avoid errors.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="add_sold_by_option_on_product_page"
+                       translate="label comment"
+                       sortOrder="50"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Add "Sold by" Option On Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        Please check instruction on
+                        https://www.cminds.com/magento-extensions-support-documentation/?cmhsdp=b7e6/article/57fe1a3fc697911f2d325248
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="registration_and_login"
+                   translate="label"
+                   type="text"
+                   sortOrder="30"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Registration and Login</label>
+                <field id="separated_login_page"
+                       translate="label comment"
+                       sortOrder="10"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Separated Login Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        You can enable custom login page for supplier accounts.
+                        Custom login page is available under
+                        http://www.your-site.com/supplier/account/login url,
+                        it has to be added anywhere on frontend manually.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="allow_suppliers_register"
+                       translate="label comment"
+                       sortOrder="20"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Separated Register Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        You can enable custom register page for supplier accounts.
+                        Custom register page is available under
+                        http://www.your-site.com/supplier/account/create url,
+                        it has to be added anywhere on frontend manually.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="register_customer_group"
+                       translate="label comment"
+                       sortOrder="30"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Registered Suppliers Default Group</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Register\Groups</source_model>
+                    <comment>
+                        <![CDATA[
+                        Please select group to which supplier will belong after
+                        creating his account using separated register page.
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="allow_suppliers_register">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="suppliers_group"
+                   translate="label"
+                   type="text"
+                   sortOrder="40"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Supplier Groups</label>
+                <field id="supplier_group"
+                       translate="label"
+                       sortOrder="10"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Supplier Group</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Customer\Group</source_model>
+                </field>
+                <field id="suppliert_group_which_can_edit_own_products"
+                       translate="label comment"
+                       sortOrder="20"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Extended Supplier Group</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Customer\Group</source_model>
+                    <comment>
+                        <![CDATA[
+                        Suppliers which belongs to "Extended Supplier Group"
+                        are able to edit their own products.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="suppliers_notifications"
+                   translate="label"
+                   type="text"
+                   sortOrder="50"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Supplier Notifications</label>
+                <field id="notify_supplier_when_product_was_approved"
+                       translate="label"
+                       sortOrder="10"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Supplier Notification About Product Approval</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_when_product_was_approved"
+                       translate="label"
+                       sortOrder="20"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Product Approval Notification Email Title</label>
+                    <depends>
+                        <field id="notify_supplier_when_product_was_approved">1</field>
+                    </depends>
+                </field>
+                <field id="email_text_on_product_approvation"
+                       translate="label comment"
+                       sortOrder="30"
+                       type="textarea"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Product Approval Notification Email Content</label>
+                    <depends>
+                        <field id="notify_supplier_when_product_was_approved">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[
+                        Shortcodes: {{supplierName}}, {{productName}},
+                        {{productLink}}, {{productQty}}.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="notify_supplier_when_product_was_ordered"
+                       translate="label"
+                       sortOrder="40"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Supplier Notification About Ordered Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ordered_products_configuration_enabled"
+                       translate="label"
+                       sortOrder="50"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow Supplier To Configure Notification About Ordered Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_when_product_was_ordered"
+                       translate="label"
+                       sortOrder="60"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Product Ordered Notification Email Title</label>
+                    <depends>
+                        <field id="notify_supplier_when_product_was_ordered">1</field>
+                    </depends>
+                </field>
+                <field id="email_text_on_product_was_ordered"
+                       translate="label comment"
+                       sortOrder="70"
+                       type="textarea"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Product Ordered Notification Email Content</label>
+                    <depends>
+                        <field id="notify_supplier_when_product_was_ordered">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[
+                        Shortcodes: {{supplierName}}, {{productName}},
+                        {{productLink}}, {{productQty}}, {{price}}, {{sku}},
+                        {{firstname}}, {{lastname}}, {{street}}, {{city}},
+                        {{email}}, {{postcode}}, {{region}}, {{getCountryId}}.
+                        <br><br>
+                        Section between {{productSectionStart}} and {{productSectionEnd}}
+                        will be repeated for each product,
+                        product related short codes can be used only inside.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+        <section id="products_settings"
+                 translate="label"
+                 type="text"
+                 sortOrder="90"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Product Settings</label>
+            <tab>supplierfrontend</tab>
+            <resource>Cminds_Supplierfrontendproductuploader::productssettings</resource>
+            <group id="adding_products"
+                   translate="label"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="attributes_set"
+                       translate="label"
+                       sortOrder="10"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Products Attribute Set</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Attribute\Set</source_model>
+                </field>
+                <field id="allowed_product_types"
+                       translate="label"
+                       type="multiselect"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allowed Products Types</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Product\Types</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="allow_suppliers_upload_images"
+                       translate="label"
+                       sortOrder="30"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow Supplier To Upload Images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="maximum_allowed_images"
+                       translate="label"
+                       sortOrder="40"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Maximum Allowed Images Count</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="allow_suppliers_upload_images">1</field>
+                    </depends>
+                </field>
+                <field id="allow_suppliers_upload_videos"
+                       translate="label"
+                       sortOrder="50"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow Supplier To Upload Video</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="product_tax_class"
+                       translate="label"
+                       sortOrder="60"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Products Tax Class</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Tax\TaxClass</source_model>
+                </field>
+                <field id="supplier_can_define_sku"
+                       translate="label"
+                       sortOrder="70"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allow Supplier To Define SKU</label>
+                    <source_model>Cminds\Supplierfrontendproductuploader\Model\Config\Source\Availbility\Sku</source_model>
+                </field>
+                <field id="auto_increment_sku_number"
+                       translate="label"
+                       sortOrder="80"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Auto Increment SKU Number</label>
+                </field>
+            </group>
+            <group id="csv_import"
+                   translate="label"
+                   type="text"
+                   sortOrder="20"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>CSV Import</label>
+                <field id="enable_csv_import"
+                       translate="label"
+                       sortOrder="10"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="send_notification_when_supplier_uploads_products"
+                       translate="label"
+                       sortOrder="20"
+                       type="select"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Notification When Supplier Uploads Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="how_many_product_can_be_imported"
+                       translate="label comment"
+                       sortOrder="30"
+                       type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Import Products Count Limit</label>
+                    <comment><![CDATA[Please set 0 for unlimited products import.]]></comment>
+                </field>
+            </group>
+        </section>
+        <section id="supplier_tools"
+                 translate="label"
+                 type="text"
+                 sortOrder="100"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Tools</label>
+            <tab>supplierfrontend</tab>
+            <resource>Cminds_Supplierfrontendproductuploader::tools</resource>
+            <group id="categories"
+                   translate="label"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Categories</label>
+                <field id="set_categories_availability"
+                       translate="label"
+                       sortOrder="10"
+                       type="submit"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Set All Categories As Available For Suppliers</label>
+                    <frontend_model>Cminds\Supplierfrontendproductuploader\Block\System\Config\Form\Button</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

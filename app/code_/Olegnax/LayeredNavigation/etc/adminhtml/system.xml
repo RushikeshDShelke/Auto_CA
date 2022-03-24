@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="olegnax" sortOrder="999" translate="label">
+			<label>Olegnax</label>
+		</tab>
+		<section id="olegnax_layered_navigation" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+				 translate="label">
+			<label>Layered Navigation</label>
+			<tab>olegnax</tab>
+			<resource>Olegnax_LayeredNavigation::layered_navigation</resource>
+			<group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+				<frontend_model>Olegnax\LayeredNavigation\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+			</group>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+					   showInWebsite="1" showInStore="1">
+					<label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<frontend_class>on-off-trigger</frontend_class>
+				</field>
+				<field id="filters_type" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="22"
+					   translate="label" type="select">
+					<label>Filters Type</label>
+					<source_model>Olegnax\LayeredNavigation\Model\Config\Source\FiltersType</source_model>
+				</field>
+				<field id="abort_prev_request" translate="label" type="select" sortOrder="25" showInDefault="1"
+					   showInWebsite="1" showInStore="1">
+					<label>Abort Previous Requests</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<frontend_class>on-off-trigger</frontend_class>
+					<depends>
+						<field id="ajax">1</field>
+					</depends>
+				</field>
+			</group>
+			<group id="category" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20"
+				   translate="label">
+				<label>Category</label>
+				<field id="depth" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+					   showInWebsite="1" showInStore="1">
+					<label>Depth of nested categories</label>
+					<source_model>Olegnax\LayeredNavigation\Model\Config\Source\CategoryDepth</source_model>
+				</field>
+			</group>
+			<group id="price_slider" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30"
+				   translate="label">
+				<label>Price Slider</label>
+				<field id="price_slider" translate="label comment" type="select" sortOrder="25" showInDefault="1"
+					   showInWebsite="1" showInStore="1">
+					<label>Enable Price Slider</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<frontend_class>on-off-trigger</frontend_class>
+				</field>
+			</group>
+			<group id="loaders" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label">
+				<label>Loaders</label>
+				<field id="loader_type_filters" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+					   translate="label" type="select">
+					<label>AJAX Progress Loader For Filters Block</label>
+					<source_model>Olegnax\LayeredNavigation\Model\Config\Source\LoaderType</source_model>
+				</field>
+				<field id="loader_filters" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="11"
+					   translate="label" type="text">
+					<label>Filters Loader Image</label>
+					<comment>Set url to preloader image. E.g.: "images/preloader.svg" will link to images folder in your
+						current theme. E.g.: app\design\frontend\Olegnax\athlete2\web\images.
+					</comment>
+					<depends>
+						<field id="loader_type_filters">image</field>
+					</depends>
+				</field>
+				<field id="spacer_1" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Olegnax\LayeredNavigation\Model\Config\Source\Spacer</frontend_model>
+				</field>
+				<field id="loader_type_content" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="21"
+					   translate="label" type="select">
+					<label>AJAX Progress Loader For Content</label>
+					<source_model>Olegnax\LayeredNavigation\Model\Config\Source\LoaderType</source_model>
+				</field>
+				<field id="loader_content" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="22"
+					   translate="label" type="text">
+					<label>Content Loader Image</label>
+					<comment>Set url to preloader image. E.g.: "images/preloader.svg" will link to images folder in your
+						current theme. E.g.: app\design\frontend\Olegnax\athlete2\web\images.
+					</comment>
+					<depends>
+						<field id="loader_type_content">image</field>
+					</depends>
+				</field>
+				<field id="loader_content_selector" translate="label comment" type="text" sortOrder="23"
+					   showInDefault="1"
+					   showInWebsite="1" showInStore="1">
+					<label>Custom DOM Selectors for Products Container</label>
+					<comment>Default selectors: ".column.main .products.products-grid, .column.main
+						.products.products-list, .column.main .products-grid.grid"
+					</comment>
+				</field>
+				<field id="spacer_2" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Olegnax\LayeredNavigation\Model\Config\Source\Spacer</frontend_model>
+				</field>
+				<field id="loader_type_page" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="31"
+					   translate="label" type="select">
+					<label>AJAX Progress Loader For the Whole Page</label>
+					<source_model>Olegnax\LayeredNavigation\Model\Config\Source\LoaderType</source_model>
+				</field>
+				<field id="loader_page" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="32"
+					   translate="label" type="text">
+					<label>Page Loader Image</label>
+					<comment>Set url to preloader image. E.g.: "images/preloader.svg" will link to images folder in your
+						current theme. E.g.: app\design\frontend\Olegnax\athlete2\web\images.
+					</comment>
+					<depends>
+						<field id="loader_type_page">image</field>
+					</depends>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

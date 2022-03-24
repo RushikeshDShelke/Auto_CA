@@ -1,0 +1,179 @@
+<?php $order = $block->getOrder(); ?>
+<?php $items = $block->getItems(); ?>
+<?php $shippingAddress = $block->getOrder()->getShippingAddress(); ?>
+<?php $billingAddress = $block->getOrder()->getBillingAddress(); ?>
+<?php $canSave = 0; ?>
+
+<div class="container-fluid main-container vendor-container">
+    <h2 class="text-center">
+        <?php /* @escapeNotVerified */ echo __('Create Shipment for Order #%1', $order->getIncrementId()) ?>
+    </h2>
+    <div class="row  text-left col-md-offset-2">
+        <div class="col-md-5 col-sm-6">
+            <h3><?php /* @escapeNotVerified */ echo __('Order Information') ?></h3>
+            <p>
+                <strong><?php /* @escapeNotVerified */ echo __('Order Date') ?>: </strong>
+                <?php echo date('M d, Y g:i:s A', strtotime($order->getCreatedAt())) ?>
+            </p>
+            <p>
+                <strong><?php /* @escapeNotVerified */ echo __('Order Status') ?>: </strong>
+                <?php if ($order->getStatus() === 'canceled') : ?>
+                    <span class="text-danger"><?php echo ucfirst($order->getStatus()) ?></span>
+                <?php else : ?>
+                    <?php echo ucfirst($order->getStatus()) ?>
+                <?php endif; ?>
+            </p>
+        </div>
+        <div class="col-md-5 col-sm-6">
+            <h3><?php /* @escapeNotVerified */ echo __('Account Information') ?></h3>
+            <p>
+                <strong><?php /* @escapeNotVerified */ echo __('Customer Name') ?>: </strong>
+                <?php echo $block->escapeHtml($order->getCustomerFirstname()) ?>
+                <?php echo $block->escapeHtml($order->getCustomerLastname()) ?>
+            </p>
+            <p>
+                <strong><?php /* @escapeNotVerified */ echo __('Email') ?>: </strong>
+                <a href="mailto:<?php echo $block->escapeHtml($order->getCustomerEmail()) ?>">
+                    <?php echo $block->escapeHtml($order->getCustomerEmail()) ?>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="row  text-left col-md-offset-2">
+        <div class="col-md-5 col-sm-6">
+            <h3><?php /* @escapeNotVerified */ echo __('Billing Address') ?></h3>
+            <p><?php echo $block->getFormattedShippingAddress() ?></p>
+        </div>
+        <div class="col-md-5 col-sm-6">
+            <h3><?php /* @escapeNotVerified */ echo __('Shipping Address') ?></h3>
+            <p><?php echo $block->getFormattedBillingAddress() ?></p>
+        </div>
+    </div>
+
+    <form action="<?php echo $block->getUrl('*/*/save'); ?>" id="createShipmentForm" method="post">
+        <div class="row ">
+            <div class="col-md-7 col-md-offset-2">
+                <h2 class="sub-header"><?php /* @escapeNotVerified */ echo __('Add Tracking Code') ?></h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th><?php /* @escapeNotVerified */ echo __('Carrier') ?></th>
+                                <th><?php /* @escapeNotVerified */ echo __('Title') ?></th>
+                                <th><?php /* @escapeNotVerified */ echo __('Number') ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select name="carrier_code" id="trackingC1" class="select carrier">
+                                            <option value="custom">Custom Value</option>
+                                            <option value="dhl">DHL (Deprecated)</option>
+                                            <option value="fedex">Federal Express</option>
+                                            <option value="ups">United Parcel Service</option>
+                                            <option value="usps">United States Postal Service</option>
+                                            <option value="dhlint">DHL</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="title" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="number" class="form-control"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2">
+                <h2 class="sub-header"><?php /* @escapeNotVerified */ echo __('Ordered Items') ?></h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><?php /* @escapeNotVerified */ echo __('Product') ?></th>
+                            <th><?php /* @escapeNotVerified */ echo __('SKU') ?></th>
+                            <th><?php /* @escapeNotVerified */ echo __('Qty Ordered') ?></th>
+                            <th><?php /* @escapeNotVerified */ echo __('Available for Shipment') ?></th>
+                            <th><?php /* @escapeNotVerified */ echo __('Qty to Ship') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($items as $item) : ?>
+                            <?php if ($item->getData('parent_item_id')) : ?>
+                                <?php continue ?>
+                            <?php endif; ?>
+                            <tr>
+                                <td>
+                                    <?php echo $block->escapeHtml($item->getName()); ?>
+                                    <?php
+                                    $data = $item->getData('product_options');
+                                    if (is_string($data)) {
+                                        $data = unserialize($data);
+                                    }
+                                    ?>
+                                    <?php if (isset($data['attributes_info'])) : ?>
+                                        <dl>
+                                            <?php foreach ($data['attributes_info'] as $attribute) : ?>
+                                                <dt><?php echo $attribute['label']; ?></dt>
+                                                <dd><?php echo $attribute['value']; ?></dd>
+                                            <?php endforeach; ?>
+
+                                        </dl>
+                                    <?php endif;?>
+                                <td><?php echo $block->escapeHtml($item->getSku()); ?></td>
+                                <td><?php echo number_format($item->getQtyOrdered()); ?></td>
+                                <td><?php echo $item->getQtyOrdered() - $item->getQtyShipped(); ?></td>
+                                <td>
+                                    <?php if ($item->getQtyOrdered() - $item->getQtyShipped() > 0) : ?>
+                                        <?php $canSave = 1 ?>
+                                        <input type="text"
+                                               class="validate-number required-entry form-control"
+                                               name="product[<?php echo $block->escapeHtml($item->getId()) ?>]"
+                                               value="<?php echo $item->getQtyOrdered() - $item->getQtyShipped() ?>"
+                                        />
+                                    <?php else: ?>
+                                    0
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2">
+                <?php if ($block->isNotificationEnabled() === true) : ?>
+                    <div class="container form-group">
+                        <div style="text-align: left !important;" class="checkbox">
+                            <label for="notify_customer">Notify Customer</label>
+                            <input type="checkbox"
+                                   checked=""
+                                   value="1"
+                                   name="notify_customer"
+                                   id="notify_customer"
+                            />
+                        </div>
+                <?php endif; ?>
+                <?php if ($canSave === 1) : ?>
+                    <div class="col-md-2 col-sm-4 col-sm-offset-2 col-md-offset-3">
+                        <input type="hidden"
+                               name="order_id"
+                               value="<?php echo $block->escapeHtml($order->getId()); ?>"
+                        />
+                        <input type="submit"
+                               name="submit"
+                               class="btn btn-primary"
+                               value="<?php /* @escapeNotVerified */ echo __('Save Shipment') ?>"
+                        />
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Amasty\Shopby\Plugin\Ajax\Ajax" type="Olegnax\InfiniteScroll\Rewrite\Amasty\Shopby\Plugin\Ajax\Ajax"/>
+	<preference for="Amasty\Shopby\Plugin\Ajax\CategoryViewAjax" type="Olegnax\InfiniteScroll\Rewrite\Amasty\Shopby\Plugin\Ajax\CategoryViewAjax"/>
+	<preference for="Amasty\Shopby\Plugin\Ajax\CmsControllerIndexIndexAjax" type="Olegnax\InfiniteScroll\Rewrite\Amasty\Shopby\Plugin\Ajax\CmsControllerIndexIndexAjax"/>
+</config>

@@ -1,0 +1,86 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()) :?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <div class="page-title">
+                <h1>Your order has been received.</h1>
+            </div> 
+            <h2 class="sub-title">Thank you for your purchase!</h2>
+
+            <p><?= $block->escapeHtml(__('Your order number # is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+        <?php  else :?>
+            <p><?= $block->escapeHtml(__('Your order # is: <span>%1</span>.', $block->getOrderId()), ['span']) ?></p>
+        <?php endif;?>
+            <p><?= $block->escapeHtml(__('You will receive an order confirmation email with details of your order and a link to track its progress.')) ?></p>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+        </div>
+    </div>
+</div>
+<?php
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+$orderData = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($block->getOrderId());
+$email = $orderData->getCustomerEmail();
+$fname = $orderData->getCustomerFirstname();
+$lname = $orderData->getCustomerLastname();
+$name = $fname. ' ' .$lname;
+$date = date("d/m/Y");
+$total = $orderData->getGrandTotal();
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$currencyCode = $storeManager->getStore()->getCurrentCurrencyCode();
+$productArray = array();
+foreach ($orderData->getAllItems() as $item) {
+        $productArray[] = array('name' => $item->getName(),'id'=>$item->getSku(),'price'=>(int)$item->getPrice(),'Category'=>'','quantity'=>(int)$item->getQtyOrdered());
+}
+$productData = json_encode($productArray);
+ ?>
+
+<?php
+ $curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://hooks.zapier.com/hooks/catch/1903329/ozd5kdw/",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => array('Email' => $email,'Date' => $date,'Name' => $name),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+
+ ?>
+<script type="text/javascript">
+ var total = "<?php echo (int)$total; ?>";
+var intTotal = parseInt(total);
+var dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'purchaseSuccess',
+                'ecommerce': {
+                    'purchase': {
+                        'actionField': {
+                        'currency': '<?php echo $currencyCode ; ?>',
+                        "revenue": intTotal
+                        },
+                        'products': <?php echo $productData; ?>
+                    }
+		}
+            });
+ </script>

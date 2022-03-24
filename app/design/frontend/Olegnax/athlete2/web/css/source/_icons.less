@@ -1,0 +1,190 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+/*
+& when (@media-common = true) {
+    .lib-font-face(
+        @family-name: @icons__font-name,
+        @font-path: @icons__font-path,
+        @font-weight: normal,
+        @font-style: normal
+    );
+}*/
+
+//
+// Svg
+//  ---------------------------------------------
+& when (@media-common = true) {
+    .svg-fill-none{
+        fill:none;
+    }
+    #cart-icon-small{
+        width:14px;
+        height:16px;
+        display:inline-block;
+    }
+    .ba-basic(){
+        content: '';
+        display: block;
+        position: absolute;
+    }
+    .icon-plus,
+    .icon-minus{        
+        &:before{
+            .ba-basic();
+            background: #000000;
+            left: calc(~"50% - 4px");
+            top: calc(~"50% - 1px");
+            width: 8px;
+            height: 2px;
+        }
+    }
+    .icon-plus{
+        right: 0;
+         &:after{
+            .ba-basic();
+            background: #000000;
+            left: calc(~"50% - 1px");
+            top: calc(~"50% - 4px");
+            width: 2px;
+            height: 8px;
+         }
+    }
+    .icon-minus,
+    .icon-plus {
+        width: 34px;
+        height: @add-to-cart-button__height;
+        cursor: pointer;
+        display: block;
+        position: absolute;
+        /*&:hover{
+            background: #000000;
+            &:after,
+            &:before{
+                background: #ffffff;
+            }
+        }*/
+    }
+    
+    /* Social Icons */
+    .footer.content a,
+    .footer.content a:not(.button),
+    .content a,
+    .std a,
+    .top-bar .athlete2-social-icons > a,
+    .athlete2-social-icons > a,
+    a{
+        &.athlete2-social-icon{
+            display: inline-flex;
+            width: 36px;
+            align-items: center;
+            justify-content: center;
+            height: 34px;
+            margin: 0 1px 5px 0 !important;
+            font-size: 20px;
+            padding: 0 !important;
+            background: @main-color;
+            color:#000;
+            overflow: hidden;
+            &:before{
+                animation: move-vertical-out 0.25s;
+            }
+            &:hover{
+                color:#ffffff;
+                &:before{
+                    animation: move-vertical-hover 0.25s;
+                }
+            }
+            span{
+                 &:extend(.abs-visually-hidden all);
+            }
+        }
+        &.athlete2-icon-facebook:hover 		{ background-color: #3b5998 }
+        &.athlete2-icon-twitter:hover 		{ background-color: #00c3f4 }
+        &.athlete2-icon-tumblr:hover 	 	{ background-color: #34526f }
+        &.athlete2-icon-skype:hover                 { background-color: #33bff3 }
+        &.athlete2-icon-google-plus:hover 		{ background-color: #ce4832 }
+        &.athlete2-icon-instagram:hover 		{ background-color: #d80085 }
+        &.athlete2-icon-foursquare:hover 		{ background-color: #e9426f }
+        &.athlete2-icon-linkedin-in:hover,
+        &.athlete2-icon-linkedin:hover              { background-color: #4b8df7 }
+        &.athlete2-icon-kickstarter:hover           { background-color: #4cdf79 }
+        &.athlete2-icon-amazon:hover                { background-color: #ed9706 }
+        &.athlete2-icon-odnoklassniki:hover         { background-color: #f29400 }
+        &.athlete2-icon-slack:hover                 { background-color: #471248 }
+        &.athlete2-icon-facebook-messenger:hover    { background-color: #3896fe }
+        &.athlete2-icon-stripe:hover                { background-color: #696cdc }
+        &.athlete2-icon-vk:hover                    { background-color: #557db1 }
+        &.athlete2-icon-whatsapp:hover              { background-color: #42d84c }
+        &.athlete2-icon-viber:hover                 { background-color: #7738a8 }
+        &.athlete2-icon-telegram-plane:hover        { background-color: #55b0ee }
+
+        &.athlete2-icon-pinterest:hover 	{ background-color: #cb2027 }        
+        &.athlete2-icon-youtube:hover 		{ background-color: #b72d28 }
+        &.athlete2-icon-dribble:hover 		{ background-color: #f977a6 }
+        &.athlete2-icon-flickr:hover 		{ background-color: #ff0084 }
+        &.athlete2-icon-vimeo:hover 		{ background-color: #1ab7ea }
+        &.athlete2-icon-picasa:hover 		{ background-color: #4b8df8 }
+        &.athlete2-icon-digg:hover 		{ background-color: #1b5891 }
+        &.athlete2-icon-plurk:hover 		{ background-color: #cf682f }
+        &.athlete2-icon-tripadvisor:hover       { background-color: #589642 }
+        &.athlete2-icon-yahoo:hover	 	{ background-color: #ab64bc }
+        &.athlete2-icon-delicious:hover 	{ background-color: #004795 }
+        &.athlete2-icon-devianart:hover 	{ background-color: #54675a }
+        &.athlete2-icon-apple:hover 		{ background-color: #4c4c4c }
+        &.athlete2-icon-aim:hover 		{ background-color: #ffb400 }
+        &.athlete2-icon-paypal:hover 		{ background-color: #0079c1 }
+        &.athlete2-icon-blogger:hover 		{ background-color: #ff6403 }
+        &.athlete2-icon-behance:hover 		{ background-color: #1769ff }
+        &.athlete2-icon-myspace:hover 		{ background-color: #003399 }
+        &.athlete2-icon-stumble:hover 		{ background-color: #cc492b }
+
+        &.athlete2-icon-amazon-pay:hover 	{ background-color: #ed9706 }
+        &.athlete2-icon-snapchat:hover 		{ background-color: #fdfd27; color:#000; }
+        &.athlete2-icon-reddit:hover 		{ background-color: #ef4000 }
+        &.athlete2-icon-discord:hover 		{ background-color: #7086ed }
+        &.athlete2-icon-tripadvisor:hover 	{ background-color: #53e1a4; color:#000; }
+        &.athlete2-icon-tiktok:hover  	{ background-color: #000; }
+        &.athlete2-icon-business:hover 	{ background-color: #547cdf; }
+    }
+    .top-bar .athlete2-social-icons-simple,
+    .athlete2-social-icons-simple{
+        display:inline-block;
+        > a{
+            &.athlete2-social-icon{
+                width: 20px;
+                font-size: 20px;
+                height: 20px;
+                line-height: 24px;
+                text-align: center;    
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 1px 0 0 !important;
+                padding: 0 !important;
+                background: none;
+                color:#fff;
+                overflow: hidden;
+                &:before{
+                    animation: none;
+                }
+                &:hover{
+                    color:#ffffff;
+                    &:before{
+                        animation: none;
+                    }
+                }
+            }
+        }
+        &.size-tiny{
+            > a{
+                &.athlete2-social-icon{
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+            }
+        }
+    }
+}
+

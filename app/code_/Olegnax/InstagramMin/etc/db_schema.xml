@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="olegnax_instagrammin_intspost Table" engine="innodb" name="olegnax_instagrammin_intspost" resource="default">
+		<column comment="Entity Id" identity="true" name="intspost_id" nullable="false" padding="6" unsigned="true" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="intspost_id"/>
+		</constraint>
+		<column name="ints_id" nullable="false" xsi:type="varchar" length="20"/>
+		<column name="store_id" nullable="false" xsi:type="int" padding="11"/>
+		<column length="255" name="owner" nullable="false" xsi:type="varchar"/>
+		<column length="255" name="typename" nullable="false" xsi:type="varchar"/>
+		<column length="255" name="shortcode" nullable="true" xsi:type="varchar"/>
+		<column identity="false" name="dimensions_width" nullable="true" xsi:type="int"/>
+		<column identity="false" name="dimensions_height" nullable="true" xsi:type="int"/>
+		<column identity="false" name="edge_media_to_comment" nullable="true" xsi:type="int"/>
+		<column identity="false" name="edge_liked_by" nullable="true" xsi:type="int"/>
+		<column identity="false" name="edge_media_preview_like" nullable="true" xsi:type="int"/>
+		<column name="edge_media_to_caption" nullable="true" xsi:type="text"/>
+		<column identity="false" name="video_view_count" nullable="true" xsi:type="int"/>
+		<column name="location" nullable="true" xsi:type="text"/>
+		<column name="display_url" nullable="true" xsi:type="text"/>
+<!--		<column name="thumbnail_src" nullable="true" xsi:type="text"/>-->
+<!--		<column name="thumbnail_src_320" nullable="true" xsi:type="text"/>-->
+<!--		<column name="thumbnail_src_480" nullable="true" xsi:type="text"/>-->
+<!--		<column name="thumbnail_src_640" nullable="true" xsi:type="text"/>-->
+		<column default="1" name="is_active" nullable="false" xsi:type="boolean"/>
+		<column default="CURRENT_TIMESTAMP" name="taken_at_timestamp" nullable="true" xsi:type="timestamp"/>
+	</table>
+</schema>

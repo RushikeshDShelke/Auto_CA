@@ -1,0 +1,53 @@
+<?php
+/**
+ * Blog post list template
+ *
+ * @var $block \Magefan\Blog\Block\Post\PostList
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+?>
+<?php
+$theme_helper = $this->helper('Olegnax\Athlete2\Helper\Helper');
+$at_settings = $theme_helper->getConfig('athlete2_settings/blog');
+$_postCollection = $block->getPostCollection();
+$classes = [];
+if($at_settings['blog_style_classic']){
+	$classes[] = 'blog-style-classic';
+} else{
+	$classes[] = 'blog-style-modern';
+}
+if($at_settings['blog_list_style']){
+	$classes[] = 'blog-list--' . $at_settings['blog_list_style'];
+}
+if($at_settings['blog_list_columns']){
+	$classes[] = 'columns-' . $at_settings['blog_list_columns'];
+}
+if($theme_helper->getConfig('athlete2_design/blog_list/big_post_white')){
+	$classes[] = 'white-style';
+}
+$classesOutput = implode(' ',	$classes);
+?>
+<?php if (!$_postCollection->count()): ?>
+    <div class="message info empty"><div><?php echo __('We can\'t find posts matching the selection.') ?></div></div>
+<?php else: ?>
+    <?php echo $block->getAdditionalHtml() ?>
+        <?php $iterator = 1; ?>
+        <div class="post-list <?= $classesOutput ?>">
+            <?php foreach ($_postCollection as $_post): ?>
+                <?php echo $block->getPostHtml($_post) ?>
+            <?php endforeach; ?>
+            <div class="hidden">
+                <script type="text/javascript">
+                    if (window.addthis) {
+                        addthis.toolbox('.addthis_toolbox');
+                    }
+                </script>
+            </div>
+        </div>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php echo $this->getChildHtml('addthisJs'); ?>
+<?php endif; ?>

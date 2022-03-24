@@ -1,0 +1,200 @@
+<?php 
+/* Using Direct Object Manager */ 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/* Get store manager */ 
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+// MEDIA URL 
+$mediaUrl =$storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+
+<div class="track-order-main">
+    <span class="error_msg" id="emsg" style="display: none;"></span>
+    <span id="track_message" style="display: none;"></span>
+<div class="track-container"><div class="block">
+    <div class="block-content" aria-labelledby="block-customer-track-heading">
+        <div class="page-title"><h1>Track Your Order</h1></div>
+      <div class="form-list">
+        <form class="form form-track" id="track-form" action="javascript:" 
+                 data-mage-init='{"validation":{}}'>  
+        <?= $block->getBlockHtml('formkey') ?>        
+            <fieldset class="fieldset track" data-hasrequired="* Required Fields">          
+                <div class="field track">
+                    <label class="label" for="tracking id"><span><?= $block->escapeHtml(__('Order Id')) ?></span></label>
+                    <div class="control">
+                        <input name="order_id" value="" autocomplete="off" id="tracking" type="text" class="input-text required-entry" title="<?php echo __('Order Id') ?>">
+                    </div>
+                </div>
+                  <div class="field email">
+                      <label class="label" for="email"><span><?= $block->escapeHtml(__('Email Address')) ?></span></label>
+                      <div class="control">
+                          <input name="customer_email" value="" autocomplete="off" id="email" type="email" class="input-text required-entry" title="<?php echo __('Email') ?>" data-validate="{'validate-email':true}">
+                      </div>
+                  </div>
+                                
+                    <div class="actions-toolbar">
+                    <div class="primary"><button type="submit" id="track_button" class="action track primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Track Order')) ?></span></button></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+     </div>
+</div>
+</div>
+<div class="track_result" style="display:none;">
+    <h2><?php echo __('Tracking Information') ?></h2>
+    <div class="order-detail-id">
+    </div>
+    <div id="shipmentservice1">
+        
+    </div>
+</div>
+</div>
+<script>
+    require([
+        'jquery','mage/validation'
+    ], function ($) {
+      var dataForm = $('#track-form');
+      dataForm.mage('validation', {});
+      $('#track_button').click( function() { 
+        var status = dataForm.validation('isValid'); //validates form and returns boolean
+        if(status){
+            $.ajax({
+                url:'<?php echo $this->getBaseUrl() ?>trackorder/order/shipment',
+                type:'POST',
+                showLoader: true,
+                dataType:'json',
+                data: $('form').serialize(),  
+            }).done(function( response ){         
+
+                 dataobj = JSON.parse(JSON.stringify(response));
+                if(dataobj.trackData){    
+                   $(".track_result, #shipmentservice1").css('display','block');
+                   $("#shipmentservice1").html(dataobj.trackData);
+                   $(".error_msg").css('display','none');
+                }
+                else{
+                   $(".track_result, #shipmentservice1").css('display','none'); 
+                   $(".error_msg").css('display','block');
+                   $("#emsg").html(dataobj.emessage); 
+                } 
+                
+                
+                
+                /*if(dataobj.status == true){
+                    $(".track_result, #track_message").css('display','block');
+                    $(".error_msg").css('display','none');
+                    $(".order-detail-id").html(dataobj.orderdetailhtml);
+                    $("#track_message").html(dataobj.emessage);
+                if(dataobj.trackData){    
+                   $("#shipmentservice").css('display','block')
+                   $("#shipmentservice tbody").html(dataobj.trackData); 
+                   $("#track_message").html(dataobj.emessage);
+                }
+                else{
+                   $("#shipmentservice, #track_message").css('display','none'); 
+                   $(".error_msg").css('display','block');
+                   $("#emsg").html(dataobj.emessage); 
+                }   
+            }
+            else{
+                $(".track_result, #track_message").css('display','none');
+                $(".error_msg").css('display','block');
+                $("#emsg").html(dataobj.emessage);           
+            }*/
+              });
+            }
+        });
+    });
+</script>
+<style type="text/css">
+  .order-tracking-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+    position: relative;
+    z-index: 1;
+}
+.order-tracking-container:before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background: #1d4342;
+    top: 55%;
+    left: 100px;
+    right: 100px;
+    z-index: -1;
+    }
+
+
+    .order-processing {
+    text-align: center;
+    width: 100%;
+}
+
+
+.process-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.process-item.active span {
+    background: #1d4342;
+}
+
+.process-item span {
+    width: 100px;
+    height: 100px;
+    background: #bbb;
+    display: block;
+    border-radius: 100%;
+    position: relative;
+}
+
+
+.order-processing {
+    text-align: center;
+    width: 100%;
+}
+.process-item span:before {
+    content: '';
+    width: 50px;
+    height: 50px;
+     /*background: url(http://local.magento.com/craftmaestro/pub/media/images/tick-icon.png) no-repeat;*/
+    background: url(<?php echo $mediaUrl ?>images/tick-icon.png) no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+}
+
+
+.process-item.active span:before {
+    opacity: 1;
+}
+
+.track-source {
+    text-align: center;
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    width: 40%;
+    margin: 30px auto 0 auto;
+}
+
+.track-source span {
+    display: block;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.track-source span:last-child {
+    border: none;
+}
+
+
+</style>

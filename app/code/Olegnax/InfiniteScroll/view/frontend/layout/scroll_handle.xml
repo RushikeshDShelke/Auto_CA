@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="amasty.rewards.highlight.category">
+			<action method="setTemplate">
+				<argument name="template" xsi:type="helper" helper="Olegnax\InfiniteScroll\Helper\Helper::SelectRewardTemplate"/>
+			</action>
+		</referenceBlock>
+		<referenceContainer name="before.body.end">
+			<block class="Magento\Framework\View\Element\Template" name="ox_infinitescroll_loader"
+				   template="Olegnax_InfiniteScroll::loader.phtml"/>
+			<block class="Olegnax\InfiniteScroll\Block\Scroll" name="ox_infinitescroll"
+				   template="Olegnax_InfiniteScroll::scroll.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

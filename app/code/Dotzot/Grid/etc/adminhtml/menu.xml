@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dotzot_Grid::manager" title="Dotzot Menu" module="Dotzot_Grid" sortOrder="2" resource="Dotzot_Grid::manager" />
+        <add id="Dotzot_Grid::add_row" title="Manage Pincode" module="Dotzot_Grid" sortOrder="0" parent="Dotzot_Grid::manager" action="grid/grid" resource="Dotzot_Grid::add_row"/>
+        <add id="Dotzot_Grid::add_col" title="Manage Docket Data" module="Dotzot_Grid" sortOrder="1" parent="Dotzot_Grid::manager" action="grid/secondgrid" resource="Dotzot_Grid::add_col"/>
+    </menu>
+</config>

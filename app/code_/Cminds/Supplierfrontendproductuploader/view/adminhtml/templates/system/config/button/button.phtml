@@ -1,0 +1,8 @@
+<div class="pp-buttons-container">
+    <button id="<?php echo $block->getId() ?>" 
+    		onclick='<?php echo $block->getOnclick();?>'>
+        <span>
+        	<?php echo $block->escapeHtml($block->getButtonLabel()); ?>
+       	</span>
+    </button>
+</div>

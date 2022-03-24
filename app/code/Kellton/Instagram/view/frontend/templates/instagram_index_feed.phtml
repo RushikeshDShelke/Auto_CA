@@ -1,0 +1,138 @@
+<?php if(is_array($block->getFeeds())):  ?>
+<style>
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.clearfix {
+    *+height: 1%;
+}
+
+.insta-container2 {
+    height: 300px;
+    margin:30px auto;
+    clear: both;
+}
+
+.insta-container2 ul {}
+
+.insta-container2 ul li {
+    
+        border:1px solid #fff;
+}
+
+.insta-container2 ul li img {}
+
+.insta-container2 ul li span.caption{
+  z-index: 9999;
+  position: absolute;
+  bottom: 0;
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  font-family: arial;
+  padding: 5px 5px;
+  font-size: 13px;
+  display: none;
+}
+
+.insta-container2 ul li:hover span.caption{display: block;}
+
+.left,
+.right {
+    cursor: pointer;
+}
+img.left {
+    left: -60px !important;
+}
+img.right {
+    right: -60px !important;
+}
+
+@media only screen and (max-width: 768px) {
+  img.left {
+    left: -20px !important;
+    width: 10px;
+}
+img.right {
+    right: -20px !important;
+    width: 10px;
+}
+}
+
+@media only screen and (max-width: 320px) {
+  img.left {
+    left: 0px !important;
+}
+img.right {
+    right: 0px !important;
+}
+}
+
+</style>
+<script src="http://magento-148445-536733.cloudwaysapps.com/slider/js/Carousel.js"></script>
+<script type="text/javascript">
+jQuery(window).load(function() {
+    if (jQuery(window).width()<768){
+            jQuery('.insta-container2').carousel({
+                num: 3,
+                maxWidth: 250,
+                maxHeight: 300,
+                distance: 30,
+                scale: 0.6,
+                animationTime: 700,
+                showTime: 1800
+            });
+        }else{
+          jQuery('.insta-container2').carousel({
+            num: 5,
+            maxWidth: 450,
+            maxHeight: 500,
+            distance: 50,
+            scale: 0.6,
+            animationTime: 700,
+            showTime: 1800
+        });
+        }
+});
+</script>
+
+
+ <?php $data= $this->getFeeds();?>
+ <div class="insta-container2" id="insta-container">
+  <?php if($block->isEnabled('enable')):?>
+    <ul>
+      <?php $count=count($data['images'])%2==0?count($data['images'])-1:count($data['images']);  
+      foreach ($data['images'] as $image): ?>
+        <li>
+          <div class="insta-feed" alt="<?php echo $image['likes'].' Likes';?>" title="<?php echo $image['likes'].' Likes';?>">
+            <a href="<?php echo $image['link'];?>" target="_blank" >
+              <img src="<?php echo $image['image']; ?>" alt="<?php echo $image['title']; ?>" class="img-responsive" />
+            </a>
+            <span class="caption">
+              <?php echo $image['title']; ?>
+            </span>
+            <?php foreach($image['tags'] as $tag): ?>
+              <?php $tags[]='#'.$tag;?>
+            <?php endforeach; ?>
+            <div class="hastag"><?php echo implode(', ',$tags);?></div>
+          </div>
+          <?php unset($tags);?>
+        </li>
+      <?php if(--$count==0) break; endforeach; ?>
+
+      <img src="http://magento-148445-536733.cloudwaysapps.com/slider/img/left.png" class="left">
+      <img src="http://magento-148445-536733.cloudwaysapps.com/slider/img/right.png" class="right">
+
+  </ul>
+
+  <?php else:?>
+    <span> <?php echo $this->__('Instagram Configuration is not Enabled');?>
+  <?php endif;?>
+</div> 
+<?php else:?>
+  <?php echo $block->getFeeds(); ?>
+<?php endif;?>

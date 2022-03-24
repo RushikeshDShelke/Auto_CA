@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<!--suppress XmlDefaultAttributeValue -->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget class="Olegnax\HotSpotQuickview\Block\Widget\HotSpot" id="olegnax_hotspotquickview_hotspot">
+		<label>Olegnax - Hot Spot Quickview</label>
+		<description></description>
+		<parameters>
+			<parameter name="id_path" xsi:type="block" visible="true" required="false" sort_order="10">
+				<label translate="true">Product</label>
+				<block class="Magento\Catalog\Block\Adminhtml\Product\Widget\Chooser">
+					<data>
+						<item name="button" xsi:type="array">
+							<item name="open" xsi:type="string" translate="true">Select Product...</item>
+						</item>
+					</data>
+				</block>
+			</parameter>
+			<parameter name="position_left" xsi:type="text" visible="true" required="true" sort_order="20">
+				<label translate="true">Left Position</label>
+                                <description translate="true">Numbers only. The position is given as a percentage, so a value of 50 will place hotspot in center.</description>
+				<value>50</value>
+			</parameter>
+			<parameter name="position_top" xsi:type="text" visible="true" required="true" sort_order="21">
+				<label translate="true">Top Position</label>
+				<value>50</value>
+			</parameter>
+			<parameter name="height" xsi:type="text" visible="true"  sort_order="22">
+				<label translate="true">Hotspot Height</label>
+                                <description translate="true">Numbers only.</description>
+				<value></value>
+			</parameter>
+			<parameter name="width" xsi:type="text" visible="true"  sort_order="23">
+				<label translate="true">Hotspot Width</label>
+				<value></value>
+			</parameter>
+			<parameter name="label_text" xsi:type="text" visible="true"  sort_order="24">
+				<label translate="true">Hotspot Point Text</label>
+			</parameter>
+			<parameter name="icon" sort_order="35" source_model="Olegnax\HotSpotQuickview\Model\Config\Source\Icon" visible="true" xsi:type="select">
+				<label translate="true">Hotspot Point Icon</label>
+			</parameter>
+  			<parameter name="border_radius" xsi:type="text" visible="true" sort_order="36">
+				<label translate="true">Hotspot Shape Radius</label>
+                                <description translate="true">Change hotspot shape from square to circle. Set 0 for square hotspot. Enter number only. Value set in px.</description>
+				<value></value>
+			</parameter>
+			<parameter name="color" xsi:type="text" visible="true" sort_order="27">
+				<label translate="true">Hotspot Icon/Text Color</label>
+				<value></value>
+			</parameter>
+			<parameter name="color_background" xsi:type="text" visible="true" sort_order="28">
+				<label translate="true">Hotspot Background Color</label>
+				<value></value>
+			</parameter>
+			<parameter name="shadow" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno"  sort_order="28">
+				<label translate="true">Hotspot Shadow</label>
+			</parameter>
+			<parameter name="pulse_animation" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno"  sort_order="30">
+				<label translate="true">Pulse animation</label>
+			</parameter>                        
+			<parameter name="pulse_animation_color" xsi:type="text" visible="true" sort_order="31">
+				<label translate="true">Pulse animation color</label>
+				<value></value>
+			</parameter>
+			<parameter name="border_color" xsi:type="text" visible="true" sort_order="32">
+				<label translate="true">Hotspot Border Color</label>
+				<value></value>
+			</parameter>
+			<parameter name="hide_mobile" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno"  sort_order="41">
+				<label translate="true">Hide Hotspot on Mobile</label>
+			</parameter>
+			<parameter name="mobile_minimized" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno"  sort_order="41">
+				<label translate="true">Minimize Hotspot on Mobile</label>
+                                <description translate="true">Text will be hidden and only 20px circle will be shown.</description>
+			</parameter>
+			<parameter name="position_left_m" xsi:type="text" visible="true" sort_order="42">
+				<label translate="true">Hotspot Left Position Mobile</label>
+                                <description translate="true">Numbers only. Mobile Breakpoint is 768px.</description>
+				<value></value>
+			</parameter>
+			<parameter name="position_top_m" xsi:type="text" visible="true" sort_order="43">
+				<label translate="true">Hotspot Top Position Mobile</label>
+				<value></value>
+			</parameter>
+			<parameter name="tooltip_content" sort_order="51" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label translate="true">Set CMS block as Tooltip Content Source</label>
+			</parameter>
+			<parameter name="tooltip_text" xsi:type="text" visible="true"  sort_order="52">
+				<label translate="true">Hotspot Tooltip Text</label>
+				<value></value>
+			</parameter>
+			<parameter name="tooltip_static" xsi:type="text" visible="true"  sort_order="53">
+				<label translate="true">Hotspot Tooltip Static Block</label>
+                                <description translate="true">Set static block id. Content if this static block will be shown in tooltip.</description>
+                                <value></value>
+			</parameter>
+			<parameter name="tooltip_bold_text" sort_order="51" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label translate="true">Tooltip Bold Text</label>
+			</parameter>
+			<parameter name="tooltip_width" xsi:type="text" visible="true"  sort_order="54">
+				<label translate="true">Hotspot Tooltip Width</label>
+				<value></value>
+			</parameter>
+			<parameter name="tooltip_color" xsi:type="text" visible="true" sort_order="55">
+				<label translate="true">Tooltip text Color</label>
+				<value></value>
+			</parameter>
+			<parameter name="tooltip_color_background" xsi:type="text" visible="true" sort_order="56">
+				<label translate="true">Tooltip Background Color</label>
+				<value></value>
+			</parameter>
+			<parameter name="custom_class" xsi:type="text" visible="true" sort_order="70">
+				<label translate="true">Class</label>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

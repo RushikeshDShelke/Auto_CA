@@ -1,0 +1,80 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+$cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" class="minicart-icon-1" width="14" height="16" viewBox="0 0 14 16">
+  <path d="M11,3V0H3V3H0V16H14V3H11ZM5,2H9V3H5V2Zm7,12H2V5H3V7H5V5H9V7h2V5h1v9Z"></path>
+</svg>';
+$athlete = $this->helper('Olegnax\Athlete2\Helper\Helper');
+$cartBtnText = $athlete->getConfig( 'athlete2_settings/header/minicart_btn_text' );
+$cartAddedText = __('Product added to cart');
+$moveSticky = '';
+
+if( $athlete->getConfig( 'athlete2_settings/header/header_layout' ) === 'header_1'){
+	$moveSticky ='ox-move-sticky ox-move-sticky-header.main.right ox-move-item ox-move-item-header.main.right';
+}
+?>
+
+<div data-block="minicart" class="minicart-wrapper <?= $block->escapeHtmlAttr($moveSticky) ?>">
+    <a class="action showcart" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>"
+       data-bind="scope: 'minicart_content'">
+		<?= $cartIcon ?>
+        <span class="text"><?= $block->escapeHtml($cartBtnText) ?></span>
+        <span class="counter qty">
+            <span class="counter-number"><!-- ko text: getCartParam('summary_count') -->0<!-- /ko --></span>
+        </span>
+    </a>
+    <?php if ($block->getIsNeedToDisplaySideBar()):
+		$minicart_type = $athlete->getConfig( 'athlete2_settings/header/minicart_type' );
+		?>
+        <div class="block block-minicart empty"
+			 data-role="OXmodalMinicart"
+             data-mage-init='{"OXmodalMinicart":{
+                "triggerTarget":".showcart",
+				"overlayClass":"ox-slideout-shadow",
+                "timeout": "500",
+				"closeButtonTrigger":"#btn-minicart-close",
+                "closeOnEscape": true,
+                "closeOnMouseLeave": <?php echo 'dropdown-hover' == $block->escapeHtmlAttr($minicart_type) ? 'true' : 'false'; ?>,
+				"hoverOpen": <?php echo 'dropdown-hover' == $block->escapeHtmlAttr($minicart_type) ? 'true' : 'false'; ?>,
+				"type": "<?php echo 'slideout' == $block->escapeHtmlAttr($minicart_type) ? 'slideout' : ''; ?>",
+				"positionSlideout": "right",
+				"htmlClass":"ox-fixed"
+			}}'>			
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+				<div class="message success"><span class="text"><?= $block->escapeHtml(__($cartAddedText)) ?></span></div>
+				<?php
+				$promo = $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( 'athlete_cart_promotion' )->toHtml();
+				if ( !empty( $promo ) ) :
+				?>
+					<div class="athlete_cart_promotion-content"><?php echo $promo; ?></div>
+				<?php endif; ?>
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <?= $block->getChildHtml('minicart.addons') ?>
+        </div>
+    <?php else :?>
+        <script>
+            require(['jquery'], function ($) {
+                $('a.action.showcart').click(function() {
+                    $(document.body).trigger('processStart');
+                });
+            });
+        </script>
+    <?php endif ?>
+    <script>
+        window.checkout = <?= /* @noEscape */ $block->getSerializedConfig() ?>;
+    </script>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='minicart']": {
+            "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+        }
+    }
+    </script>
+</div>
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_block_eav_attribute_edit_form_init">
+        <observer name="cminds_attribute_edit_form_init"
+                  instance="Cminds\Supplierfrontendproductuploader\Observer\EavAttributeEditFormInit"/>
+    </event>
+    <event name="eav_entity_attribute_set_save_before">
+        <observer name="cminds_eav_attribute_save_available_for_supplier"
+                  instance="Cminds\Supplierfrontendproductuploader\Observer\Adminhtml\AttributeSave"/>
+    </event>
+    <event name="controller_action_predispatch_customer_index_new">
+        <observer name="cminds_marketplace_controller_action_predispatch_customer_index_new"
+                  instance="Cminds\Supplierfrontendproductuploader\Observer\Adminhtml\CustomerNewPreDispatch"/>
+    </event>
+    <event name="sales_order_shipment_save_after">
+        <observer name="onOrderPlaced"
+                  instance="Cminds\Supplierfrontendproductuploader\Observer\OnOrderPlaced"/>
+    </event>
+
+</config>

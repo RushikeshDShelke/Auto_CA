@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Wbcom_Core::Wbcom" title="Wbcom"
+             module="Wbcom_Core" sortOrder="51"
+             dependsOnModule="Wbcom_Core" resource="Wbcom_Core::Wbcom" dependsOnConfig="wbcomcore/general/enable"
+        />
+
+        <add id="Wbcom_Core::core" title="Core"
+             translate="title" module="Wbcom_Core"
+             parent="Wbcom_Core::Wbcom" sortOrder="11"
+             resource="Wbcom_Core::core" />
+
+        <add id="Wbcom_Core::coreconfig"
+             title="Configurations" module="Wbcom_Core"
+             sortOrder="12" action="adminhtml/system_config/edit/section/wbcomcore"
+             resource="Wbcom_Core::coreconfig"
+             parent="Wbcom_Core::core"/>
+    </menu>
+</config>

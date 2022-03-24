@@ -1,0 +1,22 @@
+<?php
+/**
+ * Athlete2 Theme
+ *
+ * @author      Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (https://olegnax.com). All rights reserved.
+ * @license     https://www.olegnax.com/license
+ */
+
+if ($this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/products_listing/sticky_sidebar')): ?>
+	<script type="text/x-magento-init">
+    {
+        "*": {
+            "sticky-sidebar": {
+            	"wrapper": ".page-main .columns",
+                "sticky": ".column.main, .page-layout-3columns .sidebar-main, .page-layout-3columns .sidebar-additional, .ox-sticky-sidebar"
+            }
+        }
+    }
+	</script>
+<?php endif; ?>

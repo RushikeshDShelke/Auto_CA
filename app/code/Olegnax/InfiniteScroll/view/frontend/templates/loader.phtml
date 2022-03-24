@@ -1,0 +1,42 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_InfiniteScroll
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Olegnax\InfiniteScroll\Helper\Helper;
+use Olegnax\InfiniteScroll\Model\Config\Source\LoaderType;
+use Olegnax\InfiniteScroll\Model\Config\Source\Type;
+
+/** @var Helper $_helper */
+$config = $this->helper(Helper::class)->getModuleConfig('general');
+if (('' !== $config['loader_type'] && Type::TYPE_DISABLED !== $config['type']) || Type::TYPE_BUTTON == $config['type']): ?>
+	<script data-role="ox-infinity-scroll" type="text/x-magento-template">
+		<div class="ox-product-scroll ox-product-scroll__loader--<?= $config['loader_type']; ?> ox-product-scroll__type--<?= $config['type']; ?>">
+            <?php if ($config['progress_counter']): ?>
+				<div class="ox-product-scroll__amount">
+					<div class="amount-wrap">
+						<?= $config['progress_label1']; ?> <span class="toolbar-number-first"></span> - <span class="toolbar-number-last"></span> <?= $config['progress_label2']; ?> <span class="toolbar-number-total"></span> <?= $config['progress_label3']; ?>
+					</div>
+					<div class="amount-count-line"><span style="width: 0%;"></span></div>
+				</div>
+            <?php endif; ?>
+            <?php if ('' !== $config['loader_type'] && Type::TYPE_DISABLED !== $config['type']): ?>
+				<div class="ox-product-scroll__loader">
+                    <?php if (LoaderType::TYPE_IMAGE == $config['loader_type']): ?>
+						<img src="<?= $this->getViewFileUrl($config['loader']) ?>"
+							 class="ox-product-scroll__loader-image"/>
+                    <?php endif; ?>
+				</div>
+            <?php endif; ?>
+            <?php if (Type::TYPE_BUTTON == $config['type']): ?>
+				<div class="button ox-product-scroll__button">
+					<span class="label"><?= $config['button_label']; ?></span>
+				</div>
+            <?php endif; ?>
+		</div>
+	</script>
+<?php endif; ?>
+

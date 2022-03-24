@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/mobilelogin/otp/send">
+        <service class="Meetanshi\Mobilelogin\Api\PostManagementInterface" method="getPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route method="POST" url="/V1/mobilelogin/otp/resetpassword/">
+        <service class="Meetanshi\Mobilelogin\Api\ResetPasswordInterface" method="getPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route method="POST" url="/V1/mobilelogin/otp/verify/">
+        <service class="Meetanshi\Mobilelogin\Api\OtpVerifyInterface" method="getPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route method="POST" url="/V1/mobilelogin/account/login/">
+        <service class="Meetanshi\Mobilelogin\Api\AccountLoginInterface" method="getPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route method="POST" url="/V1/mobilelogin/account/create/">
+        <service class="Meetanshi\Mobilelogin\Api\AccountCreateInterface" method="getPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+</routes>

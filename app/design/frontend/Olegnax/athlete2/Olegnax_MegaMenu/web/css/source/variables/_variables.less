@@ -1,0 +1,163 @@
+/**
+ * Olegnax
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_MegaMenu
+ * @copyright   Copyright (c) 2010-2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+@ox-mega-menu__screen__m: 1024px;
+@ox-mega-menu__column-padding: 15px;
+@ox-mega-menu__transition: ~"all 600ms ease-in-out";
+@ox-mega-menu__transition-hover: ~"all 10ms ease-in-out";
+@ox-mega-menu__animation-speed: 0.05s;
+
+//
+//  Navigation
+//  _____________________________________________
+
+/* Toggle Plus Icon */
+@ox-mega-menu-toggle-icon__show: true;
+@ox-mega-menu-toggle-icon__width:8px;
+@ox-mega-menu-toggle-icon__height:2px;
+@ox-mega-menu-toggle-icon__color: black;
+@ox-mega-menu-arrow-icon__color: black;
+
+//@font-family__sans-serif: Arial, sans-serif;
+@ox-mega-menu__font-name: 'Open Sans', @font-family__sans-serif;
+@ox-mega-menu__background: transparent;
+
+//Label 
+@ox-mega-menu-label__color: white;
+@ox-mega-menu-label_background: red;
+@ox-mega-menu-label__font-size:11px;
+@ox-mega-menu-label__padding: 3px 5px 4px 5px;
+@ox-mega-menu-label__border-radius:0;
+@ox-mega-menu-label__top:-11px;
+@ox-mega-menu-label__right:0;
+
+// Level0
+@ox-mega-menu-level0-item__font-size: 20px;
+@ox-mega-menu-level0-item__font-weight: @font-weight__bold; 
+@ox-mega-menu-level0-item__height: 24px;
+@ox-mega-menu-level0-item__margin: 9px 0;
+@ox-mega-menu-level0-item__padding: 6px 9px;
+@ox-mega-menu-level0-item__text-transform: uppercase;
+@ox-mega-menu-level0-item__letter-spacing: -0.03em;
+
+@ox-mega-menu-level0-item__background: transparent;
+@ox-mega-menu-level0-item__color: #333333;
+@ox-mega-menu-level0-item__active__background: #333333;
+@ox-mega-menu-level0-item__active__color: #ffffff;
+@ox-mega-menu-level0-item__hover__background: #f7f7f7;
+@ox-mega-menu-level0-item__hover__color: #333333;
+
+// Submenu Items
+@ox-mega-menu-submenu-item__background: transparent;
+@ox-mega-menu-submenu-item__border: none;
+@ox-mega-menu-submenu-item__padding: 6px 9px;
+@ox-mega-menu-submenu-item__margin: 0;
+@ox-mega-menu-submenu-item__font-size: 14px;
+@ox-mega-menu-submenu-item__font-weight: @font-weight__bold;
+@ox-mega-menu-submenu-item__color: #333333;
+@ox-mega-menu-submenu-item__height: 30px;
+@ox-mega-menu-submenu-item__text-transform: uppercase;
+@ox-mega-menu-submenu-item__letter-spacing: -0.03em;
+
+@ox-mega-menu-submenu-item__active__background: #333333;
+@ox-mega-menu-submenu-item__active__color: #ffffff;
+@ox-mega-menu-submenu-item__hover__background: #f7f7f7;
+@ox-mega-menu-submenu-item__hover__color: #000000;
+
+@ox-mega-menu-submenu__padding: 5px 0 5px 10px;
+//
+//  Desktop Navigation
+//  ---------------------------------------------
+
+@ox-mega-menu-navigation__min-height: false;
+@ox-mega-menu-navigation__padding: 0 0 0 24px;
+
+@ox-mega-menu-arrow-icon__show: false;
+
+// Drop Down
+@ox-mega-menu-submenu__background: #ffffff;
+@ox-mega-menu-desktop-submenu__padding: 30px;
+@ox-mega-menu-desktop-submenu-mega__padding: 35px;
+@ox-mega-menu-submenu__width: 260px;
+@ox-mega-menu-submenu__shadow: 0px 4px 22px 0px rgba(0, 0, 0, 0.08);
+
+// Level0
+@ox-mega-menu-desktop-level0-item__font-size: 16px;
+@ox-mega-menu-desktop-level0-item__font-weight: @font-weight__bold; 
+@ox-mega-menu-desktop-level0-item__height: 27px;
+@ox-mega-menu-desktop-level0-item__margin: 0 5px 0 0;
+@ox-mega-menu-desktop-level0-item__padding: 0 9px;
+@ox-mega-menu-desktop-level0-item__text-transform: uppercase;
+@ox-mega-menu-desktop-level0-item__letter-spacing: -1px;
+
+@ox-mega-menu-desktop-level0-item__background: transparent;
+@ox-mega-menu-desktop-level0-item__color: #ffffff;
+@ox-mega-menu-desktop-level0-item__active__background: transparent;
+@ox-mega-menu-desktop-level0-item__active__color: #000000;
+@ox-mega-menu-desktop-level0-item__hover__background: transparent;
+@ox-mega-menu-desktop-level0-item__hover__color: #000000;
+
+// Submenu Items
+@ox-mega-menu-desktop-submenu-item__background: transparent;
+@ox-mega-menu-desktop-submenu-item__border: none;
+@ox-mega-menu-desktop-submenu-item__padding: 7px;
+@ox-mega-menu-desktop-submenu-item__margin: 0 0 2px 0;
+@ox-mega-menu-desktop-submenu-item__font-size: 14px;
+@ox-mega-menu-desktop-submenu-item__font-weight: @font-weight__bold;
+@ox-mega-menu-desktop-submenu-item__text-transform: uppercase;
+@ox-mega-menu-desktop-submenu-item__letter-spacing: -1px;
+@ox-mega-menu-desktop-submenu-item__color: #000;
+
+@ox-mega-menu-desktop-submenu-item__active__background: #ffe51e;
+@ox-mega-menu-desktop-submenu-item__active__color: #000;
+@ox-mega-menu-desktop-submenu-item__hover__background: #000;
+@ox-mega-menu-desktop-submenu-item__hover__color: #fff;
+
+// Level1 item in Mega Drop Down
+@ox-mega-menu-desktop-submenu-mega-level1-item__font-size: 14px;
+@ox-mega-menu-desktop-submenu-mega-level1-item__font-weight: @font-weight__black;
+@ox-mega-menu-desktop-submenu-mega-level1-item__margin: 0 0 2px 0;
+@ox-mega-menu-desktop-submenu-mega-level1-item__padding:7px;
+@ox-mega-menu-desktop-submenu-mega-level1-item__color:#000000;
+@ox-mega-menu-desktop-submenu-mega-level1-item__background: transparent;
+@ox-mega-menu-desktop-submenu-mega-level1-item__text-transform: uppercase;
+@ox-mega-menu-desktop-submenu-mega-level1-item__letter-spacing: 0;
+
+@ox-mega-menu-desktop-submenu-mega-level1-item__active__background: #ffe51e;
+@ox-mega-menu-desktop-submenu-mega-level1-item__active__color:#000;
+@ox-mega-menu-desktop-submenu-mega-level1-item__hover__background: #000;
+@ox-mega-menu-desktop-submenu-mega-level1-item__hover__color:#fff;
+
+// Level1 Submenu item in Mega Drop Down
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__font-size: @ox-mega-menu-desktop-submenu-item__font-size;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__font-weight: @font-weight__semibold;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__padding: @ox-mega-menu-desktop-submenu-item__padding;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__margin: @ox-mega-menu-desktop-submenu-item__margin;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__color: @ox-mega-menu-desktop-submenu-item__color;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__background: @ox-mega-menu-desktop-submenu-item__background;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__text-transform: unset;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__letter-spacing: 0;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__border: @ox-mega-menu-desktop-submenu-item__border;
+
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__active__background: @ox-mega-menu-desktop-submenu-item__active__background;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__active__color:@ox-mega-menu-desktop-submenu-item__active__color;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__hover__background: @ox-mega-menu-desktop-submenu-item__hover__background;
+@ox-mega-menu-desktop-submenu-mega-level1-submenu__hover__color:@ox-mega-menu-desktop-submenu-item__hover__color;
+

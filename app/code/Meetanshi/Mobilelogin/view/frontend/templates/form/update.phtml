@@ -1,0 +1,270 @@
+<?php
+$helper = $this->helper('Meetanshi\Mobilelogin\Helper\Data');
+$buttonColor = $helper->getButtonColor();
+$buttonBGColor = $helper->getButtonBgColor();
+?>
+
+
+<div class="otl-update-form-contain">
+
+    <p class="err-msg" style="display: none"></p>
+    <p class="success-msg" style="display: none"></p>
+
+    <form class="form form-otp-update"
+          method="post"
+          id="otp-update-form"
+          data-mage-init='{"validation":{}}'>
+
+        <input type="hidden" name="oldmobile" id="oldmobile" value="<?php echo $block->getCustomerMobileNumber() ?>"
+               readonly="readonly"/>
+
+        <fieldset class="fieldset update-otp step1"
+                  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+            <div class="field mobilenumber required">
+                <div class="control">
+                    <input name="mobile_number"
+                           id="mobilenumber" type="text" class="input-text"
+                           value="<?php echo $block->getCustomerMobileNumber() ?>"
+                           title="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>"
+                           maxlength="15" minlength="10" data-validate="{required:true}">
+
+                </div>
+            </div>
+
+            <div class="actions-toolbar-otp">
+                <div class="primary">
+                    <button type="button" class="request-otp-btn-update pop-bnt" name="send">
+                        <span><?= $block->escapeHtml(__('Request OTP')) ?></span></button>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="fieldset update-otp step2"
+                  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                  style="display: none">
+            <div class="field mobilenumber required">
+                <div class="control">
+                    <input name="updateotp"
+                           id="updateotp" type="text" class="input-text"
+                           title="<?= $block->escapeHtmlAttr(__('OTP')) ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__('OTP')) ?>"
+                           data-validate="{required:true}">
+
+                </div>
+            </div>
+
+            <div class="actions-toolbar-otp">
+                <div class="primary">
+                    <button type="button" class="resend-update-otp-btn withresend pop-bnt"
+                            name="send">
+                        <span><?= $block->escapeHtml(__('Resend OTP')) ?></span></button>
+                    <button type="button" class="submit-update-otp-btn withresend pop-bnt"
+                            name="send">
+                        <span><?= $block->escapeHtml(__('Submit OTP')) ?></span></button>
+
+                </div>
+            </div>
+        </fieldset>
+
+    </form>
+</div>
+
+<?php if ($helper->isFlagEnabled() == 1) { ?>
+    <script type="text/x-magento-init">
+    {
+        "input[name='mobile_number']": {
+            "Meetanshi_Mobilelogin/js/internationalTelephoneInput": <?php echo $block->phoneConfig(); ?>
+        }
+    }
+
+
+        </script>
+<?php } ?>
+
+<script>
+    require(
+        [
+            'jquery',
+            'mage/url'
+        ],
+        function ($,
+                  url,) {
+
+            jQuery('.request-otp-btn-update').click(function (e) {
+                if (jQuery('#otp-update-form').valid()) {
+
+                    var mobilenumber = jQuery('#mobilenumber').val();
+                    var oldmobile = jQuery('#oldmobile').val();
+                    var getUrl = url.build('mobilelogin/otp/send');
+                    var otptype = 'update';
+                    var resend = 0;
+
+                    if (mobilenumber == oldmobile) {
+
+                        jQuery('p.err-msg').text('Old Mobile Number And New Mobile Number are same.');
+                        jQuery('p.err-msg').show().delay(5000).fadeOut();
+
+                    } else {
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                resendotp: resend,
+                                oldmobile: oldmobile
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('fieldset.fieldset.update-otp.step1').hide();
+                                    jQuery('fieldset.fieldset.update-otp.step2').fadeIn();
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+
+                            }
+                        });
+                    }
+                }
+            });
+
+            jQuery('.resend-update-otp-btn').click(function (e) {
+                var mobilenumber = jQuery('#mobilenumber').val();
+                var oldmobile = jQuery('#oldmobile').val();
+                var getUrl = url.build('mobilelogin/otp/send');
+                var otptype = 'update';
+                var resend = 1;
+
+                jQuery.ajax({
+                    url: getUrl,
+                    type: 'POST',
+                    data: {
+                        mobilenumber: mobilenumber,
+                        otptype: otptype,
+                        resendotp: resend,
+                        oldmobile: oldmobile
+                    },
+                    showLoader: true,
+                    success: function (response) {
+                        if (response.succeess === "true") {
+                            jQuery('p.success-msg').text(response.successmsg);
+                            jQuery('p.success-msg').show().delay(5000).fadeOut();
+                        }
+                        else {
+                            jQuery('p.err-msg').text(response.errormsg);
+                            jQuery('p.err-msg').show().delay(5000).fadeOut();
+                        }
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            });
+
+
+            jQuery('.submit-update-otp-btn').click(function (e) {
+                if (jQuery('#otp-update-form').valid()) {
+
+                    var mobilenumber = jQuery('#mobilenumber').val();
+                    var oldmobile = jQuery('#oldmobile').val();
+                    var getUrl = url.build('mobilelogin/otp/verify');
+                    var otptype = 'update';
+                    var otpcode = jQuery('#updateotp').val();
+
+                    if (mobilenumber == oldmobile) {
+
+                        jQuery('p.err-msg').text('Old Mobile Number And New Mobile Number are same.');
+                        jQuery('p.err-msg').show().delay(5000).fadeOut();
+
+                    } else {
+                        jQuery.ajax({
+                            url: getUrl,
+                            type: 'POST',
+                            data: {
+                                mobilenumber: mobilenumber,
+                                otptype: otptype,
+                                otpcode: otpcode,
+                                oldmobile: oldmobile
+                            },
+                            showLoader: true,
+                            success: function (response) {
+                                if (response.succeess === "true") {
+                                    jQuery('p.success-msg').text(response.successmsg);
+                                    jQuery('p.success-msg').show().delay(5000).fadeOut();
+                                    location.reload();
+                                }
+                                else {
+                                    jQuery('p.err-msg').text(response.errormsg);
+                                    jQuery('p.err-msg').show().delay(5000).fadeOut();
+                                }
+                            },
+                            error: function (data) {
+
+                            }
+                        });
+                    }
+                }
+            });
+
+
+        });
+</script>
+
+
+<style>
+    form#otp-update-form {
+        width: 400px;
+    }
+
+    p.err-msg {
+        float: left;
+        width: 100%;
+        margin-top: 25px;
+        margin-bottom: 0;
+        color: #f00;
+        font-weight: bold;
+    }
+    input#mobilenumber {
+        height: 40px;
+    }
+
+    p.success-msg {
+        float: left;
+        width: 100%;
+        margin-top: 25px;
+        margin-bottom: 0;
+        color: #006400;
+        font-weight: bold;
+    }
+
+    .withresend.pop-bnt {
+        width: 48%;
+        float: left;
+        margin-right: 4%;
+    }
+
+    button.submit-update-otp-btn.withresend.pop-bnt {
+        margin-right: 0;
+    }
+
+    button.pop-bnt {
+        color: <?php echo $buttonColor?>;
+        background-color: <?php echo $buttonBGColor?>;
+        width: 100%;
+        font-size: 15px;
+        padding: 12px 0;
+        font-weight: bold;
+        border: snow;
+        box-shadow: 0px 0px 3px 1px #8f8f8f;
+        margin-top: 10px;
+    }
+</style>
+

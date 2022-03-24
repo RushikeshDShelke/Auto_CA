@@ -1,0 +1,59 @@
+<?php $invoices = $block->getOrder()->getInvoiceCollection(); ?>
+
+<h2 class="sub-header"><?= /* @escapeNotVerified */ __('Invoices') ?></h2>
+
+<div class="table-responsive">
+    <?php if($invoices->getSize() && count($invoices->getData()) > 0): ?>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><?= /* @escapeNotVerified */ __('Invoice Number') ?></th>
+                <th><?= /* @escapeNotVerified */ __('Date') ?></th>
+                <th><?= /* @escapeNotVerified */ __('Amount') ?></th>
+                <th><?= /* @escapeNotVerified */ __('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($invoices as $invoice) : ?>
+                <?php $continue = 0; ?>
+
+                <?php foreach($invoice->getItems() as $item) : ?>
+                    <?php
+                    if ($block->checkProductOwn($item->getData('product_id'))) {
+                        $continue = 1;
+                    }
+                    ?>
+                <?php endforeach; ?>
+
+                <?php
+                if ($continue === 0) {
+                    continue;
+                }
+                ?>
+
+                <?php
+                if ($invoice->getData('parent_item_id') || $continue === 0) {
+                    continue;
+                }
+                ?>
+                <tr>
+                    <td><?= /* @escapeNotVerified */ $invoice->getIncrementId() ?></td>
+                    <td><?= /* @escapeNotVerified */ date('M d, Y g:i:s A', strtotime($invoice->getCreatedAt())) ?></td>
+                    <td><?= /* @escapeNotVerified */ $block->getCurrencyHelper()->currency($invoice->getGrandTotal(), true, false) ?></td>
+                    <td>
+                        <a class="btn btn-primary"
+                           href="<?php echo $block->getUrl('marketplace/invoice/printinvoice', ['id' => $invoice->getId()]);?>"><?= /* @escapeNotVerified */ __('Print') ?></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php else : ?>
+        <div class="notification-box"><?= /* @escapeNotVerified */ __('There are no invoices to display.') ?></div>
+    <?php endif; ?>
+</div>
+
+<?php if ($block->canCreateInvoice()) : ?>
+    <a href="<?php echo $block->getUrl('marketplace/invoice/create/', ['id' => $block->getOrder()->getId()]) ?>"
+       class="btn btn-primary"><?= /* @escapeNotVerified */ __('Create') ?></a>
+<?php endif; ?>

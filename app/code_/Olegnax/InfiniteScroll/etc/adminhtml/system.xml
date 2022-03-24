@@ -1,0 +1,110 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author      Olegnax
+ * @package     Olegnax_InfiniteScroll
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="olegnax" sortOrder="999" translate="label">
+			<label>Olegnax</label>
+		</tab>
+		<section id="olegnax_infinitescroll" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+				 translate="label">
+			<label>InfiniteScroll</label>
+			<tab>olegnax</tab>
+			<resource>Olegnax_InfiniteScroll::scroll</resource>
+			<group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+				<frontend_model>Olegnax\InfiniteScroll\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+			</group>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="type" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment"
+					   type="select">
+					<label>Load Action</label>
+					<comment>Choose the way products are loaded. Automatically on scroll or Manually on button click.
+					</comment>
+					<source_model>Olegnax\InfiniteScroll\Model\Config\Source\Type</source_model>
+				</field>
+				<field id="button_label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="12"
+					   translate="label" type="text">
+					<label>Load more Button text</label>
+					<depends>
+						<field id="type">button</field>
+					</depends>
+				</field>
+				<field id="spacer_1" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Olegnax\InfiniteScroll\Model\Config\Source\Spacer</frontend_model>
+				</field>
+				<field id="loader_type" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="22"
+					   translate="label"
+					   type="select">
+					<label>AJAX Progress Loader</label>
+					<source_model>Olegnax\InfiniteScroll\Model\Config\Source\LoaderType</source_model>
+				</field>
+				<field id="loader" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="24" translate="label comment"
+					   type="text">
+					<label>AJAX Progress Loader Image</label>
+					<comment>Set url to preloader image. E.g.: "images/preloader.svg" will link to images folder in your
+						current theme. E.g.: app\design\frontend\Olegnax\athlete2\web\images.
+					</comment>
+					<depends>
+						<field id="loader_type">image</field>
+					</depends>
+				</field>
+				<field id="spacer_2" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Olegnax\InfiniteScroll\Model\Config\Source\Spacer</frontend_model>
+				</field>
+				<field id="progress_counter" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="31" translate="label comment"
+					   type="select">
+					<label>Show Products Amount Info</label>
+					<comment>Show loaded/total progress info (above load more button)with progress line </comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+ 				<field id="progress_label1" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="32"
+					   translate="label comment" type="text">
+					<label>Text before numbers</label>
+                                        <comment>Default: "You've viewed ". Don't forget the spaces.</comment>
+					<depends>
+						<field id="progress_counter">1</field>
+					</depends>
+				</field>
+				<field id="progress_label2" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="33"
+					   translate="label comment" type="text">
+					<label>Text between numbers</label>
+                                        <comment>Default:" of "</comment>
+					<depends>
+						<field id="progress_counter">1</field>
+					</depends>
+				</field>
+				<field id="progress_label3" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="34"
+					   translate="label comment" type="text">
+					<label>Text after bumbers</label>
+                                        <comment>Default: " products"</comment>
+					<depends>
+						<field id="progress_counter">1</field>
+					</depends>
+				</field>
+				<field id="spacer_3" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Olegnax\InfiniteScroll\Model\Config\Source\Spacer</frontend_model>
+				</field>
+				<field id="products_container" showInDefault="1" showInStore="1" showInWebsite="1"
+					   sortOrder="42" translate="label comment" type="text">
+					<label>Custom DOM Selectors for Products Container</label>
+					<comment>Default selectors: ".column.main .products.products-grid, .column.main
+						.products.products-list, .column.main .products-grid.grid"
+					</comment>
+				</field>
+				<field id="product_container" showInDefault="1" showInStore="1" showInWebsite="1"
+					   sortOrder="44" translate="label comment" type="text">
+					<label>Custom DOM Selectors for Product Item</label>
+					<comment>Default selector: ".item.product.product-item"</comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

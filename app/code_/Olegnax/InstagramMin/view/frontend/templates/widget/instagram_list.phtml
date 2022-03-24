@@ -1,0 +1,58 @@
+<?php
+
+use Olegnax\InstagramMin\Block\Widget\Instagram;
+use Olegnax\InstagramMin\Model\IntsPost;
+
+/** @var Instagram $block */
+$items = $block->getPosts();
+
+if ($items && count($items)):
+	$lazyLoader = $block->isLazyLoadEnabled() ? 'lazy-loader' : '';
+    $classes = [];
+    $classes[] = 'resize-' . $this->getImageResize();
+    $classes[] = 'columns-' . $this->getColumnsDesktop();
+    $classes[] = 'columns-m-' . $this->getColumnsTablet();
+    $classes[] = 'columns-s-' . $this->getColumnsMobile();
+    $square = ($this->getImageResize() == 'square') ?: 0;
+    ?>
+	<div id="ox_<?= $block->getUnderlineNameInLayout() ?>" class="ox-instagram-feed block widget <?=
+    implode(' ', $classes)
+    ?>">
+		<div class="ox-instagram-items">
+            <?php foreach ($items as $_item):
+                /** @var IntsPost $_item */
+                $width = $_item->getDimensionsWidth();
+                $height = $_item->getDimensionsHeight();
+                ?>
+				<div id="<?= $_item->getInstId() ?>" class="ox-instagram-item">
+					<a target="_blank" href="<?= $block->escapeUrl($_item->getURL()) ?>" class="ox-instagram-item-link">
+                        <?php if ($square) { ?><span class="image-wrapper <?= $lazyLoader ?>"><?php } ?>
+							<img
+								<?php if ($block->isLazyLoadEnabled()): ?>
+									class="ox-instagram-image lazy <?php if ($width > $height) {
+                                        echo 'horizontal';
+                                    } ?>"
+									src="<?= $this->getViewFileUrl('Olegnax_Core/images/placeholder.png'); ?>"
+									data-original="<?= /* @escapeNotVerified */
+                                    $_item->getImageUrl() ?>"
+                                <?php else: ?>
+									class="ox-instagram-image no-lazy <?php if ($width > $height) {
+                                        echo 'horizontal';
+                                    } ?>"
+									src="<?= /* @escapeNotVerified */ $_item->getImageUrl() ?>"
+                                <?php endif; ?>
+                                <?php if (0 < $width): ?> width="<?= $width ?>" <?php endif; ?>
+                                <?php if (0 < $height): ?> height="<?= $height ?>" <?php endif; ?>
+							data-ox="instagram"
+							alt="<?= /* @escapeNotVerified */ $block->stripTags($_item->getCaption(), null, true) ?>"/>
+						<?php if ($square) { ?></span><?php } ?>
+						<span class="inner">
+							<span class="action likes"><span></span></span>
+							<span class="action view"></span>
+						</span>
+					</a>
+				</div>
+            <?php endforeach; ?>
+		</div>
+	</div>
+<?php endif; ?>

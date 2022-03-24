@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Wbcom_Core::Wbcom" title="Wbcom" sortOrder="80">
+                    <resource id="Wbcom_PincodeChecker::pincodechecker" title="Pincode Checker" sortOrder="41">
+                        <resource id="Wbcom_PincodeChecker::manage_pincode" title="Manage Pincode" sortOrder="12" />
+                        <resource id="Wbcom_PincodeChecker::manage_check" title="Pincode Availability Check" sortOrder="13" />
+                        <resource id="Wbcom_PincodeChecker::add_pincode" title="Add Pincode" sortOrder="14" />
+                        <resource id="Wbcom_PincodeChecker::import_pincode" title="Import Pincode" sortOrder="15" />
+                        <resource id="Wbcom_PincodeChecker::pincode_configuration" title="Pincode Configuration" sortOrder="16" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Wbcom_PincodeChecker::wbcom_cofig" title="PincodeChecker" sortOrder="40"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

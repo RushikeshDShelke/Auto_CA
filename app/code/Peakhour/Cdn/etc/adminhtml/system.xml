@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <section id="system">
+      <group id="full_page_cache">
+        <group id="peakhour" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="100">
+          <label>Peakhour.io Settings</label>
+
+          <field id="peakhour_api_key" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="10">
+            <label>API key</label>
+            <backend_model>Magento\PageCache\Model\System\Config\Backend\Varnish</backend_model>
+            <validate>required-entry</validate>
+          </field>
+          <field id="peakhour_domain" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="20">
+            <label>Domain</label>
+            <backend_model>Magento\PageCache\Model\System\Config\Backend\Varnish</backend_model>
+            <validate>required-entry</validate>
+          </field>
+          <field id="peakhour_test_connection" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="30">
+            <label><![CDATA[Test connection]]></label>
+            <frontend_model>Peakhour\Cdn\Block\System\Config\Form\Field\TestConnectionBtn</frontend_model>
+          </field>
+            <field id="peakhour_api_url" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="50">
+              <label>API Url</label>
+              <backend_model>Magento\PageCache\Model\System\Config\Backend\Varnish</backend_model>
+              <validate>required-entry</validate>
+            </field>
+            <field id="peakhour_enable_debug" type="select" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="60">
+              <label>Enable debugging</label>
+              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+              <validate>required-entry</validate>
+            </field>
+          <depends>
+            <field id="caching_application">peakhour</field>
+          </depends>
+        </group>
+      </group>
+    </section>
+  </system>
+</config>

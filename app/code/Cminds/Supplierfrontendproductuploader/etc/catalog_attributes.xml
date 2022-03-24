@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cminds Supplierfrontendproductuploader catalog attributes config.
+ * plugin.
+ *
+ * @category Cminds
+ * @package  Cminds_Supplierfrontendproductuploader
+ * @author   Piotr Pierzak <piotr@cminds.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd">
+    <group name="catalog_product">
+        <attribute name="creator_id"/>
+        <attribute name="frontendproduct_product_status"/>
+    </group>
+</config>

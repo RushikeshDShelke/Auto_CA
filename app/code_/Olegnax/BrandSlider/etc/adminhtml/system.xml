@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="olegnax" sortOrder="999" translate="label">
+            <label>Olegnax</label>
+        </tab>
+        <section id="olegnax_brandslider" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Brand Slider</label>
+            <tab>olegnax</tab>
+            <resource>Olegnax_BrandSlider::brandslider</resource>
+            <group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <frontend_model>Olegnax\BrandSlider\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+            </group>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
+                <field id="attribute_code" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Attribute</label>
+                    <comment>Choose attribute that will be used in brands slider.</comment>
+                    <source_model>Olegnax\BrandSlider\Model\Config\Source\BrandAttribute</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

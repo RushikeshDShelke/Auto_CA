@@ -1,0 +1,54 @@
+<?php
+
+/** @var \Peakhour\Cdn\Block\Cache\Additional $block */
+?>
+<?php if ($block->canShowBlock()) : ?>
+<div class="additional-cache-management">
+    <h2><span>Peakhour flushing</span></h2>
+    <form id="flush_wildcard"
+          action="<?php /* @noEscape */ echo $block->getFlushWildcardUrl() ?>"
+          method="post"
+      >
+        <?php /* @noEscape */ echo $block->getBlockHtml('formkey')?>
+        <table class="form-list" style="margin-bottom:10px">
+            <tr>
+                <td class="scope-label">
+                    <button type="submit" class="scalable">
+                        <span><?php /* @noEscape */ echo __('Flush IT!') ?></span>
+                    </button>
+                </td>
+                <td>
+                    <input type="text"
+                           name="url"
+                           class="input-text required-entry"
+                           style="margin:0 10px; width:250px" />
+                </td>
+                <td class="scope-label">
+                    <span><?php /* @noEscape */ echo __('Flush Wildcard URL')?></span>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form id="flush_wildcard"
+          action="<?php /* @noEscape */ echo $block->getFlushAllUrl() ?>"
+          method="post"
+      >
+        <?php /* @noEscape */ echo $block->getBlockHtml('formkey')?>
+        <table class="form-list" style="margin-bottom:10px">
+            <tr>
+                <td class="scope-label">
+                    <button type="submit" class="scalable">
+                        <span><?php /* @noEscape */ echo __('Flush Everything!') ?></span>
+                    </button>
+                </td>
+                <td>
+                </td>
+                <td class="scope-label">
+                    <span>&nbsp;<?php /* @noEscape */ echo __('Flush Everything from the Peakhour CDN')?></span>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<?php endif; ?>

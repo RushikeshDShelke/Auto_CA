@@ -1,0 +1,74 @@
+<div class="container main-container vendor-container">
+    <h1 class="text-center"><?php echo __('Vendor Dashboard'); ?></h1>
+    <div class="row">
+        <div class="col-md-12 container form-container">
+            <div class="col-md-3">
+                <?php echo $block->getChildHtml('vendor.dashboard.left.sidebar'); ?>
+            </div>
+            <div class="col-md-8 charts">
+                <?php echo $block->getChildHtml('vendor.dashboard.content'); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php
+$saleEarningsObject = $block->getSaleDailyEarnings();
+$saleItemsCountObject = $block->getSaleDailyItemsCount();
+$salesEarningsForPlot = [];
+$saleItemsCountForPlot = [];
+
+foreach($saleEarningsObject AS $sale) {
+    $salesEarningsForPlot[date('Y-m', strtotime($sale['created_at']))] = array(strtotime(date('Y-m', strtotime($sale['created_at'])))*1000 , (int) $sale['sale_amount']);
+}
+
+foreach($saleItemsCountObject AS $sale) {
+    $saleItemsCountForPlot[date('Y-m', strtotime($sale['created_at']))] = array(strtotime(date('Y-m', strtotime($sale['created_at'])))*1000 , $sale['sale_count']);
+}
+
+$now = new DateTime();
+ksort($salesEarningsForPlot);
+reset($salesEarningsForPlot);
+$first_key = key($salesEarningsForPlot);
+
+$startDate = new DateTime($first_key);
+$startDate->modify('-1 month');
+while($startDate <= $now) {
+    if(!isset($salesEarningsForPlot[$startDate->format('Y-m')])) {
+        $salesEarningsForPlot[$startDate->format('Y-m')] = array(strtotime($startDate->format('Y-m'))*1000 , 0);
+    }
+    if(!isset($saleItemsCountForPlot[$startDate->format('Y-m')])) {
+        $saleItemsCountForPlot[$startDate->format('Y-m')] = array(strtotime($startDate->format('Y-m'))*1000 , 0);
+    }
+    $startDate->modify('+1 month');
+}
+ksort($salesEarningsForPlot);
+ksort($saleItemsCountForPlot);
+?>
+
+
+<script type="text/javascript">
+    require(['jquery', 'jquery-plot'], function($) {
+        require(['jquery', 'jquery-plot-time'], function($) {
+            $(document).ready(function ($) {
+
+                var localJquery = window.$ ? window.$ : $;
+
+                localJquery.plot("#earnings-chart", [<?php echo json_encode(array_values($salesEarningsForPlot)) ?>], {
+                    xaxis: {mode: "time", timeformat: "%m/%y", minTickSize: [1, "month"]},
+                    bars: {show: true, barWidth: 36500000 * 5},
+                    colors: ["#5cb85c"],
+                    shadowSize: 0
+                });
+                localJquery.plot("#amount-chart", [<?php echo json_encode(array_values($saleItemsCountForPlot)) ?>], {
+                    xaxis: {mode: "time", timeformat: "%m/%y", minTickSize: [1, "month"]},
+                    bars: {show: true, barWidth: 36500000 * 5},
+                    colors: ["#d9534f"],
+                    shadowSize: 0
+                });
+            });
+        });
+    });
+</script>
+

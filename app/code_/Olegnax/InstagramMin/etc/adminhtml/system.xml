@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="olegnax_instagram" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Instagram Feed</label>
+			<tab>olegnax</tab>
+			<resource>Olegnax_InstagramMin::config_olegnax_instagrammin</resource>
+			<group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label">
+				<frontend_model>Olegnax\InstagramMin\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+			</group>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label"
+					   type="select">
+					<label>Enable</label>
+					<frontend_class>on-off-trigger</frontend_class>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<!--<field id="use_token" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label"
+					   type="select">
+					<label>Use Token</label>
+					<frontend_class>on-off-trigger</frontend_class>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>
+				</field>-->
+			</group>
+			<group id="oauth" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="20" translate="label">
+				<label>Token Authorization</label>
+				<depends>
+					<field id="*/general/enabled">1</field>
+					<field id="*/general/use_token">1</field>
+				</depends>
+				<field id="user_id" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label" type="text">
+					<label>User ID</label>
+					<attribute type="disabled">1</attribute>
+				</field>
+				<field id="username" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="20" translate="label" type="text">
+					<label>User Name</label>
+					<attribute type="disabled">1</attribute>
+					<comment/>
+				</field>
+				<field id="access_token" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="30" translate="button_label">
+					<button_label>Generate Access Token</button_label>
+					<frontend_model>Olegnax\InstagramMin\Block\Adminhtml\System\Config\Form\GetAccessToken</frontend_model>
+				</field>
+			</group>
+			<!--<group id="scraper" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="40" translate="label">
+				<depends>
+					<field id="*/general/enabled">1</field>
+					<field id="*/general/use_token">0</field>
+				</depends>
+				<label>Scraper</label>
+				<field id="username" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label" type="text">
+					<label>Profile</label>
+					<comment/>
+				</field>
+			</group>-->
+		</section>
+	</system>
+</config>

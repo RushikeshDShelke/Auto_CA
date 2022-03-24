@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mobilelogin>
+            <general>
+                <enabled>0</enabled>
+                <otplength>6</otplength>
+            </general>
+            <otpsend>
+                <loginmessage><![CDATA[OTP for Login at {{shop_name}} is {{otp_code}} and is valid for 30 minutes. ]]></loginmessage>
+                <registrationmessage><![CDATA[OTP for Registration at {{shop_name}} is {{otp_code}} and is valid for 30 minutes. ]]></registrationmessage>
+                <forgotmessage><![CDATA[ OTP to Reset Password at {{shop_name}} is {{otp_code}} and is valid for 30 minutes.]]></forgotmessage>
+                <updatemessage><![CDATA[ OTP to Update Mobile Number at {{shop_name}} is {{otp_code}} and is valid for 30 minutes.]]></updatemessage>
+            </otpsend>
+            <formsetting>
+                <login_otp><![CDATA[Login With OTP ]]></login_otp>
+                <login_email><![CDATA[Login With Password ]]></login_email>
+                <register><![CDATA[Create Account ]]></register>
+                <forgot><![CDATA[ Forgot Password ?]]></forgot>
+            </formsetting>
+            <layout>
+                <buttoncolor><![CDATA[ffffff]]></buttoncolor>
+                <buttonbgcolor><![CDATA[772a54]]></buttonbgcolor>
+                <popupborderone><![CDATA[772a54]]></popupborderone>
+                <popupbordertwo><![CDATA[170e3d]]></popupbordertwo>
+            </layout>
+        </mobilelogin>
+    </default>
+</config>

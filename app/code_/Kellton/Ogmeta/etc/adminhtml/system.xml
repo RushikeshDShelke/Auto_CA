@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="kellton" sortOrder="999" translate="label">
+			<label>kellton</label>
+		</tab>
+		<section id="ogmeta" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Ogmeta</label>
+			<tab>kellton</tab>
+			<resource>Kellton_Ogmeta::config_kellton_ogmeta</resource>
+			<group id="module" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Module Cobfiguration</label>
+				<field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Enable</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="def_og_img" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Og Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">def_og_img</upload_dir>
+                    <base_url type="media" scope_info="1">def_og_img</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+				<field id="def_og_desc" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+					<label>Sitename</label>
+					<comment/>
+				</field>
+				<field id="def_og_fb_app_id" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+					<label>Facebook App ID</label>
+					<comment/>
+				</field>
+				<!-- <field id="use_og_meta_tag_for" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="multiselect">
+					<label>Use Open Graph Meta Tag For	</label>
+					<comment/>
+					<source_model>Kellton\Ogmeta\Model\Config\Source\UseOgMetaTagFor</source_model>
+				</field> -->
+			</group>
+		</section>
+	</system>
+</config>

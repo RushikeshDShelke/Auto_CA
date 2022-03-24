@@ -1,0 +1,26 @@
+{
+    "name": "kellton/module-readytopickemail",
+    "description": "Kellton Tech Pvt. Ltd.",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        },
+        {
+            "name": "Avinash Rawat",
+            "email": "avinash.rawat@kelltontech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Kellton\\ReadyTopickemail\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

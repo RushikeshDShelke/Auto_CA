@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Kellton_Custominvoice::parent" title="Custominvoice" module="Kellton_Custominvoice" sortOrder="100" resource="Kellton_Custominvoice::parent"/>
+		<add id="Kellton_Custominvoice::customcinvoice" title="Manage Customer Invoice" module="Kellton_Custominvoice" sortOrder="20" parent="Kellton_Custominvoice::parent" action="custominvoice/customcinvoice" resource="Kellton_Custominvoice::customcinvoice"/>
+<add id="Kellton_Custominvoice::customcminvoice" title="Manage Supplier Invoice" module="Kellton_Custominvoice" sortOrder="30" parent="Kellton_Custominvoice::parent" action="custominvoice/customcminvoice" resource="Kellton_Custominvoice::customcminvoice"/>
+
+    </menu>
+</config>

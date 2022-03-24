@@ -1,0 +1,132 @@
+<?php /** @var $block \Vendor\Module\Block\Success */ 
+
+$lid = $this->getOrderId();
+// echo  "Order ID:".$lid."<br/>";
+// echo "<pre>";
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$order = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($lid);
+
+// $order = $this->_objectManager->create('Magento\Sales\Model\Order')->load($orderId);
+$orderItems = $order->getAllItems();
+// print_r($orderItems->getData());
+
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+
+
+?>
+
+
+
+
+<div class="row a-center d-tab-deskkk" style="padding: 32px 0 20px 0;">
+    <div class="col-1 col-lg-1"></div>
+
+    <div class="col-10 col-lg-10" style="padding:0; border-bottomm: solid 1px grey;">
+        
+    <div class="row">
+        <div class="col-sm-8 a-center marbot10" style="border:solid 1px #dddddd;padding: 3em ;" >
+            <img class="fs20 " src="http://uat.craftmaestros.com/magentoathelet/pub/media/cm-athlete2/ShapeTY.png" style="max-width:360px;"/>
+            <div class="success-icon-wrapper"><div class="success-icon"><!-- success-icon --></div></div>
+            <span class="spacer-small"></span>
+            <h2 style="font-family:GilroyB;">Order Placed Successfully</h2>
+            <h4 style="font-family:GilroyB;">Thank you for shopping with us. You’ve made a great choice</h4>
+            <p>You can track your order its status in My Orders section. We will deliver your order on
+or before the delivery date mentioned in the My Orders section.</p>
+
+            <h3 style="font-family:GilroyB;">Order ID: <?= $lid; ?></h3>
+
+            <button class="button btn-naked-maroon"><a href="<?= $block->getBaseUrl(); ?>"> Continue Shopping </a></button>
+            <?php
+                if($customerSession->isLoggedIn()) {
+            ?>
+            <button class="button btn-maroon"><a href="<?= $block->getBaseUrl()."sales/order/history/"; ?>">View Order</a></button>
+            <?php } ?>
+        </div>
+        <div class="col-sm-4 a-left marbot10">
+            <h3 style="font-size:18px !important;font-weight: 700 !important;">Order Details </h3>
+            
+            <table class="thank-you-ordered-items">
+               
+           
+            <?php 
+            foreach($orderItems as $item){                
+                $objectManager =\Magento\Framework\App\ObjectManager::getInstance();
+                $smallimage =  $objectManager->create('Magento\Catalog\Model\Product')->load($item->getProductId())->getSmallImage();
+                $helperImport = $objectManager->get('\Magento\Catalog\Helper\Image');
+                $imageUrl = $helperImport->init($item, 'product_page_image_small')
+                                ->setImageFile($smallimage) // image,small_image,thumbnail
+                                ->resize(380)
+                                ->getUrl();              
+            ?>
+             <tr>
+                
+                
+
+
+                <td>
+                    <img src="<?= $imageUrl ?>" style="width : 50px ; height : 50px" alt="">
+                
+                
+                </td>
+
+                <td>
+                    <h6 class="marbot10" style="font-weight: 700 !important;">
+                        <?= $item->getName(); ?>                
+                    </h6>
+                
+                    <span style="font-weight:400;">Quantity : <?= round($item->getQtyOrdered(), 0); ?></span>
+                </td>
+
+                <td  style="font-weight: 700 !important;">
+                
+                    <span> <?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($item->getPriceInclTax(),true,false); ?></span>
+                
+                </td>
+            </tr>
+            <?php
+                }
+            ?>
+             </table>
+            <table>
+                <tr>
+                    <td>Items Total</td>
+                    <td><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($order->getSubtotalInclTax(),true,false); ?></td>
+                </tr>
+                <tr>
+                    <td>Discount Coupon Applied</td>
+                    <td><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($order->getDiscountAmount(),true,false); ?></td>
+                </tr>
+                <tr>
+                    <td>Shipping Charges</td>
+                    <td><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($order->getShippingAmount(),true,false); ?></td>
+                </tr>
+                <tr>
+                    <td>Total Amount Paid</td>
+                    <td><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($order->getGrandTotal(),true,false); ?></td>
+                </tr>
+            </table>
+            
+        </div>
+    </div>
+
+
+
+        
+    </div>
+
+    
+
+    <div class="col-1 col-lg-1"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

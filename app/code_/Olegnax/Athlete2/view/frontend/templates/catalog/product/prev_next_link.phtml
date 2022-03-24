@@ -1,0 +1,21 @@
+<?php
+/** @var \Olegnax\Athlete2\Block\Html\PrevNextProduct $block */
+$link_sufix = $block->getIsNext() ? 'next' : 'previous';
+$label_text = $block->escapeHtml(__($block->getIsNext() ? 'Next' : 'Previous'));
+?>
+<a href="<?php echo $block->getProductUrl() ?>" class="ox-prev-next__link ox-product-link-<?= $link_sufix; ?>"
+   rel="<?= $link_sufix; ?>">
+		<span class="content-wrapper">
+			<span class="inner">
+			<span class="content">
+				<span class="name"><?php echo $block->getName(); ?></span>
+<span class="label"><?= $label_text; ?></span>
+</span>
+<span class="image-wrapper"><span
+			class="overlay"></span><?php echo $block->getResizedImage('category_page_grid', [125, 145])->toHtml(); ?></span>
+</span>
+</span>
+	<span class="ox-prev-next__arrow"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+										   viewBox="0 0 20 20" xml:space="preserve">
+<polygon points="15.8,10.5 6.6,1.4 5.2,2.8 12.9,10.5 5.2,18.3 6.6,19.7 15.8,10.5 15.8,10.5 "/></svg></span>
+</a>

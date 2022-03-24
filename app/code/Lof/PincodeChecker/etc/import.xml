@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Lof
+ * @package   Lof\PincodeChecker
+ * @author    Landofcoder <landofcoder@gmail.com>
+ * @copyright 2020 Landofcoder
+ * @license   https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="lof_pincodechecker" label="Import Pincode" model="Lof\PincodeChecker\Model\Import\Pincode" behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

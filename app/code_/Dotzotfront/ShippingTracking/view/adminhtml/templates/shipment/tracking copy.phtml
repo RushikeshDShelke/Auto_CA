@@ -1,0 +1,353 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php /** @var $this Mage_Adminhtml_Block_Sales_Order_Shipment_Create_Tracking */ ?>
+
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$adminurl  = $objectManager->get('\Magento\Backend\Model\UrlInterface');
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$readConnection = $resource->getConnection();
+
+
+$orderid =  $block->getRequest()->getParam("order_id"); 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_order = $objectManager->create('Magento\Sales\Model\Order')->load($orderid);
+?>
+<div class="admin__control-table-wrapper">
+    <table class="data-table admin__control-table" id="shipment_tracking_info">
+        <thead>
+            <tr class="headings">
+                <th class="col-carrier"><?= $block->escapeHtml(__('Carrier')) ?></th>
+                <th class="col-title"><?= $block->escapeHtml(__('Title')) ?></th>
+                <th class="col-number"><?= $block->escapeHtml(__('Number')) ?></th>
+                <th class="col-delete last"><?= $block->escapeHtml(__('Action')) ?></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td class="col-carrier">
+                    <select name="carrier"
+                            class="select admin__control-select"
+                            onchange="selectCarrier(this)">
+                        <?php foreach ($block->getCarriers() as $_code => $_name) : ?>
+                        <option value="<?= $block->escapeHtmlAttr($_code) ?>"><?= $block->escapeHtml($_name) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td class="col-title">
+                    <input class="input-text admin__control-text"
+                           type="text"
+                           id="tracking_title"
+                           name="title"
+                           value="" />
+                </td>
+                <td class="col-number">
+                    <input class="input-text admin__control-text"
+                           type="text"
+                           id="tracking_number"
+                           name="number"
+                           value="" />
+                </td>
+                <td class="col-delete last"><?= $block->getSaveButtonHtml() ?></td>
+            </tr>
+        </tfoot>
+    <?php if ($_tracks = $block->getShipment()->getAllTracks()) : ?>
+        <tbody>
+        <?php $i = 0; foreach ($_tracks as $_track) :$i++ ?>
+            <tr class="<?= /* @noEscape */ ($i%2 == 0) ? 'even' : 'odd' ?>">
+                <td class="col-carrier">
+                    <?= $block->escapeHtml($block->getCarrierTitle($_track->getCarrierCode())) ?>
+                </td>
+                <td class="col-title"><?= $block->escapeHtml($_track->getTitle()) ?></td>
+                <td class="col-number">
+                    <?php if ($_track->isCustom()) : ?>
+                        <?= $block->escapeHtml($_track->getNumber()) ?>
+                    <?php else : ?>
+                    <a href="#" onclick="popWin('<?= $block->escapeJs($block->escapeUrl($this->helper(Magento\Shipping\Helper\Data::class)->getTrackingPopupUrlBySalesModel($_track))) ?>','trackorder','width=800,height=600,resizable=yes,scrollbars=yes')"><?= $block->escapeHtml($_track->getNumber()) ?></a>
+                    <div id="shipment_tracking_info_response_<?= (int) $_track->getId() ?>"></div>
+                    <?php endif; ?>
+                </td>
+                <td class="col-delete last"><button class="action-delete" type="button" onclick="deleteTrackingNumber('<?= $block->escapeJs($block->escapeUrl($block->getRemoveUrl($_track))) ?>'); return false;"><span><?= $block->escapeHtml(__('Delete')) ?></span></button></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    <?php endif; ?>
+    </table>
+</div>
+
+<script>
+require(['prototype'], function(){
+
+//<![CDATA[
+function selectCarrier(elem) {
+    var option = elem.options[elem.selectedIndex];
+    $('tracking_title').value = option.value && option.value != 'custom' ? option.text : '';
+}
+
+function deleteTrackingNumber(url) {
+    if (confirm('<?= $block->escapeJs($block->escapeHtml(__('Are you sure?'))) ?>')) {
+        submitAndReloadArea($('shipment_tracking_info').parentNode, url)
+    }
+}
+
+window.selectCarrier = selectCarrier;
+window.deleteTrackingNumber = deleteTrackingNumber;
+//]]>
+
+});
+</script>
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+<?php  $_order = $this->getShipment()->getOrder(); 
+?>
+<?php $zipcode = $_order->getShippingAddress()->getPostcode() ?>
+<script type="text/javascript">
+//<![CDATA[
+var trackingControl;
+trackingControl = {
+    index : 0,
+    add : function () {
+        this.index++;
+        var data = {index:this.index};
+        Element.insert($('track_row_container'), {bottom: this.template.evaluate(data)});
+        $('trackingC' + this.index).disabled = false;
+        $('trackingT' + this.index).disabled = false;
+        $('trackingN' + this.index).disabled = false;
+		<?php //if(Mage::getStoreConfig('carriers/dlastmile/heavy_shipment')){ ?>
+		 $('trackingSl' + this.index).disabled = false;
+		  $('trackingSw' + this.index).disabled = false;
+		   $('trackingSh' + this.index).disabled = false;
+		   <?php// } ?>
+        this.bindCurrierOnchange();
+    },
+    deleteRow : function(event) {
+        var row = Event.findElement(event, 'tr');
+        if (row) {
+            row.parentNode.removeChild(row)
+        }
+    },
+    bindCurrierOnchange : function() {
+        var elems = $('tracking_numbers_table').select('.select');
+        elems.each(function (elem) {
+            if (!elem.onchangeBound) {
+                elem.onchangeBound = true;
+                elem.valueInput = $(elem.parentNode.parentNode).select('.number-title')[0];
+                elem.observe('change', this.currierOnchange);
+            }
+        }.bind(this));
+    },
+    currierOnchange : function(event) {
+	  // alert('rss');
+        var elem = Event.element(event);
+		var textboxid = elem.id.replace('trackingC','trackingN');
+		$(textboxid).disabled = false;
+		$(textboxid).value = '';
+        var option = elem.options[elem.selectedIndex];
+		 if (option.value && option.value == 'dlastmile') {
+			 submitAjaxData(elem.id);
+             showDocketList(elem.id,option.value);	 			 
+		 }
+         if (option.value && option.value == 'pudo') {
+            showDocketList(elem.id,option.value);			 			 
+		 }
+        if (option.value && option.value != 'custom') {
+            elem.valueInput.value = option.text;
+        }
+        else {
+            elem.valueInput.value = '';
+        }
+    }
+}
+//]]>
+</script>
+<div class="grid">
+<table cellspacing="0" class="data" id="tracking_numbers_table">
+    <col width="100" />
+    <col />
+    <col />
+    <col width="80" />
+    <thead>
+        <tr class="headings">
+            <th><?php echo __('Carrier') ?></th>  
+            <th><?php echo __('Title') ?></th>
+            <th><?php echo __('Number') ?> <span class="required">*</span></th>
+              <?php  //$heavy_shipment =  Mage::getStoreConfig('carriers/dlastmile/heavy_shipment'); 
+		//if($heavy_shipment){ ?>
+			  <th><?php echo __('Shipment Length') ?></th>  
+            <th><?php echo __('Shipment Width') ?></th>
+             <th><?php echo __('Shipment Height') ?></th>
+		<?php //} ?>
+            <th class="last"><?php echo __('Action') ?></th>
+        </tr>
+    </thead>
+    <tfoot> 
+        <tr>
+            <td colspan="7" class="a-center last" style="padding:8px;"><?php echo $this->getChildHtml('add_button') ?></td>
+        </tr>
+       
+        <tr>
+            <td colspan="7" class="a-center last" style="padding:8px;">From Delhivery</td>
+        </tr>
+    </tfoot>
+    <tbody id="track_row_container">
+        <tr id="track_row_template" class="template no-display">
+            <td>
+               
+             <select name="tracking[__index__][carrier_code]" id="trackingC__index__" class="select carrier" style="width:110px;" disabled="disabled">
+                    <?php foreach ($block->getCarriers() as $_code=>$_name): ?>
+                    <option value="<?php echo $_code ?>"><?php echo $this->escapeHtml($_name) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+            <td><input class="input-text number-title" type="text" name="tracking[__index__][title]" id="trackingT__index__" value="" disabled="disabled" /></td>
+            <td>
+                <select id="trackingSelectN__index__" class="docketlist" style="width:110px;display: none;" onchange="updateNumber(this.value,this.id);">
+                    <option value="">Select</option>
+                    <?php
+                       
+                        $query="SELECT track_number FROM sales_shipment_track";
+                        $result= $readConnection->fetchAll($query);
+                        $trackArr=array();
+                        foreach($result as $tn){
+                            $trackArr[]=$tn['track_number'];
+                        }                          
+                        
+                        
+						$query1="SELECT docket_no FROM docket where payment_method='cashondelivery'";
+                       
+                        $result= $readConnection->fetchAll($query1); 
+                        foreach($result as $dock){
+                            if(!in_array($dock['docket_no'],$trackArr)){  ?>
+                        <option value="<?php echo $dock['docket_no']; ?>"><?php echo $dock['docket_no']; ?></option>
+                        <?php
+                            }
+                        }
+                    ?>
+                </select>
+                <input class="input-text required-entry tracknumber" type="text" name="tracking[__index__][number]" id="trackingN__index__" value="" disabled="disabled" />
+            </td>
+            <td><input class="input-text required-entry" type="text" name="tracking[__index__][number]" id="trackingN__index__" value="" disabled="disabled" /></td>
+             <?php  //$heavy_shipment =  Mage::getStoreConfig('carriers/dlastmile/heavy_shipment'); 
+		//if($heavy_shipment){
+		?>
+            <td><input class="input-text number-title" type="text" name="tracking[__index__][shipment_length]" id="trackingSl__index__" value="" disabled="disabled" /></td>
+            <td><input class="input-text number-title" type="text" name="tracking[__index__][shipment_width]" id="trackingSw__index__" value="" disabled="disabled" /></td>
+            <td><input class="input-text required-entry" type="text" name="tracking[__index__][shipment_height]" id="trackingSh__index__" value="" disabled="disabled" /></td>
+             <?php //} ?>
+            <td class="last"><a href="#" onclick="trackingControl.deleteRow(event);return false"><?php echo __('Delete') ?></a></td>
+            
+        </tr>
+        <tr id="track_row_templates" class="template no-display">
+         
+            
+        </tr>
+     
+    </tbody>
+</table>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo __('Eway Bill Number Information') ?></h4>
+    </div>
+    <fieldset>
+        <tr>
+
+            <td class="label"><label><strong><?php echo __('Add Eway Bill Number :') ?></strong></label></td>
+            <td class="value"><input class="input-text " type="text" name="eway_bill_no" id="eway_bill_no" value=""  /></td>
+        </tr>
+    </fieldset>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+trackingControl.template = new Template('<tr>' + $('track_row_template').innerHTML.replace(/__index__/g, '#{index}') + '<\/tr>');
+function submitAjaxData(valueofrow ){
+//	alert(test);
+var url ="<?php echo $adminurl->getUrl("admin/delhivery/assign/tracking")?>";
+       new Ajax.Request(url, {
+            method:'post'
+            , parameters: {   
+				 zipcode: '<?php echo $zipcode?>',
+				 orderid: '<?php echo $_order->getId();?>'
+                } 
+            , requestHeaders: {Accept: 'application/json'},
+            onSuccess: function(transport) {
+                retjson = transport.responseText.evalJSON();
+				var textboxid = valueofrow.replace('trackingC','trackingN');
+				document.getElementById(textboxid).setAttribute("readonly", "true");
+				if(/\d{1,9}/.test(retjson.resp[0].awb))
+					document.getElementById(textboxid).value = retjson.resp[0].awb;
+				else
+					alert(retjson.resp[0].awb);
+             }
+          });
+}
+function setAWBStatusAjaxData( ){
+var url ="<?php echo $adminurl->getUrl("lastmile/adminhtml_lastmile/setAWBStatus")?>";
+       new Ajax.Request(url, {
+            method:'post'
+            , parameters: {           
+                } 
+            , requestHeaders: {Accept: 'application/json'},
+            onSuccess: function(transport) {
+               
+				//console.info(textboxid);
+				//console.info(retjson.resp);
+				//document.getElementById('shblocks').style.display='none';
+                //document.getElementById('messageshblocks').innerHTML = retjson.resp ;
+				 //document.getElementById('messageshblocks').style.display = '';
+             }
+          });
+}
+setAWBStatusAjaxData();
+function showDocketList(id,opValue){
+    var boxId = id.replace("tracking", "");
+    boxId= boxId.replace("C", "N");
+    if (opValue =='pudo'){
+		document.getElementById("tracking"+boxId).style.display = "none";
+		document.getElementById("trackingSelect"+boxId).style.display = "block";  
+    }
+    else{
+		document.getElementById("tracking"+boxId).style.display = "block";
+		document.getElementById("trackingSelect"+boxId).style.display = "none";  
+    } 
+}
+function updateNumber(obj,Id){  
+	 var NextId = Id.replace('Select',''); 
+	  document.getElementById(NextId).value= obj;  
+}
+//]]>
+</script>

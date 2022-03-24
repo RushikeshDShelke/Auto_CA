@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @var $block \MagicToolbox\MagicZoomPlus\Block\Html\Head
+ */
+
+if (!$block->isVisibile()) {
+    return;
+}
+
+$jsUrl = $block->getViewFileUrl('MagicToolbox_MagicZoomPlus::js/magiczoomplus.js');
+$jsPath = dirname($jsUrl);
+$cssUrl = $block->getViewFileUrl('MagicToolbox_MagicZoomPlus::css/magiczoomplus.css');
+$cssPath = dirname($cssUrl);
+
+$tool = $block->magicToolboxHelper->getToolObj();
+$tool->params->resetProfile();
+
+$headers = $tool->getHeadersTemplate($jsPath, $cssPath);
+
+if ($block->doDisplayMagicScrollHeaders() && ($scroll = $block->magicToolboxHelper->getScrollObj())) {
+    $scroll->params->resetProfile();
+    $headers .= "\n".$scroll->getHeadersTemplate($jsPath, $cssPath, false);
+}
+
+//NOTE: fix to support 'Minify JavaScript/CSS Files' options
+if (preg_match('#\.min\.css$#', $cssUrl)) {
+    $headers = preg_replace('#\.css\b#', '.min.css', $headers);
+}
+if (preg_match('#\.min\.js$#', $jsUrl)) {
+    $headers = preg_replace('#\.js\b#', '.min.js', $headers);
+}
+
+echo $headers;
+
+if ($block->getPageType() == 'product') {
+?>
+<script type="text/javascript">
+(function () {
+    window.allowHighlightActiveSelectorOnUpdate = true;
+    window.mzOptions || (window.mzOptions = {});
+    window.mzOptions['onUpdate'] = function(id, oldA, newA) {
+        if (allowHighlightActiveSelectorOnUpdate && id.match(/^MagicZoomPlusImage-product-\d+$/)) {
+            //NOTE: to highlight selectors when swipe or switch in expand view
+            var aTags = document.querySelectorAll('.MagicToolboxSelectorsContainer a');
+            for (var i = 0; i < aTags.length; i++) {
+                if (aTags[i].getElementsByTagName('img').length) {
+                    $mjs(aTags[i]).jRemoveClass('active-selector');
+
+                }
+            }
+            $mjs(newA).jAddClass('active-selector');
+        }
+        allowHighlightActiveSelectorOnUpdate = true;
+    }
+}());
+</script>
+<?php
+}

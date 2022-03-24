@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<default>
+<carriers>
+<craft_handdelivery>
+<active>0</active>
+<sallowspecific>0</sallowspecific>
+<price>0</price>
+<model>Craft\Handdelivery\Model\Carrier\Customshipping</model>
+<name>Custom Shipping</name>
+<title>Handdelivery Custom Shipping</title>
+<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+</craft_handdelivery>
+</carriers>
+</default>
+</config>

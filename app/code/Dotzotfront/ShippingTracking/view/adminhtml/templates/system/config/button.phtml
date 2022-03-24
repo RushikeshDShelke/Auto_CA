@@ -1,0 +1,18 @@
+<?php
+/**
+ * Dotzot Shipping
+ *
+ */
+?>
+
+<div class="pp-buttons-container">
+    <button id="<?= $block->getHtmlId() ?>" onclick="<?= $block->getOnclick($block->getHtmlId()); ?>">
+        <span>
+            <span>
+                <span>
+                    <?= $block->escapeHtml($block->getButtonLabel()); ?>
+                </span>
+            </span>
+        </span>
+    </button>
+</div>

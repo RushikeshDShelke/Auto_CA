@@ -1,0 +1,60 @@
+<?php $items = $block->getCollection(); ?>
+
+<div class="container-fluid main-container vendor-container">
+    <h1><?php echo $block->escapeHtml($block->getTitle()) ?></h1>
+    <div class="jumbotron">
+        <form name="report_filter"
+              id="report_filter"
+              action="<?php echo $block->getUrl('*/*/*') ?>"
+              method="post"
+              enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-2" style="float:right;">
+                    <input type="submit"
+                           name="submit"
+                           class="btn btn-info btn-sm"
+                           style="margin-bottom:10px;"
+                           value="<?php /* @escapeNotVerified */ echo __('Export to CSV'); ?>" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><?php /* @escapeNotVerified */ echo __('Product Name'); ?></th>
+                <th><?php /* @escapeNotVerified */ echo __('Product SKU'); ?></th>
+                <th><?php /* @escapeNotVerified */ echo __('Stock Qty'); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+                <?php $sumItemCount = 0; ?>
+                <?php $sumQtySold = 0; ?>
+                <?php $sumSubtotal = 0; ?>
+                <?php $sumIncome = 0; ?>
+                <?php if ($items->getSize() > 0) : ?>
+                    <?php foreach ($items as $item) : ?>
+                        <tr>
+                            <td><?php echo $block->escapeHtml($item->getName()); ?></td>
+                            <td><?php echo $block->escapeHtml($item->getSku()); ?></td>
+                            <td><?php echo number_format($block->escapeHtml($item->getQty())); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+            <?php else : ?>
+                    <tr>
+                        <td colspan="4"
+                            class="text-center"><?php /* @escapeNotVerified */ echo __('No records found.'); ?></td>
+                    </tr>
+            <?php endif; ?>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="info" colspan="1"><?php /* @escapeNotVerified */ echo __('Total'); ?></td>
+                <td class="info"></td>
+                <td class="info"><?php echo $block->escapeHtml($sumQtySold); ?></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

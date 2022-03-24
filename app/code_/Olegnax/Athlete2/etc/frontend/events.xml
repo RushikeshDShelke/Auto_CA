@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2021 Olegnax. All rights reserved.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="layout_load_before">
+         <observer name="ox_move" instance="Olegnax\Athlete2\Observer\Move" shared="false" />
+        <observer name="ox_addbodyclass" instance="Olegnax\Athlete2\Observer\AddBodyClass" shared="false" />
+        <observer name="ox_change_layout" instance="Olegnax\Athlete2\Observer\ChangeLayout" shared="false" />
+    </event>
+        <event name="view_block_abstract_to_html_before">
+        <observer name="ox_to_html_before" instance="Olegnax\Athlete2\Observer\BeforeLoadBlock" shared="false" />
+    </event>
+    <event name="controller_action_layout_render_before_blog_index_index">
+        <observer name="ox_remove_blog_blocks" instance="Olegnax\Athlete2\Observer\ChangeBlogLayout" shared="false" />
+    </event>
+    <event name="controller_action_layout_render_before_blog_search_index">
+        <observer name="ox_remove_blog_blocks" instance="Olegnax\Athlete2\Observer\ChangeBlogLayout" shared="false" />
+    </event>
+    <event name="controller_action_layout_render_before_blog_archive_view">
+        <observer name="ox_remove_blog_blocks" instance="Olegnax\Athlete2\Observer\ChangeBlogLayout" shared="false" />
+    </event>
+    <event name="layout_generate_blocks_after">
+        <observer name="ox_modify_blog_blocks" instance="Olegnax\Athlete2\Observer\ModifyBlogLayout" shared="false" />
+    </event>
+    <event name="controller_front_send_response_before">
+        <observer name="ox_lazyload" instance="Olegnax\Athlete2\Observer\LazyLoad" shared="false" />
+        <observer name="ox_deferjs" instance="Olegnax\Athlete2\Observer\DeferJS" shared="false" />
+    </event>
+</config>

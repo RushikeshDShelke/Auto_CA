@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Helper\Product"
+                type="Cminds\Supplierfrontendproductuploader\Helper\Catalog\Product"/>
+    <preference for="Cminds\Supplierfrontendproductuploader\Api\Data\SourcesInterface"
+                type="Cminds\Supplierfrontendproductuploader\Model\Sources"/>
+
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Save">
+        <plugin name="adminCustomerSaveController"
+                type="\Cminds\Supplierfrontendproductuploader\Controller\Plugin\Adminhtml\Customer\Save\Plugin"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Edit">
+        <plugin name="adminCustomerEditController"
+                type="\Cminds\Supplierfrontendproductuploader\Controller\Plugin\Adminhtml\Customer\Edit\Plugin"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\SaveButton">
+        <plugin name="adminCustomerEditSaveButtonBlock"
+                type="\Cminds\Supplierfrontendproductuploader\Block\Plugin\Adminhtml\Customer\Edit\SaveButton\Plugin"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Customer\Model\Customer\DataProvider">
+        <plugin name="adminCustomerDataProviderModel"
+                type="\Cminds\Supplierfrontendproductuploader\Model\Plugin\Adminhtml\Customer\DataProvider\Plugin"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Customer\Model\Customer\Attribute\Source\Group">
+        <plugin name="limitToSupplierGroups"
+                type="\Cminds\Supplierfrontendproductuploader\Model\Plugin\Customer\Attribute\Source\Group\Plugin"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="cminds_supplierfrontendproductuploader_sources_listing_data_source"
+                    xsi:type="string">Cminds\Supplierfrontendproductuploader\Model\ResourceModel\Sources\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Cminds\Supplierfrontendproductuploader\Model\ResourceModel\Sources\Grid\Collection"
+        type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">supplierfrontendproductuploader_customer_sources</argument>
+            <argument name="resourceModel" xsi:type="string">Cminds\Supplierfrontendproductuploader\Model\ResourceModel\Sources</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,68 @@
+<?php
+/**
+ * Olegnax BrandSlider
+ * 
+ * This file is part of Olegnax/Core.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_BrandSlider
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+$slider_id			 = $block->getSliderId();
+$brands				 = $block->getItems();
+$athleteImgHelper	 = $this->helper( 'Olegnax\BrandSlider\Helper\Image' );
+$customArrows		 = true;
+$showNav = ($block->getNav() == 'hide') ? false : true;
+$classes = [];
+$classes [] = $block->getColumnsMobile() ? ('columns-s-' . $block->getColumnsMobile()) : '';
+$classes[] = 'hover-'. ($block->getImageHover() ?: 'default');
+$width = $block->getWidth();
+$height = $block->getHeight();
+$paddingBottom = ($height / $width) * 100 . '%';
+if ( 0 < count( $brands ) ) :
+	?>
+	<div id="<?= $slider_id ?>" class="block widget ox-brand-slider__container <?= implode(' ', $classes ) ?>">
+		<?php if ( $customArrows && $showNav ) { ?>
+			<div class="ox-nav-sideline">
+				<div id="<?= $slider_id ?>_list_nav" class="owl-nav ox-owl-nav">				
+					<button class="owl-prev ox-owl-prev" role="presentation"><span aria-label="Previous">></span></button>
+					<button class="owl-next ox-owl-next" role="presentation"><span aria-label="Next"><</span></button>
+				</div>
+			</div>
+		<?php } ?>
+		<div id="<?= $slider_id ?>_list" class="ox-carousel__brands owl-carousel" data-mage-init='{"OXBrandsSlider":<?=
+		json_encode( [
+			'autoScroll'	 => $block->getAutoScroll(),
+			'slideBy'		 => $block->getScrollItems(),
+			'rewind'		 => (bool) $block->getRewind(),
+			'responsive'	 => $block->getResponsive( false ),
+			'slideWidth'	 => $width,
+			'slideHeight'	 => $height,
+		] );
+		?>}' style="height: <?= $height ?>px">
+				<?php foreach ( $brands as $brand ) : ?>
+					<?php
+					$size	 = [ $block->getWidth(), $block->getHeight() ];
+					$url	 = $athleteImgHelper->adaptiveResize( $brand->getImageName(), $size )->getUrl();
+					if($athleteImgHelper->_imageExist){ 
+					?>
+						<div class="ox-brand__slide slide<?= $brand->getValue(); ?>">
+							<a href="<?= $block->getBrandUrl( $brand ); ?>" class="ox-brand__link" style="padding-bottom: <?= $paddingBottom ?>"><span></span><img src="<?php echo $url; ?>" alt="<?php echo $brand->getLabel(); ?>" width="<?= $width ?>" height="<?= $height ?>" class="ox-brand-slider__image" /></a>
+						</div>
+					<?php } ?>
+			<?php endforeach; ?>
+		</div>
+	</div>
+<?php endif; ?>

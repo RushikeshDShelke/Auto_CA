@@ -1,0 +1,192 @@
+<root>
+	<carousels>
+		<item>
+			<title>Home Sp Big</title>
+			<identifier>home_sp_big</identifier>
+			<slides>
+				<item>
+					<carousel>home_sp_big</carousel>
+					<is_active>1</is_active>
+					<content_only>0</content_only>
+					<sort_order>10</sort_order>
+					<layout>2-col</layout>
+					<mobile_align>center</mobile_align>
+					<margins>big</margins>
+					<content_wrappers>container</content_wrappers>
+					<slide_bg>rgb(205, 201, 192)</slide_bg>
+					<subtitle_color>rgb(255, 255, 255)</subtitle_color>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color>rgb(255, 255, 255)</text_color>
+					<image>/media/athlete2/Demos/sp/slide-headphones-bg.jpg</image>
+					<subtitle>BIG THANKS TO ALL OUR CUSTOMERS</subtitle>
+					<title><![CDATA[Pushing <br>The Limits]]></title>
+					<title_size>huge</title_size>
+					<button_style></button_style>
+					<content_width>530</content_width>
+					<custom_class></custom_class>
+					<link>#</link>
+					<button_css>big-wide</button_css>
+					<button>shop now</button>
+					<nav_title>Pushing the Limits</nav_title>
+					<content><![CDATA[<p class="no-margin medium-text">Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint </p>]]></content>
+					<content2><![CDATA[<div class="circle-pulse-img m-auto">
+<img src="{{media url=&quot;athlete2/Demos/sp/headphones.png&quot;}}" alt="" class="floating40 m-auto mw-50vw" width="409" height="405" />
+{{widget type="Olegnax\HotSpotQuickview\Block\Widget\HotSpot" id_path="product/2095" position_left="50" position_top="15" height="" width="75" label_text="&#36;455" color="white" shadow="0" color_background="#2c2930" pulse_animation="0" pulse_animation_color="" border_color="" border_radius="0" hide_mobile="0" mobile_minimized="0" position_left_m="60" position_top_m="55" tooltip_bold_text="1" tooltip_content="0" tooltip_text="Bluetooth Beats Wireless Headphones" tooltip_static="" tooltip_width="" tooltip_color="" tooltip_color_background=""}}
+</div>
+<div class="circle-pulse-wrapper">
+<div class="circle-pulse pulseBig"></div>
+<div class="circle-pulse pulseBig bigger"></div>
+</div >]]></content2>
+				</item>
+				<item>
+					<carousel>home_sp_big</carousel>
+					<is_active>1</is_active>
+					<content_only>0</content_only>
+					<sort_order>20</sort_order>
+					<layout>right</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>container</content_wrappers>
+					<slide_bg>rgb(214, 207, 200)</slide_bg>
+					<subtitle_color>rgb(255, 255, 255)</subtitle_color>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color>rgb(255, 255, 255)</text_color>
+					<image>/media/athlete2/Demos/sp/home-sp-slide-02.jpg</image>
+					<subtitle>FOLLOW THE RED RABBIT</subtitle>
+					<title><![CDATA[Up to<br> 50% Off]]></title>
+					<title_size>huge</title_size>
+					<button_style></button_style>
+					<content_width>550</content_width>
+					<custom_class></custom_class>
+					<link>#</link>
+					<button_css>big-wide</button_css>
+					<button>shop now</button>
+					<nav_title>Up to 50% Off</nav_title>
+					<content><![CDATA[<p class="no-margin medium-text">Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint </p>
+{{widget type="Olegnax\HotSpotQuickview\Block\Widget\HotSpot" id_path="product/2094" position_left="30" position_top="50" height="" width="" color="black" color_background="white" shadow="0" pulse_animation="1" pulse_animation_color="white" border_color="" icon="plus-small" border_radius="" hide_mobile="1" mobile_minimized="0" position_left_m="" position_top_m="" tooltip_content="0" tooltip_bold_text="1" tooltip_text="Metallic Silk And Lurex-Blend Maxi Skirt" tooltip_static="" tooltip_width="" tooltip_color="#333333" tooltip_color_background=""}}
+{{widget type="Olegnax\HotSpotQuickview\Block\Widget\HotSpot" id_path="product/2093" position_left="50" position_top="20" height="" width="" color="#ffffff" color_background="#da4a1a" shadow="1" pulse_animation="1" pulse_animation_color="#da4a1a" border_color="" icon="plus-small" border_radius="" hide_mobile="1" mobile_minimized="0" position_left_m="" position_top_m="" tooltip_content="1" tooltip_bold_text="1" tooltip_text="" tooltip_static="ox-hotspot-sp-home-slider-01" tooltip_width="230" tooltip_color="#333333" tooltip_color_background=""}}]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+		<item>
+			<title>Header Text</title>
+			<identifier>header-text</identifier>
+			<slides>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Free Shipping &amp; 60-Day Free Returns<br>
+<a href="#" style="border-bottom:1px solid">Join Now</a>			
+</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>20</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Up to 40% Off<br>
+<a href="#" style="border-bottom:1px solid">Shop Sale</a>			
+</div>
+]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Get The Latest Deals And More<br>
+<a href="#" style="border-bottom:1px solid">Sign up</a>
+</div>]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+	</carousels>
+</root>

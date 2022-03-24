@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Athlete2 Theme
+ *
+ * @author      Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (https://olegnax.com). All rights reserved.
+ * @license     https://www.olegnax.com/license
+ */
+$theme_helper = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product');
+$reviewsInTab = $theme_helper['reviews_position'];
+$tabsInInfo = $theme_helper['product_tabs_position'];
+$moveRelated = $theme_helper['related_positon'];
+$moveUpsell  = $theme_helper['upsell_positon'];
+if($reviewsInTab == 'gallery' || $tabsInInfo == 'gallery' || $moveRelated == 'gallery' || $moveUpsell == 'gallery') :
+?>
+<script>
+require([
+	'jquery',
+	'matchMedia'
+], function ($, mediaCheck) {
+		'use strict';
+		var mediaBreakpoint = '(min-width: 1025px)',
+			$gallery = $('.product.media'),
+			$container = $('.columns > .column.main');
+		mediaCheck({
+			media: mediaBreakpoint,
+			entry: function () {
+				if($gallery.length){
+					$('.athlete2_after_gallery').appendTo($gallery);
+				}
+			},
+			exit: function () {
+				if($container.length){
+					$('.athlete2_after_gallery').appendTo($container);
+				}
+			},
+		});
+});
+</script>
+<?php endif;

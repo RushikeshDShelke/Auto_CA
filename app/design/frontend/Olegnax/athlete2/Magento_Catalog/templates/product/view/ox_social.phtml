@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product');
+if ( !$at_settings[ 'product_social_min' ] && $at_settings[ 'product_social_block' ] ) {
+$_helperImage	 = $this->helper( '\Magento\Catalog\Helper\Image' );
+$product		 = $block->getProduct();
+/** @var $block \Magento\Catalog\Block\Product\View */
+$shareicon		 = '<svg id="ox_share_icon" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+  <title>share-f</title>
+  <path d="M17,13a4,4,0,0,0-2.7,1.1L9.8,11.5A4.9,4.9,0,0,0,10,10a4.9,4.9,0,0,0-.2-1.4l4-2.3A4,4,0,1,0,13,4c0,0.1,0,.2,0,0.4L8.8,6.8a5,5,0,1,0-.6,7l0.6-.6,4.4,2.5A3.9,3.9,0,0,0,13,17,4,4,0,1,0,17,13ZM17,2a2,2,0,1,1-2,2A2,2,0,0,1,17,2ZM5,13a3,3,0,1,1,3-3A3,3,0,0,1,5,13Zm12,6a2,2,0,1,1,2-2A2,2,0,0,1,17,19Z" transform="translate(0 0)"/>
+</svg>';
+$iconText		 = __( 'Share' );
+?>
+<div class="product__social-share">
+	<div class="social-share__action">
+		<span class="icon"></span>
+		<span class="label"><?= $block->escapeHtml($iconText) ?></span>
+	</div>
+	<div class="social-share__content">
+		<a target="_blank" class="ox-social-button" href="https://www.facebook.com/sharer/sharer.php?<?= http_build_query( array( 'u' => $product->getProductUrl() ) ) ?>"><i class="athlete2-icon-facebook"></i><span><?= $block->escapeHtml(__('Facebook')) ?></span></a>
+		<a target="_blank" class="ox-social-button" href="https://twitter.com/intent/tweet?<?=
+		http_build_query( array( // WPCS: xss ok.
+			'text'	 => $product->getName(),
+			'url'	 => $product->getProductUrl(),
+		) )
+?>"><i class="athlete2-icon-twitter"></i><span><?= $block->escapeHtml(__('Twitter')) ?></span></a>
+		<a target="_blank" class="ox-social-button" href="http://pinterest.com/pin/create/button/?<?=
+		   http_build_query( array(
+			   'url'	 => $product->getProductUrl(),
+			   'media'	 => $_helperImage->init( $product, 'category_page_grid' )->getUrl(),
+		   ) )
+		   ?>"><i class="athlete2-icon-pinterest"></i><span><?= $block->escapeHtml(__('Pinterest')) ?></span></a>
+		<?php if ($block->canEmailToFriend() && $at_settings[ 'product_mailtosocial' ] ): ?>
+			<a href="<?= $block->escapeUrl($this->helper('Magento\Catalog\Helper\Product')->getEmailToFriendUrl($product)) ?>"
+			   class="ox-social-button action mailto friend"><span><?= $block->escapeHtml(__('Email')) ?></span></a>
+		<?php endif; ?>
+	</div>
+</div>
+<?php } ?>

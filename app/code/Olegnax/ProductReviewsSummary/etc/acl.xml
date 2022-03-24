@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Olegnax_Core::Olegnax_Core">
+					<resource id="Olegnax_ProductReviewsSummary::productreviewssummary" sortOrder="10" title="Product Reviews Summary"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

@@ -1,0 +1,495 @@
+<?php $categories = $block->getCategories(); ?>
+<?php $product = $block->getProduct(); ?>
+<?php $attributes = $block->getAttributes($product); ?>
+<?php $links = $block->getProductLinks($product); ?>
+<?php $data = $product->getData(); ?>
+<?php $isEditMode = $product->getId(); ?>
+<?php $selectedCategories = $product->getCategoryIds(); ?>
+<?php $block->setSelectedCategories($selectedCategories); ?>
+<?php $mediaGallery = $product->getMediaGalleryImages(); ?>
+<?php $productStock = $block->getStockItem($product->getId()); ?>
+<?php $productMediaVideoHelper = $block->getProductMediaVideoHelper(); ?>
+<?php $videoUrl = $productMediaVideoHelper->getVideoUrl($product); ?>
+<div class="container main-container vendor-container">
+    <h1 class="text-center"><?php echo __('Edit Product'); ?></h1>
+
+    <div class="row">
+        <div class="col-md-12 form-container">
+            <form name="product_create_form" id="product_create_form"
+                  action="<?php echo $block->getUrl('supplier/product/save') ?>" method="post"
+                  enctype="multipart/form-data">
+                <input type="hidden" name="type" value="<?php echo $block->getProductTypeId(); ?>"/>
+                <input type="hidden" name="attribute_set_id" value="<?php echo $product->getAttributeSetId(); ?>"/>
+                <input type="hidden" name="product_id" value="<?php echo $product->getId() ?>"/>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <div class="col-md-12 label-container">
+                                <label for="name">
+                                    <?php echo $block->getLabel('name', 'Name', false); ?>
+                                    <span class="required">*</span>:
+                                </label>
+                            </div>
+                            <div class="col-md-12 input-container">
+                                <input type="text" id="name" name="name" class="input-text form-control required-entry"
+                                       value="<?php echo(isset($data['name']) ? $data['name'] : ''); ?>"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 label-container">
+                                <label for="short_description">
+                                    <?php echo $block->getLabel('short_description', __('Short Description'), false); ?>
+                                    <span class="required">*</span>:
+                                </label>
+                            </div>
+                            <div class="col-md-12 input-container">
+                                <textarea id="short_description" name="short_description"
+                                          class="input-text form-control required-entry form-control wysiwyg"
+                                          rows="15"><?php echo(isset($data['short_description']) ? $data['short_description'] : ''); ?></textarea>
+                                <div id="short_description_error_required_field_label" class="cminds_error" style="display:none">
+                                    <?php echo $block->escapeHtml(__('This is a required field')); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 label-container">
+                                <label for="description">
+                                    <?php echo $block->getLabel('description', __('Detailed Description '), false); ?>
+                                    <span class="required">*</span>:
+                                </label>
+                            </div>
+                            <div class="col-md-12 input-container">
+                                <textarea id="description" name="description"
+                                          class="input-text form-control required-entry wysiwyg"
+                                          rows="15"><?php echo(isset($data['description']) ? $data['description'] : ''); ?></textarea>
+                                <div id="description_error_required_field_label" class="cminds_error" style="display:none">
+                                    <?php echo $block->escapeHtml(__('This is a required field')); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 label-container">
+                                <label for="stock">
+                                    <?php echo $block->getLabel('stock', __('Stock Status '), false); ?>
+                                    <span class="required">*</span>:
+                                </label>
+                            </div>
+                            <div class="col-md-12 input-container">
+                                <select name="stock" class="">
+                                    <option value="1" <?php if($productStock->getIsInStock() === true): ?> selected <?php endif;?>><?= __('In Stock') ?></option>
+                                    <option value="0" <?php if($productStock->getIsInStock() === false): ?> selected <?php endif;?>><?= __('Out of Stock') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <?php if ($block->canAddSku()): ?>
+                            <div class="form-group">
+                                <div class="col-md-12 label-container">
+                                    <label for="sku">
+                                        <?php echo $block->getLabel('sku', 'SKU', false); ?>
+                                        <span class="required">*</span>:
+                                    </label>
+                                </div>
+                                <div class="col-md-12 input-container">
+                                    <input type="text" id="sku" name="sku"
+                                           value="<?php echo(isset($data['sku']) ? $data['sku'] : ''); ?>"
+                                           class="input-text form-control  required-entry"/>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php foreach ($attributes AS $attribute): ?>
+                            <?php $attributeObj = $block->getAttribute($attribute['attribute_code']); ?>
+                            <?php if ($attributeObj->getData('available_for_supplier') == 0) {
+                                continue;
+                            } ?>
+
+                            <?php $attributeFrontend = $attributeObj->getFrontend(); ?>
+                            <?php $isRequired = $attributeFrontend->getAttribute()->getIsRequired(); ?>
+                            <div class="form-group">
+                                <div class="col-md-12 label-container">
+                                    <label for="product_name">
+                                        <?php echo $block->getLabel($attributeObj); ?>
+
+                                        <?php if ($isRequired == 1): ?><span class="required">*</span> <?php endif; ?>:
+                                    </label>
+                                </div>
+                                <div class="col-md-12 input-container">
+                                    <?php echo $block->getAttributeHtml($attributeObj, $data); ?>
+                                </div>
+                            </div>
+
+
+                        <?php endforeach; ?>
+                        <br/><br/>
+
+                        <div class="col-md-12"  style="margin-bottom: 20px;">
+                            <h4><?php echo __("Grouped Products"); ?></h4>
+                            <div id="grouped_products">
+                                <?php if(count($links) == 0): ?>
+
+                                    <div class="grouped_product">
+                                        <div class="col-md-8 row">
+                                            <input type="text" placeholder="Type product SKU" name="group_products[]" class="grouped_product_name input-text form-control"/>
+                                            <input type="hidden" name="group_products_ids[]" class="grouped_product_id"/>
+                                        </div>
+
+                                        <div class="col-md-3 row" style="margin-left: 10px;">
+                                            <input type="text" placeholder="Quantity" name="group_products_qty[]" value="1" class="quantity input-text form-control"/>
+                                        </div>
+                                        <div class="col-md-1" style="padding-top: 5px;">
+                                            <a href="#" style="color: red;" class="remove_product">X</a>
+                                        </div>
+
+                                </div>
+                                <?php else: ?>
+                                    <?php foreach($links as $link): ?>
+                                        <?php $product_link = $block->getProductById($link['linked_product_id']); ?>
+                                        <?php $qty = $block->getQty($link['link_id']); ?>
+                                            <div class="grouped_product">
+                                                <div class="col-md-8 row">
+                                                    <input type="text" placeholder="Type product SKU" value="<?=$product_link->getName() ?> (SKU: <?=$product_link->getSku() ?>)" name="group_products[]" class="grouped_product_name input-text form-control"/>
+                                                    <input type="hidden" name="group_products_ids[]" value="<?=$product_link->getId() ?>" class="grouped_product_id"/>
+                                                </div>
+
+                                                <div class="col-md-3 row" style="margin-left: 10px;">
+                                                    <input type="text" placeholder="Quantity" name="group_products_qty[]" value="<?=$qty['value']?>" class="quantity input-text form-control"/>
+                                                </div>
+                                                <div class="col-md-1" style="padding-top: 5px;">
+                                                  <a href="#" style="color: red;" class="remove_product">X</a>
+                                                </div>
+                                            </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-12 row">
+                                <div class="col-md-6">
+                                    <input type="button" id="add_next_product" class="btn btn-primary"
+                                           value="<?php echo __('Add next product') ?>"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 col-sm-5 col-sm-offset-1 col-md-offset-1 right sidebar">
+                        <div class="form-group">
+                            <?php if($block->canAddImages()):?>
+                                <div class="col-md-12 photo-content">
+                                    <h5><?php echo __('Product Images'); ?></h5>
+
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                    <span
+                                        class="file_upload_span btn btn-primary"><?php echo __('Select and Upload Image') ?></span>
+                                            <input type="file" name="file_upload" id="file_upload" multiupload/>
+                                        </div>
+                                    </div>
+                                    <?php $mainPhotoImage = ''; ?>
+                                    <?php foreach ($mediaGallery AS $img) : ?>
+                                        <?php if ($product->getImage() == $img->getFile()) : ?>
+                                            <?php $mainPhotoImage = $product->getImage() ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                    <input type="hidden" class="image hidden" name="main_photo" id="main_photo"
+                                           value="<?php echo $mainPhotoImage ?>"/>
+
+                                    <div class="col-md-8 photos">
+                                        <ul class="photo panel-body">
+                                            <?php foreach($mediaGallery AS $img) : ?>
+                                                <?php if (file_exists($block->getMediaPath().'/catalog/product' . $img->getFile())): ?>
+                                                    <li class="thumbnail<?php echo ($mainPhotoImage == $img->getFile()) ? ' main' : '' ?>">
+                                                        <img src="<?php echo $block->getMediaUrl().'catalog/product' . $img->getFile(); ?>"  data-name="<?php echo $img->getFile(); ?>"/>
+                                                        <span class="remove"><i class="glyphicon glyphicon-remove"></i></span>
+                                                        <span class="default"><i class="glyphicon glyphicon-home"></i></span>
+                                                        <input type="hidden" class="image hidden" name="image[]" value="<?php echo $img->getFile(); ?>" /></li>
+                                                    </li>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($productMediaVideoHelper->canAddVideos()): ?>
+                                <div class="col-md-12 photo-content">
+                                    <h5><?php echo __('Product Video'); ?></h5>
+                                    <?php if(!empty($videoUrl)): ?>
+                                        <a href="<?php echo $videoUrl; ?>" target="_blank">Current video</a>
+                                    <?php endif; ?>
+                                    <input type="text"
+                                           name="video_url"
+                                           value="<?php echo $videoUrl; ?>"
+                                           id="video_url"/>
+                                </div>
+                            <?php endif;?>
+                        </div>
+                        <ul class="category-list">
+                            <div style="display: none;color:red;" id="categories-validate-message">
+                            </div>
+                            <h5><?php echo __('Product Categories'); ?></h5>
+                            <?php echo $block->getNodes($categories); ?>
+                        </ul>
+
+                    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-4 col-sm-offset-4 col-md-offset-5 btn-save-fix">
+                <input type="submit" name="submit" id="submit" class="btn btn-primary"
+                       value="<?php echo __('Save Product') ?>"/>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    require([
+      'jquery',
+      'jquery/fileUploader/jquery.fileupload',
+      'Magento_Ui/js/modal/modal'
+    ], function ($, fileupload) {
+        var limitReachedAlertFlag = 0;
+
+        function checkLimit()
+        {
+            var limit = <?php echo $this->getMaxImagesCount() ?>;
+
+            if (limitReachedAlertFlag) {
+                return false;
+            }
+
+            if ($('.thumbnail:visible').length >= limit) {
+                window.alert('The upload limit has been reached.');
+                limitReachedAlertFlag = 1;
+
+                return false;
+            }
+        }
+
+        $(document).ready(function ()  {
+            $('.datepicker').datepicker();
+
+            $(document).on('click', 'li span.remove', function () {
+                var img = $j(this).prev();
+                var imgName = $j(img).attr('data-name');
+
+                $('input.image.hidden').each(function () {
+                    if ($(this).val() === imgName) {
+                        $(this).val('');
+                    }
+                });
+                $(this).parent().fadeOut();
+            });
+
+            $(document).on('click', 'li span.default', function () {
+                var img = $(this).prev().prev();
+                var imgName = $(img).attr('data-name');
+                var mainPhotoInput = $('#main_photo');
+                mainPhotoInput.val(imgName);
+
+                if ($('li.thumbnail.main').length) {
+                    $('li.thumbnail.main').removeClass('main');
+                }
+
+                img.parent().addClass('main');
+            });
+
+            $('#file_upload')
+                .fileupload({
+                    autoUpload : true,
+                    url: '<?php echo $block->getUrl('supplier/product/upload') ?>',
+                    done: function (e, data) {
+                        var response = data.result;
+                        if (response.success) {
+                            $('.photo.panel-body').append(
+                                '<li class="thumbnail"><img src="' + response.url + '" alt="" data-name="' + response.name + '"/>'
+                                + '<span class="remove"><i class="glyphicon glyphicon-remove" title="Remove This Picture"></i></span>'
+                                + '<span class="default"><i class="glyphicon glyphicon-home" title="Set As Main Picture"></i></span>'
+                                + '<input type="hidden" class="image hidden" name="image[]" value="' + response.name + '" />'
+                                + '</li>'
+                            );
+
+                            setTimeout(checkLimit, 100);
+                        } else {
+                            window.alert(response.message);
+                        }
+                    }
+                })
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+            $('#file_upload').click(function () {
+                limitReachedAlertFlag = 0;
+            });
+        });
+
+        $(document).on('click', '#add_next_product', function ($) {
+            var product = $j('.grouped_product:first').clone();
+            product.find('.grouped_product_name').val('');
+            product.find('.grouped_product_id').val('');
+            product.find('.grouped_quantity').val(1);
+
+            $j('#grouped_products').append(product);
+        });
+
+        $(document).on('click', '.remove_product', function ($) {
+            var container = $j(this).parent().parent();
+
+            if($j('.grouped_product').size() == 1) {
+                container.find('.grouped_product_name').val('');
+                container.find('.grouped_product_id').val('');
+                container.find('.grouped_quantity').val(1);
+            }
+            else {
+                container.remove();
+            }
+        });
+
+        $(document).on('change', '.grouped_product_name', function($) {
+            var input =  $j( this );
+            var request = $j.ajax( {
+                url: "<?=$block->getBaseUrl()?>supplier/product/showProductName?phrase=" + $j(this).val(),
+                type: 'GET',
+                showLoader: true
+            } );
+
+            request.done( function ( result )
+            {
+                if(result.error != undefined) {
+                    alert(result.error);
+                } else {
+                    input.val( result.product_name +" (SKU: "+result.product_sku+")");
+                    input.next('.grouped_product_id').val( result.product_id );
+                }
+            } );
+
+            request.fail( function ( error )
+                {
+                    alert('Product not found');
+                }
+            );
+        });
+    });
+    //]]>
+</script>
+
+<?php $magentoVersion = $this->helper('Cminds\Supplierfrontendproductuploader\Helper\Data')->getMagentoVersion(); ?>
+<?php if ($magentoVersion < '2.3.0') { ?>
+<script type="text/javascript">
+    //< ![CDATA[
+    require([
+      'jquery',
+      'tinymce'
+    ], function ($, tinymce) {
+        $(document).ready(function ()  {
+            function hideEdError(ed)
+            {
+                var id = ed.id;
+                var selector = '#' + id + '_error_required_field_label';
+                if (typeof $(selector) !== 'undefined') {
+                    $(selector).hide();
+                }
+            }
+
+            function hideTinymceErrors()
+            {
+                for (var i = 0; i < tinymce.editors.length; i++) {
+                    var ed = tinymce.editors[i];
+                    hideEdError(ed);
+                }
+            }
+
+            function displayTinymceErrorLabel(ed)
+            {
+                var id = ed.id;
+                var selector = '#' + id + '_error_required_field_label';
+                if (typeof $(selector) !== 'undefined') {
+                    $(selector).show();
+                }
+            }
+
+            function checkEmpty(ed)
+            {
+                var content = ed.getContent().replace(/<[^>]*>/ig, ' ')
+                    .replace(/<\/[^>]*>/ig, ' ')
+                    .replace(/&nbsp;|&#160;/gi, ' ')
+                    .replace(/\s+/ig, ' ')
+                    .trim();
+
+                if (content === '') {
+                    displayTinymceErrorLabel(ed);
+
+                    return true;
+                }
+
+                return false;
+            }
+
+            $('#product_create_form').submit(function (e) {
+                hideTinymceErrors();
+
+                var emptyTinymceDetected = 0;
+
+                for (var i = 0; i < tinymce.editors.length; i++) {
+                    if (checkEmpty(tinymce.editors[i])) {
+                        emptyTinymceDetected = 1;
+                    }
+                }
+
+                if (emptyTinymceDetected) {
+                    e.preventDefault();
+                }
+
+                return;
+            });
+
+            tinymce.init({
+                mode : 'textareas',
+                theme : 'advanced',
+                theme_advanced_toolbar_location: 'top',
+                theme_advanced_buttons1 : 'bold,italic,underline,|,fontselect,fontsizeselect,|,forecolor,backcolor,|,bullist,numlist',
+                theme_advanced_buttons2 : '',
+                theme_advanced_buttons3 : '',
+                theme_advanced_toolbar_align : 'left'
+            });
+
+        });
+    });
+    //]]>
+</script>
+<?php } else { ?>
+<script>
+    require([
+    "jquery",
+    "mage/translate",
+    "mage/adminhtml/events",
+    "mage/adminhtml/wysiwyg/tiny_mce/setup"
+    ], function($){
+        $(document).ready(function ()  {
+            wysiwygshort_description = new wysiwygSetup("short_description", {
+              "width":"99%",  // defined width of editor
+              "height":"200px", // height of editor
+              "plugins":[{"name":"image"}], // for image
+              "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+              }
+            });
+            wysiwygshort_description.setup("exact");
+
+            wysiwygdescription = new wysiwygSetup("description", {
+              "width":"99%",  // defined width of editor
+              "height":"200px", // height of editor
+              "plugins":[{"name":"image"}], // for image
+              "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+              }
+            });
+            wysiwygdescription.setup("exact");
+        });
+    });
+</script>
+<?php } ?>
+<script type="text/x-magento-init">
+    {
+        "#product_create_form": {
+            "validation": {}
+        }
+    }
+</script>

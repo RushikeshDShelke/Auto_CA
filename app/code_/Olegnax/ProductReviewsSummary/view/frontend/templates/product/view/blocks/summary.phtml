@@ -1,0 +1,139 @@
+<?php
+
+/**
+ * Olegnax ProductReviewsSummary
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_ProductReviewsSummary
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+$settings = $this->helper('Olegnax\ProductReviewsSummary\Helper\Helper')->getConfig('olegnax_productreviewssummary/general');
+
+$enabled = $settings['rating_overall'];
+$button = $settings['write_btn_overall'];
+if($enabled) {
+$number_format = number_format($block->getAverageRating(),1);
+
+?>
+<div class="extended-review-summary">
+	<div class="star-ratings">
+		<div class="fill-ratings" style="width: <?= $block->escapeHtmlAttr($block->getPercent()) ?>%;">
+			<span>★★★★★</span>
+		</div>
+		<div class="empty-ratings">
+			<span>★★★★★</span>
+		</div>
+	</div>
+
+	<div class="ratings-value"><?=  floatval($number_format) ?>
+		<span class="out-of-class">out of 5</span>
+	</div>
+	
+</div>
+<style>
+.star-ratings {
+  unicode-bidi: bidi-override;
+  color: #ccc;
+  font-size: 22px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.extended-review-summary-wrapper .extended-review-summary .ratings-value{
+	font-size: 22px;
+}
+.star-ratings .fill-ratings {
+  color: #e7711b;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.star-ratings .fill-ratings span {
+  display: inline-block;
+}
+.star-ratings .empty-ratings {
+  padding: 0;
+  display: block;
+  z-index: 0;
+}
+
+.extended-review-summary-wrapper{
+	display: inline-block !important;
+}
+
+.block-content{
+	display: block !important;
+}
+.extended-review-summary-wrapper .number-of-ratings{
+	display: inline-block;
+}
+
+.block-content .toolbar.review-toolbar{
+	display: none;
+}
+.block-content .items.review-items{
+	display: inline-block;
+    vertical-align: top;
+}
+
+.block-content .items.review-items .item.review-item{
+	display: block;
+}
+
+.block-content .items.review-items .item.review-item .review-content-left{
+	display: block;
+    clear: both;
+    margin-bottom: 10px;
+}
+.block-content .items.review-items .item.review-item .review-content-right{
+	display: block;
+    clear: both;
+}
+
+.block-content .items.review-items .item.review-item .review-content-right .review-details{
+	display: block;
+}
+.block-content .items.review-items .item.review-item .review-content-right .review-author{
+	display: inline-block;
+}
+.block-content .items.review-items .item.review-item .review-content-right .review-date{
+	display: inline-block;
+}
+</style>
+<script>
+	/*
+  The solution below is a way to fix the percentages being off
+  in iOs and Android devices and even browsers. It's also scalable
+  because you can change the font-size of the stars and the width
+  will adjust accordingly. This is the only way I found you could do
+  unicode and CSS percentages for ratings.
+*/
+
+$(document).ready(function() {
+  // Gets the span width of the filled-ratings span
+  // this will be the same for each rating
+  var star_rating_width = $('.fill-ratings span').width();
+  // Sets the container of the ratings to span width
+  // thus the percentages in mobile will never be wrong
+  $('.star-ratings').width(star_rating_width);
+});
+</script>
+<?php } ?>
+

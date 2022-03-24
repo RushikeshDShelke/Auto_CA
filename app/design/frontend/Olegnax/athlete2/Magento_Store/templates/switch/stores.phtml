@@ -1,0 +1,42 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Store\Block\Switcher $block */
+$show_flags = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/footer/store_switch_flags');
+?>
+<?php if (count($block->getGroups())>1) : ?>
+<div class="switcher store switcher-store<?php if(!$show_flags){ echo ' noflags'; } ?>" id="switcher-store">
+    <strong class="label switcher-label"><span><?= $block->escapeHtml(__('Select Store')) ?></span></strong>
+    <div class="actions dropdown options switcher-options">
+        <?php foreach ($block->getGroups() as $_group) : ?>
+            <?php if ($_group->getId() == $block->getCurrentGroupId()) : ?>
+                <div class="action toggle switcher-trigger"
+                     role="button"
+                     tabindex="0"
+                     data-mage-init='{"dropdown":{}}'
+                     data-toggle="dropdown"
+                     data-trigger-keypress-button="true"
+                     id="switcher-store-trigger">
+                    <strong>
+						<span <?php if($show_flags) { echo 'style="background-image:url(' . $block->escapeUrl($block->getViewFileUrl('images/flags/' . $_group->getCode() . '.png')) . ');"'; } ?>><?= $block->escapeHtml($_group->getName()) ?></span>
+                    </strong>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <ul class="dropdown switcher-dropdown" data-target="dropdown">
+            <?php foreach ($block->getGroups() as $_group) : ?>
+                <?php if (!($_group->getId() == $block->getCurrentGroupId())) : ?>
+                    <li class="switcher-option">
+                        <a href="#" data-post='<?= /* @noEscape */ $block->getTargetStorePostData($_group->getDefaultStore()) ?>' <?php if($show_flags) { echo 'style="background-image:url(' . $block->escapeUrl($block->getViewFileUrl('images/flags/' . $_group->getCode() . '.png')) . ');"'; } ?>>
+                            <?= $block->escapeHtml($_group->getName()) ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<?php endif; ?>

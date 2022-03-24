@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Olegnax_Quickview::quickview" title="Quickview" translate="title" module="Olegnax_Quickview" sortOrder="999" parent="Olegnax_Core::Olegnax_Core" resource="Olegnax_Quickview::quickview"/>
+        <add id="Olegnax_Quickview::config" title="Configuration" translate="title" module="Olegnax_Quickview" sortOrder="20" action="adminhtml/system_config/edit/section/olegnax_quickview" parent="Olegnax_Quickview::quickview" resource="Olegnax_Quickview::quickview"/>
+    </menu>
+</config>

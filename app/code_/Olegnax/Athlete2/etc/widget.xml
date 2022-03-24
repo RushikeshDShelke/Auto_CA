@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="social_icons_list" class="Olegnax\Athlete2\Block\SocialIcons" is_email_compatible="true" placeholder_image="Olegnax_Athlete2::images/socials.png" ttl="86400">
+        <label translate="true">Olegnax - Social Icons</label>
+        <description translate="true">List of Social Icons</description>
+        <parameters>
+            <parameter name="link_target" xsi:type="select" required="false" visible="true">
+                <label translate="true">Open link in</label>
+                <options>
+                    <option name="self" value="self" selected="true">
+                        <label translate="true">Same Window</label>
+                    </option>
+                     <option name="blank" value="blank">
+                        <label translate="true">New Window</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="link_noopener" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Add noopener attribute to link</label>
+            </parameter>
+              <parameter name="link_noreferrer" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Add noreferrer attribute to link</label>
+            </parameter>
+               <parameter name="link_nofollow" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Add nofollow attribute to link</label>
+            </parameter>
+            <parameter name="link_style" xsi:type="select" required="false" visible="true">
+                <label translate="true">Style</label>
+                <options>
+                    <option name="animated" value="animated" selected="true">
+                        <label translate="true">Animated</label>
+                    </option>
+                     <option name="simple" value="simple">
+                        <label translate="true">Simple</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="link_size" xsi:type="select" required="false" visible="true">
+                <label translate="true">Size</label>
+                <options>
+                    <option name="normal" value="normal" selected="true">
+                        <label translate="true">Normal</label>
+                    </option>
+                     <option name="tiny" value="tiny">
+                        <label translate="true">Tiny</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="text_color" xsi:type="text" required="false" visible="true">
+                <label translate="true">Icons color</label>
+            </parameter>
+            <parameter name="text_hover_color" xsi:type="text" required="false" visible="true">
+                <label translate="true">Icons hover color</label>
+            </parameter>
+            <parameter name="background" xsi:type="text" required="false" visible="true">
+                <label translate="true">Icons background color</label>
+            </parameter>
+            <parameter name="background_hover" xsi:type="text" required="false" visible="true">
+                <label translate="true">Icons background hover color</label>
+            </parameter>
+            <parameter name="facebook_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Facebook Link</label>
+            </parameter>
+            <parameter name="facebook_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>1</value>
+            </parameter>
+            <parameter name="facebook_messenger_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Facebook Messenger Link</label>
+            </parameter>
+            <parameter name="facebook_messenger_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>2</value>
+            </parameter>
+            <parameter name="instagram_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Instagram Link</label>
+            </parameter>
+            <parameter name="instagram_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>3</value>
+            </parameter>
+            <parameter name="twitter_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Twitter Link</label>
+            </parameter>
+            <parameter name="twitter_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>4</value>
+            </parameter>
+            <parameter name="pinterest_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Pinterest Link</label>
+            </parameter>
+            <parameter name="pinterest_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>4</value>
+            </parameter>
+            <parameter name="skype_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Skype Link</label>
+            </parameter>
+            <parameter name="skype_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>5</value>
+            </parameter>                        
+            <parameter name="tumblr_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Tumblr Link</label>
+            </parameter>
+            <parameter name="tumblr_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>6</value>
+            </parameter>
+            <parameter name="youtube_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Youtube Link</label>
+            </parameter>
+            <parameter name="youtube_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>7</value>
+            </parameter>
+            <parameter name="amazon_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Amazon Link</label>
+            </parameter>
+            <parameter name="amazon_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>8</value>
+            </parameter>
+            <parameter name="amazon_pay_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Amazon Pay Link</label>
+            </parameter>
+            <parameter name="amazon_pay_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>8</value>
+            </parameter>
+            <parameter name="kickstarter_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Kickstarter Link</label>
+            </parameter>
+            <parameter name="kickstarter_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>9</value>
+            </parameter>
+            <parameter name="stripe_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Stripe Link</label>
+            </parameter>
+            <parameter name="stripe_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>10</value>
+            </parameter>
+            <parameter name="paypal_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Paypal Link</label>
+            </parameter>
+            <parameter name="paypal_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>11</value>
+            </parameter>
+            <parameter name="vimeo_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Vimeo Link</label>
+            </parameter>
+            <parameter name="vimeo_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>12</value>
+            </parameter>
+            <parameter name="vk_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Vk Link</label>
+            </parameter>
+            <parameter name="vk_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>13</value>
+            </parameter>
+            <parameter name="foursquare_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Foursquare Link</label>
+            </parameter>
+            <parameter name="foursquare_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>14</value>
+            </parameter>
+            <parameter name="flickr_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Flickr Link</label>
+            </parameter>
+            <parameter name="flickr_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>15</value>
+            </parameter>
+            <parameter name="linkedin_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Linkedin Link</label>
+            </parameter>
+            <parameter name="linkedin_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>16</value>
+            </parameter>
+            <parameter name="whatsapp_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Whatsapp Link</label>
+            </parameter>
+            <parameter name="whatsapp_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>17</value>
+            </parameter>
+            <parameter name="telegram_plane_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Telegram Link</label>
+            </parameter>
+            <parameter name="telegram_plane_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>18</value>
+            </parameter>
+            <parameter name="snapchat_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Snapchat Link</label>
+            </parameter>
+            <parameter name="snapchat_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>19</value>
+            </parameter>
+            <parameter name="reddit_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Reddit Link</label>
+            </parameter>
+            <parameter name="reddit_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>20</value>
+            </parameter>
+            <parameter name="discord_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Discord Link</label>
+            </parameter>
+            <parameter name="discord_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>21</value>
+            </parameter>
+            <parameter name="slack_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Slack Link</label>
+            </parameter>
+            <parameter name="slack_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>22</value>
+            </parameter>
+            <parameter name="tripadvisor_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Tripadvisor Link</label>
+            </parameter>
+            <parameter name="tripadvisor_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>23</value>
+            </parameter>
+            <parameter name="tiktok_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Tik Tok Link</label>
+            </parameter>
+            <parameter name="tiktok_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>24</value>
+            </parameter>
+            <parameter name="business_link" xsi:type="text" required="false" visible="true">
+                <label translate="true">Google Business Link</label>
+            </parameter>
+            <parameter name="business_sort" xsi:type="text" required="false" visible="true">
+                <label translate="true">Sort Order</label>
+                <value>25</value>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="Olegnax_Athlete2::widgets/social_icons.phtml" selected="true">
+                        <label translate="true">Socials</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>    
+</widgets>

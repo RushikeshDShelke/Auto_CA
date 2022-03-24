@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dotzot Shipping
+ *
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Shipping\Block\Tracking\Popup" type="Dotzotfront\ShippingTracking\Block\Tracking\Popup" />
+    
+    <type name="Magento\Sales\Model\Order\Pdf\Invoice">
+    <plugin name="dotzotfront_shippingTracking_sales_model_order_pdf_invoice" type="Dotzotfront\ShippingTracking\Plugin\Invoice" sortOrder="10" />
+  </type>
+  
+  <type name="Magento\Sales\Model\Order\Pdf\Shipment">
+    <plugin name="dotzotfront_shippingTracking_sales_model_order_pdf_shipment" type="Dotzotfront\ShippingTracking\Plugin\Shipment" sortOrder="10" />
+  </type>
+</config>

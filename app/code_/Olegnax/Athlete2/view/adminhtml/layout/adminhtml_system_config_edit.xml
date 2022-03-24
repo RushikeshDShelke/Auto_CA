@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Olegnax_Athlete2::select-image/select-image.css"/>
+        <link src="Olegnax_Athlete2::select-image/select-image.js"/>
+    </head>
+    <body>
+        <referenceContainer name="page.content">
+            <block name="olegnax.athlete2.notice" class="Olegnax\Athlete2\Block\Adminhtml\Notice" after="page.main.actions"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block name="olegnax.athlete2.notice.lic" class="Olegnax\Athlete2\Block\Adminhtml\NoticeLic" before="system.config.edit"/>
+        </referenceContainer>
+    </body>
+</page>

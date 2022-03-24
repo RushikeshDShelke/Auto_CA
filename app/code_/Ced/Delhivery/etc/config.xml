@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Delhivery
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+ <default>
+   <carriers>
+       <delhivery>
+          <active>1</active>
+			<name>DELHIVERY</name>
+			<model>Ced\Delhivery\Model\Carrier\Cedship</model> 
+			<title>Delhivery Shipping</title>
+			<gateway_url>https://test.delhivery.com/</gateway_url>
+			<pincode_url>https://test.delhivery.com/c/api/pin-codes/</pincode_url>
+			<awb_url>https://test.delhivery.com/waybill/api/bulk/</awb_url>
+		    <track_url>https://www.delhivery.com/track/package</track_url>
+			<express_service>Delhivery Express</express_service>
+			<surface>Delhivery Surface</surface>
+			<shipping_charge>https://track.delhivery.com/api/kinko/v1/invoice/charges/</shipping_charge>
+			<specificerrmsg>Delhivery Shipping is not available for your area.</specificerrmsg>
+			</delhivery> 
+		</carriers>
+	</default>
+</config>

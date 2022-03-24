@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Delhivery
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="context" xsi:type="configurableObject">
+        <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\Context</argument>
+        <argument name="namespace" xsi:type="string">delhivery_grid_awb</argument>
+        <!-- this should be same as the file name or uicomponentname -->
+    </argument>
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb_data_source</item>
+             <!-- the format here is uicomponentname.datasourcename -->
+            <item name="deps" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb_data_source</item>
+            <!-- the format here is uicomponentname.datasourcename -->
+        </item>
+        <item name="spinner" xsi:type="string">delhivery_ced_columns</item>
+        <!-- the format here is columns name defined below -->
+        <item name="buttons" xsi:type="array">
+            <!-- here we can add buttons -->
+             <item name="update" xsi:type="array">
+                <item name="name" xsi:type="string">update</item>
+                <item name="label" xsi:type="string" translate="true">Update AWB Status</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">delhivery/grid/updateawb</item>
+            </item>
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Download AWB</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">delhivery/grid/fetchawb</item>
+            </item>
+            <!--<item name="flush" xsi:type="array">
+                <item name="name" xsi:type="string">flush</item>
+                <item name="label" xsi:type="string" translate="true">Flush AWB</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">delhivery/grid/deleteawb</item>
+            </item>-->
+        </item>
+    </argument>
+
+    <dataSource name="delhivery_grid_awb_data_source">
+        <!-- this is data source name, this is used at many places -->
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Ced\Delhivery\Ui\DataProvider\AwbProvider</argument>
+            <argument name="name" xsi:type="string">delhivery_grid_awb_data_source</argument>
+            <!-- the same data source name as above -->
+            <argument name="primaryFieldName" xsi:type="string">lastmile_id</argument>
+            <!-- our model's primary key -->
+            <argument name="requestFieldName" xsi:type="string">lastmile_id</argument>
+            <!-- the field used in ajax url's of grid. just define this as id -->
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">lastmile_id</item>
+                    </item>
+                </item>
+            </argument>
+            <!-- keep above same always -->
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="storageConfig" xsi:type="array">
+					<item name="namespace" xsi:type="string">listing_paging</item>
+				</item>
+			</item>
+		</argument>
+	</bookmark>
+        <columnsControls name="columns_controls"/>
+         <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsProvider" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb.delhivery_ced_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <item name="provider" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb.delhivery_ced_columns.${ $.parentName }:visible</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+          
+          <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb.delhivery_ced_columns.ids</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">lastmile_id</item>
+                </item>
+            </argument>
+            <action name="status">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">status</item>
+                        <item name="label" xsi:type="string" translate="true">SHIPPING</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">enable</item>
+                        <item name="label" xsi:type="string" translate="true">Print Shipping Label</item>
+                        <item name="url" xsi:type="url" path="delhivery/grid/shippinglabel">
+                            <param name="status">1</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">dis</item>
+                        <item name="label" xsi:type="string" translate="true">Print Manifest Label</item>
+                        <item name="url" xsi:type="url" path="delhivery/grid/manifestlabel">
+                            <param name="status">3</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+           
+        </massaction>
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <item name="selectProvider" xsi:type="string">delhivery_grid_awb.delhivery_grid_awb.delhivery_ced_columns.ids</item>
+                </item>
+            </argument>
+        </paging>
+      </listingToolbar>
+    <columns name="delhivery_ced_columns">
+       <!-- this is columns section name, used above in spinner -->
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">lastmile_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+         
+        <!-- this is for the first column which allows to select multiple columns -->
+        <!-- below are different column types based on our models -->
+        <column name="awb">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">AWB</item>
+                </item>
+            </argument>
+        </column>
+        <column name="shipment_to">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Ship to</item>
+                </item>
+            </argument>
+        </column>
+       <column name="shipment_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                <item name="sorting" xsi:type="string">desc</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Shipment#</item>
+                </item>
+            </argument>
+
+        </column>
+        <column name="state">
+         <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ced\Delhivery\Ui\Renderer\State</item> 
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item> 
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">State</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="state">
+         <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ced\Delhivery\Ui\Renderer\State</item> 
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item> 
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">State</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="awb_status">
+         <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ced\Delhivery\Ui\Renderer\Status</item> 
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item> 
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="awb_status_type">
+         <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ced\Delhivery\Ui\Renderer\Statustype</item> 
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item> 
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Status Type</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="orderid">
+         <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Order#</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="status">
+         <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Order Status</item>
+                </item>
+            </argument>   
+        </column>
+        <column name="created_time">
+         <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Status Date Time</item>
+                </item>
+            </argument>   
+        </column> 
+    </columns>
+</listing>

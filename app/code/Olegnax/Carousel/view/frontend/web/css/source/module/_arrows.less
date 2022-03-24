@@ -1,0 +1,195 @@
+& when (@media-common = true) {
+    .ox-carousel {
+        .owl-nav {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s, visibility 0.2s;
+            button {
+                transition: transform 0.2s ease;
+                &.owl-next,
+                &.owl-prev {
+                    position: absolute;
+                    top: 50%;
+                }
+                &.owl-prev {
+                    transform: translateX(-20px) translateY(-50%);
+                }
+                &.owl-next {
+                    transform: translateX(20px) translateY(-50%);
+                    span {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+        &:hover{
+            .owl-nav {
+                button {
+                    &.owl-prev,
+                    &.owl-next {
+                        transform: translateX(0) translateY(-50%);
+                    }
+                }
+            }
+        }
+        &.ox-nav__always{
+             .owl-nav {
+                visibility: visible;
+                opacity: 1;
+                button {
+                    &.owl-prev,
+                    &.owl-next {
+                        transform: translateX(0) translateY(-50%);
+                    }
+                }
+             }
+        }
+        &.ox-nav__simple {
+            .owl-nav {
+                button {
+                    &:hover{
+                        &.owl-next {
+                            span{
+                                transform: translateX(10px) rotate(180deg);
+                            }
+                        }
+                        &.owl-prev {
+                            span{
+                                transform: translateX(-10px);
+                            }
+                        }
+                        span {
+                            &:before,
+                                &:after {
+                                background: #fff;
+                            }
+                        }
+                    }
+                    &.owl-next,
+                    &.owl-prev {
+                        width: 56px;
+                        height: 56px;
+                        background: none;
+                        &:hover:after{
+                            background:none;
+                        }
+                        span {
+                            transition: 0.2s ease transform;
+                            height:38px;
+                            line-height: 38px;
+                            width:24px;
+                            &:before,
+                                &:after {
+                                background: #fff;
+                                height: 23px;
+                                left: 9px;
+                                width:3px;
+                            }
+                            &:after{
+                                top: 15px;
+                            }
+                        }
+                        &:after {
+                            background: none;
+                        }
+                    }
+
+                    &.owl-prev {
+                        left: 20px;
+                    }
+
+                    &.owl-next {
+                        right: 20px;
+                    }
+                }
+            }
+            &.nav-small{
+                .owl-nav {
+                    button {
+                        &.owl-next,
+                        &.owl-prev {
+                            width: 23px;
+                            height: 26px;
+                             span {
+                                height: 16px;
+                                line-height: 16px;
+                                width: 18px;
+                                &:before,
+                                    &:after {
+                                    height: 10px;
+                                    left: 9px;
+                                    width:2px;
+                                }
+                                &:after{
+                                    top: 6px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        &.ox-nav__theme {
+            .owl-nav {
+                button {
+                    &.owl-next,
+                    &.owl-prev {
+                        width: 40px;
+                        height: 56px;
+                        background: #000000;
+                        span {
+                            &:before,
+                                &:after {
+                                height: 10px;
+                            }
+                        }
+                    }
+
+                    &.owl-prev {
+                        left: 0;
+                    }
+
+                    &.owl-next {
+                        right: 0;
+                    }
+                }
+            }
+            &.nav-big{
+                .owl-nav {
+                    button {
+                        &.owl-next,
+                        &.owl-prev {
+                            width: 50px;
+                            height: 70px;
+                            span {
+                                line-height: 32px;
+                                height: 32px;
+                                &:before,
+                                &:after {
+                                    height: 20px;
+                                    width: 3px;
+                                    left:0;
+                                }
+                                &:after{
+                                    top: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .ox-carousel {
+        &:hover {
+            .owl-nav {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+}

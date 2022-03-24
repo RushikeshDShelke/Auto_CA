@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="jquery.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="fancybox/js/jquery.fancybox.js"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/bootstrap.min.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/custom.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/bootstrap-wysihtml5.css"/>
+        <script src="jquery/jquery.min.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/no-conflict.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/bootstrap.min.js"/>
+    </head>
+    <body>
+        <referenceBlock name="authentication-popup" remove="true"/>
+        <referenceBlock name="porto_header" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Navbar"
+                   name="supplier.navbar"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/nav.phtml"
+                   cacheable="false"/>
+            <block class="Cminds\Marketplace\Block\Invoice\Create"
+                   name="marketplace.invoice.create"
+                   template="Cminds_Marketplace::marketplace/invoice/create.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

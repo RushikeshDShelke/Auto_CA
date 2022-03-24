@@ -1,0 +1,113 @@
+0000000000000000000000000000000000000000 22d1835f54534cc5d287180d834056df8fe463d1 Manoj Taneja <manoj.taneja@kelltontech.com> 1594844925 +0530	clone: from https://github.com/craftmaestro/craftmaestro.git
+22d1835f54534cc5d287180d834056df8fe463d1 22d1835f54534cc5d287180d834056df8fe463d1 Manoj Taneja <manoj.taneja@kelltontech.com> 1594844949 +0530	checkout: moving from master to final_prod
+22d1835f54534cc5d287180d834056df8fe463d1 b5c746488c638b914ac7dc45c1dedfe1c93acda7 Manoj Taneja <manoj.taneja@kelltontech.com> 1594845372 +0530	commit: kellton initial files
+b5c746488c638b914ac7dc45c1dedfe1c93acda7 92feefb769afd7204c2d64adc92aca2caace758c Manoj Taneja <manoj.taneja@kelltontech.com> 1594845612 +0530	commit: kellton initial files
+92feefb769afd7204c2d64adc92aca2caace758c 92feefb769afd7204c2d64adc92aca2caace758c Manoj Taneja <manoj.taneja@kelltontech.com> 1594846726 +0530	checkout: moving from final_prod to craft_dev
+92feefb769afd7204c2d64adc92aca2caace758c 92feefb769afd7204c2d64adc92aca2caace758c Manoj Taneja <manoj.taneja@kelltontech.com> 1594846783 +0530	checkout: moving from craft_dev to final_prod
+92feefb769afd7204c2d64adc92aca2caace758c 1a99548be7059f279223fc02edab1301732f5335 Manoj Taneja <manoj.taneja@kelltontech.com> 1595066553 +0530	pull origin final_prod: Fast-forward
+1a99548be7059f279223fc02edab1301732f5335 79eb44e82c5ec3be455a93c8bc3e635de22bbaab Manoj Taneja <manoj.taneja@kelltontech.com> 1595069542 +0530	pull origin final_prod: Fast-forward
+79eb44e82c5ec3be455a93c8bc3e635de22bbaab 3102ea19f4926e2c5e830627583c0b0c3d1ed5f3 Manoj Taneja <manoj.taneja@kelltontech.com> 1595074471 +0530	pull origin final_prod: Fast-forward
+3102ea19f4926e2c5e830627583c0b0c3d1ed5f3 cb5d90cf8b7818dbabb54dc2aaf5588cf426b04e Manoj Taneja <manoj.taneja@kelltontech.com> 1595414788 +0530	pull origin final_prod: Fast-forward
+cb5d90cf8b7818dbabb54dc2aaf5588cf426b04e 4de5c7a55b85e3f4e0de1b8c3c69b234a6c53ec5 Manoj Taneja <manoj.taneja@kelltontech.com> 1595838644 +0530	pull origin final_prod: Fast-forward
+4de5c7a55b85e3f4e0de1b8c3c69b234a6c53ec5 617fb72e1645c7b76153eddbd9abe11848a63313 Manoj Taneja <manoj.taneja@kelltontech.com> 1595854237 +0530	pull origin final_prod: Fast-forward
+617fb72e1645c7b76153eddbd9abe11848a63313 2b56d160245aed378810c6890f25abfce14f52aa Manoj Taneja <manoj.taneja@kelltontech.com> 1596353993 +0530	pull origin final_prod: Fast-forward
+2b56d160245aed378810c6890f25abfce14f52aa 25a0e2cac672f4be2f38d4f3e00cc45557c77552 Manoj Taneja <manoj.taneja@kelltontech.com> 1596537542 +0530	pull origin final_prod: Fast-forward
+25a0e2cac672f4be2f38d4f3e00cc45557c77552 4819e738da41975dc91e2f0f1a031d6c8a68dfc9 Manoj Taneja <manoj.taneja@kelltontech.com> 1596577345 +0530	pull origin final_prod: Fast-forward
+4819e738da41975dc91e2f0f1a031d6c8a68dfc9 5967c73ab2ee08ec7a014ef101414c0bf5a8c918 Manoj Taneja <manoj.taneja@kelltontech.com> 1597125792 +0530	pull origin final_prod: Fast-forward
+5967c73ab2ee08ec7a014ef101414c0bf5a8c918 d9cb1ed383df25196df42230ed9a38d3c48bb9da Manoj Taneja <manoj.taneja@kelltontech.com> 1597305298 +0530	pull origin final_prod: Fast-forward
+d9cb1ed383df25196df42230ed9a38d3c48bb9da 1f734ff6460eaf665f15a901571b59aea1fa0d9e Manoj Taneja <manoj.taneja@kelltontech.com> 1597400744 +0530	pull origin final_prod: Fast-forward
+1f734ff6460eaf665f15a901571b59aea1fa0d9e 41a2833d2daf26fb01d6b8109dd423903b432a6e Manoj Taneja <manoj.taneja@kelltontech.com> 1597845403 +0530	pull origin final_prod: Fast-forward
+41a2833d2daf26fb01d6b8109dd423903b432a6e 360e7363a38419aefcea5a446eeec8788e862c5d Manoj Taneja <manoj.taneja@kelltontech.com> 1598430946 +0530	pull origin final_prod: Fast-forward
+360e7363a38419aefcea5a446eeec8788e862c5d d9caf00e2763051855b836c059cfee5cf5e99e08 Manoj Taneja <manoj.taneja@kelltontech.com> 1598508648 +0530	pull origin final_prod: Fast-forward
+d9caf00e2763051855b836c059cfee5cf5e99e08 5ced0fc5bc46fdc2ce92e1ca24751dd178069a2a Manoj Taneja <manoj.taneja@kelltontech.com> 1598519528 +0530	pull origin final_prod: Fast-forward
+5ced0fc5bc46fdc2ce92e1ca24751dd178069a2a fa6dd1accfc4a3fb9dcead835b8b358a43108feb Manoj Taneja <manoj.taneja@kelltontech.com> 1598560076 +0530	pull origin final_prod: Fast-forward
+fa6dd1accfc4a3fb9dcead835b8b358a43108feb 91a5e917ff2a97873e68b1560710e1a1692ed73a Manoj Taneja <manoj.taneja@kelltontech.com> 1600426698 +0530	pull origin final_prod: Fast-forward
+91a5e917ff2a97873e68b1560710e1a1692ed73a 10299badf1832ab2b6b5e21bd23b926e6ea776fd Manoj Taneja <manoj.taneja@kelltontech.com> 1601012339 +0530	pull origin final_prod: Fast-forward
+10299badf1832ab2b6b5e21bd23b926e6ea776fd d25ebc4d992c7e89597f88abe905447351b44c74 Manoj Taneja <manoj.taneja@kelltontech.com> 1601419220 +0530	commit: Earth Fables and Craftmaesteos qty syncing while product will be updated through adminpanel
+d25ebc4d992c7e89597f88abe905447351b44c74 b376c4df10066f4e05bbb1e02eaf72748b3dbf47 Manoj Taneja <manoj.taneja@kelltontech.com> 1602499492 +0530	pull origin final_prod: Fast-forward
+b376c4df10066f4e05bbb1e02eaf72748b3dbf47 5d4a62e5230980f78563f974a4b97262d1e03f05 Manoj Taneja <manoj.taneja@kelltontech.com> 1602568306 +0530	pull origin final_prod: Fast-forward
+5d4a62e5230980f78563f974a4b97262d1e03f05 933102a19c646dfed2cf6338ffe62f7260630459 Manoj Taneja <manoj.taneja@kelltontech.com> 1610442263 +0530	commit: Cash on delivery changes
+933102a19c646dfed2cf6338ffe62f7260630459 38376c133cc2ebab2be741d0616cb1db8b754c18 Manoj Taneja <manoj.taneja@kelltontech.com> 1610582048 +0530	commit: inventory sync
+38376c133cc2ebab2be741d0616cb1db8b754c18 62a0641680ac80ca0838ccb393665ec6f0dce131 Manoj Taneja <manoj.taneja@kelltontech.com> 1613387567 +0530	commit: Manual file has been versioned under git
+62a0641680ac80ca0838ccb393665ec6f0dce131 adc72dbef25581d2c0fffc26397d0f3f757ff43d Manoj Taneja <manoj.taneja@kelltontech.com> 1613417424 +0530	commit: Adding all the files in git versioning
+adc72dbef25581d2c0fffc26397d0f3f757ff43d 53d3b18f613dc995c746c6f99b26fd2e53d0b5cf Manoj Taneja <manoj.taneja@kelltontech.com> 1613469933 +0530	commit: CM-11 10% popup task has been completed
+53d3b18f613dc995c746c6f99b26fd2e53d0b5cf 60b2ecbbed5c856d40e0c58ed1dc53c5ececb539 Manoj Taneja <manoj.taneja@kelltontech.com> 1613472354 +0530	commit: CM-11 UX increase or decrease qty by clicking on minus or plus
+60b2ecbbed5c856d40e0c58ed1dc53c5ececb539 5485f06fd932b85d3789fa0973d610142a51a5d8 Manoj Taneja <manoj.taneja@kelltontech.com> 1613472583 +0530	commit: payment success mail
+5485f06fd932b85d3789fa0973d610142a51a5d8 622183e68fd63f0fab92fb566a8f9746838e49cd Manoj Taneja <manoj.taneja@kelltontech.com> 1613472917 +0530	commit: blog module
+622183e68fd63f0fab92fb566a8f9746838e49cd 59f38743e1b2f223c7e798b555bb451b743db271 Manoj Taneja <manoj.taneja@kelltontech.com> 1613473056 +0530	commit: Is Manual Order attribute module
+59f38743e1b2f223c7e798b555bb451b743db271 010cb9bb7c93c7af681f7b0a91fc15a51158ecac Manoj Taneja <manoj.taneja@kelltontech.com> 1613473308 +0530	commit: removed unused plugins
+010cb9bb7c93c7af681f7b0a91fc15a51158ecac 2aaf878eb7ceaabbfa190661601bcfdbdf269a7c Manoj Taneja <manoj.taneja@kelltontech.com> 1613476155 +0530	commit: Facebook business extension plugin dependency
+2aaf878eb7ceaabbfa190661601bcfdbdf269a7c 5fd16db23d12c1673dea4edc71365d49099e2267 Manoj Taneja <manoj.taneja@kelltontech.com> 1613476296 +0530	commit: Text changed of continue shopping to Add more products
+5fd16db23d12c1673dea4edc71365d49099e2267 891429c87809b6bc3dd85d0405c1302682451989 Manoj Taneja <manoj.taneja@kelltontech.com> 1613506266 +0530	commit: Sold out listing page issue
+891429c87809b6bc3dd85d0405c1302682451989 72cafc5760d6f44f8178ddbdc9664afb288e24fe Manoj Taneja <manoj.taneja@kelltontech.com> 1613642502 +0530	commit: newletter Ui fixes
+72cafc5760d6f44f8178ddbdc9664afb288e24fe 48690275e32c89a2e82826beb691db9f02f869ad Manoj Taneja <manoj.taneja@kelltontech.com> 1613649489 +0530	pull origin final_prod: Fast-forward
+48690275e32c89a2e82826beb691db9f02f869ad ed21295c8435f3ea5ffc923eaa30386bd3359889 Manoj Taneja <manoj.taneja@kelltontech.com> 1613649751 +0530	checkout: moving from final_prod to ed21295c8435f3ea5ffc923eaa30386bd3359889
+ed21295c8435f3ea5ffc923eaa30386bd3359889 891429c87809b6bc3dd85d0405c1302682451989 Manoj Taneja <manoj.taneja@kelltontech.com> 1613649944 +0530	checkout: moving from ed21295c8435f3ea5ffc923eaa30386bd3359889 to 891429c87809b6bc3dd85d0405c1302682451989
+891429c87809b6bc3dd85d0405c1302682451989 48690275e32c89a2e82826beb691db9f02f869ad Manoj Taneja <manoj.taneja@kelltontech.com> 1613650397 +0530	checkout: moving from 891429c87809b6bc3dd85d0405c1302682451989 to final_prod
+48690275e32c89a2e82826beb691db9f02f869ad 62a0641680ac80ca0838ccb393665ec6f0dce131 Manoj Taneja <manoj.taneja@kelltontech.com> 1613651006 +0530	checkout: moving from final_prod to 62a0641680ac80ca0838ccb393665ec6f0dce131
+62a0641680ac80ca0838ccb393665ec6f0dce131 adc72dbef25581d2c0fffc26397d0f3f757ff43d Manoj Taneja <manoj.taneja@kelltontech.com> 1613652782 +0530	checkout: moving from 62a0641680ac80ca0838ccb393665ec6f0dce131 to adc72dbef25581d2c0fffc26397d0f3f757ff43d
+adc72dbef25581d2c0fffc26397d0f3f757ff43d 53d3b18f613dc995c746c6f99b26fd2e53d0b5cf Manoj Taneja <manoj.taneja@kelltontech.com> 1613652859 +0530	checkout: moving from adc72dbef25581d2c0fffc26397d0f3f757ff43d to 53d3b18f613dc995c746c6f99b26fd2e53d0b5cf
+53d3b18f613dc995c746c6f99b26fd2e53d0b5cf 48690275e32c89a2e82826beb691db9f02f869ad Manoj Taneja <manoj.taneja@kelltontech.com> 1613653651 +0530	checkout: moving from 53d3b18f613dc995c746c6f99b26fd2e53d0b5cf to final_prod
+48690275e32c89a2e82826beb691db9f02f869ad df1539d724860b25bfa73cf401d28f95520d507c Manoj Taneja <manoj.taneja@kelltontech.com> 1613714842 +0530	commit: popup extra div removed
+df1539d724860b25bfa73cf401d28f95520d507c acca089a27d1e76a0757f7feefaac51373c502dd Manoj Taneja <manoj.taneja@kelltontech.com> 1613723318 +0530	pull origin final_prod: Fast-forward
+acca089a27d1e76a0757f7feefaac51373c502dd da6494f18346b41b2c0751f67312a993358fe496 Manoj Taneja <manoj.taneja@kelltontech.com> 1613726635 +0530	commit: Qty sync script
+da6494f18346b41b2c0751f67312a993358fe496 1a6832039ebd9d1804c74478a570544d75f9bedc Manoj Taneja <manoj.taneja@kelltontech.com> 1613729477 +0530	commit: Removed free shipping label from checkout summary
+1a6832039ebd9d1804c74478a570544d75f9bedc f4743807f74e70585da42b1c58a9d8d23a044879 Manoj Taneja <manoj.taneja@kelltontech.com> 1613975603 +0530	pull origin final_prod: Fast-forward
+f4743807f74e70585da42b1c58a9d8d23a044879 9078091756d7605651bdd99f63cf993c3c39e8e1 Manoj Taneja <manoj.taneja@kelltontech.com> 1614058950 +0530	commit: product inventory execption
+9078091756d7605651bdd99f63cf993c3c39e8e1 cf8c5ba6affb2301235e4904e018fee7da1f9741 Manoj Taneja <manoj.taneja@kelltontech.com> 1614149844 +0530	pull origin final_prod: Fast-forward
+cf8c5ba6affb2301235e4904e018fee7da1f9741 f06d7c11e01f6ecaaf1c83118b6980f074b468fe Manoj Taneja <manoj.taneja@kelltontech.com> 1614233836 +0530	pull origin final_prod: Fast-forward
+f06d7c11e01f6ecaaf1c83118b6980f074b468fe 0f63235548f42825866cb72a21b3a46b4b1f5ffd Manoj Taneja <manoj.taneja@kelltontech.com> 1614412405 +0530	pull origin final_prod: Fast-forward
+0f63235548f42825866cb72a21b3a46b4b1f5ffd 112090fa7da6df3688830b0b015877b2258ffb45 Manoj Taneja <manoj.taneja@kelltontech.com> 1614941788 +0530	pull origin final_prod: Fast-forward
+112090fa7da6df3688830b0b015877b2258ffb45 5545ace71a2154bef705768bb607574f28d94169 Manoj Taneja <manoj.taneja@kelltontech.com> 1615270747 +0530	commit: CM-58 sales report MC price issue
+5545ace71a2154bef705768bb607574f28d94169 4160845b8695e14839bedd972f838e27b2d3e523 Manoj Taneja <manoj.taneja@kelltontech.com> 1615804791 +0530	commit: CM-58 sales report changes
+4160845b8695e14839bedd972f838e27b2d3e523 7ae179839ee96bad4dd3bf0e028c5bc2ae78bd59 Manoj Taneja <manoj.taneja@kelltontech.com> 1615806175 +0530	pull origin final_prod: Fast-forward
+7ae179839ee96bad4dd3bf0e028c5bc2ae78bd59 c674d9d1587129deccdf549e0fd5b03bd2cf931f Manoj Taneja <manoj.taneja@kelltontech.com> 1615966164 +0530	pull origin final_prod: Fast-forward
+c674d9d1587129deccdf549e0fd5b03bd2cf931f a88d10c2c00091d245cb345c4a81ed9ae4b9a264 Manoj Taneja <manoj.taneja@kelltontech.com> 1615982392 +0530	pull origin final_prod: Fast-forward
+a88d10c2c00091d245cb345c4a81ed9ae4b9a264 2948a89510e2ee9d5c5a19f95ebc7c6b5d944373 Manoj Taneja <manoj.taneja@kelltontech.com> 1616066441 +0530	pull origin final_prod: Fast-forward
+2948a89510e2ee9d5c5a19f95ebc7c6b5d944373 55fd36ef27610cab1d811be6f25b992902df5f30 Manoj Taneja <manoj.taneja@kelltontech.com> 1616069819 +0530	pull origin final_prod: Fast-forward
+55fd36ef27610cab1d811be6f25b992902df5f30 5b7c94c3c65efc11e54b1df49e59ae7d32b78370 Manoj Taneja <manoj.taneja@kelltontech.com> 1616363877 +0530	pull origin final_prod: Fast-forward
+5b7c94c3c65efc11e54b1df49e59ae7d32b78370 d8cb8474956415381051ff0bb7c420c45aa3baf6 Manoj Taneja <manoj.taneja@kelltontech.com> 1616365185 +0530	pull origin final_prod: Fast-forward
+d8cb8474956415381051ff0bb7c420c45aa3baf6 d569cfa8509112f41ce6a8753485ee0b6d155e28 Manoj Taneja <manoj.taneja@kelltontech.com> 1616416165 +0530	commit: Site Optimisation
+d569cfa8509112f41ce6a8753485ee0b6d155e28 0c083e0ae66f7bbbfbc49defc638654a471f6f7a Manoj Taneja <manoj.taneja@kelltontech.com> 1616563908 +0530	pull origin final_prod: Fast-forward
+0c083e0ae66f7bbbfbc49defc638654a471f6f7a f9a17be7057738ccf1e1a1574a337157bdece36d Manoj Taneja <manoj.taneja@kelltontech.com> 1616651850 +0530	commit: Site Optimisation
+f9a17be7057738ccf1e1a1574a337157bdece36d c809d254ead1b57f4b9dfde577994358bcd4ae71 Manoj Taneja <manoj.taneja@kelltontech.com> 1617604239 +0530	pull origin final_prod: Fast-forward
+c809d254ead1b57f4b9dfde577994358bcd4ae71 9d90ef89317c5e8fb8e72e883c16d64f4931ea7a Manoj Taneja <manoj.taneja@kelltontech.com> 1618516857 +0530	commit: catalog css changes
+9d90ef89317c5e8fb8e72e883c16d64f4931ea7a b39d2ab05f9ddde2e31df4a94ccaad2bcd849581 Manoj Taneja <manoj.taneja@kelltontech.com> 1618528022 +0530	commit: 5% extra discount popup
+b39d2ab05f9ddde2e31df4a94ccaad2bcd849581 6c661f43285de6ec2f8c522f686342a5bebf1675 Manoj Taneja <manoj.taneja@kelltontech.com> 1619999758 +0530	pull origin final_prod: Fast-forward
+6c661f43285de6ec2f8c522f686342a5bebf1675 ec9c59705604baa9fdf6f3cd64a30ce56fa0030a Manoj Taneja <manoj.taneja@kelltontech.com> 1620072073 +0530	commit: WMS changes
+ec9c59705604baa9fdf6f3cd64a30ce56fa0030a 1937bf6e525501892607827223086c696546523e Manoj Taneja <manoj.taneja@kelltontech.com> 1620164401 +0530	commit: WMS Changes
+1937bf6e525501892607827223086c696546523e 0e3ad1e6c547154ff44693d812ebdc21179c8f6c Manoj Taneja <manoj.taneja@kelltontech.com> 1620167282 +0530	commit: Report changes
+0e3ad1e6c547154ff44693d812ebdc21179c8f6c 1aca89d3c588b3327aa830fb5af3902142a65b07 Manoj Taneja <manoj.taneja@kelltontech.com> 1620209388 +0530	commit: WMS changes
+1aca89d3c588b3327aa830fb5af3902142a65b07 f28c4dca76eee5178db65b36c5a93365aa1a3252 Manoj Taneja <manoj.taneja@kelltontech.com> 1620639404 +0530	pull origin final_prod: Fast-forward
+f28c4dca76eee5178db65b36c5a93365aa1a3252 46f867cf79da98ca3b953681cb8a4bc278667da3 Manoj Taneja <manoj.taneja@kelltontech.com> 1620715625 +0530	commit: WMS changes
+46f867cf79da98ca3b953681cb8a4bc278667da3 fa53ab369feb7455b1de8923ad5934a73e423455 Manoj Taneja <manoj.taneja@kelltontech.com> 1620907239 +0530	commit: WMS changes
+fa53ab369feb7455b1de8923ad5934a73e423455 8b65f2f26a9f14cd40ba06ff0532005118ef3b34 Manoj Taneja <manoj.taneja@kelltontech.com> 1622013438 +0530	pull origin final_prod: Fast-forward
+8b65f2f26a9f14cd40ba06ff0532005118ef3b34 a3e8da7cade47426344bc0c67117da862ce759a0 Manoj Taneja <manoj.taneja@kelltontech.com> 1622017109 +0530	pull origin final_prod: Fast-forward
+a3e8da7cade47426344bc0c67117da862ce759a0 50c8f498cbe979a66046c68cd440efc51245c624 Manoj Taneja <manoj.taneja@kelltontech.com> 1622017241 +0530	pull origin final_prod: Fast-forward
+50c8f498cbe979a66046c68cd440efc51245c624 e8a6725db5ff2f59cd171e6f1f1ed1f605dce996 Manoj Taneja <manoj.taneja@kelltontech.com> 1622023488 +0530	pull origin final_prod: Fast-forward
+e8a6725db5ff2f59cd171e6f1f1ed1f605dce996 66134d102d5fbbd2be2af79e65c75f48dfe74fbe Manoj Taneja <manoj.taneja@kelltontech.com> 1622247413 +0530	commit: WMS changes
+66134d102d5fbbd2be2af79e65c75f48dfe74fbe b46eefe17cf5fc42f2f407b71bccf2ac8e64e2ef Manoj Taneja <manoj.taneja@kelltontech.com> 1622387603 +0530	commit: captcha changes
+b46eefe17cf5fc42f2f407b71bccf2ac8e64e2ef 683e86b5b5838dcd578b3cadffbcfda3cb7c8657 Manoj Taneja <manoj.taneja@kelltontech.com> 1622617574 +0530	pull origin final_prod: Fast-forward
+683e86b5b5838dcd578b3cadffbcfda3cb7c8657 ab2181c2c2c0570e280bb238e5cdb5ac9090beb8 Manoj Taneja <manoj.taneja@kelltontech.com> 1623047706 +0530	commit: SAVE10 changes
+ab2181c2c2c0570e280bb238e5cdb5ac9090beb8 8d9fb8488ba64d98186fc4c860ae5e4d6fc43d2d Manoj Taneja <manoj.taneja@kelltontech.com> 1623069263 +0530	commit: SAVE10 changes
+8d9fb8488ba64d98186fc4c860ae5e4d6fc43d2d e1758377915c5f65bebe6e18f655f14818e4a677 Manoj Taneja <manoj.taneja@kelltontech.com> 1623137160 +0530	commit: WMS and Inventory sync issue
+e1758377915c5f65bebe6e18f655f14818e4a677 76c823b40ea1d0e193bcf4981e7f3faaed0df0d5 Manoj Taneja <manoj.taneja@kelltontech.com> 1623189797 +0530	commit: WMS and Inventory sync issue
+76c823b40ea1d0e193bcf4981e7f3faaed0df0d5 40ecfbf2fa60152531191e4fe31c3b528269f758 Manoj Taneja <manoj.taneja@kelltontech.com> 1623748545 +0530	commit: EF CM Inventory sync changes
+40ecfbf2fa60152531191e4fe31c3b528269f758 ad9e2cf590694e6bcf25e8f9b646906d03c0fc6d Manoj Taneja <manoj.taneja@kelltontech.com> 1623748589 +0530	commit: PO changes
+ad9e2cf590694e6bcf25e8f9b646906d03c0fc6d 385a683b5267d8f6d48d0d4bc2e66aa7100ed8ec Manoj Taneja <manoj.taneja@kelltontech.com> 1623749335 +0530	commit: FB shop plugin
+385a683b5267d8f6d48d0d4bc2e66aa7100ed8ec 4502da8178e949d0f3493f6df6176ea08cc168a4 Manoj Taneja <manoj.taneja@kelltontech.com> 1623754658 +0530	pull origin final_prod: Fast-forward
+4502da8178e949d0f3493f6df6176ea08cc168a4 fa78940ac33f9ada07f980511cefe626769f0a30 Manoj Taneja <manoj.taneja@kelltontech.com> 1624360182 +0530	pull origin final_prod: Fast-forward
+fa78940ac33f9ada07f980511cefe626769f0a30 0c67b1f5833bc66e34271bae5cf6b288c01865c0 Manoj Taneja <manoj.taneja@kelltontech.com> 1624562066 +0530	pull origin final_prod: Fast-forward
+0c67b1f5833bc66e34271bae5cf6b288c01865c0 a41589b9691c67ab6837c190b3612acfae3b3c70 Manoj Taneja <manoj.taneja@kelltontech.com> 1625830870 +0530	pull origin final_prod: Fast-forward
+a41589b9691c67ab6837c190b3612acfae3b3c70 c31ad6cb164509278f83f0247e83e513297f29f7 Manoj Taneja <manoj.taneja@kelltontech.com> 1626861705 +0530	commit: CM-69 Supplier Panel changes
+c31ad6cb164509278f83f0247e83e513297f29f7 aae8ddf490c1052696237e531772d6cad39b451e Manoj Taneja <manoj.taneja@kelltontech.com> 1627280584 +0530	commit: Tally report changes
+aae8ddf490c1052696237e531772d6cad39b451e e8b8299d207cee58c9c2957c0c153bf60b029080 Manoj Taneja <manoj.taneja@kelltontech.com> 1627382201 +0530	commit: Order sales report changes
+e8b8299d207cee58c9c2957c0c153bf60b029080 119f04beb9ca5a1a15895c369935096aa61a78c3 Manoj Taneja <manoj.taneja@kelltontech.com> 1628594292 +0530	commit: WMS changes
+119f04beb9ca5a1a15895c369935096aa61a78c3 c1e6ab2883cdb9152be23b925835783621e8b3cc root <root@e2e-85-118.ssdcloudindia.net> 1633590101 +0530	commit: All uncommited files
+c1e6ab2883cdb9152be23b925835783621e8b3cc 7b94e87165f88eb669e90e97acdac841d4b468b3 pramod jadhav <pramod.jadhav@invanos.com> 1640085816 +0530	commit: All App files
+7b94e87165f88eb669e90e97acdac841d4b468b3 abb993eb4cea2ef24c7d90d8a3a6f6e990e5ab35 pramod jadhav <pramod.jadhav@invanos.com> 1640086105 +0530	commit: Untrack deleted files
+abb993eb4cea2ef24c7d90d8a3a6f6e990e5ab35 55b938eecf595cbb7738d908398ec9e4102f5706 pramod jadhav <pramod.jadhav@invanos.com> 1640086279 +0530	commit: test delete pub
+55b938eecf595cbb7738d908398ec9e4102f5706 084e2207674e14690fa00ceff4c6200821637998 pramod jadhav <pramod.jadhav@invanos.com> 1640086319 +0530	commit: untrack pub directory
+084e2207674e14690fa00ceff4c6200821637998 81dc236a95e97072cb96b9f5614a58248cf03c2e pramod jadhav <pramod.jadhav@invanos.com> 1640086453 +0530	commit: wms modified file
+81dc236a95e97072cb96b9f5614a58248cf03c2e d0aa4cf5675b2ab42dfddbdfd94b1a9deef1253f pramod jadhav <pramod.jadhav@invanos.com> 1640086557 +0530	commit: first directory php files
+d0aa4cf5675b2ab42dfddbdfd94b1a9deef1253f 06681dc997753895535d051a3343df53d695d926 pramod jadhav <pramod.jadhav@invanos.com> 1640087075 +0530	commit: htaccess and gitignore

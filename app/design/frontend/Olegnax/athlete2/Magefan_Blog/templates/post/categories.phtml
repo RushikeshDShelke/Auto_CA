@@ -1,0 +1,27 @@
+<?php
+/**
+ * Blog post categories template
+ *
+ * @var $block \Magefan\Blog\Block\Post\Info
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+?>
+
+<?php 
+$_post = $block->getPost();
+$_categoriesCount = $_post->getCategoriesCount();
+?>
+
+<?php if ( $_categoriesCount ) { ?>
+	<div class="item post-categories">
+		<?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
+			<a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>">
+				<?php echo $block->escapeHtml($ct->getTitle()) ?>
+			</a>
+		<?php } ?>
+	</div>
+<?php } ?>

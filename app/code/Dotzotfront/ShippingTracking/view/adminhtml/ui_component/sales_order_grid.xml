@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+            <massaction name="listing_massaction">
+                 <action name="dotzottrack">
+                <settings>
+                    <url path="ShippingTracking/order/DotzotTrack"/>
+                    <type>dotzottrack_order</type>
+                    <label translate="true">Generate Dotzot Tracking through API</label>
+                </settings>
+            </action>
+            
+             <action name="manualtrack">
+                <settings>
+                    <url path="ShippingTracking/order/Manualtrack"/>
+                    <type>manualtrack_order</type>
+                    <label translate="true">Manually Generate Dotzot Tracking </label>
+                </settings>
+            </action>
+            
+            <action name="trackcancel">
+                <settings>
+                    <url path="ShippingTracking/order/Trackcancel"/>
+                    <type>trackcancel_order</type>
+                    <label translate="true">Cancel Dotzot Tracking</label>
+                </settings>
+            </action>
+            
+            </massaction>
+    </listingToolbar>
+    
+    <columns name="sales_order_columns">
+        <column name="docketno" class="Dotzotfront\ShippingTracking\Ui\Component\Listing\Column\Docketno">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Dotzot Tracking Number</item>
+                </item>
+            </argument>
+        </column>
+        <column name="dotzotrack_status" class="Dotzotfront\ShippingTracking\Ui\Component\Listing\Column\Docketstatus">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Dotzot Tracking Status</item>
+                </item>
+            </argument>
+        </column> 
+    </columns>
+</listing>

@@ -1,0 +1,15 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+    <body>
+    <!-- 
+        <referenceContainer name="sidebar.main">
+            <block class="Kellton\Fixcart\Block\Index\Sidebar" name="fixcart_index_sidebar" before="-" template="Kellton_Fixcart::fixcart_index_sidebar.phtml"/>
+        </referenceContainer> -->
+
+        <referenceContainer name="content">
+            <block class="Kellton\Fixcart\Block\Index\Index" name="fixcart_checkout_cart_sidebar" template="Kellton_Fixcart::fixcart_checkout_cart_sidebar.phtml"/>
+        </referenceContainer>
+
+
+    </body>
+</page>

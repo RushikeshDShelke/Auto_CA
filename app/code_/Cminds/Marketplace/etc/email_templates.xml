@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="product_approval_notify_admin"
+              label="Notify admin about product for approval"
+              file="product_approval/notify_admin.html"
+              type="html"
+              module="Cminds_Marketplace"
+              area="frontend"/>
+</config>

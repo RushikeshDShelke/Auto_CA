@@ -1,0 +1,28 @@
+{
+    "name": "eadesignro/module-eacore",
+    "description": "The module with the menu and other features needed by other modules developed by EaDesign",
+    "type": "magento2-module",
+    "version": "0.3.1",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Eadesigndev\\Eacore\\": ""
+        }
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "EaDesign",
+            "email": "office@eadesign.ro",
+            "homepage": "https://www.eadesign.ro/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "magento/magento2-base": ">=2.3",
+        "magento/module-backend": "*"
+    }
+}

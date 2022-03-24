@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Kellton_Advancecontacts::parent" title="Contact Us" module="Kellton_Advancecontacts" sortOrder="100" resource="Kellton_Advancecontacts::parent"/>       
+		<add id="Kellton_Advancecontacts::advancecontact" title="Manage Quaries" module="Kellton_Advancecontacts" sortOrder="20" parent="Kellton_Advancecontacts::parent" action="advancecontacts/advancecontact" resource="Kellton_Advancecontacts::advancecontact"/>
+
+    </menu>
+</config>

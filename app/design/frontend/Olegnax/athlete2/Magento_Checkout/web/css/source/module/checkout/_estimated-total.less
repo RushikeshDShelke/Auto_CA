@@ -1,0 +1,85 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+@checkout-step-title-mobile__font-size: 20px;
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Checkout Estimated Total
+    //  ---------------------------------------------
+    .minicart-btn__icon--hide:not(.minicart-btn--minimal) .opc-estimated-wrapper .action.showcart svg{
+        display: block;
+    }
+    .opc-estimated-wrapper {
+        &:extend(.abs-add-clearfix all);
+        &:extend(.abs-no-display-desktop all);
+        margin: 0 0 40px 0;
+        .estimated-block {
+            .lib-css(font-size, @checkout-step-title-mobile__font-size);
+            .lib-css(font-weight, @font-weight__bold);
+            float: left;
+            text-transform: uppercase;
+            line-height: 1;
+            .estimated-label {
+                display: block;
+            }
+            .estimated-price{
+                font-size: 36px;
+            }
+        }
+
+        .minicart-wrapper {
+            .action {
+                &.showcart {
+                    float: right;
+                    padding: 0 22px;
+                    height: 47px;
+                    svg{
+                        margin-right: 0px;
+                    }
+                    &:before {
+                        .lib-css(color, @button__color);
+                    }
+                    
+                    &:hover:before {
+                        .lib-css(color, @button__hover__color);
+                    }
+                }
+            }
+        }
+    }
+}
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .opc-estimated-wrapper {
+        margin: 0 0 30px 0;
+        .minicart-wrapper .action.showcart{
+            padding: 0 15px;
+            height: 40px;
+        }
+        .estimated-block {
+            font-size: 16px;
+            .estimated-price{
+                font-size: 30px;
+            }
+        }
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .opc-estimated-wrapper {
+        display: none;
+        margin: 50px 0 0 0;
+    }
+}

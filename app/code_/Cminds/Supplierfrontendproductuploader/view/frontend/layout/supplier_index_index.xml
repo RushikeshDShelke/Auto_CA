@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="jquery.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="fancybox/js/jquery.fancybox.js"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/bootstrap.min.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/custom.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/bootstrap-wysihtml5.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/datepicker.css"/>
+        <script src="jquery/jquery.min.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/bootstrap-datepicker.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/no-conflict.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/bootstrap.min.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/plot/jquery.flot.min.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/plot/jquery.flot.time.min.js"/>
+    </head>
+    <body>
+        <referenceBlock name="authentication-popup" remove="true"/>
+        <referenceBlock name="porto_header" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Navbar"
+                   name="supplier.navbar"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/nav.phtml"/>
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Dashboard"
+                   name="supplier.dashboard"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/dashboard.phtml"
+                   cacheable="false">
+                <container name="vendor.dashboard.left.sidebar" label="Vendor dashboard sidebar"/>
+                <container name="vendor.dashboard.content" label="Vendor dashboard content."/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="vendor.dashboard.left.sidebar">
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Dashboard"
+                   name="supplier.dashboard.sidebar"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/dashboard/sidebar.phtml"
+                   cacheable="false" />
+        </referenceContainer>
+        <referenceContainer name="vendor.dashboard.content">
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Dashboard"
+                   name="supplier.dashboard.content"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/dashboard/content.phtml"
+                   cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,88 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Default appearance styles
+//  _____________________________________________
+.ba-block(){
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+& when (@media-common = true) {
+    div[data-content-type='tabs'] {
+        &.a2-tabs--minimal{
+            .tabs-navigation {
+                position:relative;
+                &:before{
+                    content: '';
+                    display: table;
+                    height: 1px;
+                    width: 100%;
+                    background: rgba(0,0,0,.08);
+                    position: absolute;
+                    bottom: 0;
+                }
+                li.tab-header {
+                    background: none!important;
+                    border-style: none!important;
+                    border-width: 1px;
+                    a.tab-title {
+                        overflow: hidden;
+                        box-sizing: content-box;
+                        color: @tab-control__color;
+                        font-size: @tab-control__font-size;
+                        font-weight: @tab-control__font-weight;
+                        line-height: @tab-control__line-height;
+                        .lib-css(height, @tab-control__height);
+                        .lib-css(padding, @tab-control__padding-top @tab-control__padding-right @tab-control__padding-bottom @tab-control__padding-left);
+                        transition: all .3s;
+                       &:visited,
+                       &:focus,
+                       &:hover {
+                           color:@tab-control__color;
+                       }
+                        &:before {
+                            .ba-block();
+                            height:3px;
+                            transform: translateY(3px);
+                            transition: all 0.25s ease;
+                            background:#000;
+                            will-change:transform;
+                        }
+                    }
+                    &.ui-state-focus,
+                    &:hover {
+                         a.tab-title {
+                            &:before{
+                                transform: translateY(0);
+                            }
+                         }
+                    }
+                    &.ui-state-active {
+                        background: none!important;
+                        a.tab-title {
+                            .lib-css(color, @tab-control__active__color);
+                            &:before {
+                                transform: translateY(0);
+                                transition: transform 0.3s ease;
+                            }
+                        }
+                    }
+                }
+            }
+            .tabs-content {
+                border-style: none;
+                border-width: 1px;
+                padding: 40px 0;
+            }
+        }
+    }
+}

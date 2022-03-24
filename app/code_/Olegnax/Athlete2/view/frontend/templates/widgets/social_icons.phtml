@@ -1,0 +1,54 @@
+<?php
+$links		 = $block->getSocialLinks();
+$socials_id	 = $block->getSocialsId();
+$iconsStyle	 = $block->getLinkStyle();
+$iconsSize	 = $block->getLinkSize();
+$classes = [];
+$selector = '';
+$linkRel = '';
+$linkRelAtts = [];
+if($block->getLinkNoopener()){
+	$linkRelAtts[] = 'noopener';
+}
+if($block->getLinkNoreferrer()){
+	$linkRelAtts[] = 'noreferrer';
+}
+if($block->getLinkNofollow()){
+	$linkRelAtts[] = 'nofollow';
+}
+if(!empty($linkRelAtts)){
+	$linkRel = ' rel="' . implode(' ', $linkRelAtts) . '"';
+}
+if($iconsSize == 'tiny') {
+	$classes[] = 'size-tiny';
+}
+if($iconsStyle == 'simple'){
+	$classes[] = 'athlete2-social-icons-' . $iconsStyle;
+	$selector	 = '#' . $socials_id . '.athlete2-social-icons-'. $iconsStyle .' > a.athlete2-social-icon';
+} else {
+	$classes[] = 'athlete2-social-icons';
+	$selector	 = '#' . $socials_id . '.athlete2-social-icons > a.athlete2-social-icon';
+}
+
+$linkTarget = $block->getLinkTarget() ?: 'self';
+$selector_h			 = $selector . ':hover';
+$colors				 = [];
+$colors[ $selector . ':not(:hover)' ]	 = [
+	'color'		 => $block->getTextColor(),
+	'background' => $block->getBackground(),
+];
+$colors[ $selector_h ] = [
+	'color'		 => $block->getTextHoverColor(),
+	'background' => $block->getBackgroundHover(),
+];
+
+if ( !empty( $links ) ) :
+	?>
+	<?= $block->prepareStyleBlock( $colors ); ?>
+	<div id="<?= $socials_id ?>" class="<?= implode(' ', $classes); ?>">
+		<?php foreach ( $links as $social => $link ): ?>
+			<?php $social = str_replace('_', '-', $social); ?>
+		<a href="<?= $link ?>" class="athlete2-social-icon athlete2-icon-<?= $social ?>" target="_<?= $linkTarget ?>"<?= $linkRel ?>><span><?= $social ?></span></a>
+		<?php endforeach; ?>
+	</div>
+<?php endif; ?>

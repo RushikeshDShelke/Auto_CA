@@ -1,0 +1,20 @@
+<?php
+/**
+ * OrderComment
+ *
+ * @package     Ulmod_OrderComment
+ * @author      Ulmod <support@ulmod.com>
+ * @copyright   Copyright (c) 2016 Ulmod (http://www.ulmod.com/)
+ * @license     http://www.ulmod.com/license-agreement.html
+ */
+?>
+<?php if ($comment = $block->getOrderComment()) :?>
+    <section class="admin__page-section um-ordercomment">
+        <div class="admin__page-section-title">
+            <span class="title"><?php /* @noEscape */ echo __('Order Comment') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <?php /* @noEscape */ echo nl2br($block->escapeHtml($comment));?>
+        </div>
+    </section>
+<?php endif; ?>

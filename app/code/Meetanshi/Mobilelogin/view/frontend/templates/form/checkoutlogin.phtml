@@ -1,0 +1,35 @@
+<?php
+$mobileHelper = $this->helper('Meetanshi\Mobilelogin\Helper\Data');
+if ($mobileHelper->isMobileloginEnabled()) {
+
+    if (!$mobileHelper->customerLoggedIn()) { ?>
+        <div class="check-loginlink">
+            <button class="action action-auth-toggle"
+                    id="checkoutlogin"><?php echo __('Login/Register') ?>
+            </button>
+        </div>
+    <?php } ?>
+    <script type="text/javascript">
+        require(['jquery', 'jquery/ui'], function ($) {
+            $(document).ready(function ($) {
+                $('.authentication-wrapper').hide();
+                $('#checkoutlogin').on('click', function () {
+                    $('.mobile-sendotp-popup').modal('openModal');
+                });
+            });
+        });
+    </script>
+    <style>
+        .authentication-wrapper {
+            display: none;
+        }
+
+        .check-loginlink {
+            width: 100%;
+            text-align: right;
+			position: relative;
+            top: 38px;
+        }
+    </style>
+
+<?php } ?>

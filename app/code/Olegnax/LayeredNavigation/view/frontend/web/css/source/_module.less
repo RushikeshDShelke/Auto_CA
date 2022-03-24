@@ -1,0 +1,134 @@
+// /**
+//  * Olegnax Layeren Navigation
+//  * Copyright (c) Olegnax. All rights reserved.
+//  */
+
+@import '_noui-slider.less';
+
+//
+//  Variables
+//  _____________________________________________
+
+@css-preloader-color: #000000;
+@css-preloader-size: 35px;
+@css-preloader-border-size: 4px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+  .column.main .products.products-grid,
+  .column.main .products.products-list,
+  .column.main .products-grid.grid,
+  .sidebar.sidebar-main .block.filter {
+	position: relative;
+  }
+
+  .ox-product-nav {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background: rgba(255, 255, 255, 0.5);
+        top:0;
+        left:0;
+
+	&.ox-product-nav-page {
+	  position: fixed;
+	  z-index: 99999;
+	}
+
+	.ox-product-nav__loader {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  transform: translate3d(-50%, -50%, 0);
+	}
+
+	&.ox-product-nav__loader--magento {
+	  .ox-product-nav__loader {
+		.lib-loading();
+		width: @loader-icon__width;
+		height: @loader-icon__height;
+		margin-top: 0;
+	  }
+	}
+
+	&.ox-product-nav__loader--css {
+	  .ox-product-nav__loader {
+		display: block;
+		width: @css-preloader-size;
+		height: @css-preloader-size;
+		border: @css-preloader-border-size solid rgba(0, 0, 0, 0);
+		border-radius: @css-preloader-size;
+		border-left: @css-preloader-border-size solid @css-preloader-color;
+		border-right: @css-preloader-border-size solid @css-preloader-color;
+		border-top: @css-preloader-border-size solid @css-preloader-color;
+		animation: spin .65s infinite linear;
+		transition: all 600ms ease-in-out;
+		margin-left: -17px;
+		margin-top: -17px;
+	  }
+	}
+  }
+
+  .filter-options-content{
+      .item {
+          &.item-price-slider {
+              display: block;
+          }
+          &[class*='ox-item-level-']{
+              padding-left: 30px;
+          }
+          &.ox-item-level-,
+          &.ox-item-level-0{
+              padding-left: 0;
+          }
+          &.ox-item-level-1{
+              padding-left: 12px;
+          }
+          &.ox-item-level-2{
+              padding-left: 24px;
+          }
+      }
+      .ox-layered__items--checkbox{
+          .item{
+              input{
+                  position: absolute;
+                  opacity: 0;
+                  cursor: pointer;
+                  height: 0;
+                  width: 0;
+              }
+          }
+      }
+  }
+  .ox-price-filter__values {
+	text-align: left;
+	overflow: hidden;
+
+	.ox-slider-min {
+	  float: left;
+	}
+
+	.ox-slider-max {
+	  float: right;
+	}
+
+	.ox-slider-max,
+	.ox-slider-min {
+	  opacity: 0.6;
+	}
+  }
+
+  @keyframes spin {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(360deg);
+	}
+  }
+}

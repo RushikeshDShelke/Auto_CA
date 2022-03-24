@@ -1,0 +1,298 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+@mesage-icon-background:#000000;
+@notice-mesage-icon-background:#44d7e2;
+@error-mesage-icon-background:#ff0000;
+@warning-mesage-icon-background:#ffe51e;
+@success-mesage-icon-background:#c3e235;
+.ba-basic-message(){
+    content: '';
+    display: inline-block;
+    overflow: hidden;
+    background: #ffffff;
+    position: absolute;
+}
+@keyframes transform-0-1 {
+    0% {     
+        transform: scaleX(0);
+    }
+    100% {     
+        transform: scaleX(1);
+    }
+}
+@keyframes checkboxleft {
+    0% {     
+        transform: rotate(45deg) scaleX(0);
+    }
+    100% {     
+        transform: rotate(45deg) scaleX(1);
+    }
+}
+@keyframes checkboxright {
+    0% {     
+       transform: rotate(-45deg) scaleX(0);
+    }
+    100% {     
+       transform: rotate(-45deg) scaleX(1);
+    }
+}
+@keyframes show {
+    0% {     
+       opacity:0;
+    }
+    100% {     
+       opacity:1;
+    }
+}
+
+.ox-message(@_message-icon-background: @mesage-icon-background){
+    margin-bottom: 30px;
+    padding: 20px;
+    display: block;
+    line-height: 1.2em;
+    font-size: 1.3rem;
+    background: #f4f4f4;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 100px;
+    position: relative;
+    animation: show 0.15s;
+    animation-fill-mode: forwards;
+    opacity:0;
+
+    &:before{
+        content: '';
+        background: @_message-icon-background;
+        display: block;
+        width: 80px;
+        height: 100%;
+        min-height: 55px;           
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: scaleX(0);
+        transform-origin: 0;
+        animation: transform-0-1 0.5s;
+        animation-delay: 0.15s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.68, -0.01, 0, 1.01);
+    }
+    a{
+        border-bottom: 2px solid #333333;
+        display: inline-block;
+    }
+}
+& when (@media-common = true) {
+    .page.messages{
+        .ox-overlay-close-btn{
+            display:none;
+        }
+    }
+    .message.info {
+        //.lib-message-icon-inner(info);
+        .ox-message();
+        > *:first-child{
+            &:before{
+                .ba-basic-message();
+                left: 38px;
+                top: 18px;
+                width: 3px;
+                height: 3px;
+            }
+            &:after{
+                .ba-basic-message();
+                left: 38px;
+                top: 25px;
+                width: 3px;
+                height: 12px;
+            }
+        }
+    }
+
+    .message.error {
+        //.lib-message-icon-inner(error);
+        .ox-message(@error-mesage-icon-background);
+        > *:first-child{
+            &:before{
+                .ba-basic-message();
+                left: 33px;
+                top: 20px;
+                width: 17px;
+                height: 3px;
+                transform: rotate(45deg) scaleX(0);
+                transform-origin: 0;
+                animation: checkboxleft 0.2s;
+                animation-delay: 0.6s;
+                animation-fill-mode: forwards;
+            }
+            &:after{
+                .ba-basic-message();
+                left: 28px;
+                top: 20px;
+                width: 17px;
+                height: 3px;
+                transform: rotate(-45deg) scaleX(0);
+                transform-origin: 100%;
+                animation: checkboxright 0.2s;
+                animation-delay: 0.8s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    .message.warning {
+        //.lib-message-icon-inner(warning);
+        .ox-message(@warning-mesage-icon-background);
+        > *:first-child{
+            &:before{
+                .ba-basic-message();
+                left: 31px;
+                top: 18px;
+                width: 15px;
+                height: 15px;
+                background: transparent;
+                border-left: 10px solid transparent;
+                border-bottom: 17px solid #000;
+                border-right: 10px solid transparent;
+            }
+        }
+    }
+
+    .message.notice {
+        //.lib-message-icon-inner(notice);
+        .ox-message(@notice-mesage-icon-background);
+        > *:first-child{
+            &:before{
+                .ba-basic-message();
+                left: 38px;
+                top: 18px;
+                width: 3px;
+                height: 3px;
+            }
+            &:after{
+                .ba-basic-message();
+                left: 38px;
+                top: 25px;
+                width: 3px;
+                height: 12px;
+            }
+        }
+    }
+
+    .message.success {
+        //.lib-message-icon-inner(success);
+        .ox-message(@success-mesage-icon-background);
+        > *:first-child{
+            &:before{
+                .ba-basic-message();
+                left: 32px;
+                top: 24px;
+                width: 10px;
+                height: 3px;
+                transform: rotate(45deg) scaleX(0);
+                transform-origin: 0;
+                animation: checkboxleft 0.2s;
+                animation-delay: 0.6s;
+                animation-fill-mode: forwards;
+            }
+            &:after{
+                .ba-basic-message();
+                left: 37px;
+                top: 31px;
+                width: 15px;
+                height: 3px;
+                transform: rotate(-45deg) scaleX(0);
+                transform-origin: 0;
+                animation: checkboxright 0.2s;
+                animation-delay: 0.8s;
+                animation-fill-mode: forwards;
+            }
+        }
+
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .ox-messages-fixed{
+        .page.messages{
+            position: fixed;
+            left: 10px;
+            top: 120px;
+            z-index: 800;
+            max-width: 600px;
+            width: 100%;
+            .message{
+                margin-bottom: 10px;
+                padding-right:40px;
+                box-shadow:10px 24px 33px 0px rgba(0, 0, 0, 0.12);
+                background: #ffffff;
+                /* animation:messages 10s forwards; */
+                .ox-overlay-close-btn{
+                    display:block;
+                    animation: show 0.15s;
+                    animation-fill-mode: forwards;
+                }
+            }
+            .ox-overlay-close-btn{
+                display:none;
+                opacity:0;
+                padding: 5px;
+                position: absolute;
+                right: 12px;
+                top: 12px;
+                border: none;
+                span{
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .message.warning,
+    .message.info,
+    .message.notice,
+    .message.error,
+    .message.success {
+        padding-left: 70px;
+        &:before{
+            width: 50px;
+        }
+    }
+    .message.error > *:first-child{
+        &:before{
+            left: 19px;
+        }
+        &:after{
+            left: 14px;
+        }
+    }
+    .message.success > *:first-child{
+        &:before{
+            left: 17px;
+        }
+        &:after{
+            left: 22px;
+        }
+    }
+    .message.notice,
+    .message.info {
+        > *:first-child{
+            &:before,
+            &:after{
+                left: 23px;
+            }
+        }
+    }
+    .message.warning > *:first-child{
+        &:before{
+            left: 16px;
+        }           
+    }
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Olegnax
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_ProductReviewsSummary
+ * @copyright   Copyright (c) 2010-2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root">
+        <block class="Magento\Review\Block\Product\View\ListView" name="product.info.product_additional_data" as="product_additional_data" template="Magento_Review::product/view/list.phtml" >
+            <action method="setTemplate" ifconfig="olegnax_productreviewssummary/enable_all/enabled">
+                <argument name='template' xsi:type='string'>Olegnax_ProductReviewsSummary::product/view/list.phtml</argument>
+            </action>
+            <block class="Olegnax\ProductReviewsSummary\Block\Html\ReviewSummary" name="product.review.summary" as="review_summary" template="Olegnax_ProductReviewsSummary::product/view/blocks/summary.phtml"/>
+            <block class="Olegnax\ProductReviewsSummary\Block\Html\ReviewSummary" name="product.review.byrating" as="review_by_rating" template="Olegnax_ProductReviewsSummary::product/view/blocks/by-rating.phtml"/>
+            <block class="Olegnax\ProductReviewsSummary\Block\Html\ReviewSummary" name="product.review.ratingsbreakdown" as="review_ratings_breakdown" template="Olegnax_ProductReviewsSummary::product/view/blocks/ratings-breakdown.phtml"/>
+            <block class="Olegnax\ProductReviewsSummary\Block\Html\ReviewSummary" name="product.review.reviewbutton" as="review_review_button" template="Olegnax_ProductReviewsSummary::product/view/blocks/write-review-button.phtml"/>
+        </block>
+    </container>
+</layout>

@@ -1,0 +1,201 @@
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2018 Magento, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/* ============================================ *
+ * General Styles
+ * ============================================ */
+body,
+table.body,
+th,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+td,
+p,
+strong {
+    font-family: Lato;
+    font-weight: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: #333333;
+    /* background-color: #ebebeb; */
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+table {
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+}
+
+body {
+    /* background: #ebebeb; */
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+table,
+table td {
+    border-collapse: collapse;
+}
+
+table td {
+    vertical-align: top;
+}
+
+a {
+    color: #3696c2;
+    text-decoration: none;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+}
+
+ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+    margin-bottom: 10px;
+}
+
+.top-heading,
+.order-summary,
+.order-detail,
+.product-info , .total-detail {
+    border: 2px solid #000;
+}
+
+.logo-wrap {
+    padding: 20px;
+    border-right: 2px solid #000;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.logo-wrap a {
+    width: 66px;
+    height: 75px;
+    display: inline-block;
+}
+
+.logo-wrap a img {
+    width: 100%;
+}
+
+table h1 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.top-heading .heading {
+    padding: 20px;
+}
+
+.top-heading p {
+    margin: 0 0 5px;
+}
+
+.top-heading li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.top-heading li span {
+    font-weight: 600;
+}
+
+.top-heading strong {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.order-summary .heading {
+    padding: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 16px;
+    border-right: 2px solid #000;
+}
+
+.order-summary .bill,
+.order-summary .sell,
+.order-summary .blank {
+    padding: 5px;
+    width: 213px;
+    border: 2px solid #000;
+}
+
+.order-summary .bill td,
+.order-summary .sell td {
+    padding-bottom: 5px;
+}
+
+.order-detail td {
+    padding: 10px 5px;
+    border: 2px solid #000;
+}
+
+.product-info td , .total-detail td {
+    border: 2px solid #000;
+    padding: 10px 5px;
+}
+
+.product-info .quantity,
+.product-info .rate,
+.product-info .discount,
+.product-info .sno,
+.product-info .description {
+    border-bottom: none;
+}
+.product-info p {
+    margin: 0 0 10px;
+}
+.product-info .bottom-none {
+    border-bottom: 2px solid transparent;
+}
+.thanks {
+    padding: 0 5px;
+    background-color: #d8d8d8;
+}
+

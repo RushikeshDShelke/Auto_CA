@@ -1,0 +1,297 @@
+<?php
+$methods = $block->getSavedMethods();
+$showDetails = $block->escapeHtml(__('Show Details'));
+$hideDetails = $block->escapeHtml(__('Hide Details'));
+?>
+<div class="container main-container vendor-container">
+    <h1 class="text-left"><?php echo $block->escapeHtml(__("Manage Shipping Methods")); ?></h1>
+
+    <div class="row">
+        <div class="col-md-12 form-container">
+            <div class="col-md-6">
+                <div class="row">
+                    <button
+                        class="btn btn-small btn-primary primary add-new-shipping-method"><?php echo $block->escapeHtml(__("Add New")); ?></button>
+                </div>
+            </div>
+            <form name="settings_shipping_methods" id="settings_shipping_methods"
+                  action="<?php /* @escapeNotVerified */ echo $block->getUrl('marketplace/settings/methodssave') ?>" method="post"
+                  enctype="multipart/form-data">
+                <input type="hidden" name="removedItems" class="removedItems" value="">
+                <div class="clearfix"></div>
+                <div class="shipping-method hidden" id="<?php  /* @escapeNotVerified */ echo substr(str_shuffle(implode(array_merge(range(0,9), range('A', 'Z'), range('a', 'z')))), 0, 25); ?>">
+                    <div>
+                        <div class="clearfix"></div>
+                        <h3 class="shipping-name"><?php echo $block->escapeHtml(__("New Shipping Method")); ?>
+                        </h3>
+                        <hr>
+                        <div class="col-md-6" style="padding-left: 0px;">
+                            <input disabled type="hidden" name="id[]" class=""
+                                   value=""/>
+                            <input type="text" id="shipping_name"
+                                   name="shipping_name[]"
+                                   class="input-text form-control"
+                                   value=""
+                                   placeholder="<?php echo $block->escapeHtml(__("Method Name")); ?>" disabled />
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input disabled type="radio" name="shipping_method[][randomstring]"
+                                               value="flat_rate"> <?php echo $block->escapeHtml(__('Flat Rate')); ?>
+                                    </label>
+                                </div>
+                            </div>
+                            <div
+                                class="cont" style="display:none;">
+                                <div class="col-md-6 label-container">
+                                    <label for="flat_rate_fee">
+                                        <?php echo $block->escapeHtml(__('Shipping Rate')); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container">
+                                    <input type="text" id="flat_rate_fee"
+                                           name="flat_rate_fee[]"
+                                           class="input-text required-entry form-control validate-number"
+                                           value="" disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6"  style="padding-left: 0px;">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input disabled type="radio" name="shipping_method[][randomstring]"
+                                               value="table_rate"> <?php echo $block->escapeHtml(__('Table Rate')); ?>
+                                    </label>
+                                </div>
+                            </div>
+                            <div
+                                class="cont" style="display:none;">
+                                <div class="col-md-6 label-container">
+                                    <label for="table_rate_fee">
+                                        <?php echo $block->escapeHtml(__('Default Handling Fee')); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container">
+                                    <input disabled type="text" id="table_rate_fee"
+                                           name="table_rate_fee[]"
+                                           class="input-text required-entry form-control validate-number"
+                                           value=""/>
+                                </div>
+                                <div class="col-md-6 label-container">
+                                    <label for="table_rate_condition">
+                                        <?php echo $block->escapeHtml(__('Condition')); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container">
+                                    <select disabled name="table_rate_condition[]"
+                                            id="table_rate_condition">
+                                        <option
+                                            value="1"><?php echo $block->escapeHtml(__("Weight vs. Destination")); ?></option>
+                                        <option
+                                            value="2"><?php echo $block->escapeHtml(__("Price vs. Destination")); ?></option>
+                                        <option
+                                            value="3"><?php echo $block->escapeHtml(__("# of Items vs. Destination")); ?></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 label-container">
+                                    <label disabled for="table_rate_file">
+                                        <?php echo $block->escapeHtml(__('Upload your file')); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container">
+                                    <input disabled type="file" id="table_rate_file"
+                                           name="table_rate_file[]"
+                                           class="input-text form-control"
+                                           accept=".csv"
+                                           value=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6"  style="padding-left: 0px;">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input disabled type="radio" name="shipping_method[][randomstring]"
+                                               value="free_shipping"> <?php echo $block->escapeHtml(__('Free Shipping')); ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <?php foreach ($methods->getData() AS $method): ?>
+                    <div class="shipping-method" data-id="<?php echo /* @escapeNotVerified */ $method['id']; ?>">
+                        <h3 class="shipping-name"><?php echo $block->escapeHtml($method['name']); ?>
+                            <small class='remove text-danger'><p><?php echo $block->escapeHtml(__("Remove")); ?></p></small>
+                            <small class='expand'><p><?php echo $showDetails; ?></p></small>
+                        </h3>
+                        <hr>
+                        <div style="display:none;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="hidden" name="id[]" class=""
+                                           value="<?php echo /* @escapeNotVerified */ $method['id']; ?>"/>
+                                    <input type="text" id="shipping_name"
+                                           name="shipping_name[]"
+                                           class="input-text required-entry form-control"
+                                           value="<?php echo /* @escapeNotVerified */ $block->escapeHtml($method['name']); ?>"
+                                           placeholder="<?php $block->escapeHtml(__("Method Name")); ?>"/>
+
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="shipping_method[][<?php echo /* @escapeNotVerified */ $method['id']; ?>]"
+                                                       value="flat_rate"<?php echo /* @escapeNotVerified */ $method['flat_rate_available'] == 1 ? ' checked="checked"' : '' ?>> <?php echo $block->escapeHtml(__('Flat Rate')); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="cont"<?php echo /* @escapeNotVerified */ $method['flat_rate_available'] != 1 ? ' style="display:none;"' : '' ?>>
+                                        <div class="col-md-6 label-container">
+                                            <label for="flat_rate_fee">
+                                                <?php echo $block->escapeHtml(__('Shipping Rate')); ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 input-container">
+                                            <input type="text" id="flat_rate_fee"
+                                                   name="flat_rate_fee[]"
+                                                   class="input-text required-entry form-control validate-number"
+                                                   value="<?php echo /* @escapeNotVerified */ $block->getCurrentCurrencyPrice($method['flat_rate_fee']); ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="shipping_method[][<?php echo /* @escapeNotVerified */ $method['id']; ?>]"
+                                                       value="table_rate"<?php echo/* @escapeNotVerified */  $method['table_rate_available'] == 1 ? ' checked="checked"' : '' ?>> <?php echo $block->escapeHtml(__('Table Rate')); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="cont"<?php echo /* @escapeNotVerified */ $method['table_rate_available'] != 1 ? ' style="display:none;"' : '' ?>>
+                                        <div class="col-md-6 label-container">
+                                            <label for="table_rate_fee">
+                                                <?php echo $block->escapeHtml(__('Default Handling Fee')); ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 input-container">
+                                            <input type="text" id="table_rate_fee"
+                                                   name="table_rate_fee[]"
+                                                   class="input-text required-entry form-control validate-number"
+                                                   value="<?php echo /* @escapeNotVerified */ $block->getCurrentCurrencyPrice($method['table_rate_fee']); ?>"/>
+                                        </div>
+                                        <div class="col-md-6 label-container">
+                                            <label for="table_rate_condition">
+                                                <?php echo $block->escapeHtml(__('Condition')); ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 input-container">
+                                            <select name="table_rate_condition[]"
+                                                    id="table_rate_condition">
+                                                <option
+                                                    value="1"<?php echo /* @escapeNotVerified */ $method['table_rate_condition'] == 1 ? ' selected="selected"' : '' ?>><?php echo $block->escapeHtml(__("Weight vs. Destination")); ?></option>
+                                                <option
+                                                    value="2"<?php echo /* @escapeNotVerified */ $method['table_rate_condition'] == 2 ? ' selected="selected"' : '' ?>><?php echo $block->escapeHtml(__("Price vs. Destination")); ?></option>
+                                                <option
+                                                    value="3"<?php echo /* @escapeNotVerified */ $method['table_rate_condition'] == 3 ? ' selected="selected"' : '' ?>><?php echo $block->escapeHtml(__("# of Items vs. Destination")); ?></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 label-container">
+                                            <label for="table_rate_file">
+                                                <?php echo $block->escapeHtml(__('Upload your file')); ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 input-container">
+                                            <input type="file" id="table_rate_file"
+                                                   name="table_rate_file[]"
+                                                   class="input-text form-control"
+                                                   accept=".csv"
+                                                   value=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="shipping_method[][<?php echo /* @escapeNotVerified */ $method['id']; ?>]"
+                                                       value="free_shipping"<?php echo /* @escapeNotVerified */ $method['free_shipping'] == 1 ? ' checked="checked"' : '' ?>> <?php echo $block->escapeHtml(__('Free Shipping')); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                <?php endforeach; ?>
+                <div class="col-md-2 col-sm-4" style="padding-left: 0px;">
+                    <input type="submit" name="submit" class="btn btn-primary"
+                           value="<?php echo $block->escapeHtml(__('Save Settings')); ?>"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    jQuery(document).on('click', 'input[type="radio"]', function (e) {
+        e.stopPropagation();
+        var me = this;
+        jQuery(this).parent().parent().parent().parent().parent().find('.cont').hide(250, function () {
+            jQuery(me).parent().parent().parent().next().show(250);
+        });
+    });
+
+    jQuery(document).on('click', 'h3.shipping-name small.expand', function (e) {
+        var me = jQuery(this);
+        var next = me.parent().next().next();
+        var buttonTitle = me.children();
+        var showDetails = '<?php echo $showDetails ?>';
+        var hideDetails = '<?php echo $hideDetails ?>';
+
+        if(next.is(":hidden")) {
+            me.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+            jQuery(buttonTitle).text(hideDetails);
+        } else {
+            me.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+            jQuery(buttonTitle).text(showDetails);
+        }
+        next.slideToggle();
+
+    });
+    jQuery(document).on('click', 'h3.shipping-name small.remove', function (e) {
+        var me = jQuery(this);
+        var id = me.parent().parent().attr('data-id');
+        var currentRemoved = jQuery('.removedItems').val();
+        var currentRemovedArray = currentRemoved.split(',');
+        currentRemovedArray.push(id);
+        jQuery('.removedItems').val(currentRemovedArray.join(','));
+
+        me.parent().parent().fadeOut().remove();
+
+    });
+    jQuery(document).on('click', '.add-new-shipping-method', function (e) {
+        $c = jQuery('.shipping-method.hidden').clone();
+        $c.removeClass('hidden').hide();
+        var randomString = Math.random().toString(36).substring(7);
+        $c.attr('id', randomString);
+        $c.find('input').removeAttr('disabled');
+        $c.find('select').removeAttr('disabled');
+        $c.append('<input style="display: none" type="radio" name="shipping_method[][randomstring]" value="empty_method" checked>');
+        $c.find('input').each(function(){
+            jQuery(this).attr('name', jQuery(this).attr('name').replace('randomstring', randomString));
+        })
+        jQuery('#settings_shipping_methods').prepend($c);
+        $c.toggle();
+    });
+</script>

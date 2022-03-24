@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!--
+
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dotzotfront_Base::elements" title="Dotzot Tracking" module="Dotzotfront_Base" sortOrder="55" resource="Dotzotfront_Base::elements"/>
+    </menu>
+</config>

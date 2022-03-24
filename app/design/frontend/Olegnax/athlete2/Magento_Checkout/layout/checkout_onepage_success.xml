@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Success Page</title>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <container name="success-icon-wrapper" htmlTag="div" before="-" htmlClass="success-icon-wrapper">
+                <container name="success-icon" htmlTag="div" htmlClass="success-icon">
+                 <block class="Magento\Framework\View\Element\Text">
+                     <arguments>
+                         <argument name="text" xsi:type="string"><![CDATA[<!-- success-icon -->]]></argument>
+                     </arguments>
+                 </block>
+                </container>
+             </container>
+            <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.success.print.button" template="Magento_Checkout::button.phtml"/>
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Thank you for your purchase!</argument>
+            </action>
+        </referenceBlock>
+        <move element="page.main.title" destination="content" before="-"/>       
+         <referenceBlock name="page.main.title" remove = "true"/>  
+        <referenceContainer name="content">
+            <container name="content-wrapper" htmlTag="div" htmlClass="checkout-success-wrapper">
+                <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.success" template="Magento_Checkout::success.phtml" cacheable="false">
+                    <container name="order.success.additional.info" label="Order Success Additional Info"/>
+                </block>
+                <!-- <block class="Magento\Checkout\Block\Registration" name="checkout.registration" template="Magento_Checkout::registration.phtml" cacheable="false"/> -->
+            </container>
+            <block class="Magento\Cms\Block\Block" name="success_page_you_might_like">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">success_page_you_might_like</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <move element="checkout.success.print.button" destination="content-wrapper" after="-"/>
+        <referenceBlock name="checkout.registration" remove="true"/>
+        
+    </body>
+</page>

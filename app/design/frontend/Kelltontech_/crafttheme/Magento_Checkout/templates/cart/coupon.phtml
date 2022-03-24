@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Framework\View\Element\AbstractBlock $block
+ */
+?>
+<div class="block discount"
+     id="block-discount"
+     data-mage-init='{"collapsible":{"openedState": "active","active": true, "saveState": false}}'
+>
+    <div class="title" data-role="title" style="display: none!important;">
+        <strong id="block-discount-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Apply Discount Code')) ?></strong>
+    </div>
+    <div class="content" data-role="content" aria-labelledby="block-discount-heading" style="display:block">
+        <form id="discount-coupon-form"
+              action="<?= $block->escapeUrl($block->getUrl('checkout/cart/couponPost')) ?>"
+              method="post"
+              data-mage-init='{"discountCode":{"couponCodeSelector": "#coupon_code",
+                                               "removeCouponSelector": "#remove-coupon",
+                                               "applyButton": "button.action.apply",
+                                               "cancelButton": "button.action.cancel"}}'>
+            <div class="fieldset coupon<?= strlen($block->getCouponCode()) ? ' applied' : '' ?>">
+                <input type="hidden" name="remove" id="remove-coupon" value="0" />
+                <div class="field">
+                    <label for="coupon_code" class="label"><span><?= $block->escapeHtml(__('Coupon code')) ?></span></label>
+                    <div class="control">
+                        <input type="text"
+                               class="input-text"
+                               id="coupon_code"
+                               name="coupon_code"
+                               value="<?= $block->escapeHtmlAttr($block->getCouponCode()) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter Coupon')) ?>"
+                                <?php if (strlen($block->getCouponCode())) :?>
+                                   disabled="disabled"
+                                <?php endif; ?>
+                        />
+                    </div>
+                </div>
+                <div class="actions-toolbar" style="margin-top: -55px!important;float: right!important;">
+                    <?php if (!strlen($block->getCouponCode())) :?>
+                    <div class="primary">
+                        <button style="background: #fff;outline: none;border-width: 0 0 1px!important;box-shadow: none;border-bottom: 2px solid #ccc!important;" class="action apply primary" type="button" value="<?= $block->escapeHtmlAttr(__('Apply')) ?>">
+                            <span style="color: #194342!important;font-weight: 600;" ><?= $block->escapeHtml(__('Apply')) ?></span>
+                        </button>
+                    </div>
+                    <?php else :?>
+                        <div class="primary">
+                            <button style="background: #fff;outline: none;border-width: 0 0 1px!important;box-shadow: none;border-bottom: 2px solid #ccc!important;" type="button" class="action cancel primary" value="<?= $block->escapeHtmlAttr(__('Cancel Coupon')) ?>"><span style="color: #194342!important;font-weight: 600;"><?= $block->escapeHtml(__('Cancel')) ?></span></button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php if (!strlen($block->getCouponCode())) : ?>
+                <?= /* @noEscape */ $block->getChildHtml('captcha') ?>
+            <?php endif; ?>
+        </form>
+    </div>
+</div>

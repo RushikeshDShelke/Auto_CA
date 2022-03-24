@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cminds Supplierfrontendproductuploader acl config.
+ *
+ * @category Cminds
+ * @package  Cminds_Supplierfrontendproductuploader
+ * @author   Piotr Pierzak <piotr@cminds.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Cminds_Supplierfrontendproductuploader::supplier"
+                          title="Cminds Suppliers"
+                          translate="title"
+                          sortOrder="10">
+                    <resource id="Cminds_Supplierfrontendproductuploader::manage_suppliers"
+                              title="Manage Suppliers"
+                              translate="title"
+                              sortOrder="10"/>
+                    <resource id="Cminds_Supplierfrontendproductuploader::supplier_products"
+                              title="Supplier Products"
+                              translate="title"
+                              sortOrder="15"/>
+                    <resource id="Cminds_Supplierfrontendproductuploader::supplier_sources"
+                              title="Supplier Sources (Inventory)"
+                              translate="title"
+                              sortOrder="20"/>
+                    <resource id="Cminds_Supplierfrontendproductuploader::suppliers_content"
+                              title="Supplier Main Tab"
+                              translate="title"
+                              sortOrder="25"/>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource
+                                    id="Cminds_Supplierfrontendproductuploader::configuration"
+                                    title="Cminds Supplier Product Manager Configuration"
+                                    sortOrder="10"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Catalog\Block\Product\Image; ?>
+<?php /** @var $block Image */ ?>
+
+<span class="product-image-container"
+	  style="width:<?= /* @escapeNotVerified */
+	  $block->getWidth() ?>px;">
+    <span class="product-image-wrapper"
+		  style="padding-bottom: <?= /* @escapeNotVerified */
+		  ($block->getRatio() * 100) ?>%;">
+        <img class="product-image-photo owl-lazy"
+			 <?php if(is_array($block->getCustomAttributes())): ?>
+				<?php foreach ($block->getCustomAttributes() as $name => $value): ?>
+					<?= $escaper->escapeHtmlAttr($name) ?>="<?= $escaper->escapeHtml($value) ?>"
+				<?php endforeach; ?>
+			<?php else : ?>
+				<?= /* @escapeNotVerified */ $block->getCustomAttributes(); ?>
+			<?php endif; ?>
+			src="<?= $this->getViewFileUrl('Olegnax_Core/images/preloader-img.svg'); ?>"
+			 data-src="<?= /* @escapeNotVerified */
+			 $block->getImageUrl() ?>"
+			 width="<?= /* @escapeNotVerified */
+			 $block->getWidth() ?>"
+			 height="<?= /* @escapeNotVerified */
+			 $block->getHeight() ?>"
+			 alt="<?= /* @escapeNotVerified */
+			 $block->stripTags($block->getLabel(), null, true) ?>"/></span>
+</span>

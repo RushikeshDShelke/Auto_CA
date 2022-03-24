@@ -1,0 +1,87 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="billdesk" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>
+                    <![CDATA[<div class="payment-logo"></div><i>All Your Payments. Single Location</i>]]>
+                </label>
+                <!--                <comment>-->
+                <!--                    <![CDATA[<a href="" target="_blank">Click here to sign up for Billdesk account</a>]]>-->
+                <!--                </comment>-->
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/billdesk/active</config_path>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Title</label>
+                    <config_path>payment/billdesk/title</config_path>
+                    <!-- <validate>required-entry</validate> -->
+                </field>
+                <field id="MID" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Merchant ID</label>
+                    <comment>Provided By Billdesk</comment>
+                    <config_path>payment/billdesk/MID</config_path>
+                    <!-- <validate>required-entry</validate> -->
+                </field>
+                <field id="security_id" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Security ID</label>
+                    <comment>Provided By Billdesk</comment>
+                    <config_path>payment/billdesk/security_id</config_path>
+                    <!-- <validate>required-entry</validate> -->
+                </field>
+                <field id="secret_key" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Secret Key</label>
+                    <comment>Provided By Billdesk</comment>
+                    <config_path>payment/billdesk/secret_key</config_path>
+                    <!-- <validate>required-entry</validate> -->
+                </field>
+
+                <field id="custom_callbackurl" translate="label" type="select" sortOrder="6" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Custom Callback Url</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="callback_url" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Callback Url</label>
+                    <comment>Provided By Merchant (hint: https://domainName/billdesk/Standard/Response)</comment>
+                    <config_path>payment/billdesk/callback_url</config_path>
+                    <!-- <validate>required-entry validate-url</validate> -->
+                    <depends>
+                        <field id="custom_callbackurl">1</field>
+                    </depends>
+                </field>
+
+                <field id="transaction_url" translate="label" type="text" sortOrder="8" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Transaction Url</label>
+                    <comment>Provided By Billdesk</comment>
+                    <config_path>payment/billdesk/transaction_url</config_path>
+                    <!-- <validate>required-entry validate-url</validate> -->
+                </field>
+                <field id="payment_action" translate="label" type="select" sortOrder="9" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Generate Invoice Automatically</label>
+                    <source_model>Indiaideas\Billdesk\Model\PaymentAction</source_model>
+                    <config_path>payment/billdesk/payment_action</config_path>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="12" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>New Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\Processing</source_model>
+                    <config_path>payment/billdesk/order_status</config_path>
+                    <!-- <validate>validate-select</validate> -->
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

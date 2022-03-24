@@ -1,0 +1,16 @@
+<?php
+namespace Kellton\SupportTheArtisan\Model\ResourceModel;
+
+class Supporttheartisan extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+{
+    /**
+     * Initialize resource model
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_init('covid_campaign', 'entity_id');
+    }
+}
+?>

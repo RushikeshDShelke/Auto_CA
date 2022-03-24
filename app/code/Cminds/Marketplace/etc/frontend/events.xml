@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="supplierfrontendproductuploader_navbar_init">
+        <observer name="cminds_marketplace_supplierfrontendproductuploader_navbar_init"
+                  instance="Cminds\Marketplace\Observer\Supplierfrontendproductuploader\Navbar\Init"/>
+    </event>
+    <event name="catalog_product_save_before">
+        <observer name="cminds_marketplace_product_save_before"
+                  instance="Cminds\Marketplace\Observer\Catalog\Product\SaveBefore"/>
+    </event>
+    <event name="cminds_marketplace_product_needs_approval">
+        <observer name="cminds_marketplace_product_needs_approval"
+                  instance="Cminds\Marketplace\Observer\ProductNeedsApproval"/>
+    </event>
+</config>

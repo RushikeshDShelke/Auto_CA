@@ -1,0 +1,956 @@
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB); ?>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/bootstrap.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/font-awesome.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/jquery.mCustomScrollbar.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/stylefile.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/responsive.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/owl.carousel.min.css"/>
+
+<script>
+	function setCatAmount(amount, cat_name){
+		//alert("hello");
+		document.getElementById('amount').value = amount;
+		document.getElementById('category').value = cat_name;
+		//alert(document.getElementById('category').value);
+		document.getElementById("supprt_artisan").submit();
+	}
+</script>
+<div class="wrap">
+    <form name="suport_artisan" id="supprt_artisan" method="post" action="<?= $block->getUrl('supporttheartisan/index/contribute'); ?>"/>
+
+	<input type="hidden" name="form_key" value="<?php echo $block->getFormKey(); ?>" />
+	<input type="hidden" name="category" id= "category" value=""/>
+	<input type="hidden" name="amount" id="amount" value=""/>
+
+    <div class="red-bar">Support the <strong>ARTISAN.</strong> Save the Crafts.</div>
+    <div class="contact-content text-center">
+        <iframe width="800" height="400" src="https://www.youtube.com/embed/tDyMNlTELX0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="header-banner">
+        <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/marie-couffon-de-trevros-yaZSCHZhgtk-unsplash.png'); ?>" alt="">
+        <div class="overlay-banner">
+            <div class="container">
+            <a class="banner-logo" href="<?php echo $baseurl; ?>" title="Magento Commerce" aria-label="store logo">
+                       <img src="http://craftmaestro-uat.kelltontech.net/craftmaestro/pub/media/logo/stores/1/logo.png" title="Craft Maestros" alt="Craft Maestros" width="148" height="43">
+                </a>
+                <div class="offset-sm-6 col-sm-6">
+                    <div class="banner-text">
+                        <h5>Support the ARTISAN</h5>
+                        <!-- <h1></h1> -->
+                        <h6>Save the Crafts</h6>
+                        <span class="banner-contri">Your contribution:</span>
+                        <ul>
+                            <li>will reach thousands of real craftspeople and their families</li>
+                            <li>will help artisans to keep their ‘cycle of work’ alive.  This is not a donation.</li>
+                            <li>will get you a <u>high quality product</u> of similar value, certified by a National Awardee artisan</li>
+
+                        </ul>
+                        <!-- <p>Your contribution will directly go to<b> thousands of artisan</b> families across India. <br><br>
+                            Your contribution <b> today </b> will allow artisans to keep their 'cycle of work' alive. You will receive a product from our artisans of similar value. This is not a donation.</p> -->
+                        <a href="#onscrollstop" class="btn btn-light onscrollstop">Select a craft for contribution</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="floting-button">
+            <a href="<?php echo $baseurl; ?>supporttheartisan/index/videos" id="termscondition"><i class="fa fa-play-circle" ></i><span>Watch the video</span></div>
+        </div> -->
+    </div>
+    <!-- <div class="section">
+        <div class="container">
+            <div class="sm-des text-center">
+                <p>This will not be a donation but a form of help to keep their cycle of work alive.</p>
+				<p>You will receive a specially handcrafted product from our artisan.</p>
+            </div>
+        </div>
+    </div> -->
+    <div class="section bg-gray" id="onscrollstop">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h5 class="title">CRAFTS</h5>
+                    <p>Select the craft category below to contribute and receive a product from.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#one"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Meenakari_Thewa.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Meenakari | Thewa</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#two"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Hand Carving.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Gemstone | Glass Carving</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#three"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Paper Mache.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Paper Mache</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#four"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Inlay on Wood.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Bone Inlay | Tarakashi | Jaali On Wood</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#five"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Brass  Metal Engraving.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Brass | Metal Engraving</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#six"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Hand Block Printing.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Block Printing | Dabu | Shibori</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#seven"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Handwoven Rugs.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Handwoven Rugs | Carpets</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#eight"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Kinnauri  Pashmina Shawls.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Kinnauri | Pashmina Shawls</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#nine"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Relief & Miniature Art.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Relief Work | Miniature Painting</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#ten"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/PSX_20190527_150549.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Walnut | Sandalwood Carving</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#eleven"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Khurja  Blue Pottery.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Khurja | Blue Pottery</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#twelve"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Kantha  Chikankari.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Kantha | Chikankari</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				<div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#thirteen"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Kutch  Kotapad Weaves.jpg'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Kutch | Kotpad weaves</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				<div class="dk-col-1">
+                    <div class="card craft-card">
+                       <a href="#forteen"> 
+                           <div class="card-img">
+                                <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/thumbnails/Thumbnail.png'); ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6>Gulabi Meenakari</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-width-content">
+        <div class="row mb-45" id="one">
+            <div class="col-sm-6">
+                <div class="left-img">
+                    <!--<img src="<?php //echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/category/Meenakari_Thewa.jpg'); ?>" alt="">-->
+                    <div class="owl-carousel craft-slider">
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Meenakari_and_thewa/Meenakari_and_thewa.jpg'); ?>" alt=""></div>
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Meenakari_and_thewa/Meenakari_and_thewa_2.jpg'); ?>" alt=""></div>
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Meenakari_and_thewa/Meenakari_and_thewa_3.jpg'); ?>" alt=""></div>
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Meenakari_and_thewa/Meenakari_and_thewa_4.jpg'); ?>" alt=""></div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-text">
+                    <h2>Meenakari | Thewa </h2>
+                    <p>From Pratapgarh comes Thewa, reminiscent of the ancient tales of romance and valour of the Rajputs and from the distant lands of Persia comes the fine craft of Meenakari, finding its feet in India with the establishment of the Mughal Empire.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p>
+                    <p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Meenakari | Thewa');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Meenakari | Thewa');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Meenakari | Thewa');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(15000, 'Meenakari | Thewa');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 15000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(30000, 'Meenakari | Thewa');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 30000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Meenakari | Thewa');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row mb-45" id="two">  
+            <div class="col-sm-6 order-sm-last">
+                <div class="right-img">
+                    <!--<img src="<?php //echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Gemstone  Bone  Glass Carving.jpg'); ?>" alt="">-->
+                    <div class="owl-carousel craft-slider">
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/hand_carving/Hand_Carving	.jpg'); ?>" alt=""></div>
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/hand_carving/Hand_Carving_2.jpg'); ?>" alt=""></div>
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/hand_carving/Hand_Carving_3.jpg'); ?>" alt=""></div>
+                      <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/hand_carving/Hand_Carving_4.jpg'); ?>" alt=""></div>
+                      
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-first">
+                <div class="left-text">
+                    <h2>Gemstone | Glass Carving</h2>
+                    <p>Woven amidst the fabric of India's history is the technique of hand carving, the first sign of which can be traced back to the Indus Valley Civilization. Today, the roots of this technique can be seen in the exquisite forms of bone, gemstone and glass carving.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p>
+                    <p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Gemstone | Glass Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Gemstone | Glass Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Gemstone | Glass Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(15000, 'Gemstone | Glass Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 15000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(30000, 'Gemstone | Glass Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 30000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Gemstone | Glass Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-45" id="three">
+            <div class="col-sm-6">
+                <div class="left-img">
+                   
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Paper_Mache/paper_mache_1.jpg'); ?>" alt=""></div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Paper_Mache/paper_mache_2.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Paper_Mache/paper_mache_3.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Paper_Mache/paper_mache_4.jpg'); ?>" alt=""></div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-text">
+                    <h2>Paper Mache </h2>
+                    <p>Nestled between the delicious smells of naan and kahwa lives the sophisticated craft of Kashmir Paper Mache.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p>
+                    <p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(1000, 'Paper Mache');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 1000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Paper Mache');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Paper Mache');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Paper Mache');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(20000, 'Paper Mache');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 20000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Paper Mache');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row mb-45" id="four">  
+            <div class="col-sm-6 order-sm-last">
+                <div class="right-img">
+                    
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Inlay_on_wood/wood_inlay_1.jpg'); ?>" alt=""></div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Inlay_on_wood/wood_inlay_2.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Inlay_on_wood/Bone_Inlay_3.jpg'); ?>" alt=""></div>
+                      
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-first">
+                <div class="left-text">
+                    <h2>Bone Inlay | Tarakashi | Jaali On Wood</h2>
+                    <p>Popularly known as Bharai in the small town of Hoshiarpur, bone inlay on wood originated there about 300 years ago while the craft of Tarakashi (metal inlay on wood) found its niche over 500 years ago in Uttar Pradesh.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(1500, 'Bone Inlay | Tarakashi | Jaali Work  on Wood');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 1500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                           <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2500, 'Bone Inlay | Tarakashi | Jaali Work  on Wood');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Bone Inlay | Tarakashi | Jaali Work  on Wood');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Bone Inlay | Tarakashi | Jaali Work  on Wood');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(20000, 'Bone Inlay | Tarakashi | Jaali Work  on Wood');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 20000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Bone Inlay | Tarakashi | Jaali Work  on Wood');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-45" id="five">
+            <div class="col-sm-6">
+                <div class="left-img">
+                    
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/metal_engraving/bell.jpg'); ?>" alt=""></div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/metal_engraving/Brass_and_metal engraving.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/metal_engraving/Brass_and_metal_engraving_2.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/metal_engraving/brass_planters.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/metal_engraving/copper_bowl.jpg'); ?>" alt=""></div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-text">
+                    <h2>Brass | Metal Engraving</h2>
+                    <p> The earliest form of metalwork known to India can be traced back to around 3000 BC. Continuing to flourish till date, the crafts of metal engraving and brass engraving bear testimony to India's rich and vibrant heritage.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(500, 'Brass | Metal Engraving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(1000, 'Brass | Metal Engraving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 1000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Brass | Metal Engraving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Brass | Metal Engraving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(20000, 'Brass | Metal Engraving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 20000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Brass | Metal Engraving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row mb-45" id="six">  
+            <div class="col-sm-6 order-sm-last">
+                <div class="right-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Hand_Block_Printing/block_print_1.jpg'); ?>" alt=""></div>
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Hand_Block_Printing/block_print_2.jpg'); ?>" alt=""></div>
+                      <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Hand_Block_Printing/block_print_3.jpg'); ?>" alt=""></div>
+                      <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Hand_Block_Printing/Hand_Block_Printing_4.jpg'); ?>" alt=""></div>
+                     
+                   </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-first">
+                <div class="left-text">
+                    <h2>Block Printing | Dabu | Shibori </h2>
+                    <p>The long wars between the Marathas and the Mughals forced craftsmen from Gujarat to migrate into the sandy deserts of Rajasthan. With them, thus migrated the genius craft of block printing in the 16th century in its various forms.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(1000, 'Block Printing | Dabu | Shibori');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 1000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Block Printing | Dabu | Shibori');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Block Printing | Dabu | Shibori');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Block Printing | Dabu | Shibori');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(20000, 'Block Printing | Dabu | Shibori');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 20000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Block Printing | Dabu | Shibori');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-45" id="seven">
+            <div class="col-sm-6">
+                <div class="left-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/handwoven_rugs_and_carpets/carpet_2.jpg'); ?>" alt=""></div>
+                       <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/handwoven_rugs_and_carpets/Hand_woven.jpg'); ?>" alt=""></div>
+                      <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/handwoven_rugs_and_carpets/Hand_woven_2.jpg'); ?>" alt=""></div>
+                      <div class="item"> <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/handwoven_rugs_and_carpets/Hand_woven_4.jpg'); ?>" alt=""></div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-text">
+                    <h2>Handwoven Rugs | Carpets </h2>
+                    <p>Akbar's undying love for art marked the beginning of many skilled crafts in India, including the methodical craft of hand-woven rugs.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                   <div class="row">
+                       
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Handwoven Rugs | Carpets');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Handwoven Rugs | Carpets');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Handwoven Rugs | Carpets');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                         <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(15000, 'Handwoven Rugs | Carpets');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 15000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(30000, 'Handwoven Rugs | Carpets');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 30000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Handwoven Rugs | Carpets');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row mb-45" id="eight">  
+            <div class="col-sm-6 order-sm-last">
+                <div class="right-img">
+                   <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Kinnauri_and_Pashmina_Shawl/Pashmina_shawal.jpg'); ?>" alt=""> </div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Kinnauri_and_Pashmina_Shawl/shawls_1.jpg'); ?>" alt=""> </div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Kinnauri_and_Pashmina_Shawl/shawls_2.jpg'); ?>" alt=""> </div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-first">
+                <div class="left-text">
+                    <h2>Kinnauri | Pashmina Shawls </h2>
+                    <p>The stunning valleys of Kullu and Kashmir are home to the fine Kinnauri and Pashmina shawls. These exquisite shawls have a history that goes back to hundreds of years, making them an emblem of the rich culture of the region.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(1500, 'Kinnauri | Pashmina Shawls');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 1500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2500, 'Kinnauri | Pashmina Shawls');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Kinnauri | Pashmina Shawls');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Kinnauri | Pashmina Shawls');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(20000, 'Kinnauri | Pashmina Shawls');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 20000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Kinnauri | Pashmina Shawls');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-45" id="nine">
+            <div class="col-sm-6">
+                <div class="left-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Relief_and_miniature/relief_work.jpg'); ?>" alt=""> </div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Relief_and_miniature/Miniature_2.jpg'); ?>" alt=""> </div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Relief_and_miniature/Miniature 3.jpg'); ?>" alt=""> </div>
+                     
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-text">
+                    <h2>Relief Work | Miniature Painting </h2>
+                    <p>The first sign of Relief Work can be traced back to the Indus Valley Civilisation while Miniature Paintings originated in India in 750 AD. These historic crafts continue to thrive thousands of years later because of their charming intricacies.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(1500, 'Relief Work | Miniature Painting');" class="btn btn-darkline" >
+                            	<img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 1500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2500, 'Relief Work | Miniature Painting');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Relief Work | Miniature Painting');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Relief Work | Miniature Painting');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(20000, 'Relief Work | Miniature Painting');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 20000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Relief Work | Miniature Painting');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row mb-45" id="ten">  
+            <div class="col-sm-6 order-sm-last">
+                <div class="right-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Wood_Carving/wood_carving_1.jpg'); ?>" alt=""></div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Wood_Carving/Wood_Carving_2.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Wood_Carving/wood_carving_3.jpg'); ?>" alt=""></div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-first">
+                <div class="left-text">
+                    <h2>Walnut | Sandalwood Carving </h2>
+                    <p>The valleys of Kashmir and the forests of Karnataka are among the very few places which help sustain the pre-historic crafts of walnut wood and sandalwood carving due to the availability of the respective trees in the region. </p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Walnut | Sandalwood Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Walnut | Sandalwood Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Walnut | Sandalwood Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(15000, 'Walnut | Sandalwood Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 15000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(30000, 'Walnut | Sandalwood Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 30000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Walnut | Sandalwood Carving');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-45" id="eleven">
+            <div class="col-sm-6">
+                <div class="left-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Khurja_and_blue_potery/Blue_Poteery_and_khurja.jpg'); ?>" alt=""></div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Khurja_and_blue_potery/Blue_Poteery_and_hurja_3.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Khurja_and_blue_potery/Blue_Poteery_and khurja_4.jpg'); ?>" alt=""></div>                 
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-text">
+                    <h2>Khurja | Blue Pottery </h2>
+                    <p>The crafts of Khurja and Blue Pottery traversed into the mainland of India when skilled artisans from across the world made Khurja and Jaipur their home centuries back; now recognized as traditional crafts of these cities.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(500, 'Khurja | Blue Pottery');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 500@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(1000, 'Khurja | Blue Pottery');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 1000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Khurja | Blue Pottery');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Khurja | Blue Pottery');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Khurja | Blue Pottery');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Khurja | Blue Pottery');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row mb-45" id="twelve">  
+            <div class="col-sm-6 order-sm-last">
+                <div class="right-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Kantha_and_Chikankari/chikankari.jpg'); ?>" alt=""></div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Kantha_and_Chikankari/Kantha.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/Kantha_and_Chikankari/Kantha_2.jpg'); ?>" alt=""></div>
+                      
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-first">
+                <div class="left-text">
+                    <h2>Kantha | Chikankari </h2>
+                    <p>Two of the richest and oldest forms of embroidery crafts of India- Chikankari and Kantha, have been in existence for over 400 years now. While Chikankari was patronized by the Mughals, Kantha was heavily influenced by Portuguese traders.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Kantha | Chikankari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                           <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Kantha | Chikankari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Kantha | Chikankari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(15000, 'Kantha | Chikankari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 15000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                           <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(30000, 'Kantha | Chikankari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 30000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Kantha | Chikankari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-45" id="thirteen">
+            <div class="col-sm-6">
+                <div class="left-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/kutch_and_kotpad_weaves/guj_shawls_1.jpg'); ?>" alt=""></div>
+                       <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/kutch_and_kotpad_weaves/guj_shawls_2.jpg'); ?>" alt=""></div>
+                      <div class="item">  <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/kutch_and_kotpad_weaves/Weave.jpg'); ?>" alt=""></div>
+                      <div class="item"><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/kutch_and_kotpad_weaves/Weave_4.jpg'); ?>" alt=""></div>
+                    
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-text">
+                    <h2>Kutch | Kotpad weaves </h2>
+                    <p>Handwoven pieces have come to define the cultural identity of the regions for long now. While Bandhani, Dhabla, Rabadi and Mirror shawls are an inherent part of Gujarat's heritage, Kotpad weaves are a mirroring of Odisha's identity.</p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(2000, 'Kutch | Kotpad weaves');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 2000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Kutch | Kotpad weaves');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Kutch | Kotpad weaves');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(15000, 'Kutch | Kotpad weaves');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 15000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(30000, 'Kutch | Kotpad weaves');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 30000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Kutch | Kotpad weaves');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row mb-45" id="forteen">  
+            <div class="col-sm-6 order-sm-last">
+                <div class="right-img">
+                    <div class="owl-carousel craft-slider">
+                       <div class="item"><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/gulabi-meenakari/1.png'); ?>" alt=""></div>
+                       <div class="item"><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/gulabi-meenakari/2.png'); ?>" alt=""></div>
+                      <div class="item"><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/gulabi-meenakari/3.png'); ?>" alt=""></div>
+                      <div class="item"><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/cam_cat_slider/gulabi-meenakari/4.png'); ?>" alt=""></div>
+                
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-first">
+                <div class="left-text">
+                    <h2>Gulabi Meenakari </h2>
+                    <p>An important part of India's history, cane and bamboo products can be traced back to 2nd century AD. A reflection of the culture of North East India, cane and bamboo work forms an integral part of the livelihood of the artisans in the region. </p>
+                    <p>We will give you (by email) 3 handpicked options of beautiful products, equivalent to your contribution value. Your selection will be shipped to you within 30-90 days. </p><p>PLEASE SELECT AN AMOUNT YOU WISH TO CONTRIBUTE</p>
+                    <div class="row">
+                        
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(3000, 'Gulabi Meenakari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 3000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(5000, 'Gulabi Meenakari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 5000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(10000, 'Gulabi Meenakari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 10000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(15000, 'Gulabi Meenakari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 15000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(30000, 'Gulabi Meenakari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 30000@2x.png'); ?>" alt=""></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="javascript:void(0);"  type="submit" onclick="setCatAmount(50000, 'Gulabi Meenakari');" class="btn btn-darkline" ><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/Rs. 50000@2x.png'); ?>" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-banner">
+        <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/DSCF4242.png'); ?>" alt="">
+        <div class="overlay-banner">
+            <div class="container">
+                <div class="offset-sm-6 col-sm-6">
+                    <div class="banner-text">
+                        <h1>Meet our <span>maestros</span></h1>
+                        <a href="<?php echo $baseurl; ?>/supporttheartisan/index/artisans" class="btn btn-light">Know their story</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div class="logo"><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/logo for booth-1.png'); ?>" alt=""></div>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <p>An initiative by Craft Maestros</p>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <p> &copy Craft Maestros 2020</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<div id="stop" class="scrollTop">
+    <a href="#onscrollstop" class="onscrollstop">
+    <span><i class="fa fa-angle-up" aria-hidden="true"></i></span>
+    </a>
+    <a href="mailto:care@craftmaestros.com" class="email-link">
+    <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+    </a>
+    <a href="https://wa.me/918595592830" class="whats-link">
+    <span><i class="fa fa-whatsapp" aria-hidden="true"></i></span>
+    </a>
+</div>
+</form>
+<script>
+	// <![CDATA[
+        require([
+            'jquery',
+            'mageplaza/core/owl.carousel'
+        ], function ($) {
+            $(document).ready(function() {
+            	console.log('hihiihihi');
+				$(document).on('scroll',function(){
+				    if($(this).scrollTop() > 100){
+				        $('.navnemu').addClass('bg-white');
+				    }else{
+				        $('.navnemu').removeClass('bg-white');			
+				    };
+				});
+				var scrollTop = $(".scrollTop");
+
+		     	$(window).scroll(function() {
+			       // declare variable
+			       var topPos = $(this).scrollTop();
+			   
+			       // if user scrolls down - show scroll to top button
+			       if (topPos > 100) {
+			         $(scrollTop).css("opacity", "1");
+			   
+			       } else {
+			         $(scrollTop).css("opacity", "0");
+			       }
+			   
+		     	}); // scroll END
+
+				$(".craft-card a[href*=\\#]:not([href$=\\#])").on('click', function(event) {
+				    if($(window).width() >= 1025){
+				      	if (this.hash !== "") {
+					        event.preventDefault();
+					        var hash = this.hash;
+				        $('html, body').animate({
+				          	scrollTop: $(hash).offset().top - (($(window).height() -  $(hash).height()) / 2) 
+				        }, 800, function(){
+				          	window.location.hash = hash;
+				        });
+				      } 
+				    }
+				    else{
+				      	if (this.hash !== "") {
+				              event.preventDefault();
+				              var hash = this.hash;
+				              $('html, body').animate({
+				                scrollTop: $(hash).offset().top
+				              }, 800, function(){
+				                window.location.hash = hash;
+				              });
+			            } 
+				    }			  	});
+			  	$("a[href*=\\#]:not([href$=\\#])").on('click', function(event) {
+				    if (this.hash !== "") {
+				      event.preventDefault();
+				      var hash = this.hash;
+				      $('html, body').animate({
+				        scrollTop: $(hash).offset().top
+				      }, 800, function(){
+				        window.location.hash = hash;
+				      });
+				    } 
+			  	});
+			  	$("a[href*=\\#]:not([href$=\\#])").on('click', function(event) {
+				    if (this.hash !== "") {
+				      event.preventDefault();
+				      var hash = this.hash;
+				      $('html, body').animate({
+				        scrollTop: $(hash).offset().top
+				      }, 800, function(){
+				        window.location.hash = hash;
+				      });
+				    } 
+			  	});
+			  	$('.scroll2').click(function() {
+				  	$('html, body').animate({
+				    	scrollTop: 0
+			  		}, 900);
+				  	return false;   
+				});
+				$('.craft-slider').owlCarousel({
+				    items:1,
+				    nav:true,
+				});
+			});
+        });
+    // ]]>
+</script>
+

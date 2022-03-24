@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">olegnax_carousel_slide_listing.olegnax_carousel_slide_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>olegnax_carousel_slide_columns</spinner>
+		<deps>
+			<dep>olegnax_carousel_slide_listing.olegnax_carousel_slide_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add new Slide</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource component="Magento_Ui/js/grid/provider" name="olegnax_carousel_slide_listing_data_source">
+		<settings>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Olegnax_Carousel::Slide</aclResource>
+		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="olegnax_carousel_slide_listing_data_source">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>slide_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="olegnax_carousel_slide_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">olegnax_carousel_slide_listing.olegnax_carousel_slide_listing.olegnax_carousel_slide_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">slide_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" path="olegnax_carousel/Slide/inlineEdit" xsi:type="url"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">olegnax_carousel_slide_listing.olegnax_carousel_slide_listing.olegnax_carousel_slide_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>slide_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="slide_id" sortOrder="10">
+			<settings>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="carousel" class="Olegnax\Carousel\Ui\Component\Listing\Column\SlideCarousel" sortOrder="20">
+			<settings>
+				<options class="Olegnax\Carousel\Model\Slide\Source\Carousel"/>
+				<filter>select</filter>
+				<dataType>select</dataType>
+				<label translate="true">Carousel</label>
+				<sorting>asc</sorting>
+			</settings>
+		</column>
+		<column name="store_id" class="Olegnax\Carousel\Ui\Component\Listing\Column\SlideStore" sortOrder="30">
+			<settings>
+				<label translate="true">Store View</label>
+				<bodyTmpl>ui/grid/cells/html</bodyTmpl>
+				<sortable>false</sortable>
+			</settings>
+		</column>
+		<column name="image" class="Olegnax\Carousel\Ui\Component\Listing\Column\SlideImage" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="50">
+			<settings>
+				<label translate="true">Background Image</label>
+				<hasPreview>1</hasPreview>
+			</settings>
+		</column>
+		<column name="sort_order" sortOrder="60">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Sort Order</label>
+				<sorting>asc</sorting>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="is_active" component="Magento_Ui/js/grid/columns/select" sortOrder="70">
+			<settings>
+				<options class="Magento\Cms\Model\Block\Source\IsActive"/>
+				<filter>select</filter>
+				<editor>
+					<editorType>select</editorType>
+				</editor>
+				<dataType>select</dataType>
+				<label translate="true">Status</label>
+			</settings>
+		</column>
+		<column name="creation_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="80">
+			<settings>
+				<filter>dateRange</filter>
+				<dataType>date</dataType>
+				<label translate="true">Created</label>
+			</settings>
+		</column>
+		<column name="update_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="90">
+			<settings>
+				<filter>dateRange</filter>
+				<dataType>date</dataType>
+				<label translate="true">Modified</label>
+			</settings>
+		</column>
+		<actionsColumn class="Olegnax\Carousel\Ui\Component\Listing\Column\SlideActions" name="actions" sortOrder="100">
+			<settings>
+				<indexField>slide_id</indexField>
+			</settings>
+		</actionsColumn>
+	</columns>
+</listing>

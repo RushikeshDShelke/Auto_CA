@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<!--
+* Olegnax
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Olegnax.com license that is
+* available through the world-wide-web at this URL:
+* https://www.olegnax.com/license
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this extension to newer
+* version in the future.
+*
+* @category    Olegnax
+* @package     Olegnax_ProductReviewsSummary
+* @copyright   Copyright (c) 2010-2021 Olegnax (http://www.olegnax.com/)
+* @license     https://www.olegnax.com/license
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="olegnax" translate="label" sortOrder="15">
+            <label>Olegnax</label>
+        </tab>
+        <section id="olegnax_productreviewssummary" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label">
+            <label>Product Reviews Summary</label>
+            <tab>olegnax</tab>   
+            <resource>Olegnax_ProductReviewsSummary::productreviewssummary</resource>
+            <group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <frontend_model>Olegnax\ProductReviewsSummary\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+            </group>
+            <group id="enable_all" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Enable</label>
+                <field id="enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enable Reviews Summary</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                </field>
+            </group>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General</label>
+                <field id="rating_overall" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Show Overall Rating Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                </field>
+                <field id="write_btn_overall" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="12" translate="label" type="select">
+                    <label>Show Write a Review link in Overall Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <depends>
+                        <field id="rating_overall">1</field>
+                    </depends>
+                </field>
+                <field id="rating_bystar_rating" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Show Ratings by Star Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                </field>
+                <field id="stars_text" translate="label comment" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Stars Text</label>
+                    <comment>Text next to the 5,4..1 star numbers in "Rating by Star" Block.</comment>
+                    <depends>
+                        <field id="rating_bystar_rating">1</field>
+                    </depends>
+                </field>
+                <field id="show_rating_percent" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="24" translate="label" type="select">
+                    <label>Show Percent</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <comment>Show percent value next to each rating.</comment>
+                    <depends>
+                        <field id="rating_bystar_rating">1</field>
+                    </depends>
+                </field>
+                <field id="show_rating_count" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="26" translate="label" type="select">
+                    <label>Show Count</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                    <comment>Show number of ratings next to each rating.</comment>
+                    <depends>
+                        <field id="rating_bystar_rating">1</field>
+                    </depends>
+                </field>
+                <field id="rating_breakdown" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="select">
+                    <label>Show Rating Breakdown Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                </field>
+                <field id="write_btn_after" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="select">
+                    <label>Show Write a Review Buttton block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>on-off-trigger</frontend_class>
+                </field>
+            </group>	
+        </section>
+    </system>
+</config>

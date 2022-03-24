@@ -1,0 +1,27 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-sidebar__margin: @indent__base;
+@checkout-sidebar__margin__xl: 46px;
+@checkout-sidebar__columns: 4;
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .opc-sidebar {
+        width: 40%;
+        float: right;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+        margin-top: 60px;
+    }
+}

@@ -1,0 +1,6 @@
+<?php
+$to_top	 = $block->getConfig( 'athlete2_settings/general/to_top' );
+if ( $to_top ) { ?>
+<a href="#" id="toTop"><span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" xml:space="preserve">
+<polygon points="15.8,10.5 6.6,1.4 5.2,2.8 12.9,10.5 5.2,18.3 6.6,19.7 15.8,10.5 15.8,10.5 "></polygon></svg></span><small><?= $block->escapeHtml(__('To Top')) ?></small></a>
+<?php } ?>

@@ -1,0 +1,252 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget class="Olegnax\Carousel\Block\Widget\Carousel" id="olegnax_carousel_carousel">
+		<label>Olegnax - Carousel</label>
+		<description>Slide anything!</description>
+		<parameters>
+			<parameter name="carousel" source_model="Olegnax\Carousel\Model\Slide\Source\Carousel" visible="true" xsi:type="select">
+				<label>Choose Carousel</label>
+			</parameter>
+			<parameter name="css_only" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">CSS-only Carousel on Mobile</label>
+                                <description translate="true">Experimental option. Most of the settings will not work with the css-only carousel. For 1 Column carousel only. Requires Mobile theme. See docs for details.</description>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_style" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Style</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="theme" value="theme" selected="true">
+						<label translate="true">Theme Default</label>
+					</option>
+					<option name="theme_big" value="theme nav-big">
+						<label translate="true">Theme Big</label>
+					</option>
+					<option name="simple" value="simple">
+						<label translate="true">Simple Arrows</label>
+					</option>
+					<option name="simple_small" value="simple nav-small">
+						<label translate="true">Simple Arrows, Small</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="nav_always" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Always Show Arrows</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Horizontal Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Position</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="over" value="over" selected="true">
+						<label translate="true">Overlay slider</label>
+					</option>
+					<option name="below" value="below">
+						<label translate="true">Below Slider</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots_overlay" xsi:type="select" visible="true">
+				<label translate="true">Dots Background Gradient</label>
+				<description translate="true">When dots over content.</description>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="yes" value="true" selected="true">
+						<label translate="true">Yes</label>
+					</option>
+					<option name="false" value="false">
+						<label translate="true">No</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots_style" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Style</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="lines" value="lines" selected="true">
+						<label translate="true">Lines, Active Long</label>
+					</option>
+					<option name="lines_vertical" value="lines_vertical">
+						<label translate="true">Lines, Active Taller</label>
+					</option>
+					<option name="lines_text" value="lines_text">
+						<label translate="true">Lines with text</label>
+					</option>
+					<option name="rounded" value="rounded">
+						<label translate="true">Rounded</label>
+					</option>
+				</options>
+			</parameter>
+
+			<parameter name="autoplay" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay</label>
+				<description translate="true">Set timeout in seconds (1-10) to enable autoplay.
+				</description>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+			</parameter>
+			<parameter name="progress" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Progress Bar</label>
+			</parameter>
+			<parameter name="progress_position" xsi:type="select" visible="true">
+				<label translate="true">Progress Bar Position</label>
+				<depends>
+					<parameter name="progress" value="1"/>
+				</depends>
+				<options>
+					<option name="top" value="top" selected="true">
+						<label translate="true">Slide Top</label>
+					</option>
+					<option name="bottom" value="bottom">
+						<label translate="true">Slide Bottom</label>
+					</option>
+					<option name="nav" value="nav">
+						<label translate="true">In Navigation (Dots)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>1</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>1</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>1</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>1</value>
+			</parameter>
+			<parameter name="slider_height" xsi:type="select" visible="true">
+				<label translate="true">Slider Height Depends on</label>
+				<options>
+					<option name="settings" value="settings" >
+						<label translate="true">Slide Height Settings</label>
+					</option>
+					<option name="image" value="image" selected="true">
+						<label translate="true">Slide Image Height</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="auto_height" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Auto Height</label>
+				<description translate="true">Only for 1 item on screen and "Slider Height Depends on" Slide Image Height.
+				</description>
+			</parameter>
+			<parameter name="height_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Slider Min-Heigh Desktop</label>
+			</parameter>
+			<parameter name="height_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Slider Min-Heigh Desktop Small</label>
+			</parameter>
+			<parameter name="height_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Slider Min-Heigh Tablet</label>
+			</parameter>
+			<parameter name="height_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Slider Min-Heigh Mobile</label>
+			</parameter>
+			<parameter name="lazy_load" xsi:type="select" visible="true">
+				<label translate="true">Disable Lazy Load</label>
+				<description translate="true">Disable carousel lazy load feature for images</description>
+				<options>
+					<option name="noexclude" value="noexclude" selected="true">
+						<label translate="true">No</label>
+					</option>
+					<option name="exclude" value="exclude">
+						<label translate="true">Yes</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="lazy_exclude_first" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Lazy Load: Exclude First Image</label>
+				<description translate="true">This can improve page speed score if carousel is counted as LCP.</description>
+			</parameter>
+			<parameter name="arrows_icon_color" xsi:type="text" required="false" visible="true">
+				<label translate="true">Arrows Icon Color</label>
+			</parameter>
+			<parameter name="arrows_icon_bg" xsi:type="text" required="false" visible="true">
+				<label translate="true">Arrows Icon Background</label>
+			</parameter>
+			<parameter name="arrows_icon_color_hover" xsi:type="text" required="false" visible="true">
+				<label translate="true">Arrows Icon Color, Hover</label>
+			</parameter>
+			<parameter name="arrows_icon_bg_hover" xsi:type="text" required="false" visible="true">
+				<label translate="true">Arrows Icon Background, Hover</label>
+			</parameter>                        
+			<parameter name="progress_line" xsi:type="text" required="false" visible="true">
+				<label translate="true">Progress Line Color</label>
+			</parameter>
+			<parameter name="dot_color" xsi:type="text" required="false" visible="true">
+				<label translate="true">Dots Color</label>
+			</parameter>
+			<parameter name="dot_active_color" xsi:type="text" required="false" visible="true">
+				<label translate="true">Dots Color, Active/Hover</label>
+			</parameter>
+			<parameter name="dot_text_color" xsi:type="text" required="false" visible="true">
+				<label translate="true">Dots Text Color</label>
+			</parameter>
+			<parameter name="dot_gradient_one" xsi:type="text" required="false" visible="true">
+				<label translate="true">Dots Overlay Gradient Color1</label>
+                                <description translate="true">Default: rgba(0, 0, 0, 0.25)</description>
+			</parameter>
+			<parameter name="dot_gradient_two" xsi:type="text" required="false" visible="true">
+				<label translate="true">Dots Overlay Gradient Color2</label>
+                                <description translate="true">Default: rgba(0, 0, 0, 0)</description>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

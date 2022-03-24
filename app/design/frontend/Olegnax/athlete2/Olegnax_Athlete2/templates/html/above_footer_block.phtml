@@ -1,0 +1,14 @@
+<?php
+$at_settings	 = $block->getConfig( 'athlete2_settings/above_footer_block' );
+if ( $at_settings[ 'show_block' ] ) {
+	?>
+	<div class="above-footer-content">
+		<?php
+		if ( $at_settings[ 'above_footer_block_type' ] == 'textfield' ) {
+			echo $block->getBlockTemplateProcessor( $at_settings[ 'above_footer_block_custom' ] );
+		} else {
+			echo $this->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'above_footer_block_static' ] )->toHtml();
+		}
+		?>
+	</div>	
+<?php } ?>

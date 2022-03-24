@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+            <referenceBlock name="top.search">
+                <arguments>
+                    <argument name="configProvider" xsi:type="object">Magento\Search\ViewModel\ConfigProvider</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="top.search.panel">
+                <arguments>
+                    <argument name="configProvider" xsi:type="object">Magento\Search\ViewModel\ConfigProvider</argument>
+                </arguments>
+            </referenceBlock>
+	</body>
+</page>

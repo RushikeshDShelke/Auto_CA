@@ -1,0 +1,52 @@
+<?php
+$theme_helper = $this->helper( 'Olegnax\Athlete2\Helper\Helper' );
+$at_settings	 = $theme_helper->getConfig( 'athlete2_settings/contacts_page' );
+
+if ( $at_settings[ 'first_block_type' ] === 'google_map' ) {
+	if ( $theme_helper->isActivePlugin( 'Olegnax_GoogleMap' ) && $at_settings[ 'google_map_module' ]) {
+		echo $this->getChildHtml( 'ox.google.map' );
+	} else {
+
+		$google_map_api_key		 = $at_settings[ 'google_map_api_key' ];
+		$google_map_latitude	 = $at_settings[ 'google_map_latitude' ];
+		$google_map_longitude	 = $at_settings[ 'google_map_longitude' ];
+		$google_map_zoom		 = $at_settings[ 'google_map_zoom' ] ?: 4;
+		$svgColor1 = $at_settings[ 'google_map_pin_color1' ] ?: '#000000';
+		$svgColor2 = $at_settings[ 'google_map_pin_color2' ] ?: '#f8e749';
+		?>
+		<div id="contact-page-gmap" ></div>
+		<script>
+			function initMap() {
+				// The location of Uluru
+				var uluru = { lat: <?= $google_map_latitude ?>, lng: <?= $google_map_longitude ?> };
+				// The map, centered at Uluru
+				var map = new google.maps.Map(
+					document.getElementById( 'contact-page-gmap' ), { zoom: <?= $google_map_zoom ?>, center: uluru, mapTypeControlOptions: { mapTypeIds: [] }, streetViewControl: false } );
+			   // Marker SVG
+					var athleteMarkerSvg = [
+						'<svg id="athlete-marker" data-name="athlete-marker" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 48.4">',
+																'<circle fill="{{ color2 }}" cx="17" cy="17" r="17"/>',
+																'<circle fill="{{ color }}" cx="17" cy="17" r="6"/>',
+																'<polyline fill="{{ color3 }}" points="30.9 26.8 17.1 48.4 2.6 26"/>',
+															'</svg>'
+						].join('\n');
+				var athleteMarker = athleteMarkerSvg.replace('{{ color }}', '<?= $svgColor2 ?>').replace('{{ color2 }}', '<?= $svgColor1 ?>').replace('{{ color3 }}', '<?= $svgColor1 ?>');
+				 // The marker, positioned at Uluru
+				var marker = new google.maps.Marker( { 
+					position: uluru, 
+					map: map, 
+					icon: { url: 'data:image/svg+xml;charset=UTF-8;base64,' + btoa(athleteMarker), scaledSize: new google.maps.Size(34, 48) }, optimized: false
+					/*icon: { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(athleteMarker), scaledSize: new google.maps.Size(34, 48) },*/
+				} );
+			}
+		</script>
+		<!--Load the API from the specified URL
+		* The async attribute allows the browser to render the page while the API loads
+		* The key parameter will contain your own API key (which is not needed for this tutorial)
+		* The callback parameter executes the initMap() function
+		-->
+		<script async defer
+				src="https://maps.googleapis.com/maps/api/js?key=<?= $google_map_api_key ?>&callback=initMap">
+		</script>
+<?php }
+}

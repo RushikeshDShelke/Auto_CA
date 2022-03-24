@@ -1,0 +1,231 @@
+<div class="container main-container vendor-container">
+    <h1 class="text-center"><?php /* @escapeNotVerified */ echo __('Upload Products'); ?></h1>
+    <div class="row">
+        <div class="col-md-12 form-container">
+            <form name="import_csv_products"
+                  id="import_csv_products"
+                  action="<?php echo $block->getUrl('*/*/*') ?>"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <input type="hidden"
+                       value="<?php echo time(); ?>"
+                       name="salt"
+                />
+                <input name="attributeSetId"
+                       id="attributeSetId"
+                       value="<?php echo $block->getSelectedAttributeSetId(); ?>"
+                       type="hidden"
+                />
+
+                <div class="col-md-12">
+                    <h4><?php /* @escapeNotVerified */ echo __('Select Attributes Set');?></h4>
+                    <select id="attributesetchoose"
+                            name="attributesetchoose"
+                            onchange="hiddenAttributeValue()">
+                        <option selected value="0"></option>
+                        <?php $entityType = $block->getEntityTypeId(); ?>
+                        <?php $collection = $block->getAttributeSetCollection(); ?>
+                        <?php foreach ($collection as $attributeSet) : ?>
+                            <?php
+                            $selected = $attributeSet->getAttributeSetId() === $block->getSelectedAttributeSetId()
+                                ? 'selected="selected"'
+                                : '';
+                            ?>
+                            <option <?php echo $selected; ?>
+                                    value="<?php echo $attributeSet->getAttributeSetId();?>">
+                                <?php echo $attributeSet->getAttributeSetName(); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <?php if ($block->isUploadDone()) : ?>
+                <div id="choice" style="display: block;">
+                <?php else : ?>
+                <div id="choice" style="display: none;">
+                <?php endif; ?>
+                    <div>
+                        <div class="col-md-12">
+                            <a class="download_csv" id="download" onclick="download_csv();return false;" href="#">
+                                <?php /* @escapeNotVerified */ echo __('Download');?>
+                            </a>
+                            <p><?php /* @escapeNotVerified */ echo __('CSV schema.');?></p>
+
+                            <?php if ($block->getStoreConfig('configuration/csv_import/how_many_product_can_be_imported')) : ?>
+                                <p class="lead"><?php /* @escapeNotVerified */ echo __(sprintf('You can upload %d products in a row.', $block->getStoreConfig('configuration/csv_import/how_many_product_can_be_imported'))); ?></p>
+                            <?php endif; ?>
+
+                            <p class="lead">
+                                <div style="display:none;">
+                                    <ul>
+                                        <li><?php /* @escapeNotVerified */ echo __('1. Upload images needed for products')?></li>
+                                        <li><?php /* @escapeNotVerified */ echo __('2. Upload CSV')?></li>
+                                    </ul>
+                                </div>
+                                <span class="showInstructions"><?php /* @escapeNotVerified */ echo __('Show instructions'); ?></span>
+                            </p>
+
+                            <?php if ((int)ini_get('allow_url_fopen') === 0) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php /* @escapeNotVerified */ echo __('Your server has disabled option <strong>allow_url_fopen</strong>, it can be problem to download assigned images'); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <?php if ($block->isExists()) : ?>
+                        <div id="report">
+                            <div >
+                                <div class="container-fluid">
+                                    <div class="success">
+                                        <p><?php /* @escapeNotVerified */ echo __(sprintf('Success count : %d.', count($block->getSuccessfull()))); ?></p>
+                                        <?php if(count($block->getSuccessfull()) > 0): ?>
+                                            <p><a href="javascript:void()" class="expand-report"><?php echo __('Click here for full report'); ?></a></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" collapse-group" style="display: none;">
+                                <div class="container-fluid">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th><?php /* @escapeNotVerified */ echo __('Product ID'); ?></th>
+                                            <th><?php /* @escapeNotVerified */ echo __('Product Name'); ?></th>
+                                            <th><?php /* @escapeNotVerified */ echo __('SKU'); ?></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ($block->getSuccessfull() as $data) : ?>
+                                            <tr>
+                                                <td><?php echo $block->escapeHtml($data['product_id']); ?></td>
+                                                <td><?php echo $block->escapeHtml($data['product_name']); ?></td>
+                                                <td><?php echo $block->escapeHtml($data['sku']); ?></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="container-fluid">
+                                    <div class="error">
+                                        <p><?php echo __(sprintf('Failed count : %d.', count($block->getFailed()))); ?></p>
+                                        <?php if (count($block->getFailed()) > 0) : ?>
+                                            <p>
+                                                <a href="javascript:void()" class="expand-report"><?php /* @escapeNotVerified */ echo __('Click here for full report'); ?></a>
+                                            </p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" collapse-group" style="display: none;">
+                                <div class="container-fluid">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th><?php /* @escapeNotVerified */ echo __('Line #'); ?></th>
+                                            <th><?php /* @escapeNotVerified */ echo __('Field'); ?></th>
+                                            <th><?php /* @escapeNotVerified */ echo __('Message'); ?></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ($block->getFailed() as $data) : ?>
+                                            <tr>
+                                                <td><?php echo $block->escapeHtml($data['line']); ?></td>
+                                                <td><?php echo $block->escapeHtml($data['attribute_code']); ?></td>
+                                                <td><?php echo $block->escapeHtml($data['message']); ?></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="col-md-12 form-group" style="margin-top: 15px;">
+                        <label for="upload-images"
+                               class="required control-label"><?php /* @escapeNotVerified */ echo __('Product Images'); ?></label>
+                        <div class="MultiFile-wrap"
+                             id="upload-images_wrap">
+                            <input type="file"
+                                   id="upload-images"
+                                   class="multi MultiFile-applied"
+                                   name="files[]"
+                                   maxlength="999999999999999999"
+                                   multiple="" value=""
+                            />
+                            <div class="MultiFile-list" id="upload-images_wrap_list"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="file"
+                               class="control-label"><?php /* @escapeNotVerified */ echo __('CSV File'); ?></label>
+                        <input type="file"
+                               name="file"
+                        />
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <input type="submit"
+                               name="submit"
+                               class="btn btn-primary"
+                               id="submit"
+                               value="Start Import"
+                        />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('.expand-report').on('click', function (e) {
+            e.preventDefault();
+            var $this = jQuery(this);
+            var $collapse = $this.parent().parent().parent().parent().next();
+            $collapse.slideToggle();
+        });
+        jQuery('.showInstructions').on('click', function () {
+            jQuery(this).prev().slideToggle();
+        });
+        jQuery('#attributesetchoose').change(function () {
+            if (jQuery(this).val() == "0") {
+                jQuery('#choice').hide();
+            }
+            else {
+                jQuery('#choice').show();
+            }
+        });
+    });
+
+    function download_csv() {
+        var url;
+        var attributesetchoose = document.getElementById('attributesetchoose');
+
+        if (attributesetchoose.value !== 0) {
+            url = '<?php echo $block->getUrl('supplier/import/downloadproductcsv') ?>';
+            url = url + 'attributeSetId/' + attributesetchoose.value;
+            window.location = url;
+        } else {
+            alert("Please choose attribute set.");
+            return false;
+        }
+    }
+
+    function hiddenAttributeValue() {
+        var attributesetchoose = document.getElementById('attributesetchoose');
+        var hidden = document.getElementById('attributeSetId');
+        if (attributesetchoose.value !== 0) {
+            hidden.value = attributesetchoose.value;
+        } else {
+            alert("Error.");
+            return false;
+        }
+    }
+</script>

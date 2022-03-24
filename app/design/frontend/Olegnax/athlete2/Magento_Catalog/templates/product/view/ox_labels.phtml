@@ -1,0 +1,13 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+//$_product = $block->getProduct();
+$theme_helper = $this->helper('Olegnax\Athlete2\Helper\Helper');
+if ( $theme_helper->isActivePlugin( 'Olegnax_ProductLabel' ) ) {
+	echo $this->helper( 'Olegnax\ProductLabel\Helper\Helper' )->showLabelsProduct();
+} 
+?>

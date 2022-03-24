@@ -1,0 +1,27 @@
+<?php
+$helper = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/general');
+$expand = $helper['expand'];
+if ($expand) {
+    $selector = $helper['expand_selectors'] ?: '';
+    $height = abs((int)$helper['expand_height']);
+    $height = $block->escapeHtmlAttr($height ?: 90);
+    if ($selector) { ?>
+		<script type="text/javascript">
+            require(['jquery', 'OXExpand'], function ($) {
+                var load = function () {
+                    $('<?= $block->escapeHtml($selector) ?>').OXExpand({
+                        isMin: true,
+                        maxHeight: <?= $height ?>,
+                        more: '<?= __('Show more') ?>',
+                        less: '<?= __('Show less') ?>',
+                        checkCurrentSize: true
+                    });
+                };
+                $(function () {
+                    $('body').off('contentUpdated.oxexpand').on('contentUpdated.oxexpand', load);
+                    load();
+                });
+            });
+		</script>
+    <?php }
+}

@@ -1,0 +1,23 @@
+<?php
+$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/header');
+$header_classes = 'header--layout-' . substr($at_settings['header_layout'], -1);
+if( $at_settings['header_fullwidth'] ) {
+	$header_classes .= ' header--full-width';
+}
+?>
+<div class="page-header <?= $block->escapeHtmlAttr($header_classes) ?>">
+	<div class="sticky-wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col header__content-wrapper">
+					<div class="logo__container">
+							<?php echo $this->getChildHtml( "logo" ); ?>
+					</div>
+					<div class="flex-right flex-row">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

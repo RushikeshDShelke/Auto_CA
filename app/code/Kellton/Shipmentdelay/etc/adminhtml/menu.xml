@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Kellton_Shipmentdelay::parent" title="Shipment Delay" module="Kellton_Shipmentdelay" sortOrder="100" resource="Kellton_Shipmentdelay::parent"/>
+       
+		<add id="Kellton_Shipmentdelay::shipmentdelay" title="Manage Shipmentdelay" module="Kellton_Shipmentdelay" sortOrder="20" parent="Kellton_Shipmentdelay::parent" action="shipmentdelay/shipmentdelay" resource="Kellton_Shipmentdelay::shipmentdelay"/>
+
+    </menu>
+</config>

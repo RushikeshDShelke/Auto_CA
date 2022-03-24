@@ -1,0 +1,38 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    
+    .payment-method-braintree.payment-method  {
+        .cvv {
+          max-width: 220px;
+          position: relative;
+
+          .field-tooltip {
+            top: 12px;
+            right: @indent__l;
+          }
+        }
+        .hosted-control{
+            box-sizing:content-box;
+        }
+        .braintree-credit-card-selected {
+          position: absolute;
+          z-index: 10;
+          left: 10px;
+        }
+    }
+    .inputs-style--underlined{
+        .payment-method-braintree.payment-method {
+            .fieldset {
+                > .field,
+                > .fields > .field {
+                    .label {
+                        margin-bottom:5px;
+                    }
+                }
+            }
+        }
+    }
+}

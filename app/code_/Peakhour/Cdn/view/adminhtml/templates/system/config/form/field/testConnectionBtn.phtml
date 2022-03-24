@@ -1,0 +1,24 @@
+<?php echo $block->getButtonHtml() ?>
+
+<div class="message message-error" id="peakhour-connection-error-msg" style="display: none">
+</div>
+
+<div class="message message-success" id="peakhour-connection-success-msg" style="display: none">
+</div>
+
+<div class="message message-warning" id="peakhour-connection-warning-msg" style="display: none">
+</div>
+
+<?php
+    $testUrl = $block->getUrl('adminhtml/cdn/testConnection')
+?>
+
+<script type="text/x-magento-init">
+ {
+     "*": {
+         "Peakhour_Cdn/js/test_connection": {
+             "testUrl": "<?php echo $block->escapeJsQuote($testUrl);?>"
+         }
+     }
+ }
+</script>

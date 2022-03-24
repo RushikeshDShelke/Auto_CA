@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @var $block \MagicToolbox\MagicZoomPlus\Block\Template
+ */
+
+$id = $block->getData('id');
+$mainHTML = $block->getData('mainHTML');
+$selectorsArray = $block->getData('selectorsArray');
+$selectorMaxWidth = $block->getData('selectorMaxWidth');
+$additionalClasses = $block->getData('additionalClasses');
+$scrollOptions = $block->getData('scrollOptions');
+$thumbSwitcherOptions = $block->getData('thumbSwitcherOptions');
+?>
+<div class="MagicToolboxContainer selectorsLeft minWidth"<?= $thumbSwitcherOptions ?>>
+<?php
+if (count($selectorsArray)) {
+?>
+    <div class="MagicToolboxSelectorsContainer<?php if (count($selectorsArray) == 1) echo ' hidden-container' ?>" style="flex-basis: <?= $selectorMaxWidth ?>px; width: <?= $selectorMaxWidth ?>px;">
+        <div id="MagicToolboxSelectors<?= $id ?>" class="<?= $additionalClasses ?>"<?= $scrollOptions ?>>
+        <?= join("\n\t\t", $selectorsArray); ?>
+        </div>
+    </div>
+<?php
+}
+?>
+    <div class="MagicToolboxMainContainer">
+        <?= $mainHTML; ?>
+    </div>
+</div>

@@ -1,0 +1,207 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-tooltip__hover__z-index: @tooltip__z-index;
+@checkout-tooltip-icon__width: 24px;
+@checkout-tooltip-icon-arrow__font-size: 10px;
+@checkout-tooltip-icon-arrow__left: -( @checkout-tooltip-content__padding + @checkout-tooltip-icon-arrow__font-size - @checkout-tooltip-content__border-width - 2);
+
+@checkout-tooltip-icon__color: #000000;
+@checkout-tooltip-icon__content: @icon-help;
+@checkout-tooltip-icon__font-size: 18px;
+@checkout-tooltip-icon__hover__color: #ffffff;
+
+@checkout-tooltip-content__background-color: #202020;
+@checkout-tooltip-content__border-color: @color-gray60;
+@checkout-tooltip-content__border-width: 0;
+@checkout-tooltip-content__font-size: @font-size__base;
+@checkout-tooltip-content__padding: 12px;
+@checkout-tooltip-content__width: 270px;
+@checkout-tooltip-content__active__border-color: @checkout-tooltip-content__background-color;
+
+@checkout-tooltip-content-mobile-popup__width: 200px;
+@checkout-tooltip-content-mobile__right: 10px;
+@checkout-tooltip-content-mobile__top: 30px + @checkout-tooltip-icon-arrow__font-size;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .field-tooltip .field-tooltip-action {
+        .lib-icon-text-hide();
+    }
+    .field-tooltip {
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 6px;
+
+        &._active {
+            .lib-css(z-index, @checkout-tooltip__hover__z-index);
+
+            .field-tooltip-content {
+                display: block;
+            }
+
+            .field-tooltip-action {
+                &:before {
+                    .lib-css(color, @checkout-tooltip-icon__hover__color);
+                    .lib-css(background-color, #000000);
+                }
+            }
+        }
+        
+        .label {
+            .lib-visually-hidden();
+        }
+
+
+        .field-tooltip-action {
+            display: inline-block;
+            text-decoration: none;
+            &:before{
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                font-size: @checkout-tooltip-icon__font-size;
+                line-height: 19px;
+                color: @checkout-tooltip-icon__color;
+                content: '?';
+                font-family: @main-font;
+                display: inline-block;
+                font-weight: @font-weight__black;
+                border: 2px solid @checkout-tooltip-icon__color;
+                overflow: hidden;
+                width: @checkout-tooltip-icon__width;
+                height: @checkout-tooltip-icon__width;
+                speak: none;
+                text-align: center;
+                transition: all 0.2s ease;
+            }
+            &:hover{
+                &:before{
+                    .lib-css(background-color, #000000);
+                    .lib-css(color, @checkout-tooltip-icon__hover__color);
+                }
+            }
+            &:focus {
+                ._keyfocus & {
+                    .lib-css(z-index, @checkout-tooltip__hover__z-index);
+
+                    + .field-tooltip-content {
+                        display: block;
+                    }
+
+                    &:before {
+                        .lib-css(color, @checkout-tooltip-icon__hover__color);
+                        .lib-css(background-color, #000000);
+                    }
+                }
+            }
+        }
+
+        .field-tooltip-content {
+            color: #ffffff;
+            .lib-css(background, @checkout-tooltip-content__background-color);
+            .lib-css(border, @checkout-tooltip-content__border-width solid @checkout-tooltip-content__border-color);
+            .lib-css(border-radius, @checkout-tooltip-content__border-width);
+            .lib-css(font-size, @checkout-tooltip-content__font-size);
+            .lib-css(padding, @checkout-tooltip-content__padding);
+            .lib-css(width, @checkout-tooltip-content__width);
+            display: none;
+            left: 38px;
+            position: absolute;
+            text-transform: none;
+            top: -9px;
+            word-wrap: break-word;
+            z-index: 2;
+
+            &:before,
+            &:after {
+                .lib-arrow(
+                @_position: left,
+                @_size: @checkout-tooltip-icon-arrow__font-size,
+                @_color: @checkout-tooltip-content__background-color
+                );
+                .lib-css(left, @checkout-tooltip-icon-arrow__left);
+                .lib-css(top, @checkout-tooltip-content__padding);
+                content: '';
+                display: block;
+                position: absolute;
+                z-index: 3;
+            }
+
+            &:before {
+                .lib-css(border-right-color, @checkout-tooltip-content__active__border-color);
+            }
+
+            &:after {
+                .lib-css(border-right-color, @checkout-tooltip-content__background-color);
+                width: 1px;
+                z-index: 4;
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .modal-popup {
+        .field-tooltip {
+            .field-tooltip-content {
+                .lib-css(width, @checkout-tooltip-content-mobile-popup__width);
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break >= @screen__m) {
+    .field-tooltip {
+        .field-tooltip-content {
+            .lib-css(right, -@checkout-tooltip-content-mobile__right);
+            .lib-css(top, @checkout-tooltip-content-mobile__top);
+            left: auto;
+            &:extend(.abs-checkout-tooltip-content-position-top-mobile all);
+        }
+    }
+}
+
+//
+//  Tablet
+//  _____________________________________________
+
+@media only screen and (max-width: @screen__m) {
+    .field-tooltip .field-tooltip-content {
+        left: auto;
+        right: -10px;
+        top: 40px;
+    }
+    .field-tooltip .field-tooltip-content::before,
+    .field-tooltip .field-tooltip-content::after {
+        border: 10px solid transparent;
+        height: 0;
+        left: auto;
+        margin-top: -21px;
+        right: 10px;
+        top: 0;
+        width: 0;
+    }
+    .field-tooltip .field-tooltip-content::before {
+        .lib-css(border-bottom-color, @checkout-tooltip-content__border-color);
+    }
+    .field-tooltip .field-tooltip-content::after {
+        .lib-css(border-bottom-color, @checkout-tooltip-content__background-color);
+        top: 1px;
+    }
+}
+

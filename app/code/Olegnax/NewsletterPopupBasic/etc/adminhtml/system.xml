@@ -1,0 +1,311 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="olegnax_newsletterpopupbasic" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+				 translate="label">
+			<label>Newsletter Popup</label>
+			<tab>olegnax</tab>
+			<resource>Olegnax_NewsletterPopupBasic::config_olegnax_newsletterpopupbasic</resource>
+			<group id="info" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+				<frontend_model>Olegnax\NewsletterPopupBasic\Block\Adminhtml\System\Config\Form\Info</frontend_model>
+			</group>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label"
+					   type="select">
+					<label>Enable</label>
+					<frontend_class>on-off-trigger</frontend_class>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="many_times" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+					   translate="label" type="select">
+					<label>How often to show</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\ManyTimes</source_model>
+				</field>
+				<field id="cookie_expire" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="11"
+					   translate="label" type="text">
+					<label>Cookie Expire</label>
+                                        <comment>Number only. Values set in days. E.g. to set expiration fo 24 days simply type 24. This is the time for how long popup will not be shown again if visitor clicked "do not show this popup again" link or if "How often to show" set to show only once.</comment>
+                                        <validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+				<field id="cookie_sufix" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="12"
+					   translate="label" type="text">
+					<label>Cookie Suffix</label>
+                                        <comment>You can set unique cookie suffix and all visitor, even those who clicked "do not show this popup again" will see it again. You may need this if you, for example use popup as banner and change this banner from time to time. Otherwise people who once closed your popup will not be able to see it until cookie expires and may miss your promotions.</comment>
+				</field>
+				<field id="timeout" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="14" translate="label comment"
+					   type="text">
+					<label>Timeout</label>
+					<comment>Pause between the loaded page and the appearance of the banner</comment>
+					<validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+				<field id="show_mobile" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="16"
+					   translate="label" type="select">
+					<label>Shown on Mobile</label>
+					<frontend_class>on-off-trigger</frontend_class>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="position_h" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="17" translate="label"
+					   type="select">
+					<label>Modal Position Horizontal</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\PositionH</source_model>
+				</field>
+				<field id="position_v" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="18" translate="label"
+					   type="select">
+					<label>Modal Position Vertical</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\PositionV</source_model>
+				</field>
+				<field id="layout" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label"
+					   type="select">
+					<label>Modal Layout</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\Layout</source_model>
+				</field>
+				<field id="column_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="22" translate="label comment"
+					   type="text">
+					<label>Modal Image Column Width in %</label>
+					<comment>Content column will take up the remaining space.</comment>
+				</field>
+				<field id="width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="31" translate="label comment"
+					   type="text">
+					<label>Modal Width</label>
+					<validate>validate-digits validate-zero-or-greater</validate>
+					<comment>Number only.</comment>
+				</field>
+				<field id="height" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="32" translate="label comment"
+					   type="text">
+					<label>Modal Height</label>
+					<validate>validate-digits validate-zero-or-greater</validate>
+					<comment>Number only. Leave empty for auto height.</comment>
+				</field>
+				<field id="mobile_width" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="33" translate="label comment"
+					   type="text">
+					<label>Modal Width on Mobile</label>
+					<validate>validate-digits validate-zero-or-greater</validate>
+					<comment>Screen width below 640px.</comment>
+				</field>
+				<field id="mobile_height" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="33" translate="label comment"
+					   type="text">
+					<label>Modal Height on Mobile</label>
+					<validate>validate-digits validate-zero-or-greater</validate>
+					<comment>Screen width below 640px. If modal height is bigger than the screen height, it will be limited to screen height.</comment>
+				</field>
+				<field id="mobile_image_height" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="34" translate="label comment"
+					   type="text">
+					<label>Modal Image Column Height on Mobile</label>
+					<validate>validate-digits validate-zero-or-greater</validate>
+					<comment>Screen width below 640px. Set 0 to not show image block on mobile. Leave empty for 70% height to width ratio.</comment>
+				</field>
+				<field id="padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label comment"
+					   type="text">
+					<label>Modal Padding</label>
+					<comment>Number only.</comment>
+					<validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+				<field id="tablet_padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="41" translate="label comment"
+					   type="text">
+					<label>Modal Padding on Tablet</label>
+					<comment>Number only. Screen width 640-1024px.</comment>
+					<validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+				<field id="mobile_padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="42" translate="label comment"
+					   type="text">
+					<label>Modal Padding on Mobile</label>
+					<comment>Number only. Screen width below 640px.</comment>
+					<validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+				<field id="content_padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="43" translate="label comment"
+					   type="text">
+					<label>Modal Content Padding</label>
+					<comment>Number only.</comment>
+					<validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+                                <field id="tablet_content_padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="44" translate="label comment"
+					   type="text">
+					<label>Modal Content Padding on Tablet</label>
+					<comment>Number only. Screen width below 640px.</comment>
+					<validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+				<field id="mobile_content_padding" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="45" translate="label comment"
+					   type="text">
+					<label>Modal Content Padding on Mobile</label>
+					<comment>Number only. Screen width below 640px.</comment>
+					<validate>validate-digits validate-zero-or-greater</validate>
+				</field>
+				<field id="form_layout" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="52" translate="label comment"
+					   type="select">
+					<label>Newsletter Form Layout</label>
+					<comment>Choose position of the button in subscribe form widget.</comment>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\FormLayout</source_model>
+				</field>
+				<field id="content_position_h" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="53" translate="label"
+					   type="select">
+					<label>Content Align Horizontal</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\PositionH</source_model>
+				</field>
+				<field id="content_position_v" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="54" translate="label"
+					   type="select">
+					<label>Content Align Vertical</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\PositionV</source_model>
+				</field>
+				<field id="show_shadow" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="55"
+					   translate="label" type="select">
+					<label>Shown Fullscreen Overlay</label>
+					<frontend_class>on-off-trigger</frontend_class>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="clickable_overlay" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="56"
+					   translate="label" type="select">
+					<label>Clickable Overlay</label>
+					<frontend_class>on-off-trigger</frontend_class>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                                        <comment>Close modal when clicked on overlay.</comment>
+                                        <depends>
+                                            <field id="show_shadow">1</field>
+                                        </depends>
+				</field>
+  
+			</group>
+			<group id="content" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+				<label>Content</label>
+				<field id="column_image" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+					   translate="label comment"
+					   type="Magento\Config\Block\System\Config\Form\Field\Image">
+					<label>Modal Column Background Image</label>
+					<comment>Allowed file types:PNG, GIF, JPG, JPEG, SVG.</comment>
+					<backend_model>Olegnax\NewsletterPopupBasic\Model\Config\Backend\Image</backend_model>
+					<base_url type="media" scope_info="1">ox_newsletter_popup</base_url>
+					<upload_dir config="system" scope_info="1">ox_newsletter_popup</upload_dir>
+					<comment>This will add image on background to one of the columns(left/right) depending on the modal content layout.</comment>
+				</field>
+				<field id="content" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label"
+					   type="editor">
+					<label>Modal Content</label>
+					<frontend_model>Olegnax\NewsletterPopupBasic\Block\Adminhtml\System\Config\Form\Editor</frontend_model>
+					<comment><![CDATA[Add following widget to content to output subscribe form {{block class="Magento\Newsletter\Block\Subscribe" template="Magento_Newsletter::subscribe_form.phtml"}}]]></comment>
+				</field>
+			</group>
+			<group id="appearance" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label">
+				<label>Appearance</label>
+				<field id="background_color" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10"
+					   translate="label" type="text">
+					<label>Modal Background Color</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="bg_image_enabled" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Modal Background Image</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<frontend_class>on-off-trigger</frontend_class>
+				</field>
+				<field id="background_image" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="12"
+					   translate="label comment"
+					   type="Magento\Config\Block\System\Config\Form\Field\Image">
+					<label>Modal Background Image</label>
+					<comment>Allowed file types:PNG, GIF, JPG, JPEG, SVG.</comment>
+					<backend_model>Olegnax\NewsletterPopupBasic\Model\Config\Backend\Image</backend_model>
+					<base_url type="media" scope_info="1">ox_newsletter_popup</base_url>
+					<upload_dir config="system" scope_info="1">ox_newsletter_popup</upload_dir>
+					<comment>This option will add background image to the modal wrapper.</comment>
+					<depends>
+						<field id="bg_image_enabled">1</field>
+					</depends>
+				</field>
+				<field id="bg_position_y" translate="label comment" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Modal Background Image Position Y</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\BgPositionY</source_model>
+					<depends>
+						<field id="bg_image_enabled">1</field>
+					</depends>
+				</field>
+				<field id="bg_position_x" translate="label comment" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Modal Background Image Position X</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\BgPositionX</source_model>
+					<depends>
+						<field id="bg_image_enabled">1</field>
+					</depends>
+				</field>
+				<field id="bg_repeat" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Modal Background Image Repeat</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\BgRepeat</source_model>
+					<depends>
+						<field id="bg_image_enabled">1</field>
+					</depends>
+				</field>
+				<field id="bg_size" translate="label comment" type="select" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Modal Background Image Bg Size</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\BgSize</source_model>
+					<depends>
+						<field id="bg_image_enabled">1</field>
+					</depends>
+				</field>
+				<field id="spacer_1" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Olegnax\Core\Model\Spacer</frontend_model>
+					<depends>
+						<field id="bg_image_enabled">1</field>
+					</depends>
+				</field>
+				<field id="newsletter_text_color" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Modal Text Color</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_titles_color" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Modal Titles Color</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="close_button_bg" translate="label" type="text" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Close Button Background</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="close_button_icon_color" translate="label" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Close Button Icon Color</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="close_button_bg_hover" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Close Button Background on Hover</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="close_button_icon_color_hover" translate="label" type="text" sortOrder="32" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Close Button Icon Color on Hover</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_input_style" translate="label" type="select" sortOrder="34" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter Input Style</label>
+					<source_model>Olegnax\NewsletterPopupBasic\Model\Config\Source\InputStyle</source_model>
+					<frontend_class>on-off-trigger</frontend_class>
+				</field>
+				<field id="newsletter_input_bg" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block input Background</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_input_border_color" translate="label" type="text" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block input Border Color</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_input_border_focus" translate="label" type="text" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block input Border on Focus</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_input_color" translate="label" type="text" sortOrder="46" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block input text Color</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_button_color" translate="label" type="text" sortOrder="48" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block button text Color</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_button_bg" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block button background</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_button_hover" translate="label" type="text" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block button text hover</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+				<field id="newsletter_button_hover_bg" translate="label" type="text" sortOrder="54" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Newsletter block button background hover</label>
+					<frontend_class>ox-ss-colorpicker</frontend_class>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

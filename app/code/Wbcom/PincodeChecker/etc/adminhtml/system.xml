@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="wbcompin" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="200">
+            <label>PincodeChecker</label>
+            <tab>wbcomcore</tab>
+            <resource>Wbcom_PincodeChecker::wbcom_cofig</resource>
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20">
+                <label>General Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="delivery_not" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Delivery Not Available (Message)</label>
+                    <comment>Message for delivery of product is not available for that pincode.</comment>
+                </field>
+                <field id="delivery_possible" translate="label" type="textarea" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Delivery Available Without COD (Message)</label>
+                    <comment>Message for delivery of product is available without COD.</comment>
+                </field>
+                <field id="delivery_possible_code" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Delivery Available With COD (Message)</label>
+                    <comment>Message for delivery of product is available with COD.</comment>
+                </field>
+            </group>
+            <group id="pincolor" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30">
+                <label>Pincode Form Color Management</label>
+                <field id="header_back" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pincode Form Background</label>
+                    <comment>Pincode form color on product page.</comment>
+                    <frontend_model>Wbcom\PincodeChecker\Block\Pincode\Color</frontend_model>
+                </field>
+                <field id="btn_color" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pincode Checker Button Color</label>
+                    <comment>Pincode checker button color on product page.</comment>
+                    <frontend_model>Wbcom\PincodeChecker\Block\Pincode\Color</frontend_model>
+                </field>
+                <field id="inner_field_color" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Field Inner Color</label>
+                    <comment>Pincode checker text field color on product page.</comment>
+                    <frontend_model>Wbcom\PincodeChecker\Block\Pincode\Color</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

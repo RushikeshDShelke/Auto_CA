@@ -1,0 +1,22 @@
+{
+    "name": "olegnax/module-productlabel",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "mail@olegnax.com",
+            "name": "Olegnax"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Olegnax\\ProductLabel\\": ""
+        }
+    }
+}

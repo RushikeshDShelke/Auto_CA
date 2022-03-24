@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product');
+if($at_settings['brand'] && $this->helper('Olegnax\Athlete2\Helper\ProductList')->isActivePlugin( 'Olegnax_BrandSlider' )) {
+	$_product = $block->getProduct();
+	$brandImageSize = '';
+	$altBrandImage = !$at_settings['brand_image_alt'];
+	$brandImageWidth = $at_settings['brand_image_width'];
+	$brandImageHeight = $at_settings['brand_image_height'] ?: $at_settings['brand_image_width'];
+	if($brandImageWidth && $brandImageHeight) {
+		$brandImageSize = [$brandImageWidth, $brandImageHeight];
+	}
+	echo $this->helper( 'Olegnax\BrandSlider\Helper\Helper' )->getProductBrandImage( $_product, $altBrandImage, $brandImageSize );
+}

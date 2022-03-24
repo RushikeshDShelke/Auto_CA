@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="page.main.title" destination="main" before="-"/>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-delimiter-logout" template="Magento_Customer::account/navigation-delimiter.phtml">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">30</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-logout-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">customer/account/logout</argument>
+                    <argument name="label" xsi:type="string">Logout</argument>
+                    <argument name="sortOrder" xsi:type="number">31</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="sidebar.main.account_nav">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Customer::account/collapsible_nav.phtml</argument>
+            </action>
+            <arguments>
+                <argument name="block_title" translate="true" xsi:type="string">My Account</argument>
+                <argument name="block_css" xsi:type="string">account-nav</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true" />
+        <referenceBlock name="sidebar.additional" remove="true"/>
+    </body>
+</page>

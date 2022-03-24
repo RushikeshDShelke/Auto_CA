@@ -1,0 +1,78 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+
+?>	
+<form class="form minisearch" id="search_mini_form" action="<?= $block->escapeUrl($helper->getResultUrl()) ?>" method="get">
+	<div class="header-search-container">
+	
+		<div class="search-hide" style="font-size: 25px">x</div>
+		<button type="text" class="search-ico" id="searchTerm"><span><i class="fa fa-search" aria-hidden="true"></i></span></button>
+                  <input id="search"
+                           data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form",
+                                "url":"<?= $block->escapeUrl($helper->getSuggestUrl())?>",
+                                "destinationSelector":"#search_autocomplete"}
+                           }'
+                           type="text"
+                           name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
+                           value="<?= $block->escapeHtmlAttr($helper->getEscapedQueryText()) ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Search entire store here...')) ?>"
+                           class="input-text required-entry"
+                           maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           autocomplete="off"
+                           aria-expanded="false" required/>
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <?= $block->getChildHtml() ?>
+                <div class="search-overlay"></div>
+            
+                <?php /*<button type="submit"
+                    title="<?= $block->escapeHtml(__('Search')) ?>"
+                    class="action search"
+                    aria-label="Search"
+                >
+                    <span><?= $block->escapeHtml(__('Search')) ?></span>
+                </button>*/?>
+            
+        
+    
+</div>
+<div class="search-button"> <?= $block->escapeHtml(__('Search')) ?><span><span><?= $block->escapeHtml(__('Search')) ?></span></span></div>
+
+</form>
+
+<script>
+require(['jquery'],function(){
+	jQuery(document).ready(function(){
+	   jQuery(".search-button").click(function(){
+		   jQuery(".header-search-container").show();
+		   jQuery("#search").focus();
+	   });
+	   jQuery(".search-hide").click(function(){
+		   jQuery(".header-search-container").hide();
+	   });
+       jQuery("#searchTerm").click(function(){
+           if(jQuery("#search").val() == ""){
+               alert("Please enter words to search");
+               return false;
+           }
+       });
+	});
+});
+</script> 

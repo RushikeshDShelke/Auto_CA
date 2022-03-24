@@ -1,0 +1,510 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Theme overrides
+//  _____________________________________________
+@import '_breakpoints.less';
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+@main-color: #ffe51e;
+@secondary-color: #535353;
+@theme-gray: @color-white-smoke;
+
+@font-family__sans-serif: Helvetica, Arial, sans-serif;
+@main-font: 'Open Sans', @font-family__sans-serif;
+@content-font: 'Roboto', Arial, sans-serif;
+@title-font: 'Poppins', @main-font;
+@tiny-font: Arial, sans-serif;
+
+@font-weight__light: 300;
+@font-weight__regular: 400;
+@font-weight__medium: 500;
+@font-weight__heavier: @font-weight__medium;
+@font-weight__semibold: 600;
+@font-weight__bold: 700;
+@font-weight__black: 800;
+@font-weight__extra: 900;
+
+@text__color__muted: #b3b3b3;
+@add-to-cart-button__height: 54px;
+@tocart-input-size: @add-to-cart-button__height;
+@tocart-input-width: 130px;
+
+//  Grid
+//  _____________________________________________
+@grid-action-icon-hover: #000000;
+@grid-action-icon-color:#ffffff;
+@sale-price-color:#00b9d5;
+
+@sidebar__background-color: #f8f8f8;
+
+// Pager
+//  _____________________________________________
+@pager__font-size: 14px;
+@pager__font-weight: @font-weight__bold;
+@pager-item__margin:0 4px 0 0;
+@pager-item-size: 38px;
+@pager__line-height:@pager-item-size;
+@pager-current__background: @main-color;
+@pager-current__color: #000000;
+@pager-current__border: none;
+@pager-action__border: none;
+@pager-action__visited__border: none;
+@pager-action__hover__border: none;
+@pager-action__active__border:none;
+@pager-icon__use: false;
+
+//  Header
+//  _____________________________________________
+@header-side-padding: 20px;
+
+@header-icons-color: #ffffff;
+@logo--width: 210px;
+@logo__container--bg-color: @main-color;
+@header-container__bg-color: #000000;
+@header--link-color: #fffff;
+@top-bar--bg-color: #202020;
+@top-bar--link-color: #d9d9d9;
+@top-bar--font: Arial, sans-serif;
+@menu-below--bg-color: #444444;
+
+@slideout--width: 450px;
+@slideout--height: 300px;
+@header-item__color:#000000;
+@header-item__hover__color:#ffffff;
+@header-item__hover__bg:#202020;
+@header_search-button--bg:@main-color;
+@header_search-button--bg-hover:#202020;
+@header_search-width: 285px;
+@header_search-button-size: 38px;
+@dropdown-list-item__hover: #f5f4f4;
+@top-bar-switch--link-bg: #f5f4f4;
+
+@navigation__background: transparent;
+
+// Icon buttons
+@icon-btn-hover-color: #000000;
+@icon-btn-hover-background: @main-color;
+@icon-btn-color: #ffffff;
+@icon-btn-background: #000000;
+
+@icon-remove: "\40";
+@icon-font: "athlete2";
+@icon-update: "\3f";
+@icon-calendar:"\5b";
+@icon-pointer-up: "\72";
+/*@icon-settings:'\3d';
+@icon-checkmark: '\2e';
+@icon-search: '\61';
+@icon-down: "\72";
+@icon-up: "\72";
+/*@icon-help
+@icon-expand
+@icon-pointer-right: "\72";
+@icon-pointer-left: "\72";*/
+// Popups
+@popup__border: none;
+@popup__padding: 30px;
+@popup__shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.11);
+@popup-icon-font__line-heigh: 40px;
+@modal-box-shadow: @popup__shadow;
+@popup-icon-font__size: 30px;
+@modal-action-close__font-size:@popup-icon-font__size;
+@popup-icon-font__color: @icon-btn-color;
+@popup__border-color: transparent;
+@modal-action-close__hover__color:@icon-btn-hover-color;
+
+//
+//  Buttons
+//  ---------------------------------------------
+
+@button__shadow: false;
+
+//  Font style
+@button__letter-spacing: -.03em; // theme
+@button__text-transform: uppercase; // theme
+//@button__padding: 0;
+@button__padding: 12px 16px;
+//@button__height: 30px;
+/*
+@button__span-padding: 0 12px;
+@button__span-height: 30px;*/
+@button__font-weight: @font-weight__black;
+//  Display settings
+@button__border-radius: 0;
+@button__disabled__opacity: .5;
+
+//  Default = secondary button
+@button__color: @color-white;
+@button__background: @color-black;
+@button__border: none;
+
+@button__hover__color: @color-black;
+@button__hover__background: @main-color;
+@button__hover__border: none;
+
+//  Primary button
+@button-primary__padding: @button__padding;
+
+@button-primary__color: @color-black;
+@button-primary__background: @main-color;
+@button-primary__border: false;
+@button-primary__active__color: @button-primary__color;
+@button__active__color: @button-primary__color;
+@button__active__background: @button-primary__background;
+    
+@button-primary__hover__color: @color-white;
+@button-primary__hover__background: @color-black;
+@button-primary__hover__border: none;
+
+//TODO
+//  Button with icon
+@button-icon__use: false;
+@button-icon__content: @icon-settings;
+@button-icon__font: @icon-font;
+@button-icon__font-size: 22px;
+@button-icon__line-height: @button-icon__font-size;
+@button-icon__color: inherit;
+@button-icon__margin: 0;
+@button-icon__vertical-align: top;
+@button-icon__position: @icon__position;
+@button-icon__text-hide: false;
+
+@button-icon__hover__font-color: inherit;
+@button-icon__active__font-color: inherit;
+
+//  Large button
+@button__font-size__l: @font-size__l;
+@button__line-height__l: @font-size__l + 4;
+@button__padding__l: 18px 27px;//14px 17px;
+
+//  Small button
+@button__font-size__s: 11px;
+@button__line-height__s: @button__font-size__s + 1;
+@button__padding__s: 8px 12px;
+
+
+
+//Medium button
+@button__padding__m: 14px 22px; // theme
+@button__padding__b: 18px 27px; // theme
+
+
+@zero: 0;
+
+//
+//  Navigation variables
+//  _____________________________________________
+
+@navigation__background: transparent; //e
+@navigation__border: '';
+
+@navigation-level0-item__font-size: 16px;//e
+@navigation-level0-item__font-weight: @font-weight__bold; 
+@navigation-level0-item__line-height: false;
+@navigation-level0-item__margin: 0;
+@navigation-level0-item__padding: 8px @indent__xl 8px 15px;
+@navigation-level0-item__text-transform: uppercase;
+
+@navigation-level0-item__background: '';
+@navigation-level0-item__border: none;//e
+@navigation-level0-item__color: #ffffff;
+@navigation-level0-item__text-decoration: none;
+
+@navigation-level0-item__active__background: '';
+@navigation-level0-item__active__border-color: none;//e
+@navigation-level0-item__active__border-style: solid;
+@navigation-level0-item__active__border-width: 0 0 0 8px;
+@navigation-level0-item__active__color: '';
+@navigation-level0-item__active__text-decoration: '';
+
+@submenu__background: '';
+@submenu__border: '';
+@submenu__padding-top: 20px;
+@submenu__padding-right: 20px;
+@submenu__padding-bottom: 20px;
+@submenu__padding-left: 20px;
+@submenu__font-size: 14px;
+@submenu__font-weight: @font-weight__regular;
+@submenu-item__line-height: 1;
+
+@submenu-item__background: '';
+@submenu-item__border: '';
+@submenu-item__color: #000000;
+@submenu-item__text-decoration: '';
+
+@submenu-item__active__background: '';
+@submenu-item__active__border: 0;
+@submenu-item__active__border-color: #000000;
+@submenu-item__active__border-style: solid;
+@submenu-item__active__border-width: 0 0 0 @submenu-item__active__border;
+@submenu-item__active__color: '';
+@submenu-item__active__text-decoration: '';
+
+//
+//  Desktop navigation
+//  ---------------------------------------------
+
+@navigation-desktop__background: @navigation__background;
+@navigation-desktop__font-size: @navigation-level0-item__font-size;//e
+@navigation-desktop__font-weight: @font-weight__bold;
+
+@navigation-desktop-level0-item__line-height: 27px;//e
+@navigation-desktop-level0-item__margin: 0 5px 0 0;
+@navigation-desktop-level0-item__padding: 0 9px;
+
+@navigation-desktop-level0-item__background: '';
+@navigation-desktop-level0-item__border: '';
+@navigation-desktop-level0-item__color: @navigation-level0-item__color;//e
+@navigation-desktop-level0-item__text-decoration: none;
+
+@navigation-desktop-level0-item__hover__background: '';
+@navigation-desktop-level0-item__hover__border: '';
+@navigation-desktop-level0-item__hover__color: #000000;//e
+@navigation-desktop-level0-item__hover__text-decoration: @navigation-desktop-level0-item__text-decoration;
+
+@navigation-desktop-level0-item__active__background: '';
+@navigation-desktop-level0-item__active__border-color: '';//e
+@navigation-desktop-level0-item__active__border-style: '';//e
+@navigation-desktop-level0-item__active__border-width: 0;//e
+@navigation-desktop-level0-item__active__color: @navigation-desktop-level0-item__hover__color;
+@navigation-desktop-level0-item__active__text-decoration: @navigation-desktop-level0-item__text-decoration;
+
+@submenu-desktop__background: @page__background-color;
+@submenu-desktop__border-width: false;//e
+@submenu-desktop__border-style: false;//e
+@submenu-desktop__border-color: false;//e
+@submenu-desktop__box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.08); //e
+@submenu-desktop__font-size: 14px;
+@submenu-desktop__font-weight: @font-weight__bold;
+@submenu-desktop__min-width: 230px;
+@submenu-desktop__padding: 15px 0;
+
+@submenu-desktop-arrow: true; // [true|false]
+@submenu-desktop-arrow__size: 10px;
+@submenu-desktop-arrow__left: 20px;
+
+@submenu-desktop-item__padding: 7px; //e 8px @indent__base;
+@submenu-desktop-item__background: transparent;//e
+@submenu-desktop-item__border: '';
+@submenu-desktop-item__color: #000000; //e
+@submenu-desktop-item__text-decoration: '';
+
+@submenu-desktop-item__hover__background: #000000;//e
+@submenu-desktop-item__hover__border: '';
+@submenu-desktop-item__hover__color: #ffffff;//e
+@submenu-desktop-item__hover__text-decoration: @navigation-desktop-level0-item__text-decoration;
+
+@submenu-desktop-item__active__background: '';
+@submenu-desktop-item__active__border-color: ''; // e @color-orange-red1
+@submenu-desktop-item__active__border-style: ''; //e solid;
+@submenu-desktop-item__active__border-width: ''; //e 0 0 0 3px;
+@submenu-desktop-item__active__color: '';
+@submenu-desktop-item__active__text-decoration: '';
+
+
+
+//
+//  Tabs
+//  ---------------------------------------------
+     
+//  Tabs controls
+@tab-control__font-size: 1.5rem;
+@tab-control__font-family: false;
+@tab-control__font-weight: @font-weight__black;
+@tab-control__line-height: 30px;
+@tab-control__height__base: @line-height__computed;
+@tab-control__height: 30px;
+
+@tab-control__margin-right: 0;
+@tab-control__padding-top: 6px;
+@tab-control__padding-right: 30px;
+@tab-control__padding-bottom: @tab-control__padding-top;
+@tab-control__padding-left: @tab-control__padding-right;
+@tab-control__border-color: @border-color__base;
+@tab-control__border-width: 0;
+
+//  Current tab
+@panel__background-color: transparent;
+@tab-control__background-color: @panel__background-color;
+@tab-control__color: #000;
+
+@tab-control__hover__background-color: @panel__background-color;
+@tab-control__hover__color: #fff;
+
+@tab-control__active__background-color: @panel__background-color;
+@tab-control__active__color: @tab-control__color;
+
+@tab-content__background-color: #f8f8f8;
+@tab-content__border-top-status: false;
+@tab-content__border: none;
+@tab-content__margin-top: @tab-control__height + @tab-control__border-width + @tab-control__padding-top + @tab-control__padding-bottom;
+
+@__tab_content_padding: 40px;
+@tab-content__padding-top: @__tab_content_padding;
+@tab-content__padding-right: @__tab_content_padding;
+@tab-content__padding-bottom: @__tab_content_padding;
+@tab-content__padding-left: @__tab_content_padding;
+
+//
+//  Accordion
+//  ---------------------------------------------
+@accordion-control__height:50px;
+@accordion-control__font-family: false;
+@accordion-control__font-size: 1.6rem;
+@accordion-control__line-height: @accordion-control__height - @accordion-control__padding-top - @accordion-control__padding-bottom;
+@accordion-control__background-color: #000000;
+@accordion-control__color: #ffffff;
+@accordion-control__margin-bottom: 15px;
+@accordion-control__padding-top: @tab-control__padding-top;
+@accordion-control__padding-right: 20px;
+@accordion-control__padding-bottom: @tab-control__padding-bottom;
+@accordion-control__padding-left: 50px;
+
+
+
+@accordion-control__hover__background-color: @main-color;
+@accordion-control__hover__color: #000000;
+
+@accordion-control__active__background-color: @main-color;
+@accordion-control__active__color: #000000;
+@accordion-control__visited__color: @accordion-control__active__color;
+
+@accordion-content__background-color: @tab-content__background-color;
+@accordion-content__margin: 0 0 @accordion-control__margin-bottom;
+@accordion-content__padding: @tab-content__padding-top @tab-content__padding-right @tab-content__padding-bottom @tab-content__padding-left;
+
+//
+//  Breadcrumbs
+//  ---------------------------------------------
+/*
+@breadcrumbs__container-margin: 0;
+@breadcrumbs-icon__use: false;
+@breadcrumbs__padding: 0;
+
+@breadcrumbs-current__color: @text__color__muted;
+@breadcrumbs-link__color: @text__color__muted;
+@breadcrumbs-link__visited__color: @breadcrumbs-link__color;
+@breadcrumbs-link__hover__color: #ffffff;
+@breadcrumbs-link__active__color: @breadcrumbs-link__color;
+*/
+
+//
+//  Headings
+//  ---------------------------------------------
+//@heading__line-height__base
+
+@heading__line-height__base: 1.1;
+@heading__color__base: #333333;
+@heading__font-style__base: false;
+@heading__margin-top__base: 0;
+@heading__margin-bottom__base: @indent__base;
+@heading__font-family__base: @main-font;
+
+@h1__font-size-mobile: 36px; 
+@h1__font-color: @heading__color__base;
+@h1__font-family: @title-font;
+@h1__font-weight: @font-weight__black;
+@h1__margin-top: 0;
+@h1__margin-bottom: @heading__margin-bottom__base;
+@h1__font-size: 48px; 
+
+@h2__font-size-mobile: 30px; 
+@h2__font-color: @heading__color__base;
+@h2__font-family: @title-font;
+@h2__font-weight: @font-weight__black;
+@h2__margin-top: 0;
+@h2__margin-bottom: @heading__margin-bottom__base;
+@h2__font-size: 36px; 
+
+@h3__font-size-mobile: 24px;
+@h3__font-color: @heading__color__base;
+@h3__font-family: @title-font;
+@h3__font-weight: @font-weight__black;
+@h3__margin-top: 0;
+@h3__margin-bottom: @heading__margin-bottom__base;
+@h3__font-size: 30px;
+
+@h4__font-size-mobile: 20px; 
+@h4__font-color: @heading__color__base;
+@h4__font-family: @heading__font-family__base;
+@h4__font-weight: @font-weight__bold;
+@h4__margin-top: 0;
+@h4__margin-bottom: @heading__margin-bottom__base;
+@h4__font-size: 24px;
+
+@h5__font-size-mobile: 18px; 
+@h5__font-color: @heading__color__base;
+@h5__font-family: @heading__font-family__base;
+@h5__font-weight: @font-weight__bold;
+@h5__margin-top: 0;
+@h5__margin-bottom: @heading__margin-bottom__base;
+@h5__font-size: 20px; 
+
+@h6__font-size-mobile: 14px;
+@h6__font-color: @heading__color__base;
+@h6__font-family: @heading__font-family__base;
+@h6__font-weight: @font-weight__bold;
+@h6__margin-top: 0;
+@h6__margin-bottom: @heading__margin-bottom__base;
+@h6__font-size: 16px;
+
+
+//
+//  Links
+//  ---------------------------------------------
+
+@link__color: #000000;
+@link__text-decoration: none;
+
+@link__visited__color: #000000;
+@link__visited__text-decoration: none;
+
+@link__hover__color: #000000;
+@link__hover__text-decoration: none;
+
+@link__active__color: #000000;
+@link__active__text-decoration: none;
+
+@link__transition: all 600ms ease-in-out;
+//
+//  Focus
+//  ---------------------------------------------
+
+@focus__color: #000;
+@focus__box-shadow: none;
+
+
+
+//  Form elements inputs default variables
+//  ---------------------------------------------
+
+@form-element-input__background: @color-white;
+@form-element-input__border-color: @color-gray76;
+@form-element-input__border: 1px solid @form-element-input__border-color;
+@form-element-input__border-radius:0;
+@form-element-input__height: 38px;
+@form-element-input__width: 100%;
+@form-element-input__margin: false;
+@form-element-input__padding: 0 9px;
+@form-element-input__vertical-align: baseline;
+@form-element-input__font-size: @font-size__base;
+@form-element-input__color: false;
+@form-element-input__font-family: @content-font;
+@form-element-input__line-height: 38px;
+
+@textarea__line-height: 1.6;
+
+@select__padding: 0 35px 0 10px;
+
+@table__border-color: rgba(107, 107, 107, 0.18);
+
+@error__color: #ffffff;
+
+@form-element-validation__border-error: red;
+@checkout-field-validation__border-color: red;

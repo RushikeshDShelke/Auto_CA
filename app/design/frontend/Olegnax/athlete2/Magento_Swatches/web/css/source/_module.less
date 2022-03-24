@@ -1,0 +1,449 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@ox-swatch-loading__background-image: url('@{baseDir}Olegnax_Core/images/preloader-img.svg');
+
+@swatch-attribute-option__selected__color: #000000;
+
+@swatch-option__background: #f4f4f4;
+@swatch-option__border: none;
+
+@swatch-option__hover__border: none;
+@swatch-option__hover__color: #333333;
+@swatch-option__hover__outline: none;
+@swatch-option__boxshadow: inset 0 0 0 3px transparent;
+@swatch-option__hover__boxshadow: inset 0 0 0 3px #000;
+@swatch-option__boxshadow_minimal: inset 0 0 0 1px #d2d2d2;
+@swatch-option__boxshadow_minimal_hover: inset 0 0 0 1px #000;
+
+@swatch-option__selected__border: @swatch-option__hover__border;
+@swatch-option__selected__color: @swatch-option__hover__color;
+@swatch-option__selected__outline: none;
+
+@swatch-option__disabled__background: #909090;
+
+//  Text attributes
+@swatch-option-text__background: @swatch-option__background;
+@swatch-option-text__color: #333333;
+
+@swatch-option-text__selected__background-color: #000000;
+@swatch-option-text__selected__color: #ffffff;
+//  Size and Manufacturer attributes
+@attr-swatch-option__background: @swatch-option__background;
+@attr-swatch-option__color: #333333;
+
+@attr-swatch-option__selected__background: #000000;
+@attr-swatch-option__selected__border: none;
+@attr-swatch-option__selected__color: #ffffff;
+
+//  Image and Color swatch
+@img-color-swatch-option__hover__border: @swatch-option__hover__border;
+@img-color-swatch-option__hover__outline: none;
+
+//  Tooltip
+@swatch-option-tooltip__background: #000000;
+@swatch-option-tooltip__border: @swatch-option__border;
+@swatch-option-tooltip__color: #ffffff;
+
+@swatch-option-tooltip-title__color: #ffffff;
+
+@swatch-option-tooltip-layered__background: @swatch-option-tooltip__background;
+@swatch-option-tooltip-layered__border: @swatch-option__border;
+@swatch-option-tooltip-layered__color: @swatch-option-tooltip__color;
+
+@swatch-option-tooltip-layered-title__color: @swatch-option-tooltip-title__color;
+
+//  Layered Features
+//@swatch-option-link-layered__focus__box-shadow: 0 0 3px 1px @color-sky-blue1;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    /*.filter-options-content{
+        .swatch-option.text {
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+        }
+    }*/
+    .product-info-main {
+        .swatch-attribute{
+            margin-bottom: 12px;
+        }
+        .swatch-option.text {
+            padding: 8px;
+            box-sizing: initial;
+            line-height: 20px;
+            min-width: 22px;
+            min-height: 20px;
+        }
+        .swatch-option.color {
+            height: 36px;
+            width: 38px;
+        }
+    }
+    .swatch {
+        &-attribute {
+            &-label {
+                font-weight: @font-weight__bold;
+                position: relative;
+                font-size: 14px;
+                letter-spacing: -0.03em;
+                text-transform: uppercase;
+
+                &.required {
+                    padding-right: 10px
+                }
+
+                &[data-required='1']:after {
+                    .lib-css(color, @form-field-label-asterisk__color);
+                    content: '*';
+                    font-size: @font-size__base;
+                    font-weight: @font-weight__bold;
+                    position: absolute;
+                    right: -11px;
+                    top: -2px;
+                }
+            }
+
+            &-selected-option {
+                .lib-css(color, @swatch-attribute-option__selected__color);
+                padding-left: 10px;
+                font-weight: @font-weight__bold;
+                font-size: 14px;
+                letter-spacing: -0.03em;
+                text-transform: uppercase;
+            }
+
+            &-options {
+                margin-top: 6px;
+
+                .swatch-option-tooltip-layered .title {
+                    .lib-css(color, @swatch-option-tooltip-layered-title__color);
+                    width: 100%;
+                    height: 20px;
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    text-align: center;
+                    margin-bottom: @indent__s;
+                }
+            }
+
+            &.size,
+            &.manufacturer {
+                .swatch-option {
+                    .lib-css(background, @attr-swatch-option__background);
+                    .lib-css(color, @attr-swatch-option__color);
+
+                    &.selected {
+                        .lib-css(background, @attr-swatch-option__selected__background);
+                        .lib-css(border, @attr-swatch-option__selected__border);
+                        .lib-css(color, @attr-swatch-option__selected__color);  
+                    }
+                }
+            }
+        }
+
+        &-option {
+            .lib-css(border, @swatch-option__border);
+            cursor: pointer;
+            float: left;
+            height: 20px;
+            max-width: 90px;
+            min-width: 30px;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            text-overflow: ellipsis;
+            padding: 1px 2px;
+            margin: 0 5px 5px 0;
+            transition: all .6s ease-in-out;
+            .lib-css(box-shadow, @swatch-option__boxshadow);
+            &.color {
+                height: 28px;
+                width: 30px;
+            }
+            &.text {
+                font-family: @main-font;
+                .lib-css(background, @swatch-option-text__background);
+                .lib-css(color, @swatch-option-text__color);
+                font-size: 13px;
+                font-weight: @font-weight__black;
+                line-height: 17px;
+                min-height: 28px;
+                padding: 5px 8px;
+                box-sizing: border-box;
+
+                &.selected {
+                    .lib-css(background-color, @swatch-option-text__selected__background-color);
+                    .lib-css(color, @swatch-option-text__selected__color);
+                }
+            }
+            &.color[data-option-tooltip-value="#ffffff"],
+            &.color[data-option-label="White"],
+            &.color[option-label="White"]{
+                box-shadow: inset 0 0 0 1px #d2d2d2;
+            }
+            &.color[option-label="White"].selected,
+            &.selected {
+                .lib-css(outline, @swatch-option__selected__outline);
+                .lib-css(border, @swatch-option__selected__border);
+                .lib-css(color, @swatch-option__selected__color);
+                .lib-css(box-shadow, @swatch-option__hover__boxshadow);
+                
+            }
+            &:not(.disabled):hover {
+                transition: all 10ms ease-in-out;
+                .lib-css(border, @swatch-option__hover__border);
+                .lib-css(color, @swatch-option__hover__color);
+                .lib-css(outline, @swatch-option__hover__outline);
+                .lib-css(box-shadow, @swatch-option__hover__boxshadow);
+            }
+            &.color[option-label="White"],
+            &.image,
+            &.color {
+                &:not(.disabled):hover {
+                    .lib-css(border, @img-color-swatch-option__hover__border);
+                    .lib-css(outline, @img-color-swatch-option__hover__outline);
+                    .lib-css(box-shadow, @swatch-option__hover__boxshadow);
+                }
+            }
+
+            &.disabled {
+                cursor: default;
+                opacity:0.5;
+                &:after {
+                    content:'';
+                    display:block;
+                    width:2px;
+                    height:200%;
+                    transform:translateY(-50%) translateX(50%) rotate(45deg);
+                    margin-left:-1px;
+                    position: absolute;
+                    left:50%;
+                    top:50%;
+                    background:rgba(96, 96, 96,0.5);
+                    box-shadow:0 0 0 1px rgba(255,255,255, 0.7);
+                    //  ToDo: improve .lib-background-gradient() to support diagonal gradient
+                   /* background: linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+                    background: -moz-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+                    background: -ms-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+                    background: -o-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+                    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(42%, rgba(255, 255, 255, 0)), color-stop(43%, rgba(255, 255, 255, 1)), color-stop(46%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(255, 82, 22, 1)), color-stop(53%, rgba(255, 82, 22, 1)), color-stop(54%, rgba(255, 255, 255, 1)), color-stop(57%, rgba(255, 255, 255, 1)), color-stop(58%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0)));
+                    background: -webkit-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
+                    bottom: 0;
+                    content: '';
+                    filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff, endColorstr=#00ffffff, GradientType=1)';
+                    left: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 0;*/
+                }
+            }
+            &-disabled {
+                border: 0;
+                cursor: default;
+                outline: none !important;
+
+                &:after {
+                    .lib-rotate(-30deg);
+                    content: '';
+                    height: 2px;
+                    left: -4px;
+                    position: absolute;
+                    top: 10px;
+                    width: 42px;
+                    z-index: 995;
+                    .lib-css(background, @swatch-option__disabled__background);
+                }
+            }
+
+            &-loading {
+                box-sizing: border-box;
+                width: 44px;
+                height: 3px;
+                padding-left: 44px;
+                background: @ox-swatch-loading__background-image left top no-repeat;
+            }
+
+            &-tooltip {
+                .lib-css(border, @swatch-option-tooltip__border);
+                .lib-css(color, @swatch-option-tooltip__color);
+                display: none;
+                max-height: 100%;
+                max-width: 146px;
+                min-height: 20px;
+                min-width: 35px;
+                padding: 8px;
+                position: absolute;
+                text-align: center;
+                z-index: 999;
+                .lib-css(background, @swatch-option-tooltip__background);
+
+                &,
+                &-layered {
+                    .corner {
+                        bottom: -5px;
+                        height: 8px;
+                        left: calc(50% - 13px);
+                        position: absolute;
+
+                        &:before,
+                        &:after {
+                            border-style: solid;
+                            content: '';
+                            font-size: 7px;
+                            height: 0;
+                            position: relative;
+                            width: 0;
+                        }
+                        
+                        &:before {
+                            border-color: transparent;
+                            border-width: 6px 6.5px 0 6.5px;
+                            left: 6px;
+                            top: 0;
+                        }
+
+                        &:after {
+                            border-color: #000000 transparent transparent transparent;
+                            border-width: 6px 6.5px 0 6.5px;
+                            left: -6px;
+                            top: 0;
+                        }
+                    }
+
+                    .image {
+                        display: block;
+                        height: 130px;
+                        width: 130px;
+                        margin: 0 auto;
+                        margin-bottom: 5px;
+                    }
+                }
+
+                &-layered {
+                    .lib-css(border, @swatch-option-tooltip-layered__border);
+                    .lib-css(color, @swatch-option-tooltip-layered__color);
+                    .lib-css(background, @swatch-option-tooltip-layered__background);
+                    display: none;
+                    left: -47px;
+                    position: absolute;
+                    width: 140px;
+                    z-index: 999;
+                }
+
+                .title {
+                    .lib-css(color, @swatch-option-tooltip-title__color);
+                    display: block;
+                    max-height: 200px;
+                    max-width: 140px;
+                    min-height: 20px;
+                    overflow: hidden;
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-weight: @font-weight__bold;
+                }
+            }
+
+            &-link-layered {
+                margin: 0 !important;
+                padding: 0 !important;
+                position: relative;
+                display:block;
+                background:none;
+                /*&:focus > div {
+                    .lib-css(box-shadow, @swatch-option-link-layered__focus__box-shadow);
+                }*/
+
+                &:hover > .swatch-option-tooltip-layered {
+                    display: block;
+                }
+            }
+        }
+
+        &-opt {
+            margin: 30px 0 35px 0;
+
+            &-listing {
+                margin-bottom: @indent__s;
+            }
+        }
+
+        &-more {
+            display: inline-block;
+            margin: 2px 0;
+            position: static;
+            text-decoration: none !important;
+            z-index: 1;
+        }
+
+        &-visual-tooltip-layered {
+            height: 160px;
+            top: -170px;
+        }
+
+        &-textual-tooltip-layered {
+            height: 30px;
+            top: -40px;
+        }
+
+        &-input {
+            left: -1000px;
+            position: absolute;
+            visibility: hidden;
+        }
+    }
+    .sidebar-nobg {
+        .swatch-attribute.size,
+        .swatch-attribute.manufacturer {
+            .swatch-option{
+                color:inherit;
+                background: none;
+            }
+        }
+        .swatch-option{
+            .lib-css(box-shadow, none);
+            &.text{
+                background: none;
+                .lib-css(box-shadow, @swatch-option__boxshadow_minimal);
+            }
+            &.color[option-label="Multi"],
+            &.color[option-label="White"]{
+                .lib-css(box-shadow, @swatch-option__boxshadow_minimal);
+            }
+            &.color[option-label="Multi"].selected,
+            &.color[option-label="White"].selected,
+            &.selected {
+                .lib-css(box-shadow, @swatch-option__boxshadow_minimal_hover);
+
+            }
+            &:not(.disabled):hover {
+                .lib-css(box-shadow, @swatch-option__boxshadow_minimal_hover);
+            }
+            &.color[option-label="Multi"],
+            &.color[option-label="White"],
+            &.image,
+            &.color {
+                &:not(.disabled):hover {
+                    .lib-css(box-shadow, @swatch-option__boxshadow_minimal_hover);
+                }
+            }
+        }
+    }
+    .clearfix:after {
+        clear: both;
+        content: '';
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+}

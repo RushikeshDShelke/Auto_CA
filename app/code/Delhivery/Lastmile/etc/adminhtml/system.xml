@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- Add new Tab -->
+        <tab id="delhivery" translate="label" sortOrder="100">
+            <label>Delhivery</label>
+        </tab>
+        <section id="delhivery_lastmile" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Delhivery</label>
+            <tab>delhivery</tab>
+            <!-- resource tag name which we have to defined in the acl.xml -->
+            <resource>Delhivery_Lastmile::config_lastmile</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Delhivery</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="is_production" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled Production Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>If "No" demo mode will be active.</comment>
+                </field>
+				<field id="method_name" translate="label" type="text" sortOrder="3" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Method Name</label>
+                    <depends>
+                        <field id="name">default</field>
+                    </depends>
+                </field>
+				<field id="carrier_title" translate="label" type="text" sortOrder="4" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Carrier Title</label>
+                    <depends>
+                        <field id="title">default</field>
+                    </depends>
+                </field>
+				<field id="login_id" translate="label" type="text" sortOrder="5" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Login Id</label>
+                    <depends>
+                        <field id="loginid">default</field>
+                    </depends>
+                </field>
+				<field id="client_id" translate="label" type="text" sortOrder="6" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Client Id</label>
+                    <depends>
+                        <field id="clientid">default</field>
+                    </depends>
+                </field>
+				<field id="license_key" translate="label" type="text" sortOrder="7" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>License Key</label>
+                    <depends>
+                        <field id="licensekey">default</field>
+                    </depends>
+                </field>
+				<field id="error_message" translate="label" type="text" sortOrder="8" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Error Message</label>
+                    <depends>
+                        <field id="errormessage">default</field>
+                    </depends>
+                </field>
+				<field id="cod_method" translate="label" type="select" sortOrder="9" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>COD Method Code</label>
+					<source_model>Delhivery\Lastmile\Model\Config\Source\Paymentmathod</source_model>
+                    <!--<depends>
+                        <field id="codmethod">default</field>
+                    </depends>-->
+                </field>
+				<field id="return_address" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Return Address</label>
+                    <depends>
+                        <field id="returnaddress">default</field>
+                    </depends>
+                </field>
+				<field id="gst_no" translate="label" type="text" sortOrder="11" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>GST No.</label>
+                    <depends>
+                        <field id="gstno">default</field>
+                    </depends>
+                </field>
+				<field id="consignee_tin" translate="label" type="text" sortOrder="12" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Consignee TIN No.</label>
+                    <depends>
+                        <field id="consigneetin">default</field>
+                    </depends>
+                </field>
+				<field id="cst_no" translate="label" type="text" sortOrder="13" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>CST No.</label>
+                    <depends>
+                        <field id="cstno">default</field>
+                    </depends>
+                </field>
+				<field id="sale_tax_form" translate="label" type="text" sortOrder="14" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Sale Tax Form Acknowledge No.</label>
+                    <depends>
+                        <field id="saletaxform">default</field>
+                    </depends>
+                </field>
+				 <field id="heavy_shipment" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Heavy Shipment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

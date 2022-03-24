@@ -1,0 +1,23 @@
+<?php
+/**
+ * Athlete2 Theme
+ *
+ * @author      Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (https://olegnax.com). All rights reserved.
+ * @license     https://www.olegnax.com/license
+ */
+
+// @codingStandardsIgnoreFile
+use Magento\Catalog\Block\Product\ListProduct;
+use Olegnax\Athlete2\Helper\Helper;
+use Olegnax\Athlete2\Helper\UpdaterTemplate;
+
+/**
+ * Product list template
+ *
+ * @var $block ListProduct
+ */
+/** @var Helper $athlete */
+$athlete = $this->helper(Helper::class);
+echo $athlete->getLayoutTemplateHtmlbyValue($block, $athlete->getModuleConfig(UpdaterTemplate::XML_PATH_LISTING_PRODUCTS) ?: '1');

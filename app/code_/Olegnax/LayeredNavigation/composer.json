@@ -1,0 +1,27 @@
+{
+  "name": "olegnax/layered-navigation",
+  "description": "Olegnax Layered Navigastion allows to filter products with multiple filters and withour reloading the page.",
+  "version": "0.2.1.0",
+  "type": "magento2-module",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Olegnax",
+      "email": "mail@olegnax.com",
+      "homepage": "https://olegnax.com",
+      "role": "Technical Support"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+      "olegnax/module-core": ">=1.1.0"
+  },
+  "autoload": {
+	"files": [
+	  "registration.php"
+	],
+	"psr-4": {
+	  "Olegnax\\LayeredNavigation\\": ""
+	}
+  }
+}

@@ -1,0 +1,32 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+& when (@media-common = true) {
+  rs-module {
+	.custom {
+	  .tp-bullet {
+		background: none;
+		padding: 8px 4px;
+		width: 40px;
+		height: 2px;
+		&:before{
+		  content: '';
+		  display: block;
+		  width: 40px;
+		  height: 2px;
+		  background: #000;
+		  background: rgba(0, 0, 0, 0.2);
+		}
+		&.selected,
+		&:hover {
+		  background: none;
+		  &:before{
+			background: rgb(0, 0, 0);
+		  }
+		}
+	  }
+	  }
+	}
+}
+

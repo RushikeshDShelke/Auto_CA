@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="adminhtml.catalog.product.set.grid.columnSet">
+            <block class="Magento\Backend\Block\Widget\Grid\Column"
+                   as="available_for_supplier" before="set_name">
+                <arguments>
+                    <argument name="header" xsi:type="string" translate="true">
+                        Available for Supplier
+                    </argument>
+                    <argument name="align" xsi:type="string">left</argument>
+                    <argument name="sortable" xsi:type="string">1</argument>
+                    <argument name="index" xsi:type="string">available_for_supplier</argument>
+                    <argument name="type" xsi:type="string">options</argument>
+                    <argument name="options" xsi:type="array">
+                        <item name="yes" xsi:type="array">
+                            <item name="value" xsi:type="string">1</item>
+                            <item name="label" xsi:type="string"
+                                  translate="true">Yes
+                            </item>
+                        </item>
+                        <item name="no" xsi:type="array">
+                            <item name="value" xsi:type="string">0</item>
+                            <item name="label" xsi:type="string"
+                                  translate="true">No
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

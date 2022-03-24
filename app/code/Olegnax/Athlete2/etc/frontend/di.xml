@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magefan\Blog\Model\Post">
+        <plugin name="ox_change_featured_image" type="Olegnax\Athlete2\Plugin\Blog\Model\Post" sortOrder="10"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="ox_adaptive_resize_gallery" type="Olegnax\Athlete2\Plugin\Catalog\Block\Product\View\Gallery" sortOrder="1"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Helper\Data">
+        <plugin name="ox_adaptive_resize_configurable_helper" type="Olegnax\Athlete2\Plugin\ConfigurableProduct\Helper\Data" sortOrder="1"/>
+    </type>
+    <type name="Magento\Swatches\Helper\Data">
+        <plugin disabled="false" sortOrder="10"
+                name="Olegnax_Athlete2_Plugin_Frontend_Magento_Swatches_Helper_Data"
+                type="Olegnax\Athlete2\Plugin\Frontend\Magento\Swatches\Helper\Data"/>
+    </type>
+    <preference for="Magento\Catalog\Block\Product\View\Details" type="Olegnax\Athlete2\Plugin\Catalog\Block\Product\View\Details"/>
+    <type name="Magento\Customer\Model\Account\Redirect">
+        <plugin disabled="false"
+                name="Olegnax_Athlete2_Plugin_Frontend_Magento_Customer_Model_Account_Redirect"
+                sortOrder="10"
+                type="Olegnax\Athlete2\Plugin\Frontend\Magento\Customer\Model\Account\Redirect"/>
+    </type>
+</config>

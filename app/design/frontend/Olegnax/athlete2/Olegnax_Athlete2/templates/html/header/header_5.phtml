@@ -1,0 +1,65 @@
+<?php
+$theme_helper = $this->helper('Olegnax\Athlete2\Helper\Helper');
+$at_settings = $block->getConfig('athlete2_settings');
+$header_classes = 'header--layout-5';
+$menu_position	 = $at_settings['header']['menu_position'];
+$sticky_header	 = $at_settings['header']['sticky_header'];
+$header_classes .= ' header__menu--position-' . $menu_position;
+$disable_topline = $at_settings['header']['disable_topline'];
+if( $at_settings['header']['header_fullwidth'] ) {
+	$header_classes .= ' header--full-width';
+}
+$toggleNavText = $at_settings['mobile_header']['mobile_header_menu_text'];
+if( $toggleNavText ) {
+	$toggleNavText = '<span>' . $block->escapeHtml($toggleNavText) . '</span>';	
+}
+$sticky_allowed = $block->getData("sticky_allowed");
+?>
+<div class="page-header <?php echo $block->escapeHtmlAttr($header_classes) ?>"<?php if( $sticky_header && $sticky_allowed!= 'no' ) { echo ' data-role="OXsticky" data-mage-init=\'{"OXsticky":{}}\''; } ?>>
+	<div class="sticky-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col header__content-wrapper">
+					<?php if( ! $disable_topline ){ ?>
+						<?php echo $this->getChildHtml( 'athlete2_topline' ); ?>
+					<?php } ?>
+					<div class="header__content">
+						<div class="flex-row header__left modal__left" data-move-mobile="header.main.left" data-move-sticky="header.main.left">
+							<div data-action="toggle-mobile-nav" class="action slide-out-menu--mobile"><div class="hamburger-menu-icon-small" aria-label="<?= $block->escapeHtml(__('Menu')) ?>"><span></span><span></span><span></span></div><?= $toggleNavText ?></div>
+							<?php if ( $menu_position == 1 ) echo $this->getChildHtml( 'top.menu' ); ?>
+							<?php if ( $menu_position == 2 ) : ?>
+								<div class="header__additional-content">
+									<?php echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( 'athlete2-header-text' )->toHtml(); ?>
+								</div>
+							<?php endif ?>
+						</div>
+						<div class="logo__container">
+								<?php echo $this->getChildHtml( "logo" ); ?>
+						</div>
+						<div class="flex-row header__right modal__right"  data-move-mobile="header.main.right">
+							<?php echo $this->getChildHtml( 'top.search' ) ?>
+							<?php
+								if($at_settings['header']['account_position'] == 'main') {
+									echo $this->getChildHtml("header_account");
+								}
+								if($at_settings['header']['compare_position'] == 'main') {
+									echo $this->getChildHtml("header_compare");
+								}
+								if($at_settings['header']['wishlist_position'] == 'main') {
+									echo $this->getChildHtml("header_wishlist");
+								}
+								if($theme_helper->isActivePlugin( 'Amasty_RequestQuote' )){
+									echo $this->getChildHtml( 'quotecart' );
+								}
+								echo $this->getChildHtml( 'minicart' );
+							?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php if ( $menu_position == 2 ) : ?>
+			<div class="header-nav-wide"><?php echo $this->getChildHtml( 'top.menu' );  ?></div>
+		<?php endif ?>
+	</div>
+</div>

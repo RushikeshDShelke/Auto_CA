@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Olegnax_Athlete2::Olegnax_Athlete2" title="Athlete2" module="Olegnax_Athlete2" sortOrder="10" resource="Olegnax_Athlete2::Olegnax_Athlete2"/>
+        <add id="Olegnax_Athlete2::theme_settings" title="Themes Settings" module="Olegnax_Athlete2" sortOrder="10" action="adminhtml/system_config/edit/section/athlete2_settings" parent="Olegnax_Athlete2::Olegnax_Athlete2" resource="Olegnax_Athlete2::theme_settings"/>
+        <add id="Olegnax_Athlete2::theme_design" title="Theme Appearance" module="Olegnax_Athlete2" sortOrder="20" action="adminhtml/system_config/edit/section/athlete2_design" parent="Olegnax_Athlete2::Olegnax_Athlete2" resource="Olegnax_Athlete2::theme_design"/>
+        <add id="Olegnax_Athlete2::theme_license" title="Theme License" module="Olegnax_Athlete2" sortOrder="30" action="adminhtml/system_config/edit/section/athlete2_license" parent="Olegnax_Athlete2::Olegnax_Athlete2" resource="Olegnax_Athlete2::theme_settings"/>
+        
+        <add id="Olegnax_Athlete2::theme_install" module="Olegnax_Athlete2" title="Demos" sortOrder="90" resource="Olegnax_Athlete2::import" parent="Olegnax_Athlete2::Olegnax_Athlete2"/>
+        <add id="Olegnax_Athlete2::import" module="Olegnax_Athlete2" title="Demo Import" sortOrder="10" resource="Olegnax_Athlete2::import" parent="Olegnax_Athlete2::theme_install" action="athlete2/import/index"/>
+        <add id="Olegnax_Athlete2::export" module="Olegnax_Athlete2" title="Export Theme" sortOrder="10" resource="Olegnax_Athlete2::export" parent="Olegnax_Athlete2::theme_install" action="athlete2/import/exporter"/>
+    </menu>
+</config>

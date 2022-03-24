@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget id="ox_megamenu" class="Olegnax\MegaMenu\Block\Widget\Megamenu" is_email_compatible="false"
+			placeholder_image="Olegnax_MegaMenu::images/megamenu.png" ttl="86400">
+		<label translate="true">Olegnax - Mega Menu</label>
+		<description translate="true"></description>
+		<parameters>
+			<parameter name="header_container" xsi:type="text" visible="true">
+				<label translate="true">Header Container</label>
+			</parameter>
+			<parameter name="direction" xsi:type="select" visible="true">
+				<label translate="true">Direction</label>
+				<options>
+					<option name="horizontal" value="horizontal">
+						<label translate="true">Horizontal</label>
+					</option>
+					<option name="vertical" value="vertical">
+						<label translate="true">Vertical</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="position_horizontal" xsi:type="select" visible="true">
+				<label translate="true">Position Horizontal</label>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="right" value="right">
+						<label translate="true">Right</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="animation_type" xsi:type="select" visible="true">
+				<label translate="true">Animation Type</label>
+				<options>
+					<option name="fade" value="fade">
+						<label translate="true">Fade</label>
+					</option>
+					<option name="fadeIn" value="fadeIn">
+						<label translate="true">Fade In</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+		</parameters>
+	</widget>
+
+</widgets>

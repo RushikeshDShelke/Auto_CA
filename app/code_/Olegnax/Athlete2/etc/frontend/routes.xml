@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="olegnax_athlete2" frontName="olegnax_athlete2">
+            <module name="Olegnax_Athlete2" />
+        </route>
+    </router>
+</config>

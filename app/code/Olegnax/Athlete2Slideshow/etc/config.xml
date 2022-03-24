@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+	<athleteslideshow>
+	    <general>
+		<enabled>1</enabled>
+		<show>home</show>
+		<slider>athlete</slider>
+	    </general>
+	    <athlete>
+		<allow_wrap>1</allow_wrap>
+		<auto_height>calc</auto_height>
+		<easing>easeInOutExpo</easing>
+		<fx>scrollVert</fx>
+		<pause_on_hover>1</pause_on_hover>
+		<speed>1200</speed>
+		<sync>1</sync>
+		<timeout>8000</timeout>
+		<timeline>1</timeline>
+		<responsive_banners>0</responsive_banners>
+	    </athlete>
+	    <revolutionslider>
+		<id>0</id>
+	    </revolutionslider>
+	</athleteslideshow>
+    </default>
+</config>

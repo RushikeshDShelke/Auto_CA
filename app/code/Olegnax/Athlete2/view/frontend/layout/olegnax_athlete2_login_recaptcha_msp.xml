@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="header_account_drop">
+			<block class="Magento\Customer\Block\Form\Login" name="customer_form_login"
+				   template="Magento_Customer::form/login_drop.phtml">
+				<container name="header_form.additional.info" as="form_additional_info_drop">
+					<block class="MSP\ReCaptcha\Block\Frontend\ReCaptcha" name="ox-recaptcha-login" after="-"
+						   template="MSP_ReCaptcha::msp_recaptcha.phtml"
+						   ifconfig="msp_securitysuite_recaptcha/frontend/enabled">
+
+						<arguments>
+							<argument name="jsLayout" xsi:type="array">
+								<item name="components" xsi:type="array">
+									<item name="msp-recaptcha" xsi:type="array">
+										<item name="component" xsi:type="string">MSP_ReCaptcha/js/reCaptcha</item>
+										<item name="zone" xsi:type="string">login</item>
+									</item>
+								</item>
+							</argument>
+						</arguments>
+					</block>
+				</container>
+			</block>
+			<block class="Magento\Customer\Block\Form\Login\Info" name="customer.new" template="Magento_Customer::newcustomer.phtml"/>
+			<block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
+				<arguments>
+					<argument name="triggers" xsi:type="array">
+						<item name="loginButton" xsi:type="string">.action.login</item>
+					</argument>
+				</arguments>
+			</block>
+		</referenceBlock>
+	</body>
+</page>

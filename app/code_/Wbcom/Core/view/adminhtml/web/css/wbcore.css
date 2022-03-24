@@ -1,0 +1,4 @@
+/*adding company icon on admin panel menu bar wbcom*/
+.admin__menu .level-0.item-wbcom > a:before {
+    content: url('../images/wbcom.png');
+}

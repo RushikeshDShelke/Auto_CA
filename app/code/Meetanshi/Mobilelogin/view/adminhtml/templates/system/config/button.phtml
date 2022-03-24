@@ -1,0 +1,31 @@
+<script>
+    require([
+        'jquery',
+        'prototype',
+    ], function (jQuery) {
+        function function_name() {
+            params = {};
+
+            new Ajax.Request('<?php echo $block->getAjaxUrl() ?>', {
+                loaderArea: false,
+                asynchronous: true,
+                parameters: params,
+                onCreate: function() {
+                    jQuery('body').loader('show');
+                },
+                onSuccess: function (response) {
+                    jQuery('body').loader('hide');
+                    if (response.status == 200) {
+
+                    }
+                }
+            });
+        }
+
+        jQuery('#btnid').click(function () {
+            function_name();
+        });
+    });
+</script>
+
+<?php echo $block->getButtonHtml() ?>

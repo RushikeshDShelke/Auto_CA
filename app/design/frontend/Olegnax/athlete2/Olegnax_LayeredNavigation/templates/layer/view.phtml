@@ -1,0 +1,44 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+
+<?php if ($block->canShowBlock()): ?>
+    <div class="block filter filters-slideout-content ox-move-item ox-move-item-filtersslideout">
+        <div class="block-title filter-title">
+            <strong><?= /* @escapeNotVerified */ __('Shop By') ?></strong>
+        </div>
+
+        <div class="block-content filter-content">
+            <?= $block->getChildHtml('state') ?>
+
+            <?php if ($block->getLayer()->getState()->getFilters()): ?>
+                <div class="block-actions filter-actions">
+                    <a href="<?= /* @escapeNotVerified */ $block->getClearUrl() ?>" class="action clear button filter-clear"><span><?= /* @escapeNotVerified */ __('Clear All') ?></span></a>
+                </div>
+            <?php endif; ?>
+
+            <?php foreach ($block->getFilters() as $filter): ?>
+                <?php if ($filter->getItemsCount()): ?>
+					<div class="filter-options collapsible <?php if(!$this->helper( 'Olegnax\Athlete2\Helper\Helper' )->getConfig('athlete2_settings/products_listing/filters_closed')){ ?>open<?php } ?>">
+                        <div class="filter-options-title"><strong><?= $block->escapeHtml(__($filter->getName())) ?></strong><div class="toggle-minus"><span></span></div></div>
+                        <div class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Ulmod. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php
+/** @var \Ulmod\OrderComment\Block\Order\Comment $block */
+?>
+<?php if ($block->isShowCommentInAccount()) : ?>
+    <?php if ($comment = $block->getOrderComment()) : ?>
+    <div class="block block-order-comment um-ordercomment-block">
+        <div class="block-content">     
+            <div class="block-title">
+                <strong><?php /* @escapeNotVerified */ echo __('Order Comment') ?></strong>
+            </div>          
+            <div class="box-content">
+                <?php echo $block->getOrderCommentHtml();?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+<?php endif; ?>

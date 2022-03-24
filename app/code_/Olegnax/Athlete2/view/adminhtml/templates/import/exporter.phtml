@@ -1,0 +1,124 @@
+<?php
+/** @var \Olegnax\Athlete2\Block\Adminhtml\Import\Exporter $block */
+
+$options		 = $block->getConfig();
+$blocks			 = $block->getBlocks();
+$pages			 = $block->getPages();
+$bannerSliders	 = $block->getBannerSlider();
+$carousels	 = $block->getCarousel();
+?>
+<form method="POST" action="<?= $block->actionExport(); ?>">
+	<div class="options-wrap">
+		<h2 class="title">Options</h2>
+
+		<input id="options_all" class="option option-all" type="checkbox" name="config_all" value=""> <label for="options_all"><?= __( 'Select All' ) ?></label>
+		<ul class="options" style="padding-left: 30px;">
+			<?php foreach ( $options as $section => $value1 ) { ?>
+				<li>
+					<input id="options_<?= $section ?>" class="option option-section" type="checkbox" name="config[]" value="<?= $section ?>"> <label for="options_<?= $section ?>"><?= $section ?></label>
+					<?php if ( is_array( $value1 ) ) { ?>
+						<ul style="padding-left: 30px;">
+							<?php foreach ( $value1 as $group => $value2 ) { ?>
+								<li>
+									<input id="options_<?= $section ?>_<?= $group ?>" class="option option-group" type="checkbox" name="config[]" value="<?= implode( '/', [ $section, $group ] ) ?>"> <label for="options_<?= $section ?>_<?= $group ?>"><?= $group ?></label>
+								</li>
+							<?php } ?>
+						</ul>
+					<?php } ?>
+				</li>
+			<?php } ?>
+		</ul>
+	</div>
+	<div class="blocks-wrap">
+		<h2 class="title">Blocks</h2>
+		<input id="block_all" class="block block-all" type="checkbox" name="block_all" value=""> <label for="block_all"><?= __( 'Select All' ) ?></label>
+		<ul class="blocks" style="padding-left: 30px;">
+			<?php foreach ( $blocks as $identifier => $title ) { ?>
+				<li><input id="block_<?= $identifier ?>" class="block option-block" type="checkbox" name="blocks[]" value="<?= $identifier ?>"> <label for="block_<?= $identifier ?>"><?= $title ?></label></li>
+			<?php } ?>
+		</ul>
+	</div>
+	<div class="pages-wrap">
+		<h2 class="title">Pages</h2>
+		<input id="pages_all" class="page page-all" type="checkbox" name="page_all" value=""> <label for="pages_all"><?= __( 'Select All' ) ?></label>
+		<ul class="pages" style="padding-left: 30px;">
+			<?php foreach ( $pages as $identifier => $title ) { ?>
+				<li><input id="pages_<?= $identifier ?>" class="page option-page" type="checkbox" name="pages[]" value="<?= $identifier ?>"> <label for="pages_<?= $identifier ?>"><?= $title ?></label></li>
+			<?php } ?>
+		</ul>
+	</div>
+	<?php if ( !empty( $bannerSliders ) ) : ?>
+		<div class="bannersliders-wrap">
+			<h2 class="title">Banner Sliders</h2>
+			<input id="bannersliders_all" class="bannerslider bannerslider-all" type="checkbox" name="bannersliders_all" value=""> <label for="bannersliders_all"><?= __( 'Select All' ) ?></label>
+			<ul class="pages" style="padding-left: 30px;">
+				<?php foreach ( $bannerSliders as $identifier => $title ) { ?>
+					<li><input id="bannersliders_<?= $identifier ?>" class="bannerslider option-bannerslider" type="checkbox" name="bannersliders[]" value="<?= $identifier ?>"> <label for="bannersliders_<?= $identifier ?>"><?= $title ?></label></li>
+					<?php } ?>
+			</ul>
+		</div>
+	<?php endif; ?>
+    <?php if ( !empty( $carousels ) ) : ?>
+		<div class="bannersliders-wrap">
+			<h2 class="title">Carousel Sliders</h2>
+			<input id="carouselsliders_all" class="carousel carousel-all" type="checkbox" name="carousels_all" value=""> <label for="carousels_all"><?= __( 'Select All' ) ?></label>
+			<ul class="pages" style="padding-left: 30px;">
+                <?php foreach ( $carousels as $identifier => $title ) { ?>
+					<li><input id="carousels_<?= $identifier ?>" class="carousel option-carousel" type="checkbox" name="carousels[]" value="<?= $identifier ?>"> <label
+								for="carousels_<?= $identifier ?>"><?= $title ?></label></li>
+                <?php } ?>
+			</ul>
+		</div>
+    <?php endif; ?>
+	<button type="submit"><?= __( 'Save' ) ?></button>
+	<input name="form_key" type="hidden" value="<?= $block->getFormKey() ?>" />
+</form>
+<script>
+    require( [
+        'jquery',
+    ], function ( $ ) {
+        'use strict';
+        // options
+        $( '.options .option' ).on( 'change', function ( e ) {
+            var $this = $( this ),
+                $li = $this.closest( 'li' ).eq( 0 ),
+                $submenu = $li.children( 'ul' ),
+                checked = $this.is( ':checked' ),
+                value = $this.attr( 'value' ),
+                child = $( 'input[name^=config][value^="' + $( this ).attr( 'value' ) + '/"]' );
+            $submenu.toggle( !checked );
+            child.prop( 'disabled', checked );
+            if ( checked ) {
+                child.prop( 'checked', true ).trigger( 'change' );
+            } else {
+                var parent_val = $( this ).attr( 'value' ).split( '/' );
+                parent_val.pop();
+                parent_val = parent_val.join( '/' );
+                $( 'input[name^=config][value="' + parent_val + '"]' ).prop( 'checked', false );
+                $( '.option.option-all' ).prop( 'checked', false );
+            }
+        } );
+        $( '.option.option-all' ).on( 'change', function ( e ) {
+            if ( $( this ).is( ':checked' ) ) {
+                $( '.option.option-section' ).prop( 'checked', true ).trigger( 'change' );
+            }
+        } );
+        // blocks
+        $( '.block.block-all' ).on( 'change', function ( e ) {
+            $( '.block.option-block' ).prop( 'checked', $( this ).is( ':checked' ) ).trigger( 'change' );
+        } );
+        // pages
+        $( '.page.page-all' ).on( 'change', function ( e ) {
+            $( '.page.option-page' ).prop( 'checked', $( this ).is( ':checked' ) ).trigger( 'change' );
+        } );
+        // bannerslider
+        $( '.bannerslider.bannerslider-all' ).on( 'change', function ( e ) {
+            $( '.bannerslider.option-bannerslider' ).prop( 'checked', $( this ).is( ':checked' ) ).trigger( 'change' );
+        } );
+        // carousel
+        $( '.carousel.carousel-all' ).on( 'change', function ( e ) {
+            $( '.carousel.option-carousel' ).prop( 'checked', $( this ).is( ':checked' ) ).trigger( 'change' );
+        } );
+
+    } );
+</script>

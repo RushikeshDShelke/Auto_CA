@@ -1,0 +1,108 @@
+<?php
+/** @var \Olegnax\Athlete2\Block\TopLinks $block */
+$at_settings = $block->getConfig('athlete2_settings');
+$show_greetings = $at_settings['header']['show_account_greet'];
+$account_position = $at_settings['header']['account_position'];
+$wishlist_position = $at_settings['header']['wishlist_position'];
+$compare_position = $at_settings['header']['compare_position'];
+$wishlist_mobile_position = $at_settings['mobile_header']['wishlist_mobile_position'];
+$compare_mobile_position = $at_settings['mobile_header']['compare_mobile_position'];
+$account_action_drop = $at_settings['header']['account_action'];
+unset($at_settings);
+if( 'main' != $account_position || ( '' == $account_action_drop && 'main' == $account_position )) :
+	
+	$isLoggedIn = $block->isLoggedIn();
+	$compare_classes='';
+	if($compare_mobile_position){
+		if('none' == $compare_mobile_position || 'main' == $compare_mobile_position){
+			$compare_classes.=' hide-on-tablet hide-on-mobile';
+		}
+	} else {
+		if('topline' != $compare_position){
+			$compare_classes.=' hide-on-tablet hide-on-mobile';
+		}
+	}
+	if('main' == $compare_position){
+		$compare_classes.=' hide-on-desktop';
+	}
+	if($compare_classes){
+		$compare_classes = 'class="' . $compare_classes . '"';
+	}
+	$wishlist_classes='';
+	if($wishlist_mobile_position){
+		if('none' == $wishlist_mobile_position || 'main' == $wishlist_mobile_position){
+			$wishlist_classes.=' hide-on-tablet hide-on-mobile';
+		}
+	} else{
+		if('topline' != $wishlist_position){
+			$wishlist_classes.=' hide-on-tablet hide-on-mobile';
+		}
+	}
+	if('main' == $wishlist_position){
+		$wishlist_classes.=' hide-on-desktop';
+	}
+	if($wishlist_classes){
+		$wishlist_classes = 'class="' . $wishlist_classes . '"';
+	}
+?>
+	<ul class="header__toplinks header links ox-move-item ox-move-item-store.links" data-bind="scope: 'customer'">
+		<?php if ( $show_greetings ): ?>
+			<li class="greet welcome">
+				<!-- ko if: customer().fullname  -->
+				<span class="logged-in"
+					  data-bind="text: new String('<?= $block->escapeHtml(__('Welcome, %1!', '%1')) ?>').replace('%1', customer().fullname)">
+				</span>
+				<!-- /ko -->
+			</li>
+		<?php endif; ?>
+		<?php if ( 'topline' == $account_position ): ?>
+			<li><a href="<?php echo $block->escapeUrl($block->getUrl('customer/account')); ?>"><?php echo $block->escapeHtml(__('My Account')) ?></a></li>
+		<?php endif; ?>
+		<?php if ('topline' == $wishlist_position): ?>
+			<li <?= $block->escapeHtmlAttr($wishlist_classes) ?>><a href="<?php echo $block->escapeUrl($block->getUrl('wishlist')); ?>"
+				   data-bind="scope: 'wishlist'"><?php echo $block->escapeHtml(__('My Wishlist')) ?> <!-- ko if: wishlist().counter --><span
+							data-bind="text: wishlist().counter.replace(/[^0-9]*/igm, '')"></span><!-- /ko --></a></li>
+		<?php endif; ?>
+		<?php if ('topline' == $compare_position): ?>
+			<li <?= $block->escapeHtmlAttr($compare_classes) ?>><a href="<?php echo $block->escapeUrl($this->getCompareListUrl()); ?>"
+				   data-bind="scope: 'compareProducts'"><?php echo $block->escapeHtml(__('Compare')) ?>
+					<!-- ko if: compareProducts().count --><span
+							data-bind="text: compareProducts().countCaption.replace(/[^0-9]*/igm, '')"></span><!-- /ko -->
+				</a></li>
+		<?php endif; ?>	
+		<?php if ('topline' == $account_position): ?>
+			<li class="checkout-link"><a href="<?php echo $block->escapeUrl($block->getUrl('checkout')); ?>"><?php echo $block->escapeHtml(__('Checkout')) ?></a></li>
+			<!-- ko if: customer().fullname  -->
+			<li data-bind="style: {'display': customer().fullname ? 'block' : 'none' }"
+				style="display:<?= $isLoggedIn ? 'block' : 'none' ?>"><a
+						href="<?php echo $block->escapeUrl($block->getLogoutUrl()); ?>"><?php echo $block->escapeHtml(__('Log Out')
+					) ?></a></li>
+			<!-- /ko -->
+			<!-- ko ifnot: customer().fullname  -->
+			<li><a href="<?php echo $block->escapeUrl($block->getLoginUrl()); ?>"
+				   style="display:<?= !$isLoggedIn ? 'block' : 'none' ?>"><?php echo $block->escapeHtml(__('Log In')
+					) ?></a></li>
+			<li><a href="<?php echo $block->escapeUrl($block->getUrl('customer/account/create')); ?>"
+				   style="display:<?= !$isLoggedIn ? 'block' : 'none' ?>"><?php echo $block->escapeHtml(__('Create an account')) ?></a></li>
+			<!-- /ko -->
+		<?php endif; ?>
+	</ul>
+	<?php if ('topline' == $wishlist_position || 'topline' == $compare_position || 'topline' == $account_position): ?>
+		<?php
+		$jslib = [
+			'customer' => [
+				'component' => 'Magento_Customer/js/view/customer',
+			],
+		];
+		if ($wishlist_position) {
+			$jslib['wishlist']['component'] = 'Magento_Wishlist/js/view/wishlist';
+		}
+		if ($compare_position) {
+			$jslib['compareProducts']['component'] = 'Magento_Catalog/js/view/compare-products';
+		}
+		?>
+		<script type="text/x-magento-init">
+			{ "*": { "Magento_Ui/js/core/app": { "components": <?php echo json_encode($jslib); ?> } } }
+		</script>
+	<?php endif; ?>
+<?php endif; ?>

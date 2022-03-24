@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Delhivery
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ced_Delhivery::1" title="Delhivery" module="Ced_Delhivery" sortOrder="40" resource="Ced_Delhivery::1" />
+        <add id="Ced_Delhivery::2" title=" Manage AWB" module="Ced_Delhivery" sortOrder="20" parent="Ced_Delhivery::1" action="delhivery/grid/awb" resource="Ced_Delhivery::2" />
+        <add id="Ced_Delhivery::3" title="Manage Pincode" module="Ced_Delhivery" sortOrder="30" parent="Ced_Delhivery::1" action="delhivery/grid/index" resource="Ced_Delhivery::3"/>
+        <add id="Ced_Delhivery::4" title="Configuration" module="Ced_Delhivery" sortOrder="50"
+             resource="Ced_Delhivery::4"
+             parent="Ced_Delhivery::1"
+             action="adminhtml/system_config/edit/section/carriers/"
+        />
+    </menu>
+</config>

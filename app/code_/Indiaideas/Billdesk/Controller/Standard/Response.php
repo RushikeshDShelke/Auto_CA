@@ -1,0 +1,147 @@
+<?php
+
+namespace Indiaideas\Billdesk\Controller\Standard;
+
+use Magento\Framework\App\CsrfAwareActionInterface;
+use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Framework\App\RequestInterface;
+
+class Response extends \Indiaideas\Billdesk\Controller\Billdesk implements CsrfAwareActionInterface
+{
+
+
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException
+    {
+        return null;
+    }
+
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
+    }
+
+    public function execute()
+    {
+        $responseMsg = $_POST['msg'];
+        $hidRequestId = $_POST['hidRequestId'];
+        $hidOperation = $_POST['hidOperation'];
+
+        $responseArray = explode("|", $responseMsg);
+        //FOR REFERENCE PURPOSE
+        // Array ( [0] => HMACUAT [1] => 66 [2] => U1230001120242 [3] => 1 [4] => 00000007.00
+        // [5] => 123 [6] => NA [7] => 01 [8] => INR [9] => DIRECT [10] => NA [11] => NA [12] => 00.00 [13] => 27-12-2019 17:13:59
+        // [14] => 0300 [15] => NA [16] => NA [17] => NA [18] => NA // [19] => NA [20] => NA [21] => NA [22] => NA [23] => NA [24] => NA
+        // [25] => 0DF8B1E5A54ECE7B82BE89B297FE7545362F6EA6DDF16BB689B37A0AC2822E2C )
+
+        $globalErrMass = "Your payment has been failed!";
+        $orderOrg = $this->getOrder();
+        //$orderIdOrg= $orderOrg->getRealOrderId();          //Order ID from Magento
+        $orderId = $responseArray[1];                      //Order ID from Billdesk Response
+        $orderIdOrg = $orderId;
+	$order = $this->getOrderById($orderId);
+	$orderOrg = $order;
+        $transactionID = $responseArray[2];
+        $transactionAmt = round((int)$responseArray[4], 2);
+        $checkAmt=round($orderOrg->getGrandTotal(), 2);
+        $transactionStatus = $responseArray[14];
+//        echo "Response Amount = ".$transactionAmt."\n"."Original Amount = ".$checkAmt."\n"."Response Order ID = ".$orderId."\n"."Original Order ID = ".$orderIdOrg;
+        $comment = "";
+        $returnUrl = "";
+
+        $checksumVerify = $this->getBilldeskModel()->verifychecksum_e($responseMsg);
+        //-----------------------------Verify Checksum , Amount and Order ID---------------------------//
+        if ($checksumVerify && $transactionAmt==$checkAmt && $orderId==$orderIdOrg) {
+            if ($transactionStatus == "0300") {
+                $autoInvoice = $this->getBilldeskModel()->autoInvoiceGen();
+                if ($autoInvoice == 'authorize_capture') {
+                    $payment = $orderOrg->getPayment();
+                    $payment->setTransactionId($transactionID)
+                        ->setPreparedMessage(__('Transaction with Billdesk has been successful.'))
+                        ->setShouldCloseParentTransaction(true)
+                        ->setIsTransactionClosed(0)
+                        ->setAdditionalInformation(['Indiaideas', 'billdesk'])
+                        ->registerCaptureNotification(
+                            $transactionAmt,
+                            true
+                        );
+                    $invoice = $payment->getCreatedInvoice();
+                }
+                $successFlag = true;
+                $comment .= "Success";
+                $orderOrg->setState(\Magento\Sales\Model\Order::STATE_PROCESSING);
+                $orderOrg->setStatus($order::STATE_PROCESSING);
+                $orderOrg->setExtOrderId($orderIdOrg);
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+                if($customerSession->isLoggedIn()) {
+                       // customer login action
+                }
+                else{
+                        if(!$orderOrg->getCustomerIsGuest())
+                        {
+                                $customerRepository = $objectManager->get('Magento\Customer\Api\CustomerRepositoryInterface');
+                                $customer = $customerRepository->getById($orderOrg->getCustomerId());
+                                $customerSession->setCustomerDataAsLoggedIn($customer);
+                                /*$checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
+                                $checkoutSession->setLastOrderId($orderOrg->getId());
+                                $checkoutSession->setLastQuoteId($orderOrg->getQuoteId());
+                                $checkoutSession->setLastSuccessQuoteId($orderOrg->getQuoteId());
+                        	$checkoutSession->setLastRealOrderId($orderOrg->getId());*/
+                	}
+			$checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
+                                                                        $checkoutSession->setLastOrderId($order->getId());
+                                                                        $checkoutSession->setLastQuoteId($order->getQuoteId());
+                                                                        $checkoutSession->setLastSuccessQuoteId($order->getQuoteId());
+                                                                        $checkoutSession->setLastRealOrderId($order->getId());
+                                                                        $lastOrder = $checkoutSession->getLastRealOrder();
+                }
+                $returnUrl = $this->getBilldeskHelper()->getUrl('checkout/onepage/success');
+
+	    } elseif ($transactionStatus == "0399") {
+                $successFlag = false;
+                $orderOrg->setExtOrderId($orderIdOrg);
+                $errorMsg = $globalErrMass;
+		$comment .= "Payment failed.";
+		$this->_cancelPayment("User cancels order from Bill Desk");
+		$this->_eventManager->dispatch('order_cancel_after', ['order' => $orderOrg]);	
+                $orderOrg->setStatus($orderOrg::STATE_CANCELED);
+                $returnUrl = $this->getBilldeskHelper()->getUrl('checkout/onepage/failure');
+
+            } elseif ($transactionStatus == "0002") {
+                $successFlag = false;
+                $orderOrg->setExtOrderId($orderIdOrg);
+                $errorMsg = 'Payment is pending.';
+                $comment .= "Payment Pending.";
+		$orderOrg->setStatus($orderOrg::STATE_PENDING_PAYMENT );
+                $returnUrl = $this->getBilldeskHelper()->getUrl('checkout/onepage/failure');
+
+            } else {
+                $successFlag = false;
+                $errorMsg = 'It seems some issue in server to server communication. Kindly connect with administrator.';
+                $comment .= "Transaction Error";
+                $orderOrg->setStatus($orderOrg::STATE_PENDING_PAYMENT );
+                $returnUrl = $this->getBilldeskHelper()->getUrl('checkout/onepage/failure');
+
+            }
+        } else {
+            $successFlag = false;
+            $errorMsg = 'Payment is pending.';
+            $comment .= "Fraud Detucted, Checksum Mismatch.";
+            $orderOrg->setState(\Magento\Sales\Model\Order::STATE_PENDING_PAYMENT);
+            $orderOrg->setStatus($orderOrg::STATUS_FRAUD);
+            $returnUrl = $this->getBilldeskHelper()->getUrl('checkout/onepage/failure');
+
+        }
+
+        $orderOrg->addStatusToHistory($orderOrg->getStatus(), $comment);
+        $orderOrg->save();
+        if ($successFlag) {
+            $this->messageManager->addSuccess(__('Transaction with Billdesk has been successful.'));
+        } else {
+            $this->messageManager->addError(__($errorMsg));
+        }
+        $this->getResponse()->setRedirect($returnUrl);
+    }
+}

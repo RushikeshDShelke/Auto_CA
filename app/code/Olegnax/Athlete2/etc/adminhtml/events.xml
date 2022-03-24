@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_athlete2_settings">
+        <observer name="athlete2_settings" instance="Olegnax\Athlete2\Observer\SaveAthlete2Settings"/>
+    </event>
+    <event name="admin_system_config_changed_section_athlete2_design">
+        <observer name="athlete2_settings" instance="Olegnax\Athlete2\Observer\SaveAthlete2Settings"/>
+    </event>
+    <event name="admin_system_config_changed_section_athlete2_license">
+        <observer name="athlete2_license" instance="Olegnax\Athlete2\Observer\SaveAthlete2License"/>
+    </event>
+</config>

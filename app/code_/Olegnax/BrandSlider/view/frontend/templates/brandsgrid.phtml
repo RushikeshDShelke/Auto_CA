@@ -1,0 +1,55 @@
+<?php
+/**
+ * Olegnax BrandSlider
+ * 
+ * This file is part of Olegnax/Core.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_BrandSlider
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+$brands				 = $block->getItems();
+$athleteImgHelper	 = $this->helper( 'Olegnax\BrandSlider\Helper\Image' );
+$classes = [];
+$classes [] = $block->getColumnsDesktop() ? ('columns-' . $block->getColumnsDesktop()) : '';
+$classes [] = $block->getColumnsDesktopSmall() ? ('columns-l-' . $block->getColumnsDesktopSmall()) : '';
+$classes [] = $block->getColumnsTablet() ? ('columns-m-' . $block->getColumnsTablet()) : '';
+$classes [] = $block->getColumnsMobile() ? ('columns-s-' . $block->getColumnsMobile()) : '';
+$classes[] = 'hover-'. ($block->getImageHover() ?: 'default');
+
+$cols = (bool) ($block->getColumnsDesktop() || $block->getColumnsMobile() || $block->getColumnsTablet() || $block->getColumnsDesktopSmall());
+$width = $escaper->escapeHtmlAttr($block->getWidth());
+$height = $escaper->escapeHtmlAttr($block->getHeight());
+$wrapperStyle = 'padding-bottom:' . ($height / $width) * 100 . '%;';
+if(!$cols) {
+    $wrapperStyle .= ' width:' . $width . 'px; ' . 'height: ' . $height . 'px; ';
+}
+
+if ( 0 < count( $brands ) ) :
+	?>
+	<div class="block widget ox-brand-grid__container <?= implode(' ', $classes) ?>">
+				<?php foreach ( $brands as $brand ) : ?>
+					<?php
+					$size	 = [ $width, $height ];
+					$url	 = $athleteImgHelper->adaptiveResize( $brand->getImageName(), $size )->getUrl();
+					if($athleteImgHelper->_imageExist){ 
+					?>
+						<div class="ox-brand__item brand-<?= $brand->getValue(); ?>">
+							<a href="<?= $block->getBrandUrl( $brand ); ?>" class="ox-brand__link" ><img src="<?php echo $url; ?>" alt="<?php echo $escaper->escapeHtmlAttr($brand->getLabel()); ?>" width="<?= $width ?>" height="<?= $height ?>" class="ox-brand-slider__image" /></a>
+						</div>
+					<?php } ?>
+			<?php endforeach; ?>
+	</div>
+<?php endif; ?>

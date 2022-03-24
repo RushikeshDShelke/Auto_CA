@@ -1,0 +1,168 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+?>
+<?php $_product = $block->getProduct() ?>
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl();
+$pUrl = $baseurl.$_product->getUrlPath();
+?>
+
+
+<ul class="sharing-links" style="display:none;">
+    <li>
+        <?php if ($block->canEmailToFriend()) :?>
+            <a href="<?= $block->escapeUrl($this->helper(Magento\Catalog\Helper\Product::class)->getEmailToFriendUrl($_product)) ?>"
+            class="action mailto friend link-email-friend"><span><?= $block->escapeHtml(__('Email')) ?></span></a>
+        <?php endif; ?> 
+    </li>
+    <li>
+	    <a href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo $_product->getProductUrl(); ?>&t=<?php echo $_product->getName(); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo __('Share on Facebook') ?>" class="link-facebook">Share Facebook</a>
+    </li>
+    <li>
+	    <a href="javascript:popWin('http://twitter.com/home/?status=<?php echo urlencode($_product->getName() . ' (' . $_product->getProductUrl() . ')'); ?>', 'twitter', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo __('Share on Twitter') ?>" class="link-twitter">Share on Twitter</a>
+    </li>
+</ul>
+
+<!--<span style="color:#d0980d;color: #d0980d;font-family: 'Roboto';">Use <strong>SAVE5</strong> for additional 5% off<span style="color:red">*</span><span style="font-size: 10px;/* font-style: italic; */">( Offer valid till 31st of May )</span></span><br>-->
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                                $product_obj = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
+                                if(isset($product_obj->getTierPrice()[0]['percentage_value']))
+                                {
+                                $costPricePercentage = $product_obj->getTierPrice()[0]['percentage_value'];
+                                $costPriceQty = $product_obj->getTierPrice()[0]['price_qty'];
+                                if($costPricePercentage && $costPriceQty == 2)
+                                { ?>
+<!--<span style="color:#d0980d;color: #d0980d;font-family: 'Roboto';">Buy <strong>2 quantity</strong> for additional 10 off<span style="color:red">*</span><span style="font-size: 10px;/* font-style: italic; */">( Offer valid till 31st of May )</span></span>-->
+<?php }} ?>
+
+
+
+<div class="desc-container">
+    <div class="block-title"><span class="paccordion active"><strong>Details:</strong></span>
+        <div class="panel show" style="display:block;">
+            <p><?php echo $_product->getResource()->getAttribute('description')->getFrontend()->getValue($_product); ?>
+            </p>
+        </div>
+    </div>
+    <div class="block-title"><span class="paccordion nactive"><strong>Dimensions & Care</strong> </span>
+        <div class="panel">
+            <p><?php echo $_product->getResource()->getAttribute('size_fir')->getFrontend()->getValue($_product); ?></p>
+        </div>
+    </div>
+    <div class="block-title addr-eml"><span class="paccordion nactive"><strong>Shipping & Handling</strong></span>
+        <div class="panel">
+            <p><?php echo $_product->getResource()->getAttribute('wash_care')->getFrontend()->getValue($_product); ?></p>
+        </div>
+    </div>
+</div>
+<div class="disclamier" style="margin-left: 9px;">
+  <p><?php echo $_product->getResource()->getAttribute('disclaimer')->getFrontend()->getValue($_product); ?>
+
+  </p>  
+</div>
+<div class="disclamier-mobile">
+  <p><?php echo $_product->getResource()->getAttribute('disclaimer')->getFrontend()->getValue($_product); ?>
+
+            </p>  
+</div>
+<!--div class="productSku">PREF - <?php //echo $_product->getSku(); ?></div-->
+<!--written by harry-->
+<script type="text/javascript">
+ require(['jquery'], function () {
+jQuery('.paccordion').click(function(e) {
+    e.preventDefault();
+  
+    var $this = jQuery(this);
+    
+    if (jQuery(this).hasClass('active')) {
+        jQuery(".paccordion").each(function() {
+           jQuery(this).removeClass('active');
+           jQuery(this).addClass('nactive');
+        });
+    }else{
+        jQuery(".paccordion").each(function() {
+           jQuery(this).removeClass('active');
+           jQuery(this).addClass('nactive');
+        });
+        $this.removeClass('nactive');
+        $this.addClass('active');
+    }
+  
+    if ($this.next().hasClass('show')) {
+        $this.next().removeClass('show');
+        $this.next().slideUp(350);
+    } else {
+        $this.parent().parent().find('.block-title .panel').removeClass('show');
+        $this.parent().parent().find('.block-title .panel').slideUp(350);
+        $this.next().toggleClass('show');
+        $this.next().slideToggle(350);
+    }
+});
+ });
+function popWin(url,win,para) {
+    var win = window.open(url,win,para);
+    win.focus();
+}
+</script>
+<style>
+/*.field.textarea {
+    display: none;
+        width: 300px!important;
+    border-top: 2px solid #194342!important;
+    border-bottom: 2px solid #194342!important;
+    border-left: 2px solid #194342!important;
+    border-right: 2px solid #194342!important;
+}
+span.ui-button-text {
+    color: #fff!important;
+    background-color: #D0980D!important;
+        font-weight: 500;
+    padding: 1px;
+        position: relative;
+    top: 163px;
+
+}
+
+  .ui-widget-header,.ui-state-default, ui-button {
+            background:#194342!important;
+         }
+        .ui-dialog-title {
+    color: #fff;
+    margin-left: 82px;
+    padding: 3px;
+} */
+</style>
+
+
+<script>
+ /* require(['jquery', 'jquery/ui'], function($){
+  $(document).ready( function() {
+                $('input[type="checkbox"]').click(function() {
+        var inputValue = $(this).attr("value");
+                $(".field.textarea").dialog({
+            modal: true,
+                        closeText : 'Save',
+            autoOpen: false,
+            show : "slide",
+            height: 190,
+            title: "Gift Message"
+        });
+	$('.field.textarea').dialog('open');
+    });
+         jQuery('.label').find('span:contains("Gift Message")').remove();
+         jQuery(".field.textarea .product-custom-option").attr("placeholder", "Type your gift message for your gift card.");
+  });
+
+  jQuery(':radio').attr('type','checkbox')
+});
+ */
+</script>
+
+

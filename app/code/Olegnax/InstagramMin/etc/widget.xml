@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Olegnax\InstagramMin\Block\Widget\Instagram" id="olegnax_instagrammin_instagram">
+        <label translate="true">Olegnax - Instagram Feed</label>
+        <description translate="true"></description>
+        <parameters>
+            <parameter name="images_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Images to Display</label>
+                <value>12</value>
+            </parameter>
+            <parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Columns Desktop</label>
+                    <value>6</value>
+            </parameter>
+            <parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Columns Tablet</label>
+                    <value>4</value>
+            </parameter>
+            <parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Columns Mobile</label>
+                    <value>3</value>
+            </parameter>
+            <parameter name="lazy_load" xsi:type="select" visible="true">
+                    <label translate="true">Disable Lazy Load </label>
+                    <description translate="true">Exclude instagram images from lazy load even if it is enabled in Theme Settings / General.</description>
+                    <options>
+                        <option name="noexclude" value="noexclude" selected="true">
+                            <label translate="true">No</label>
+                        </option>
+                        <option name="exclude" value="exclude">
+                            <label translate="true">Yes</label>
+                        </option>
+                    </options>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Layout</label>
+                <options>
+                    <option name="default" value="Olegnax_InstagramMin::widget/instagram_list.phtml" selected="true">
+                        <label translate="true">Default Grid</label>
+                    </option>
+                    <option name="list_2" value="Olegnax_InstagramMin::widget/instagram_list_2.phtml">
+                        <label translate="true">First Image Big</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="image_resize" xsi:type="select" required="false" visible="true">
+                <label translate="true">Resize Images</label>
+                <description translate="true">Max Height - will cut top and bottom part of the vertical images and align horizontal iamge vertically. Square - will scale both vertical and horizontal to make them cover the square so part of the image won't be visible.</description>
+                <options>
+                    <option name="none" value="none" selected="true">
+                        <label translate="true">None, Original Size</label>
+                    </option>
+                     <option name="maxheight" value="maxheight">
+                        <label translate="true">Max Height</label>
+                    </option>
+                    <option name="square" value="square">
+                        <label translate="true">Square</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

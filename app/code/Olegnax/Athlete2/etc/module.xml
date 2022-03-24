@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="Olegnax_Athlete2" setup_version="1.7.1">
+		<sequence>
+			<module name="Magento_Theme"/>
+			<module name="Magento_Catalog"/>
+		</sequence>
+	</module>
+</config>

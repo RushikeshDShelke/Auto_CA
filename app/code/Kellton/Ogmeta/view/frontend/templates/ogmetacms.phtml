@@ -1,0 +1,42 @@
+<?php
+/**
+ * @var $block \Kellton\Ogmeta\Block\OgmetaCms
+ */
+?>
+<?php
+$helper = $block->getOgHelper();
+
+if (!$helper->isEnabled()) {
+    return;
+}
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$currentStore = $storeManager->getStore();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$siteName = $helper->getSiteName();
+
+$imagepath = "";
+$image = $helper->getOgImage();
+// $imagepath = "https://www.craftmaestros.com/pub/media/favicon/default/favicon-3.png";
+$imagepath = $mediaUrl . "favicon/default/favicon-3.png";
+$imageAttr = getimagesize($imagepath);
+
+$_page_config = $_objectManager->get('Magento\Framework\View\Page\Config');
+$_meta_title = strip_tags($_page_config->getTitle()->getShort());
+$_meta_description = strip_tags($_page_config->getDescription());
+?>
+
+<!-- OG META Data -->
+<meta property="og:title" content="<?php echo $_meta_title; ?>" />
+<meta property="og:site_name" content="<?php echo $siteName; ?>" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<?php echo $helper->getCrntUrlForOg(); ?>" />
+<meta property="og:image" content="<?= $imagepath ?>" />
+<meta property="og:image:secure_url" content="<?= $imagepath ?>" />
+<meta property="og:image:type" content="<?php echo $imageAttr['mime']; ?>" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="400" />
+<meta property="og:description" content="<?php echo $_meta_description; ?>" />
+<?php if ($helper->getFacebookAppId()) { ?>
+<meta property="fb:app_id" content="<?php echo $helper->getFacebookAppId(); ?>"/>
+<?php } ?>

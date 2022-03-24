@@ -1,0 +1,42 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_NewsletterPopupBasic
+ * @copyright   Copyright (c) 2021 Olegnax (http://olegnax.com/). All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Olegnax\NewsletterPopupBasic\Block\Popup;
+use Olegnax\NewsletterPopupBasic\Model\Config\Source\Layout;
+
+$general = $block->getModuleConfig('general');
+$layout = $general['layout'];
+$classes = [];
+$classes[] = $layout;
+if ($layout != Layout::FULLWIDTH) {
+    $classes[] = '-columns';
+}
+$classes[] = 'inputs-style--' . $block->getModuleConfig('appearance/newsletter_input_style');
+$classes[] = '-content-' . $general['content_position_h'];
+$classes[] = '-content-' . $general['content_position_v'];
+$classes[] = '-form-' . $general['form_layout'];
+
+/** @var Popup $block */
+/** @var Escaper $escaper */
+?>
+<div class="ox-newsletter-modal__container <?= implode(' ', $classes); ?>" style="display: none">
+    <?php if ($layout == Layout::COLUMNS_LEFT || $layout == Layout::COLUMNS_RIGHT): ?>
+		<div class="col -image"
+			 style="<?= $escaper->escapeHtmlAttr($block->getBackgroundImage('content/column_image')) ?>"></div>
+    <?php endif; ?>
+	<div class="col -content">
+		<div class="inner">
+            <?= $block->getContent(); ?>
+		</div>
+	</div>
+</div>
+<div class="ox-newsletter-modal__overlay"></div>
+<?= $block->createJs(); ?>
+<?= $block->getStyle(); ?>

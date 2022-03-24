@@ -1,0 +1,11 @@
+<style type="text/css">
+	body:before { display:none !important}
+	body:after { display:none !important}
+	body { background:transparent}
+</style>
+<?php echo $headIncludes; ?>
+<?php echo $frameworkHelper->includeEnqueuedAssets(); ?>
+<div>
+	<?php echo $content; ?>
+</div>
+<?php $frameworkHelper->wp_footer(); ?>

@@ -1,0 +1,69 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var $block \Magento\Sales\Block\Order\Email\Items\DefaultItems */
+
+/** @var $_item \Magento\Sales\Model\Order\Item */
+$_item = $block->getItem();
+$_order = $_item->getOrder();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+// $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/testingg.log');
+// $logger = new \Zend\Log\Logger();
+// $logger->addWriter($writer);
+// $logger->info($_item->getPrice());
+?>
+<tr>
+    <td style="font-size: 12px; width: 75px; padding: 10px 0; border : 2px solid; text-align:center;"><?php echo $_item->getSerialNumber(); ?></td>
+    <td class="cell-content product-info item-info<?= ($block->getItemOptions() ? ' has-extra' : '') ?>" width="230" style="border : 2px solid; padding:5px;">
+        <p class="product-name"><?= $block->escapeHtml($_item->getName()) ?></p>
+        <p class="sku"><?= $block->escapeHtml(__('SKU')) ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
+        <?php if ($block->getItemOptions()) : ?>
+            <dl class="item-options" style="margin:0; padding:0;">
+            <?php foreach ($block->getItemOptions() as $option) : ?>
+                <dt><strong><em><?= $block->escapeHtml($option['label']) ?></em></strong></dt>
+                <dd style="margin:0; padding:0 0 0 9px;">
+                    <?= /* @noEscape */  nl2br($block->escapeHtml($option['value'])) ?>
+                </dd>
+            <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) :?>
+            <?= $addInfoBlock->setItem($_item)->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+    <td class="item-qty cell-content align-center" style="border : 2px solid; padding: 5px;text-align:center;"><?= (int) $_item->getQtyOrdered() ?></td>
+    <td class="item-qty cell-content align-center" style="border : 2px solid; padding: 5px;text-align:center;"><?= floatval($_item->getPrice()) ?></td>
+    <td class="a-right" style="border : 2px solid; padding: 5px;text-align:center;"><?php echo $priceHelper->currency($_item->getDiscountAmount(), true, false); ?></td>
+    <td class="item-price cell-content align-right" style="border : 2px solid; padding: 5px;text-align:center;">
+    <?php $rowtotal = $_item['row_total'] - $_item->getDiscountAmount(); ?>
+        <?= /* @noEscape */ $priceHelper->currency($rowtotal, true, false); ?>
+    </td>
+</tr>
+<?php if ($_item->getGiftMessageId()
+    && $_giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)
+        ->getGiftMessage($_item->getGiftMessageId())
+) : ?>
+    <tr>
+    <td colspan="3" class="item-extra">
+        <table class="message-gift">
+            <tr>
+                <td>
+                    <h3><?= $block->escapeHtml(__('Gift Message')) ?></h3>
+                    <strong><?= $block->escapeHtml(__('From:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                    <br /><strong><?= $block->escapeHtml(__('To:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                    <br /><strong><?= $block->escapeHtml(__('Message:')) ?></strong>
+                    <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<?php endif; ?>

@@ -1,0 +1,114 @@
+<?php $order = $block->getOrder();?>
+<?php $shipping = $block->getSupplierShippingMethod(); ?>
+<?php
+    $customerFirstName = $order->getCustomerFirstname();
+    $customerLastName = $order->getCustomerLastname();
+
+    if(!trim($customerFirstName) and !trim($customerLastName)) {
+        $billingAddress = $order->getBillingAddress();
+        $customerFirstName = $billingAddress->getFirstname();
+        $customerLastName = $billingAddress->getLastname();
+    }
+?>
+
+<div class="container vendor-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h2 class="text-center"><?= /* @escapeNotVerified */ __('Order') ?> #<?= /* @escapeNotVerified */ $order->getIncrementId() ?></h2>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <h3 class='margin-bottom-mobile'><?= /* @escapeNotVerified */ __('Order Information') ?></h3>
+
+                        <p>
+                            <strong><?= /* @escapeNotVerified */ __('Order Date') ?>:</strong>
+                            <?= /* @escapeNotVerified */ date('M d, Y g:i:s A', strtotime($order->getCreatedAt())) ?>
+                        </p>
+                        <p>
+                            <strong><?= /* @escapeNotVerified */ __('Order Status') ?>:</strong>
+                            <?php if ($order->getStatus() === 'canceled') : ?>
+                                <span class="text-danger"><?= /* @escapeNotVerified */ ucfirst($order->getStatus()) ?></span>
+                            <?php else : ?>
+                                <?= /* @escapeNotVerified */ ucfirst($order->getStatus()) ?>
+                            <?php endif; ?>
+
+                        </p>
+                        <?php if(isset($shipping['price'])): ?>
+                            <p>
+                                <strong><?= /* @escapeNotVerified */ __('Shipping Price') ?>:</strong> <?= /* @escapeNotVerified */ $shipping['price']; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3 class='margin-bottom-mobile'><?= /* @escapeNotVerified */ __('Account Information') ?></h3>
+
+                        <p>
+                            <strong><?= /* @escapeNotVerified */ __('Customer Name') ?>:</strong>
+                            <?= /* @escapeNotVerified */ $customerFirstName ?> <?= /* @escapeNotVerified */ $customerLastName ?>
+                        </p>
+                        <p>
+                            <strong><?= /* @escapeNotVerified */ __('Email') ?>:</strong>
+                            <a href="mailto:<?= /* @escapeNotVerified */ $order->getCustomerEmail() ?>"><?= /* @escapeNotVerified */ $order->getCustomerEmail() ?></a>
+                        </p>
+                        <?php if (isset($shipping['method'])) : ?>
+                            <p>
+                                <strong><?= /* @escapeNotVerified */ __('Shipping Method Name') ?>:</strong>
+                                <?= /* @escapeNotVerified */ $shipping['method'] ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist" style='margin-left: 0'>
+            <li <?= /* @escapeNotVerified */ $block->getCurrentTab() === 'products' ? 'class="active"' : '' ?>>
+                <a href="#order"
+                   role="tab"
+                   data-toggle="tab"><?= /* @escapeNotVerified */ __('Order') ?></a>
+            </li>
+
+            <?php if(!$order->getIsVirtual()): ?>
+                <li <?= /* @escapeNotVerified */ $block->getCurrentTab() === 'shipment' ? 'class="active"' : '' ?>>
+                    <a href="#shipments"
+                       role="tab"
+                       data-toggle="tab"><?= /* @escapeNotVerified */ __('Shipments') ?></a>
+                </li>
+            <?php endif; ?>
+
+            <li <?= /* @escapeNotVerified */ $block->getCurrentTab() === 'invoice' ? 'class="active"' : '' ?>>
+                <a href="#invoices"
+                   role="tab"
+                   data-toggle="tab"><?= /* @escapeNotVerified */ __('Invoices') ?></a>
+            </li>
+
+            <?= $block->getAdditionalNavTabs($order); ?>
+
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane <?= /* @escapeNotVerified */ $block->getCurrentTab() === 'products' ? 'active' : '' ?>"
+                 id="order">
+                <?= /* @escapeNotVerified */ $block->getChildBlock('view_order')->setOrder($order)->setItems($block->getItems())->toHtml() ?>
+            </div>
+
+            <?php if(!$order->getIsVirtual()): ?>
+                <div class="tab-pane <?= /* @escapeNotVerified */ $block->getCurrentTab() === 'shipment' ? 'active' : '' ?>"
+                     id="shipments">
+                    <?= /* @escapeNotVerified */ $block->getChildBlock('view_shipments')->setOrder($order)->toHtml() ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="tab-pane <?= /* @escapeNotVerified */ $block->getCurrentTab() === 'invoice' ? 'active' : '' ?>"
+                 id="invoices">
+                <?= /* @escapeNotVerified */ $block->getChildBlock('view_invoices')->setOrder($order)->toHtml() ?>
+            </div>
+
+            <?= $block->getAdditionalTabs($order); ?>
+        </div>
+    </div>
+</div>

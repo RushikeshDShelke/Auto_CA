@@ -1,0 +1,194 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-progress-bar__font-size: 16px;
+@checkout-progress-bar__font-weight: @font-weight__bold;
+@checkout-progress-bar__margin: 0;
+@checkout-progress-bar__height: 50px;
+
+@checkout-progress-bar-item__background-color: #f5f5f5;
+@checkout-progress-bar-item__border-radius: 0;
+@checkout-progress-bar-item__color: #000000;
+@checkout-progress-bar-item__margin: 50px;
+@checkout-progress-bar-item__width: 66.666667%;
+@checkout-progress-bar-item__active__background-color: @main-color;
+@checkout-progress-bar-item__complete__color: @checkout-progress-bar-item__color;
+
+/*
+@checkout-progress-bar-item-element__height: @checkout-progress-bar-item-element__width;
+@checkout-progress-bar-item-element__width: 38px;*/
+
+@checkout-progress-bar-item-element-inner__background-color: @page__background-color;
+@checkout-progress-bar-item-element-inner__color: @checkout-progress-bar-item__color;
+/*@checkout-progress-bar-item-element-inner__height: @checkout-progress-bar-item-element-inner__width;
+@checkout-progress-bar-item-element-inner__width: @checkout-progress-bar-item-element__width - (@checkout-progress-bar-item-element-outer-radius__width * 2);*/
+@checkout-progress-bar-item-element-inner__active__content: @icon-checkmark;
+@checkout-progress-bar-item-element-inner__active__font-size: 28px;
+@checkout-progress-bar-item-element-inner__active__line-height: 1;
+
+@checkout-progress-bar-item-element-outer-radius__width: 6px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Checkout Progress Bar
+    //  ---------------------------------------------
+
+    .opc-progress-bar {
+        &:extend(.abs-reset-list all);
+        .lib-css(margin, 0 0 @checkout-progress-bar__margin);
+        counter-reset: i;
+        font-size: 0;
+        position: relative;
+        width: 100%;
+        /*max-width: @checkout-progress-bar-item__width;*/
+    }
+
+    .opc-progress-bar-item {
+        .lib-css(margin, 0 0 @checkout-progress-bar-item__margin);
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        vertical-align: top;
+        width: 50%;
+        background:transparent;
+        height: @checkout-progress-bar__height;
+        > span {
+            display: flex;
+            align-items: center;
+            word-wrap: break-word;
+            position: relative;
+            z-index: 2;
+
+            .lib-typography(
+            @_color: @checkout-progress-bar-item__color,
+            @_font-family: false,
+            @_font-size: @checkout-progress-bar__font-size,
+            @_font-style: false,
+            @_font-weight: @checkout-progress-bar__font-weight,
+            @_line-height: 1
+            );
+            height: 100%;
+            opacity: 0.4;
+            text-align: left;
+            padding-left: 60px;
+            .at-headings();
+            &:before{
+                content: '2.';
+                content: counter(i);
+                counter-increment: i;
+                position: absolute;
+                left: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+
+            }
+        }
+
+        &:before {
+            content: '';
+            .lib-css(background, @checkout-progress-bar-item__background-color);
+            display: block;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transform: scaleX(0);
+            transform-origin: 0;
+            animation: transform-0-1 0.9s;
+            animation-delay: 0.5s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.57, 0.39, 0, 1);
+        }
+        &._active {
+            &:before {
+                .lib-css(background, @checkout-progress-bar-item__active__background-color);
+            }
+        }
+        &._active,
+        &._complete {
+            cursor: pointer;
+            > span {
+                opacity: 1;
+                &:before{
+                    content: '';
+                    display: inline-block;
+                    overflow: hidden;
+                    background: #000000;
+                    position: absolute;
+                    left: 22px;
+                    top: 50%;
+                    width: 10px;
+                    height: 3px;
+                    margin-top: -1px;
+                    transform: rotate(45deg) scaleX(0);
+                    transform-origin: 0;
+                    animation: checkboxleft 0.2s;
+                    animation-delay: 1.1s;
+                    animation-fill-mode: forwards;
+                }
+                &:after{
+                    content: '';
+                    display: inline-block;
+                    overflow: hidden;
+                    background: #000000;
+                    position: absolute;
+                    left: 27px;
+                    top: 50%;
+                    margin-top: 6px;
+                    width: 15px;
+                    height: 3px;
+                    transform: rotate(-45deg) scaleX(0);
+                    transform-origin: 0;
+                    animation: checkboxright 0.2s;
+                    animation-delay: 1.3s;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .opc-progress-bar{
+        /*padding-right: 80px;*/
+       
+    }
+}
+//
+//  Small
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .opc-progress-bar-item{
+        width: 100%;
+        font-size: 1.4rem;
+    }
+    &._active, 
+    &._complete {
+        > span:before{
+            left: 20px;
+        }
+    }
+    &._active, 
+    &._complete{
+        > span:after{
+            left: 25px;
+        }
+    }
+}

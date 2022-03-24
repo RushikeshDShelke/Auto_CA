@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!--<link src="Olegnax_Athlete2Slideshow::js/slideshow.js"/>-->
+    </head>
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Olegnax\Athlete2Slideshow\Block\Slideshow" name="athlete2_slideshow" template="html/slideshow.phtml" after="athlete2_after_header">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="helper" helper="Olegnax\Athlete2Slideshow\Helper\Helper::setSlideshowLayout"/>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,46 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+?>
+<script type="text/javascript">
+    requirejs([
+        'jquery',
+        'jquery/ui',
+        'jquery/validate',
+        'mage/translate'
+    ], function($){
+        'use strict';
+        $.validator.addMethod(
+            "validate-cwebp-command",
+            function(value, element) {
+                return this.optional(element) || <?php echo \Jajuma\WebpImages\Helper\Data::REGX_CWEBP ?>.test(value);
+            },
+            $.mage.__("Incorrect cwebp custom command. Custom Command must only include underscore (_), minus (-), space ( ) and alphanumeric characters.")
+        );
+        $.validator.addMethod(
+            "validate-imagemagick-command",
+            function(value, element) {
+                return this.optional(element) || <?php echo \Jajuma\WebpImages\Helper\Data::REGX_IMAGEMAGICK ?>.test(value);
+            },
+            $.mage.__("Incorrect ImageMagick custom command. Custom Command must only include underscore (_), minus (-), space ( ), comma (,), colon (:), equals sign (=) and alphanumeric characters.")
+        );
+        $.validator.addMethod(
+            "validate-cwebp-path",
+            function(value, element) {
+                return this.optional(element) || <?php echo \Jajuma\WebpImages\Helper\Data::REGX_CWEBP_PATH ?>.test(value);
+            },
+            $.mage.__("Incorrect cwebp path. Path must only include underscore (_), minus (-), dot (.), slash(/) and alphanumeric characters.")
+        );
+        $.validator.addMethod(
+            "validate-imagemagick-path",
+            function(value, element) {
+                return this.optional(element) || <?php echo \Jajuma\WebpImages\Helper\Data::REGX_IMAGEMAGICK_PATH ?>.test(value);
+            },
+            $.mage.__("Incorrect ImageMagick path. Path must only include underscore (_), minus (-), dot (.), slash(/) and alphanumeric characters.")
+        );
+    });
+</script>
+

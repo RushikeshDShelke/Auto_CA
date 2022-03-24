@@ -1,0 +1,75 @@
+<?php
+/**
+ * Blog related posts template
+ *
+ * @var $block \Magefan\Blog\Block\Post\View\RelatedPosts
+ * @var $block \Magefan\Blog\Block\Catalog\Product\RelatedPosts
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+	$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings');
+	$iWidth = $at_settings['blog_post']['related_image_width'];
+	$iHeight = $at_settings['blog_post']['related_image_height'];
+	$_hideCategories = $at_settings['blog']['blog_list_categories'];
+	$_relatedColumns = $at_settings['blog_post']['related_columns'];
+	$_relatedTitleHide = $at_settings['blog_post']['related_title_hide'];	
+	if(!$_relatedColumns) {
+		$_relatedColumns = 3;
+	}
+?>
+
+<?php if ($block->displayPosts()) { ?>
+    <?php $_postCollection = $block->getPostCollection(); ?>
+    <?php if ($_postCollection->count()) { ?>
+    <div class="block related">
+		<?php if (!$_relatedTitleHide) { ?>
+        <div class="block-title title">
+            <strong id="block-relatedposts-heading" role="heading" aria-level="2">
+                <?php echo __('Related Posts') ?>
+            </strong>
+        </div>
+		<?php } ?>
+        <div class="post-list columns-<?= $_relatedColumns ?> blog-style-modern blog-list--image-top">
+            <?php foreach ($_postCollection as $_post) { ?>
+				<article class="post-holder">
+					<?php if($iWidth && $iHeight) {
+						$featuredImage = $_post->getFeaturedImage([$iWidth, $iHeight]);
+					} else {
+						$featuredImage = $_post->getFeaturedImage();
+					} ?>
+					<?php if ($featuredImage) { ?>
+						<a class="post-image-wrapper" href="<?php echo $_post->getPostUrl() ?>" title="<?php echo $block->escapeHtml($_post->getTitle()) ?>">
+							<img src="<?php echo $featuredImage ?>" alt="<?php echo $block->escapeHtml($_post->getTitle()) ?>" />
+						</a>
+					<?php } ?>
+					<div class="post-content">
+						<?php if(!$_hideCategories) {
+							$_categoriesCount = $_post->getCategoriesCount();
+							?>
+							<?php if ( $_categoriesCount ) { ?>
+								<div class="item post-categories">
+									<?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
+										<a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>">
+											<?php echo $block->escapeHtml($ct->getTitle()) ?>
+										</a>
+									<?php } ?>
+								</div>
+							<?php } ?>
+						<?php } ?>
+						<h3 class="post-title">
+							<a class="post-item-link"
+							   href="<?php echo $_post->getPostUrl() ?>">
+								<?php echo $block->escapeHtml($_post->getTitle()); ?>
+							</a>
+						</h3>
+					</div>
+                </article>
+            <?php } ?>
+        </div>
+    </div>
+    <?php } ?>
+<?php } ?>

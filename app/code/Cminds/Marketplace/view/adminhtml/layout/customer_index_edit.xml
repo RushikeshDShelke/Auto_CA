@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Cminds_Marketplace::js/assignedcategories.js"/>
+    </head>
+    <body>
+        <referenceBlock name="customer_form">
+            <block class="Cminds\Marketplace\Block\Adminhtml\Customer\Edit\Tab\Soldproducts"
+                   name="sold_products"/>
+            <block class="Cminds\Marketplace\Block\Adminhtml\Customer\Edit\Tab\Customerrates"
+                   name="customer_rates"/>
+            <block class="Cminds\Marketplace\Block\Adminhtml\Customer\Edit\Tab\Assignedcategories"
+                   name="assigned_categories"/>
+            <block class="Cminds\Marketplace\Block\Adminhtml\Customer\Edit\Tab\Shippingfees"
+                   name="shippingfees"/>
+            <block class="Cminds\Marketplace\Block\Adminhtml\Customer\Edit\Tab\Supplierprofile"
+                   name="supplierprofile"/>
+        </referenceBlock>
+    </body>
+</page>

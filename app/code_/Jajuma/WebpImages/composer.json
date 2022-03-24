@@ -1,0 +1,23 @@
+{
+  "name": "jajuma/module-webpimages",
+  "description": "WebP Optimized Images",
+    "type": "magento2-module",
+    "license": "MIT",
+    "version": "2.1.1",
+  "authors": [
+    {
+      "name": "JaJuMa",
+      "email": "info@jajuma.de"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Jajuma\\WebpImages\\": ""
+    },
+    "files": [
+      "registration.php"
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_LayeredNavigation
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * @license     Proprietary License https://olegnax.com/license/
+ */
+
+use Magento\Catalog\Model\Layer\Filter\AbstractFilter;
+use Magento\CatalogSearch\Model\Layer\Filter\Category;
+use Magento\CatalogSearch\Model\Layer\Filter\Price;
+use Magento\LayeredNavigation\Block\Navigation\FilterRenderer;
+use Olegnax\LayeredNavigation\Helper\Filter;
+use Olegnax\LayeredNavigation\Helper\Helper;
+use Olegnax\LayeredNavigation\Model\Config\Source\FiltersType;
+
+/**
+ * Template for filter items block
+ *
+ * @var $block FilterRenderer
+ * @var $filter AbstractFilter
+ */
+
+/** @var Filter $helperFilter */
+$helperFilter = $this->helper(Filter::class);
+$showCheckbox = $this->helper(Helper::class)->getModuleConfig('general/filters_type');
+$isCategorie = $filter instanceof Category;
+$requestVar = $filter->getRequestVar();
+
+if ($filter instanceof Price && $filter->getIsSlider()): ?>
+	<div class="item item-price-slider" data-mage-init='{"OXPriceSlider":<?php echo $filter->getSliderConfig(); ?>}'>
+		<div class="ox-price-slider" style="display:none;"></div>
+		<div class="ox-price-filter__values">
+			<span class="ox-slider-min"></span>
+			<span class="ox-slider-max"></span>
+			<input<?= $showCheckbox !== FiltersType::TYPE_CHECKBOX ? ' class="ox-nav-use-url"' : '' ?> type="text" name="filter[<?= $requestVar ?>]"
+				   value="<?= $helperFilter->getSelectedSlider($filter); ?>" placeholder="<?= $filter->getLabel() ?>"/>
+			<span class="ox-price-filter__selected" style="display:none;">				
+                <?= $filter->getLabel() ? $filter->getLabel() . ': ' : '' ?>
+				<span class="ox-slider-from"></span> <span class="separator">&ndash;</span> 
+				<span class="ox-slider-to"></span>				
+			</span>
+		</div>
+	</div>
+<?php else: ?>
+	<ol class="items <?php if ($showCheckbox == FiltersType::TYPE_CHECKBOX) {
+        echo 'ox-layered__items--checkbox';
+    } ?> ">
+        <?php foreach ($filterItems as $filterItem): ?>
+			<li class="item<?= $helperFilter->checkedFilter($filterItem, ' ox-seleted-item') . $filterItem->getData('item_level')? ' ox-item-level-'.$filterItem->getData('item_level'):''; ?>">
+                <?php if ($filterItem->getCount() > 0): ?>
+                    <?php if ($filter->getIsDisableAjax($filterItem) && ($filter instanceof Category)): ?>
+                        <?php if ($showCheckbox == FiltersType::TYPE_CHECKBOX): ?>
+							<label for="filter_item_<?= $requestVar . '_' . $filterItem->getValue(); ?>">
+								<span class="ox-checkbox"></span>
+								<a class="label ox-disable-ajax" rel="nofollow"
+								   href="<?= $filter->getUrlItem($filterItem) ?>">
+                                    <?= /* @noEscape */
+                                    $filterItem->getLabel() ?>
+								</a>
+							</label>
+                        <?php else: ?>
+							<a class="ox-disable-ajax" rel="nofollow" href="<?= $filter->getUrlItem($filterItem) ?>">
+                                <?= /* @noEscape */
+                                $filterItem->getLabel() ?>
+							</a>
+                        <?php endif; ?>
+                    <?php elseif ($showCheckbox == FiltersType::TYPE_CHECKBOX): ?>
+						<input id="filter_item_<?= $requestVar . '_' . $filterItem->getValue(); ?>"
+							   type="checkbox" name="filter[<?= $requestVar ?>][]"
+							   value="<?= $filterItem->getValue(); ?>" <?= !$filterItem->getCount() ? 'disabled' : ''; ?><?= $helperFilter->checkedFilter($filterItem); ?> />
+						<label for="filter_item_<?= $requestVar . '_' . $filterItem->getValue(); ?>">
+							<span class="ox-checkbox"></span>
+							<span class="label"><?= /* @noEscape */
+                                $filterItem->getLabel() ?></span>
+						</label>
+                    <?php else: ?>
+						<a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>" rel="nofollow">
+                            <?= /* @noEscape */
+                            $filterItem->getLabel() ?>
+						</a>
+
+                    <?php endif; ?>
+                <?php else : ?>
+					<strong><?= /* @noEscape */
+                        $filterItem->getLabel() ?></strong>
+                <?php endif; ?>
+                <?php /* show counter */ ?>
+                <?php if ($this->helper(\Magento\Catalog\Helper\Data::class)->shouldDisplayProductCountOnLayer()) : ?>
+					<span class="count"><?= /* @noEscape */
+                        (int)$filterItem->getCount()?:'' ?><span class="filter-count-label">
+						<?php if ($filterItem->getCount() == 1) :
+                            ?> <?= $block->escapeHtml(__('item')) ?><?php
+                        elseif ($filterItem->getCount() > 0) :
+                            ?> <?= $block->escapeHtml(__('items')) ?><?php
+                        endif; ?></span></span>
+                <?php endif; ?>
+			</li>
+        <?php endforeach ?>
+	</ol>
+<?php endif; ?>

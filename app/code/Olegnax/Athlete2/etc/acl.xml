@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Olegnax_Athlete2::Olegnax_Athlete2" sortOrder="10" title="Athlete2">
+					<resource id="Olegnax_Athlete2::theme_settings" sortOrder="10" title="Theme Settings"/>
+					<resource id="Olegnax_Athlete2::theme_design" sortOrder="20" title="Theme Design"/>
+					<resource id="Olegnax_Athlete2::theme_license" sortOrder="30" title="Theme License"/>
+					<resource id="Olegnax_Athlete2::import" sortOrder="90" title="Theme Demo">
+						<resource id="Olegnax_Athlete2::export" sortOrder="10" title="Theme Export"/>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

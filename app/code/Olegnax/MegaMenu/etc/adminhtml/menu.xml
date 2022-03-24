@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Olegnax_MegaMenu::Olegnax_MegaMenu" title="Mega Menu" module="Olegnax_MegaMenu" sortOrder="10"
+			 parent="Olegnax_Core::Olegnax_Core" resource="Olegnax_MegaMenu::Olegnax_MegaMenu"/>
+		<add id="Olegnax_MegaMenu::settings" title="Configuration" module="Olegnax_Athlete2" sortOrder="0"
+			 action="adminhtml/system_config/edit/section/ox_megamenu_settings"
+			 parent="Olegnax_MegaMenu::Olegnax_MegaMenu" resource="Olegnax_MegaMenu::Olegnax_MegaMenu"/>
+	</menu>
+</config>

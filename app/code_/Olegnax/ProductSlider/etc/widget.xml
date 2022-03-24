@@ -1,0 +1,2289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget id="best_seller_products_list" class="Olegnax\ProductSlider\Block\BestSellerProducts"
+			is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Best Seller Products List</label>
+		<description translate="true">List of Best Selling Products</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="category_ids" xsi:type="text" visible="true">
+				<label translate="true">Categorys IDs</label>
+				<description translate="true">Separete by ","</description>
+			</parameter>
+			<parameter name="period" xsi:type="select" visible="true">
+				<label translate="true">Bestseller Period</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">All</label>
+					</option>
+					<option name="period-year" value="year">
+						<label translate="true">Year</label>
+					</option>
+					<option name="period-month" value="month">
+						<label translate="true">Month</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="show_swatches" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Swatches</label>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+	<widget id="featured_products_list" class="Olegnax\ProductSlider\Block\FeaturedProducts" is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Featured Products List</label>
+		<description translate="true">List of Featured Products</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="sort_order" xsi:type="select" visible="true"
+					   source_model="Olegnax\ProductSlider\Model\Config\Source\SortOrder">
+				<label translate="true">Sort Products</label>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="show_swatches" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Swatches</label>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+	<!--<widget id="most_viewed_products_list" class="Olegnax\ProductSlider\Block\MostViewedProducts"
+			is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Most Viewed Products List</label>
+		<description translate="true">List of Most Viewed Products by all visitors</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget> -->
+	<widget id="new_products_list" class="Olegnax\ProductSlider\Block\NewProducts" is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - New Products List</label>
+		<description translate="true">List of New Products</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="sort_order" xsi:type="select" visible="true"
+					   source_model="Olegnax\ProductSlider\Model\Config\Source\SortOrder">
+				<label translate="true">Sort Products</label>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="show_swatches" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Swatches</label>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+	<widget id="on_sale_products_list" class="Olegnax\ProductSlider\Block\OnSaleProducts" is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - On Sale Products List</label>
+		<description translate="true">List of Products on Sale</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="sort_order" xsi:type="select" visible="true"
+					   source_model="Olegnax\ProductSlider\Model\Config\Source\SortOrder">
+				<label translate="true">Sort Products</label>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="show_swatches" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Swatches</label>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+	<widget id="products_list_by_category" class="Olegnax\ProductSlider\Block\ProductsByCategory"
+			is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Products List by Category</label>
+		<description translate="true">List of Products by Category</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="category_ids" xsi:type="text" required="true" visible="true">
+				<label translate="true">Categorys IDs</label>
+				<description translate="true">Separete by ","</description>
+			</parameter>
+			<parameter name="sort_order" xsi:type="select" visible="true"
+					   source_model="Olegnax\ProductSlider\Model\Config\Source\SortOrderCat">
+				<label translate="true">Sort Products</label>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="show_swatches" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Swatches</label>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+	<widget id="products_list_by_id" class="Olegnax\ProductSlider\Block\ProductsByIds" is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Products List by ID</label>
+		<description translate="true">List of Products by ID</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="product_ids" xsi:type="text" required="true" visible="true">
+				<label translate="true">Products IDs</label>
+				<description translate="true">Separete by ","</description>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value></value>
+			</parameter>
+			<parameter name="sort_order" xsi:type="select" visible="true"
+					   source_model="Olegnax\ProductSlider\Model\Config\Source\SortOrder">
+				<label translate="true">Sort Products</label>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="show_swatches" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Swatches</label>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+        <!--
+	<widget id="viewed_products_list" class="Olegnax\ProductSlider\Block\ViewedProducts" is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Viewed Products List</label>
+		<description translate="true">List of Recently Viewed Products by Customer</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+        -->
+	<widget id="wishlist_products_list" class="Olegnax\ProductSlider\Block\WishlistProducts" is_email_compatible="true"
+			placeholder_image="Olegnax_ProductSlider::images/products_list.png" ttl="86400">
+		<label translate="true">Olegnax - Wishlist Products List</label>
+		<description translate="true">List of Featured Products</description>
+		<parameters>
+			<parameter name="show_title" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Title</label>
+			</parameter>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Title</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="title_align" xsi:type="select" visible="true">
+				<label translate="true">Title Align</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center" selected="true">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_tag" xsi:type="select" visible="true">
+				<label translate="true">Title Size</label>
+				<depends>
+					<parameter name="show_title" value="1"/>
+				</depends>
+				<options>
+					<option name="default" value="strong" >
+						<label translate="true">strong</label>
+					</option>
+					<option name="h1" value="h1" >
+						<label translate="true">H1</label>
+					</option>
+					<option name="h2" value="h2">
+						<label translate="true">H2</label>
+					</option>
+					<option name="h3" value="h3" selected="true">
+						<label translate="true">H3</label>
+					</option>
+					<option name="h4" value="h4">
+						<label translate="true">H4</label>
+					</option>
+					<option name="h5" value="h5" >
+						<label translate="true">H5</label>
+					</option>
+					<option name="h6" value="h6">
+						<label translate="true">H6</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="title_side_line" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Side Lines for Title</label>
+			</parameter>
+			<parameter name="products_count" xsi:type="text" required="true" visible="true">
+				<label translate="true">Number of Products to Display</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="sort_order" xsi:type="select" visible="true"
+					   source_model="Olegnax\ProductSlider\Model\Config\Source\SortOrder">
+				<label translate="true">Sort Products</label>
+			</parameter>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Olegnax_ProductSlider::grid.phtml" selected="true">
+						<label translate="true">Grid, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv2" value="Olegnax_ProductSlider::gridv2.phtml">
+						<label translate="true">Grid, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="defaultv3" value="Olegnax_ProductSlider::gridv3.phtml">
+						<label translate="true">Grid, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="defaultv4" value="Olegnax_ProductSlider::gridv4.phtml">
+						<label translate="true">Grid, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="defaultv5" value="Olegnax_ProductSlider::gridv5.phtml">
+						<label translate="true">Grid, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+					<option name="carousel" value="Olegnax_ProductSlider::carousel.phtml">
+						<label translate="true">Carousel, Layout 1 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv2" value="Olegnax_ProductSlider::carouselv2.phtml">
+						<label translate="true">Carousel, Layout 2 (Quickview Above Image - Bottom Left, Secondary Bottom)</label>
+					</option>
+					<option name="carouselv3" value="Olegnax_ProductSlider::carouselv3.phtml">
+						<label translate="true">Carousel, Layout 3 (All Actions Above Image - Centered)</label>
+					</option>
+					<option name="carouselv4" value="Olegnax_ProductSlider::carouselv4.phtml">
+						<label translate="true">Carousel, Layout 4 (Actions Bottom, Always Visible)</label>
+					</option>
+					<option name="carouselv5" value="Olegnax_ProductSlider::carouselv5.phtml">
+						<label translate="true">Carousel, Layout 5 (Add to cart Bottom, Secondary Above Image - Top Right)</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="cache_lifetime" xsi:type="text" visible="true">
+				<label translate="true">Cache Lifetime (Seconds)</label>
+				<description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML
+					Output cache.
+				</description>
+			</parameter>
+			<parameter name="columns_desktop" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop</label>
+				<value>5</value>
+			</parameter>
+			<parameter name="columns_desktop_small" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Desktop Small</label>
+				<value>4</value>
+			</parameter>
+			<parameter name="columns_tablet" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Tablet</label>
+				<value>3</value>
+			</parameter>
+			<parameter name="columns_mobile" xsi:type="text" required="false" visible="true">
+				<label translate="true">Columns Mobile</label>
+				<value>2</value>
+			</parameter>
+			<parameter name="loop" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Loop Carousel</label>
+			</parameter>
+			<parameter name="rewind" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Rewind Carousel</label>
+				<description translate="true">Slide to first item when the last one has reached.</description>
+				<depends>
+					<parameter name="loop" value="0"/>
+				</depends>
+			</parameter>
+			<parameter name="nav" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Arrows</label>
+			</parameter>
+			<parameter name="nav_position" xsi:type="select" visible="true">
+				<label translate="true">Navigation Arrows Position</label>
+				<depends>
+					<parameter name="nav" value="1"/>
+				</depends>
+				<options>
+					<option name="left-right" value="left-right" selected="true">
+						<label translate="true">Left/Right on Hover</label>
+					</option>
+					<option name="title" value="title">
+						<label translate="true">Near the Title</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="dots" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Navigation Dots</label>
+			</parameter>
+			<parameter name="dots_align" xsi:type="select" visible="true">
+				<label translate="true">Navigation Dots Align</label>
+				<depends>
+					<parameter name="dots" value="1"/>
+				</depends>
+				<options>
+					<option name="left" value="left" selected="true">
+						<label translate="true">Left</label>
+					</option>
+					<option name="center" value="center">
+						<label translate="true">Center</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="autoplay" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Autoplay</label>
+			</parameter>
+			<parameter name="autoplay_time" xsi:type="text" required="false" visible="true">
+				<label translate="true">Autoplay Timeout</label>
+				<description translate="true">Set timeout in milliseconds. 1000ms = 1 second. Minimum value is 500.
+				</description>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="pause_on_hover" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Pause on Hover</label>
+				<depends>
+					<parameter name="autoplay" value="1"/>
+				</depends>
+			</parameter>
+			<parameter name="show_addtocart" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Add to Cart</label>
+			</parameter>
+			<parameter name="show_wishlist" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Wishlist</label>
+			</parameter>
+			<parameter name="show_compare" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Compare</label>
+			</parameter>
+			<parameter name="show_review" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Review</label>
+			</parameter>
+			<parameter name="review_count" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Reviews Count</label>
+			</parameter>
+			<parameter name="show_desc" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Description</label>
+			</parameter>
+			<parameter name="show_quickview" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Quickview</label>
+				<description translate="true">Quickview extension must be enabled.</description>
+			</parameter>
+			<parameter name="quickview_position" xsi:type="select" visible="true">
+				<label translate="true">Quickview Button Position</label>
+				<options>
+					<option name="default" value="" selected="true">
+						<label translate="true">Default to Layout</label>
+					</option>
+					<option name="bottom-left" value="bottom-left" >
+						<label translate="true">Bottom Left</label>
+					</option>
+					<option name="bottom-full" value="bottom-full">
+						<label translate="true">Bottom Full Width</label>
+					</option>
+				</options>
+			</parameter>
+			<parameter name="show_in_stock" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show only in Stock</label>
+				<description translate="true">Works if "Display Out of Stock Products" option is enabled.</description>
+			</parameter>
+			<parameter name="show_swatches" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Show Swatches</label>
+			</parameter>
+			<parameter name="products_layout_centered" xsi:type="select" visible="true"
+					   source_model="Magento\Config\Model\Config\Source\Yesno">
+				<label translate="true">Align Center Details Below Image</label>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

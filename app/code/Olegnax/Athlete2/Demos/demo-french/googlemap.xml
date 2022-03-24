@@ -1,0 +1,37 @@
+<root>
+	<config>
+                <athlete2_settings>
+                        <contacts_page>
+                                <google_map_module>1</google_map_module>
+                        </contacts_page>      
+                </athlete2_settings>      
+                <olegnax_googlemaps>
+			<general>
+				<enabled>1</enabled>
+				<height></height>
+				<height_tablet></height_tablet>
+				<height_mobile></height_mobile>
+				<zoom>16</zoom>
+				<zoom_mobile>15</zoom_mobile>
+				<zoom_closer>17</zoom_closer>
+				<map_type>roadmap</map_type>
+				<street_view>0</street_view>
+				<mobile_breakpoint>768</mobile_breakpoint>
+			</general>
+			<appearance>
+				<custom_styles>1</custom_styles>
+				<popup_max_width></popup_max_width>
+				<popup_background></popup_background>
+				<popup_color></popup_color>
+				<popup_border_radius>0</popup_border_radius>
+				<popup_shadow>0 18px 37px -4px</popup_shadow>
+				<popup_shadow_color>rgba(0, 0, 0, 0.21)</popup_shadow_color>
+				<popup_bottom_arrow_hide>0</popup_bottom_arrow_hide>
+				<popup_close_btn_bg></popup_close_btn_bg>
+				<popup_close_btn_invert>0</popup_close_btn_invert>
+				<map_style></map_style>
+				<custom_json></custom_json>
+			</appearance>
+		</olegnax_googlemaps>
+	</config>
+</root>

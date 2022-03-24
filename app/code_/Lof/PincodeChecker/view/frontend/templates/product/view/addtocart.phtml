@@ -1,0 +1,138 @@
+<?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Lof
+ * @package   Lof\PincodeChecker
+ * @author    Landofcoder <landofcoder@gmail.com>
+ * @copyright 2020 Landofcoder
+ * @license   https://landofcoder.com/LICENSE-1.0.html
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('Lof\PincodeChecker\Helper\Data');
+?>
+<div class="pincode-check">
+<div id="pincode-status">
+    <h1><?php echo __("Pincode Status"); ?></h1>
+    <div id="pincode-avail"></div>
+</div>
+    <div class="pincode-field">
+        <input type="button" title="<?php echo __('Check Pincode'); ?>" id="pincode-check" class="action primary" value="<?php echo __('Check'); ?>" />
+        <input type="text" id="pincode" name="pincode" <?php if($helper->getIsCheckonAddtoCart()): ?> class="required-entry" <?php endif;?> placeholder="<?php echo __('Enter Pincode'); ?>"/>
+    </div>
+</div>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="field qty">
+            <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>
+            <div class="control">
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       maxlength="12"
+                       value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                       title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
+                       data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       />
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="actions">
+            <button type="submit"
+                    title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button">
+                <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+            </button>
+            <?php echo $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php if (!$block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "catalogAddToCart": {
+                "bindSubmit": false
+            }
+        }
+    }
+</script>
+<?php
+//Get current product Id
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$id = $product->getId(); 
+
+//Get controller url
+$url = $this->getUrl('pincodechecker');
+?>
+
+<script type="text/javascript">
+require(['jquery', 'Magento_Ui/js/modal/modal'], function ($, modal) {
+
+    var options = {
+        type: 'popup',
+        responsive: true,
+        innerScroll: true,
+        buttons: [{
+            text: $.mage.__('Continue'),
+            class: '',
+            click: function () {
+                this.closeModal();
+            }
+        }]
+    };
+
+    var popup = modal(options, $('#pincode-status'));
+
+     $(document).on('click','#pincode-check', function(){
+          var pincode = $('#pincode').val();
+          if(pincode == "")
+          {
+            alert("Please Enter Pincode");
+            return false;
+          }
+          $.ajax({
+            url: '<?php echo $url ?>',
+            async:false,
+            showLoader: true,
+            data: {id:<?php echo $id ?>,p:pincode},
+            success: function(result){
+                $('#pincode-avail').html(result);
+                $('#pincode-status').modal('openModal');
+            }
+        });
+    });
+
+    $('#pincode').keypress(function(e){
+        if(e.which == 13){
+            e.preventDefault();
+            $('#pincode-check').click();
+        }
+    });
+});
+</script>
+<?php endif; ?>

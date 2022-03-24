@@ -1,0 +1,94 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseUrl = $storeManager->getStore()->getBaseUrl();
+?>
+
+<div class="container" style="paddingggg: 0 7rem !important">
+<div class="row">
+    <div class="col-12">
+<div class="myaccount" style="display: flex;">
+    <h1 class="myaccount">
+        My Account
+    </h1> 
+    <h2 class="myaccount GGGilBold" style="margin-left: auto;">
+        <?php if ($customerSession->isLoggedIn()) { ?>
+        <span class="ccccustomer-name tttttCapi GilR">Welcome back</span> <span class="customer-name txt-maroon ttCapi GilBold"><?= $customerSession->getCustomer()->getName(); ?></span>
+        <?php } ?>
+    </h3>
+</div>
+<!--
+<div class="all-options">
+            <div class="my-orders">
+                <h5><a href="<?= $baseUrl."sales/order/history/"; ?>">My Orders</a></h5>
+            </div>
+            <div class="my-wishlist">
+                <h5><a href="<?= $baseUrl."wishlist/"; ?>">My Wishlist</a></h5>
+            </div>          
+            <div class="my-address">
+                <h5><a href="<?= $baseUrl."customer/address/"; ?>">My Addresses</a></h5>
+            </div>
+            <div class="my-account">
+                <h5><a href="<?= $baseUrl."customer/account/edit/"; ?>">Login & Security</a></h5>
+            </div>
+            
+</div>
+-->
+</div>
+
+
+
+<div class="myaccount-links col-12">
+    
+    <div class="row">
+        <div class="col-sm-6" style="bbbborder: solid 1px #ccc; pppadding:2rem;">
+            <a href="<?= $baseUrl."sales/order/history/"; ?>" style="display:flex !important; align-items: center !important; border: solid 1px #cccccc; padding: 2em; margin-top:2em;">
+            <!-- ye way mai add karo image ko
+            and vo image ye path pe upload kar dena 
+            app/design/frontend/Olegnax/athlete2/web/images -->
+
+    <!--            <img src="<?php echo $block->getViewFileUrl('images/vsicon.png'); ?>" /> -->
+
+                <img src="<?php echo $block->getViewFileUrl('images/UAOrders.png'); ?>" style="width:90px; height:90px;"/>
+                <h4 class="GilB" style="margin-bottom:0 !important;     margin-left: 4rem; ">Your Orders</h4>
+            </a>
+        </div>
+
+
+
+        <div class="col-sm-6" style="bbbborder: solid 1px #ccc; pppadding:2rem;">
+            <a href="<?= $baseUrl."wishlist/"; ?>" style="display:flex !important; align-items: center !important; border: solid 1px #cccccc; padding: 2em; margin-top:2em;">
+         
+                    <img src="<?php echo $block->getViewFileUrl('images/UAWishlist.png'); ?>" style="width:90px; height:90px;"/>
+                    <h4 class="GilB" style="margin-bottom:0 !important;     margin-left: 4rem; ">Your Wishlist</h4>
+            </a>
+        </div>
+    </div>
+<div class="row">
+
+        <div class="col-sm-6" style="bbbborder: solid 1px #ccc; pppadding:2rem;">
+            <a href="<?= $baseUrl."customer/address/"; ?>" style="display:flex !important; align-items: center !important;  border: solid 1px #cccccc; padding: 2em; margin-top:2em;">
+        
+                    <img src="<?php echo $block->getViewFileUrl('images/UAAddresses.png'); ?>" style="width:90px; height:90px;"/>
+                    <h4 class="GilB" style="margin-bottom:0 !important;     margin-left: 4rem; ">Your Addresses</h4>
+            </a>
+        </div>
+
+        <div class="col-sm-6" style="bbbborder: solid 1px #ccc; pppadding:2rem;">
+            <a href="<?= $baseUrl."customer/account/edit/"; ?>" style="display:flex !important; align-items: center !important;  border: solid 1px #cccccc; padding: 2em; margin-top:2em;">
+                    <img src="<?php echo $block->getViewFileUrl('images/UALogin.png'); ?>" style="width:90px; height:90px;"/>                    
+                    <h4 class="GilB" style="margin-bottom:0 !important;     margin-left: 4rem; ">Login & Security</h4>
+            </a>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+</div>
+</div>

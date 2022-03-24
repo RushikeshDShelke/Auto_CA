@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="jquery.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="fancybox/js/jquery.fancybox.js"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/bootstrap.min.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/custom.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/bootstrap-wysihtml5.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/datepicker.css"/>
+        <script src="jquery/jquery.min.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/products.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/bootstrap.min.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/bootstrap-datepicker.js"/>
+    </head>
+    <body>
+        <referenceBlock name="authentication-popup" remove="true"/>
+        <referenceBlock name="porto_header" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Navbar"
+                   name="supplier.navbar"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/nav.phtml"/>
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Product\Creategrouped"
+                   name="supplier.product.create"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/product/editgrouped/form.phtml"
+                   cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

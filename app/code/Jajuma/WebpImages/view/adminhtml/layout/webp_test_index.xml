@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Jajuma_WebpImages::css/twentytwenty.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header" remove="true"/>
+        <referenceContainer name="page.menu" remove="true"/>
+        <referenceContainer name="page.breadcrumbs" remove="true"/>
+        <referenceContainer name="footer" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Jajuma\WebpImages\Block\Adminhtml\ConversionTool\Test\Result" name="conversion.tool.test.result" template="Jajuma_WebpImages::conversion_tool/test/result.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

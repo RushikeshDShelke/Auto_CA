@@ -1,0 +1,106 @@
+<?php
+/** @var \Olegnax\Athlete2\Block\Adminhtml\Import\Index $block */
+$demos = $block->getDemo();
+?>
+<div class="ox-admin__import">
+	<?php foreach ( $demos as $demoId => $demo ) : ?>
+		<div class="ox-admin-import__block" id="demo-<?= $block->getDemoId( $demoId ) ?>">
+			<img src="<?= $block->getDemoImage( $demoId ) ?>">
+			<span class="ox-admin-import__name"><?= $demo[ 'name' ] ?></span>
+			<a href="#" class="ox-admin__button action-primary ox-admin-modal__action ox-admin-import__button"><?= __( 'Import' ); ?></a>
+			<div class="ox-admin__modal">
+				<div class="ox-admin-modal__inner">
+					<div class="ox-overlay-close-btn action-primary"><span></span></div>
+					<h2><?= __( 'Choose what to Import:' ); ?></h2>
+					<table>
+						<tbody>
+							<?php if ( in_array( 'content', $demo[ 'variations' ] ) ) : ?>
+								<tr>
+									<td>
+										<h3><?= __( 'Pages and CMS Blocks' ); ?></h3>
+										<p>
+											<label class="ox-checkbox" for="<?=$block->escapeHtmlAttr($demoId) ?>_not_replace"><input type="checkbox" class="import-not-replace" id="<?=$block->escapeHtmlAttr($demoId)
+                                                ?>_not_replace"
+																												  name="<?=$block->escapeHtmlAttr($demoId) ?>_not_replace"> <?= __('Add items, do not replace'); ?></label>
+										</p>
+										<p class="attention"><?= __( 'Attention! This will override your existing Static blocks and CMS Pages with the same Identifiers.' ); ?></p>
+									</td>
+									<td>
+										<a href="<?= $block->actionImport( $demoId, 'content' ) ?>" class="ox-admin__button action-primary ox-admin__button-replace"><?= __( 'Import' ); ?></a>
+										<a href="<?= $block->actionImport( $demoId, 'content' ) ?>notreplace/1" class="ox-admin__button action-primary ox-admin__button-not-replace" style="display: none"><?= __(
+												'Import'
+											);
+										?></a>
+									</td>
+								</tr>
+							<?php endif; ?>
+							<?php if ( in_array( 'bannerslider', $demo[ 'variations' ] ) ) : ?>
+								<tr>
+									<td><h3><?= __( 'Banner Slider & Carousel' ); ?></h3></td>
+									<td><a href="<?= $block->actionImport( $demoId, 'bannerslider' ) ?>" class="ox-admin__button action-primary"><?= __( 'Import' ); ?></a></td>
+								</tr>
+							<?php endif; ?>
+							<?php if ( in_array( 'settings', $demo[ 'variations' ] ) ) : ?>
+								<tr>
+									<td><h3><?= __( 'Theme Settings' ); ?></h3></td>
+									<td><a href="<?= $block->actionImport( $demoId, 'settings' ) ?>" class="ox-admin__button action-primary"><?= __( 'Import' ); ?></a></td>
+								</tr>
+							<?php endif; ?>
+							<?php if ( in_array( 'blog', $demo[ 'variations' ] ) ) : ?>
+								<tr>
+									<td><h3><?= __( 'Blog Settings *' ); ?></h3><p class="small">Requires Magefan Blog module to be installed.</p></td>
+									<td><a href="<?= $block->actionImport( $demoId, 'blog' ) ?>" class="ox-admin__button action-primary"><?= __( 'Import' ); ?></a></td>
+								</tr>
+							<?php endif; ?>
+							<?php if ( in_array( 'popup', $demo[ 'variations' ] ) ) : ?>
+								<tr>
+									<td><h3><?= __( 'Newsletter Popup Settings *' ); ?></h3><p class="small">Requires Olegnax Newsletter module to be installed.</p></td>
+									<td><a href="<?= $block->actionImport( $demoId, 'popup' ) ?>" class="ox-admin__button action-primary"><?= __( 'Import' ); ?></a></td>
+								</tr>
+							<?php endif; ?>
+							<?php if ( in_array( 'hotspots', $demo[ 'variations' ] ) ) : ?>
+								<tr>
+									<td><h3><?= __( 'Hotspots' ); ?></h3><p class="small">Sample page and cms blocks with hotspot content.</p></td>
+									<td><a href="<?= $block->actionImport( $demoId, 'hotspots' ) ?>" class="ox-admin__button action-primary"><?= __( 'Import' ); ?></a></td>
+								</tr>
+							<?php endif; ?>
+							<?php if ( in_array( 'googlemap', $demo[ 'variations' ] ) ) : ?>
+								<tr>
+									<td><h3><?= __( 'Google Map Module Settings *' ); ?></h3><p class="small">Requires Olegnax Google map module to be installed.</p></td>
+									<td><a href="<?= $block->actionImport( $demoId, 'googlemap' ) ?>" class="ox-admin__button action-primary"><?= __( 'Import' ); ?></a></td>
+								</tr>
+							<?php endif; ?>
+								<tr>
+									<td colspan="2"><p style="text-align: left;"><?= __( '* Options are optional and already present in Theme Settings import. Use them in case you already have website setup and don\'t want to lose existing settings but only import new or specific options.' ); ?></p></td>
+								</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<?php endforeach; ?>
+</div>
+<script>
+    require( [
+        'jquery',
+    ], function ( $ ) {
+        'use strict';
+        $( 'body' ).on( 'click', '.ox-admin-import__button', function ( e ) {
+            e.preventDefault();
+            $( this ).next( '.ox-admin__modal' ).addClass( 'opened' );
+        } );
+        $( 'body' ).on( 'click', '.ox-overlay-close-btn', function ( e ) {
+            e.preventDefault();
+            $( this ).closest( '.ox-admin__modal' ).removeClass( 'opened' );
+        } );
+        $( 'body' ).on( 'change', '.import-not-replace', function ( e ) {
+			var $this = $(this),
+				parent = $this.closest('tr').eq(0),
+				isChecked = $this.is(':checked');
+
+            parent.find('p.attention, .ox-admin__button-replace').toggle(!isChecked);
+            parent.find('.ox-admin__button-not-replace').toggle(isChecked);
+		});
+
+    } );
+</script>

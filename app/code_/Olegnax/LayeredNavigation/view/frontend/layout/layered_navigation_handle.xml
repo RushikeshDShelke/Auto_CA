@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="before.body.end">
+			<block class="Magento\Framework\View\Element\Template" name="ox_layerednavigation_loader" template="Olegnax_LayeredNavigation::loader.phtml"
+				   ifconfig="olegnax_layered_navigation/general/enable"/>
+			<block class="Olegnax\LayeredNavigation\Block\Template" name="ox_layerednavigation_initialize" template="Olegnax_LayeredNavigation::initialize.phtml"
+				   ifconfig="olegnax_layered_navigation/general/enable"/>
+		</referenceContainer>
+	</body>
+</page>

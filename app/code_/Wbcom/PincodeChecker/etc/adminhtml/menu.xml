@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Wbcom_PincodeChecker::pincodechecker" title="Pincode Checker"
+             translate="title" module="Wbcom_PincodeChecker"
+             parent="Wbcom_Core::Wbcom" sortOrder="11"
+             resource="Wbcom_PincodeChecker::pincodechecker" dependsOnConfig="wbcompin/general/enable"/>
+
+        <add id="Wbcom_PincodeChecker::manage_pincode"
+             title="Manage Pincode" module="Wbcom_PincodeChecker"
+             sortOrder="12" action="wbcompin/pincode/index"
+             resource="Wbcom_PincodeChecker::manage_pincode"
+             parent="Wbcom_PincodeChecker::pincodechecker"/>
+
+        <add id="Wbcom_PincodeChecker::manage_check"
+             title="Pincode Availability Check" module="Wbcom_PincodeChecker"
+             sortOrder="13" action="wbcompin/pincodecheck/check"
+             resource="Wbcom_PincodeChecker::manage_check"
+             parent="Wbcom_PincodeChecker::pincodechecker"/>
+
+        <add id="Wbcom_PincodeChecker::add_pincode"
+             title="Add Pincode" module="Wbcom_PincodeChecker"
+             sortOrder="14" action="wbcompin/pincode/add"
+             resource="Wbcom_PincodeChecker::add_pincode"
+             parent="Wbcom_PincodeChecker::pincodechecker"/>
+
+        <add id="Wbcom_PincodeChecker::import_pincode"
+             title="Import Pincode" module="Wbcom_PincodeChecker"
+             sortOrder="15" action="wbcompin/pincode/import"
+             resource="Wbcom_PincodeChecker::import_pincode"
+             parent="Wbcom_PincodeChecker::pincodechecker"/>
+
+        <add id="Wbcom_PincodeChecker::pincode_configuration"
+             title="Pincode Configuration" module="Wbcom_PincodeChecker"
+             sortOrder="16" parent="Wbcom_PincodeChecker::pincodechecker"
+             action="adminhtml/system_config/edit/section/wbcompin"
+             resource="Wbcom_PincodeChecker::config_wbcom"/>
+
+    </menu>
+</config>

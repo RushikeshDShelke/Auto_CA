@@ -1,0 +1,31 @@
+<!--@subject {{trans "Supplier product needs your approval"}}  @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Hello, "}}{{var admin_name}}</p>
+            <p>
+                {{trans "Supplier product needs your approval."}}
+            </p>
+            <p>
+                {{trans "Please find the details below: "}}
+            </p>
+            <p>
+                <strong>{{trans "Product id: "}}</strong>{{var product_id}}
+            </p>
+            <p>
+                <strong>{{trans "Product sku: "}}</strong>{{var product_sku}}
+            </p>
+            <p>
+                <strong>{{trans "Product name: "}}</strong>{{var product_name}}
+            </p>
+            <p>
+                <strong>{{trans "Created by: "}}</strong>{{var product_creator}}
+            </p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

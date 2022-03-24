@@ -1,0 +1,36 @@
+<?php $buttonTitle = __('View more details');?>
+ 
+ 
+<?php $_product = $this->getProduct() ?>
+ 
+
+<!-- <ul class="sharing-links">   
+       
+    <li>
+	    <a href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php /** echo $_product->getProductUrl(); ?>&t=<?php echo $_product->getName(); */ ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php /**  echo __('Share on Facebook') */ ?>" class="link-facebook">Share Facebook</a>
+    </li> 
+    <li>
+	    <a href="javascript:popWin('http://twitter.com/home/?status=<?php /** echo urlencode($_product->getName() . ' (' . $_product->getProductUrl() . ')'); */ ?>', 'twitter', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php /** echo __('Share on Twitter') */ ?>" class="link-twitter">Share on Twitter</a>
+    </li>
+</ul> -->
+
+<div class="disclamier">
+  <p><?php echo $_product->getResource()->getAttribute('disclaimer')->getFrontend()->getValue($_product); ?>
+
+  </p>  
+</div>
+
+<div class="productSku">PREF - <?php echo $this->getProduct()->getSku(); ?></div>
+
+<div class="box-gotoproduct">
+    <div class="fieldset">
+        <div class="actions">
+             <a target="_parent" href="<?php /* @escapeNotVerified */ echo $this->getProduct()->getProductUrl() ?>" title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>" class="action primary" id="product-gotoproduct-button">
+                <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+            </a> 
+        </div>
+    </div>
+</div>
+<div class="add-to-links nee-more">
+<a href="<?php echo $this->getProduct()->getProductUrl(); ?>">View more details</a>
+</div>

@@ -1,0 +1,15 @@
+<script>
+    requirejs( [ 'jquery' ],
+        function ( $ ) {
+            "use strict";
+            var substyle = $( 'body' ).find( 'style' );
+            if ( substyle.length ) {
+                var newheadstyle = $( '<style>' ).appendTo( 'head' );
+                substyle.each( function () {
+                    var $this = $( this );
+                    newheadstyle.html( newheadstyle.html() + $this.html() );
+                    $this.remove();
+                } );
+            }
+        } );
+</script>

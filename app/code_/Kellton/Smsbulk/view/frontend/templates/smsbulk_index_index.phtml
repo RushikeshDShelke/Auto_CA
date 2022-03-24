@@ -1,0 +1,42 @@
+<?php  
+       // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $orderid=259;
+       
+        $order = $block->getorder($orderId);
+
+        echo 'order status='.$order->getStatus();
+		
+        $shipid=41;
+		
+        $shipments =  getshipments($shipid);
+
+		$itemsCollection = $shipments->getItemsCollection();
+		foreach($itemsCollection as $item){
+		   $pid=$item->getProductId();	
+		   echo 'pid='.$pid.'<br>';
+		   $product = $block->getProduct($item->getProductId());
+		 
+		   $_product = $item->getProduct();
+		   $supplier_id = $product->getCreator_id();
+		   echo 'supplier_id='.$supplier_id.'<br>';
+		   $productname= $item->getName();
+		   echo 'productname='.$productname.'<br>';
+		   echo '<pre>';
+		   print_r($item->getData());
+		   echo '</pre>';
+		   $productQty= intval($item->getQtyShipped());
+		   echo 'productQty='.$productQty.'<br>';
+			if($productnamecoll==''){
+				$productnamecoll.= $productname;
+			}else{
+				$productnamecoll.= ', '. $productname;
+			}
+			$item_id=$item->getOrder_item_id();
+
+			$orderitems = $block->getProductItem($item_id);
+
+
+			echo $orderItem->getItemdeliverydate();
+		} 
+?>

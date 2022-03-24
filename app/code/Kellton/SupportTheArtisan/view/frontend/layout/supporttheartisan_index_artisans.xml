@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+	<head>
+        <title>Support The Artisan</title>
+		<script src="Kellton_SupportTheArtisan::js/jquery-3.3.1.min.js" />
+        <script src="Kellton_SupportTheArtisan::js/bootstrap.min.js"/>
+        <script src="Kellton_SupportTheArtisan::js/owl.carousel.min.js"/>
+        <script src="Kellton_SupportTheArtisan::js/jquery.mCustomScrollbar.concat.min.js"/>
+        <script src="Kellton_SupportTheArtisan::js/custom.js"/>
+   </head>
+
+    <body>
+
+
+        <referenceContainer name="sidebar.main">
+            <block class="Kellton\SupportTheArtisan\Block\Index\Sidebar" name="supporttheartisan_index_sidebar" before="-" template="Kellton_SupportTheArtisan::supporttheartisan_index_sidebar.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Kellton\SupportTheArtisan\Block\Index\Artisans" name="supporttheartisan_index_artisans" template="Kellton_SupportTheArtisan::artisans.phtml"/>
+        </referenceContainer>
+        
+<referenceContainer name="page.top" remove="true"/>
+    </body>
+</page>

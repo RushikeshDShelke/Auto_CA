@@ -1,0 +1,92 @@
+<?php
+/**
+ * @var \Cminds\Marketplace\Block\Supplier\Rate\Ratelist $block
+ */
+?>
+<?php $availableSuppliers = $block->getAvailableSuppliers(); ?>
+<div class="my-account">
+    <div class="box-account box-recent">
+        <?php if (count($availableSuppliers) > 0) : ?>
+            <form method="POST">
+                <table class="data-table orders" id="my-orders-table">
+                    <colgroup>
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                    </colgroup>
+                    <thead>
+                    <tr class="first last">
+                        <th><?php /* @escapeNotVerified */ echo __('Supplier Name'); ?></th>
+                        <th><?php /* @escapeNotVerified */ echo __('Order ID'); ?></th>
+                        <th><?php /* @escapeNotVerified */ echo __('Rate'); ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($availableSuppliers as $supplier) : ?>
+                        <?php
+                        $vendor = $block
+                            ->getCustomerModel($supplier->getSupplierId());
+
+                        $vendorName = $vendor->getFirstname()
+                            . ' ' . $vendor->getLastname();
+
+                        $orderUrl = $block->getUrl(
+                            'sales/order/view/',
+                            ['order_id' => $supplier->getOrderId()]
+                        );
+
+                        $supplierId = $supplier->getSupplierId();
+                        ?>
+                        <tr class="last">
+                            <td><?php echo $vendorName; ?></td>
+                            <td># <a href="<?php echo $block->escapeUrl($orderUrl) ?>">
+<?php echo $block->escapeHtml($supplier->getOrderId()); ?></a>
+                            </td>
+                            <td class="last rate-list">
+                                <input type="radio"
+                                       name="ratings[<?php echo $supplierId ?>]"
+                                       value="1" class="radio" title="1"
+                                       id="rate-1"/><label
+                                    for="rate-1">1</label>
+                                <input type="radio"
+                                       name="ratings[<?php echo $supplierId ?>]"
+                                       value="2" class="radio" title="2"
+                                       id="rate-2"/><label
+                                    for="rate-2">2</label>
+                                <input type="radio"
+                                       name="ratings[<?php echo $supplierId ?>]"
+                                       value="3" class="radio" title="3"
+                                       id="rate-3"/><label
+                                    for="rate-3">3</label>
+                                <input type="radio"
+                                       name="ratings[<?php echo $supplierId ?>]"
+                                       value="4" class="radio" title="4"
+                                       id="rate-4"/><label
+                                    for="rate-4">4</label>
+                                <input type="radio"
+                                       name="ratings[<?php echo $supplierId ?>]"
+                                       value="5" class="radio" title="5"
+                                       id="rate-5"/><label
+                                    for="rate-5">5</label>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="buttons-set" style="margin: 10px 0 0 5px;">
+                    <input type="submit" class="action save primary">
+                </div>
+            </form>
+        <?php else : ?>
+            <div class="message info empty">
+                <span>
+                    <?php
+                    /* @escapeNotVerified */ echo __(
+                        'There are not suppliers to rate.'
+                    );
+                    ?>
+                </span>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

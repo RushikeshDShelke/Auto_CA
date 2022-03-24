@@ -1,0 +1,71 @@
+<?php
+/**
+ * Athlete2 Theme
+ * Blog recent posts widget
+ *
+ * @var $block \Magefan\Blog\Block\Widget\Recent
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+	$_styleClassic = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/blog/blog_style_classic');
+	$classes = $_styleClassic?'blog-style-classic':'blog-style-modern';
+    $_postCollection = $block->getPostCollection();
+?>
+<?php if ($_postCollection->count()) { ?>
+<div class="post-list-wrapper blog-widget-recent ox-blog-widget__titles-only">
+	<?php $blockTitle = $block->escapeHtml($block->getData('title'));
+	if ($blockTitle){ ?>
+		<h3 class="title"><?= $blockTitle ?></h3>
+	<?php } ?>
+    <div class="post-list clearfix <?= $classes ?>">
+        <?php foreach ($_postCollection as $_post) { ?>
+            <?php
+                $_postUrl = $_post->getPostUrl();
+                $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+				$_categoriesCount = $_post->getCategoriesCount();
+				$dateMonth = $_post->getPublishDate('F');
+				if(strlen($dateMonth) > 4){
+					$dateMonth = substr($dateMonth, 0, 3);
+				}
+            ?>
+            <article class="post-holder post-holder-<?php echo $_post->getId() ?>">
+				<?php if ($_styleClassic) { ?>
+						<div class="post-date">
+							<div class="inner"><span class="day"><?php echo $_post->getPublishDate('d' )?></span><?php echo $dateMonth ?></div>
+							<div class="hover"><span class="day"><?php echo $_post->getPublishDate('d') ?></span><?php echo $dateMonth ?></div>		
+						</div>	
+					<div class="post-content">
+						<h2 class="post-title">
+							<a class="post-item-link" href="<?php echo $_postUrl ?>">
+								<?php echo $_postName; ?>
+							</a>
+						</h2>
+					</div>
+				<?php } else { ?>
+					<div class="post-content">
+						<?php if ( $_categoriesCount ) { ?>
+							<div class="item post-categories">
+								<?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
+									<a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>">
+										<?php echo $block->escapeHtml($ct->getTitle()) ?>
+									</a>									
+								<?php } ?>
+							</div>
+						<?php } ?>
+						<h2 class="post-title">
+							<a class="post-item-link" href="<?php echo $_postUrl ?>">
+								<?php echo $_postName; ?>
+							</a>
+						</h2>
+					</div>
+				<?php } ?>
+            </article>
+
+        <?php } ?>
+    </div>
+</div>
+<?php } ?>

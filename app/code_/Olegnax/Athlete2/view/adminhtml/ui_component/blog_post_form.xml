@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="custom_design_update">
+        <field name="ox_post_list_style">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Olegnax\Athlete2\Model\Config\Settings\Blog\PostListStyle</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Post Style on Listing(Blog Page)</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="dataScope" xsi:type="string">ox_post_list_style</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

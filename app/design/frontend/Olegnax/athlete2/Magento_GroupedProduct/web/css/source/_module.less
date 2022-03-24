@@ -1,0 +1,73 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .table.grouped {
+        margin-top: -15px;
+        .lib-table-bordered(
+            @_table_type: horizontal
+        );
+        .col{
+            padding-left:0;
+            padding-right:0;
+            vertical-align: middle;
+        }
+        thead{
+            display:none;
+        }
+        > thead > tr > th {
+            border-bottom: 0;
+        }
+
+        .product-item-name {
+            font-weight: @font-weight__bold;
+        }
+
+
+        .control {
+            .qty {
+                height: 46px;
+                text-align: center;
+                width: 100%;
+                min-width: 90px;
+                padding: 0 22px;
+                padding-bottom: 1px;
+                background: #f4f4f4;
+                border: none;
+                font-size: 18px;
+                font-weight: @font-weight__bold;
+            }
+            &.qty-controls-wrap{
+                .icon-minus, 
+                .icon-plus{
+                    width: 28px;
+                    height: 46px;
+                }
+            }
+        }
+
+        .stock.unavailable {
+            font-weight: normal;
+            margin: 0;
+            text-transform: none;
+            white-space: nowrap;
+        }
+
+        .row-tier-price {
+            td {
+                border-top: 0;
+            }
+
+            .prices-tier {
+                margin: 0 -10px 10px;
+            }
+        }
+    }
+}

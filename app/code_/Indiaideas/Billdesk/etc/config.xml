@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <billdesk>
+                <model>Indiaideas\Billdesk\Model\Billdesk</model>
+                <title>Billdesk</title>
+                <payment_action>authorize_capture</payment_action>
+                <active>0</active>
+                <order_status>pending_payment</order_status>
+                <MID></MID>
+                <secret_key></secret_key>
+                <custom_callbackurl>0</custom_callbackurl>
+                <callback_url></callback_url>
+                <transaction_url></transaction_url>
+                <security_id></security_id>
+                <transaction_params></transaction_params>
+                <allowspecific>0</allowspecific>
+            </billdesk>
+        </payment>
+    </default>
+</config>

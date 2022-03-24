@@ -1,0 +1,16 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"> 
+<head>
+        <title>Connect With Us</title>      
+</head>
+<update handle="customer_account"/> 
+<body> 
+    <referenceBlock name="page.main.title"> 
+            <action method="setPageTitle"> 
+                <argument translate="true" name="title" xsi:type="string">Connect With Us</argument> 
+            </action> 
+     </referenceBlock> 
+     <referenceContainer name="content">
+            <block class="Kellton\Connectus\Block\Index\Index" name="connectus_index_index" template="Kellton_Connectus::connectus_customer_index.phtml"/>
+        </referenceContainer>
+   </body> 
+</page>    

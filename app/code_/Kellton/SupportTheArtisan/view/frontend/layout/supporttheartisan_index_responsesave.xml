@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+	<head>
+        <title>Support The Artisan</title>
+   </head>
+
+    <body>
+
+        <referenceContainer name="content">
+            <block class="Kellton\SupportTheArtisan\Block\Index\Responsesave" name="supporttheartisan_index_index" template="Kellton_SupportTheArtisan::success.phtml"/>
+        </referenceContainer>
+
+
+    </body>
+</page>

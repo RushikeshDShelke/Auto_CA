@@ -1,0 +1,72 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+
+if (!$_product instanceof \Magento\Catalog\Model\Product) {
+    return;
+}
+
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+    $renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code))
+        ? $_product->getAttributeText($_code)
+        : '';
+} else {
+    $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+}
+?>
+
+<?php if ($_attributeValue) :?>
+	<?php $expand = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product/description_expand'); ?>
+	<?php if ($_code == 'short_description' && $expand) :?>
+		<?php 
+		$maxheight = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/product/description_expand_height');
+		?>
+		<div class="product attribute ox-expand minimized <?= $block->escapeHtmlAttr($_className) ?>" data-max-height="<?= $block->escapeHtmlAttr($maxheight) ?: '90' ?>">
+			<?php if ($renderLabel) :?>
+				<strong class="type"><?= $block->escapeHtml($_attributeLabel) ?></strong>
+			<?php endif; ?>
+			<div class="value ox-expand__inner" aria-expanded="false" style="max-height: <?= $block->escapeHtmlAttr($maxheight) ?: '90' ?>px;" <?= /* @noEscape */ $_attributeAddAttribute ?>><?= /* @noEscape */ $_attributeValue ?></div>
+			<div class="ox-expand__link">
+				<span class="more"><?= __('Show more') ?></span>
+				<span class="less"><?= __('Show less') ?></span>
+			</div>
+		</div>
+	<?php else: ?>
+		<div class="product attribute <?= $block->escapeHtmlAttr($_className) ?>">
+			<?php if ($renderLabel) :?>
+				<strong class="type"><?= $block->escapeHtml($_attributeLabel) ?></strong>
+			<?php endif; ?>
+			<div class="value" <?= /* @noEscape */ $_attributeAddAttribute ?>><?= /* @noEscape */ $_attributeValue ?></div>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>

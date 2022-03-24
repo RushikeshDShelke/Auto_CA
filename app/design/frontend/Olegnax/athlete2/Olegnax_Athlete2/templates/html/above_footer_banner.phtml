@@ -1,0 +1,39 @@
+<?php
+$at_settings	 = $block->getConfig( 'athlete2_settings/footer_banner' );
+if ( !isset( $at_settings[ 'footer_banner_columns' ] ) ) {
+	$at_settings[ 'footer_banner_columns' ] = '1';
+}
+$bannerClass = 'banner-columns-' . $at_settings[ 'footer_banner_columns' ];
+if ( $at_settings[ 'show_banner' ] && $block->isCurrentPage( $at_settings[ 'footer_banner_location' ] ) ) {
+	?>
+	<div class="above-footer-banner <?= $block->escapeHtmlAttr($bannerClass) ?>">
+		<?php if ( $at_settings[ 'footer_banner_columns' ] == '2' ) { ?>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 banner-wrap first-banner">
+						<?php
+						if ( $at_settings[ 'footer_banner_type' ] == 'textfield' ) {
+							echo $block->getBlockTemplateProcessor( $at_settings[ 'footer_banner_custom' ] );
+						} else {
+							echo $this->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'footer_banner_static' ] )->toHtml();
+						}
+						?>
+					</div>
+					<div class="col-lg-6 banner-wrap second-banner">
+						<?php echo $block->getBlockTemplateProcessor( $at_settings[ 'footer_banner_custom_2' ] ); ?>
+					</div>
+				</div>
+			</div>
+		<?php } else { ?>
+			<div class="container banner-wrap">
+				<?php
+				if ( $at_settings[ 'footer_banner_type' ] == 'textfield' ) {
+					echo $block->getBlockTemplateProcessor( $at_settings[ 'footer_banner_custom' ] );
+				} else {
+					echo $this->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'footer_banner_static' ] )->toHtml();
+				}
+				?>		
+			</div>
+		<?php } ?>
+	</div>
+<?php } ?>

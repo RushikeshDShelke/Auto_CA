@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <products_settings>
+            <adding_products>
+                <maximum_allowed_images>1</maximum_allowed_images>
+                <auto_increment_sku_number>100001</auto_increment_sku_number>
+            </adding_products>
+            <downloadable_product_settings>
+                <maximal_file_size>1024</maximal_file_size>
+            </downloadable_product_settings>
+            <csv_import>
+                <how_many_product_can_be_imported>0</how_many_product_can_be_imported>
+            </csv_import>
+        </products_settings>
+
+        <configuration>
+            <configure>
+                <module_enabled>0</module_enabled>
+                <products_auto_approval>0</products_auto_approval>
+                <products_approval_reset_after_edit>0</products_approval_reset_after_edit>
+                <supplier_needs_to_be_approved>0</supplier_needs_to_be_approved>
+                <enable_supplier_pages>0</enable_supplier_pages>
+                <allow_suppliers_upload_images>0</allow_suppliers_upload_images>
+                <notify_when_supplier_changed_his_profile>0</notify_when_supplier_changed_his_profile>
+            </configure>
+            <presentation>
+                <add_sold_by_option_on_product_page>0</add_sold_by_option_on_product_page>
+            </presentation>
+            <suppliers_notifications>
+                <notify_supplier_when_product_was_approved>1</notify_supplier_when_product_was_approved>
+                <email_when_product_was_approved>
+                    <![CDATA[Your product {{productName}} has been approved by administrator]]>
+                </email_when_product_was_approved>
+                <email_text_on_product_approvation>
+                    <![CDATA[Dear {{supplierName}},<br><br>
+
+Your product {{productName}} has been approved.<br><br>
+You can find approved product under following url:<br>
+{{productLink}}]]>
+                </email_text_on_product_approvation>
+                <notify_supplier_when_product_was_ordered>1</notify_supplier_when_product_was_ordered>
+                <ordered_products_configuration_enabled>1</ordered_products_configuration_enabled>
+                <email_when_product_was_ordered>
+                    <![CDATA[Your product(s) has been ordered]]>
+                </email_when_product_was_ordered>
+                <email_text_on_product_was_ordered>
+                    <![CDATA[Dear {{supplierName}},<br><br>
+
+Your following product(s) has been ordered:<br>
+{{productSectionStart}}- {{productQty}}x {{productName}} <a href="{{productLink}}">(Product Page)</a><br>{{productSectionEnd}}]]>
+                </email_text_on_product_was_ordered>
+            </suppliers_notifications>
+        </configuration>
+
+        <email_templates>
+            <supplier_new_email>supplier_new_email</supplier_new_email>
+            <order_new_email>order_new_email</order_new_email>
+            <product_approved_email>product_approved_email</product_approved_email>
+        </email_templates>
+    </default>
+</config>

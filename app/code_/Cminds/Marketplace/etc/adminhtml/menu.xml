@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Cminds_Marketplace::profile_fields"
+             title="Manage Profile Fields" module="Cminds_Marketplace"
+             sortOrder="70" parent="Cminds_Supplierfrontendproductuploader::suppliers_content"
+             action="marketplace/suppliers/fields"
+             resource="Cminds_Marketplace::profile_fields"/>
+        <add id="Cminds_Marketplace::billing"
+             title="Billing Report" module="Cminds_Marketplace"
+             sortOrder="80" parent="Cminds_Supplierfrontendproductuploader::suppliers_content"
+             action="marketplace/billing/index"
+             resource="Cminds_Marketplace::billing"/>
+    </menu>
+</config>

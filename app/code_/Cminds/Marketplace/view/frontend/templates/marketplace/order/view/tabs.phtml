@@ -1,0 +1,14 @@
+<?php
+
+/** @var \Cminds\Marketplace\Block\Order\View\AdditionalTabs $block  */
+
+?>
+
+<?php foreach ($block->getAdditionalTabs() as $tab): ?>
+    <?php if ($block->canShowTab($tab)): ?>
+        <div class="tab-pane <?= /* @escapeNotVerified */ $block->getParentBlock()->getCurrentTab() === $tab['id'] ? 'active' : '' ?>"
+             id="<?= $tab['id'] ?>">
+            <?= /* @escapeNotVerified */ $block->getTabContent($tab); ?>
+        </div>
+    <?php endif;?>
+<?php endforeach; ?>

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Dotzot Shipping
+ *
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add module="Dotzotfront_ShippingTracking" parent="Dotzotfront_Base::elements" id="Dotzotfront_ShippingTracking::prshippingtracking" resource="Dotzotfront_ShippingTracking::prshippingtracking" title="Order Status  &amp; Shipping Tracking" sortOrder="8980849"/>
+        <add module="Dotzotfront_ShippingTracking" parent="Dotzotfront_ShippingTracking::prshippingtracking" id="Dotzotfront_ShippingTracking::configuration" resource="Dotzotfront_ShippingTracking::configuration" action="adminhtml/system_config/edit/section/prshippingtracking" title="Configuration" sortOrder="100"/>
+    </menu>
+</config>

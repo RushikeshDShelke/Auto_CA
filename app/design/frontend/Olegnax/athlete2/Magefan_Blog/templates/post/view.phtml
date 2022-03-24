@@ -1,0 +1,105 @@
+<?php
+/**
+ * Blog post view template
+ *
+ * @var $block \Magefan\Blog\Block\Post\View
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+	$at_settings	 = $this->helper( 'Olegnax\Athlete2\Helper\Helper' )->getConfig( 'athlete2_settings/blog_post' );
+	$_postClasses = [];
+    $_post = $this->getPost();
+    $_postUrl = $_post->getPostUrl();
+    $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+	$featuredImage = $_post->getFeaturedImage();
+	//$_styleClassic		 = $at_settings[ 'blog_style_classic' ];
+	$_stickyProgress = $at_settings[ 'sticky_progress' ];
+	$_shareTitle		 = $at_settings[ 'share_below_title' ];
+	$_shareTheme	 = $at_settings[ 'share_below_title_theme' ];
+	$_shareSticky = $at_settings[ 'share_sticky' ];	
+	$_hideTags		 = $at_settings[ 'hide_tags' ];
+	$_hideAuthor	 = $at_settings[ 'hide_author' ];
+	$_hideFeatured = $at_settings[ 'hide_featured' ];
+	$_hideCategories	 = $at_settings[ 'hide_categories' ];
+	$_hideDate	 = $at_settings[ 'hide_date' ];
+	$_hideCommentsLink = $at_settings[ 'hide_comments_link' ];
+	/*if($_styleClassic){
+		$_postClasses[] = 'blog-style-classic';
+	}*/
+	if($at_settings[ 'narrow_post' ]){
+		$_postClasses[] = 'narrow-post';
+	}
+	if($at_settings[ 'narrow_post_p' ]){
+		$_postClasses[] = 'narrow-post--p';
+	}
+	if($at_settings[ 'narrow_post_content' ]){
+		$_postClasses[] = 'narrow-post--content';
+	}
+	if($_shareSticky && !$_shareTitle ){
+		$_postClasses[] = 'sticky-share-only';
+	}
+	$_postClassesOutput = implode(' ',	$_postClasses);
+?>
+<div class="post-view <?= $_postClassesOutput ?>">
+	<?php echo $this->getChildHtml( 'breadcrumbs' ); ?>
+    <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
+        <div class="post-header clearfix">			
+			<?php if ( !$_hideCategories ) { echo $this->getChildBlock( "blog.post.ox_categories" )->setData('post', $_post )->toHtml(); } ?>
+			<?php echo $this->getChildHtml( 'page.main.title' ); ?>
+			<div class="post-meta">
+				<?php if(!$_hideDate) { ?><span class="item post-posed-date"><?php echo $_post->getPublishDate('F d, Y') ?></span><?php } ?>
+				<?php if ( !$_hideAuthor ) { echo $this->getChildBlock( "blog.post.ox_author" )->setData('post', $_post )->toHtml(); } ?>			
+				<?php if ( !$_hideCommentsLink ) { echo $this->getChildBlock( "blog.post.ox_comments_link" )->setData('post', $_post )->toHtml(); } ?>
+				<?php if ($_shareSticky && !$_shareTitle ) {  echo $this->getChildBlock( "blog.post.ox_share_theme" )->setData('post', $_post )->toHtml(); } ?>
+				<?php if ( $_shareTitle ) { ?>		
+					<?php if ( $_shareTheme ) { ?>	
+						<?php echo $this->getChildBlock( "blog.post.ox_share_theme" )->setData('post', $_post )->toHtml(); ?>
+					<?php } else { ?>				
+						<div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
+							<a class="addthis_button_facebook"></a>
+							<a class="addthis_button_twitter"></a>
+							<a class="addthis_button_email"></a>
+							<a class="addthis_button_compact"></a>
+						</div>
+					<?php } ?>
+				<?php } ?>
+			</div>
+        </div>
+
+        <div class="post-content">
+			<?php if ($_stickyProgress || $_shareSticky) { ?>
+				<div class="blog-post-sticky-info">
+					<?php if ($_shareSticky) {  echo $this->getChildBlock( "blog.post.ox_share_theme" )->setData('post', $_post )->toHtml(); } ?>
+					<?php if ($_stickyProgress) { ?>
+						<div class="progress-container">
+						  <span class="progress-bar"></span>
+						</div>
+						<h6 class="progress-counter">0%</h6>
+					<?php } ?>
+				</div>
+			<?php } ?>
+            <div class="post-description clearfix">
+                <?php if ($featuredImage && !$_hideFeatured) { ?>
+                <div class="post-ftimg-hld">
+                    <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
+                </div>
+                <?php } ?>
+                <div class="post-text-hld">
+                    <?php echo $block->getContent() ?>
+                    <div class="clear"></div>
+                </div>
+				<?php if(!$_hideTags) { echo $this->getChildBlock( "blog.post.ox_tags" )->setData('post', $_post )->toHtml(); } ?>
+            </div>
+        </div>
+
+        <div class="post-bottom container">
+            <?php echo $this->getChildHtml('blog.post.bottom') ?>
+        </div>
+    </div>
+</div>
+
+<?php if ($_stickyProgress || $_shareSticky) { echo $this->getChildBlock( "blog.post.ox_sticky" )->toHtml();  } ?>

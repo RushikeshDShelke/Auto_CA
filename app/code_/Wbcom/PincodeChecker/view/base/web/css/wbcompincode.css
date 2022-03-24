@@ -1,0 +1,47 @@
+.zipcode-main-content {
+    display: flex;
+}
+.zipcode-main-content #wbcom-zipcode {
+    width: 65%;
+    height: 40px;
+    margin-right: 10px;
+    float: left;
+}
+.zipcode-main-content #zipcode-check {
+    height: 40px;
+    padding: 8px 15px;
+}
+.pincode-container{
+    padding: 10px;
+    width: auto;
+    margin: 15px 0;
+}
+
+.pincode-note{
+    margin-bottom: 0px;
+    padding-top: 5px;
+}
+.pincode-error{
+    color: #FF1015;
+}
+.pincode-correct{
+    color: #006400;
+}
+
+
+
+@media (max-width: 510px) {
+
+    .zipcode-main-content {
+        display: block;
+    }
+    .zipcode-main-content #wbcom-zipcode {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+    }
+    .zipcode-main-content #zipcode-check {
+        width: 50%;
+    }
+
+}

@@ -1,0 +1,51 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_LayeredNavigation
+ * @copyright   Copyright (c) 2019 Olegnax (http://olegnax.com/). All rights reserved.
+ * @license     Proprietary License https://olegnax.com/license/
+ */
+
+use Olegnax\LayeredNavigation\Helper\Helper;
+use Olegnax\LayeredNavigation\Model\Config\Source\LoaderType;
+
+/** @var Helper $_helper */
+$config = $this->helper(Helper::class)->getModuleConfig('general');
+$configLoaders = $this->helper(Helper::class)->getModuleConfig('loaders');
+
+if ('' !== $configLoaders['loader_type_filters'] && $config['enable']): ?>
+	<script data-role="ox-nav-loader-filter" type="text/x-magento-template">
+		<div class="ox-product-nav ox-product-nav-filter ox-product-nav__loader--<?= $configLoaders['loader_type_filters']; ?>">
+			<div class="ox-product-nav__loader">
+                <?php if (LoaderType::TYPE_IMAGE == $configLoaders['loader_type_filters']): ?>
+					<img src="<?= $this->getViewFileUrl($configLoaders['loader_filters']) ?>"
+						 class="ox-product-nav__loader-image"/>
+                <?php endif; ?>
+			</div>
+		</div>
+	</script>
+<?php endif;
+if ('' !== $configLoaders['loader_type_content'] && $config['enable']): ?>
+	<script data-role="ox-nav-loader-content" type="text/x-magento-template">
+		<div class="ox-product-nav ox-product-nav-content ox-product-nav__loader--<?= $configLoaders['loader_type_content']; ?>">
+			<div class="ox-product-nav__loader">
+                <?php if (LoaderType::TYPE_IMAGE == $configLoaders['loader_type_content']): ?>
+					<img src="<?= $this->getViewFileUrl($configLoaders['loader_content']) ?>"
+						 class="ox-product-nav__loader-image"/>
+                <?php endif; ?>
+			</div>
+		</div>
+	</script>
+<?php endif;
+if ('' !== $configLoaders['loader_type_page'] && $config['enable']): ?>
+	<script data-role="ox-nav-loader-page" type="text/x-magento-template">
+		<div class="ox-product-nav ox-product-nav-page ox-product-nav__loader--<?= $configLoaders['loader_type_page']; ?>">
+			<div class="ox-product-nav__loader">
+                <?php if (LoaderType::TYPE_IMAGE == $configLoaders['loader_type_page']): ?>
+					<img src="<?= $this->getViewFileUrl($configLoaders['loader_page']) ?>"
+						 class="ox-product-nav__loader-image"/>
+                <?php endif; ?>
+			</div>
+		</div>
+	</script>
+<?php endif;

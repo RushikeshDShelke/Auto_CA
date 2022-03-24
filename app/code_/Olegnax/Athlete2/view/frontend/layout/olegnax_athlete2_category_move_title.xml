@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- <move element="breadcrumbs" destination="main" before="-"/> -->
+        <!-- <move element="page.main.title" destination="main" after="breadcrumbs"/> -->
+        <move element="category.image" destination="main" after="page.main.title"/>
+        <move element="category.description" destination="main" after="category.image"/>
+    </body>
+</page>

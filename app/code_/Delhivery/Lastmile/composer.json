@@ -1,0 +1,21 @@
+{
+  "name": "Delhivery",
+  "description": "Delhivery",
+  "version": "100.0.0",
+  "license": "MIT",
+  "require": {
+    "php": "7.0.2|7.0.4|~7.0.6|~7.1.0",
+    "magento/module-backend": "100.*.*",
+    "magento/module-ui": "101.*.*",
+    "magento/framework": "100.*.*"
+  },
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Delhivery\\Lastmile\\": ""
+    }
+  }
+}

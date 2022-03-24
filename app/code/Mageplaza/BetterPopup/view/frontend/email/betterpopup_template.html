@@ -1,0 +1,112 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterPopup
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<!--@subject {{trans "Better Popup results for %currentTime - %store_name" currentTime=$currentTime store_name=$store_name}} @-->
+<!--@styles
+    .new-subscribers {
+        list-style: none;
+        display: table;
+        width: 100%;
+        margin-top: 20px !important;
+        text-align: center;
+        font-weight: normal;
+    }
+    .mp-item {
+        padding: 15px 0px 25px 20px;
+        display: table-cell;
+        width: 33%;
+    }
+    .subscribers {
+        text-align: center;
+        color: #1994e0;
+    }
+    span.number-subscribers {
+
+        font-size: 30px;
+    }
+    .unSubscribers {
+        text-align: center;
+        color: #eb5202;
+    }
+    span.number-unSubscribers {
+        display: block;
+        font-size: 1.4rem;
+    }
+    ul.list-email {
+        text-decoration: none;
+        columns: 2;
+        font-size:14px;
+        margin-top: 15px !important;
+        color: #333;
+    }
+    ul.list-email li a{
+        color: #59b43c !important;
+    }
+    li.items {
+        margin-bottom: 30px !important;
+    }
+    p.note {
+        color: #909090;
+        font-size: 0.8rem;
+        font-style: italic;
+        padding-bottom: 40px;
+    }
+    p.sign {
+        margin-top: 40px;
+        padding-bottom: 25px;
+    }
+    .mp-contact {
+        width: 100%;
+        background-color: #f7f7f7;
+        border: 1px #e0e0e0 solid;
+        padding: 15px 0px 15px 15px;
+        font-size: 12px;
+        margin-top: 30px !important;
+    }
+    .see-all{
+        margin-top: 20px !important;
+        font-size: 18px !important;
+        margin-bottom: 30px !important;
+        text-align: center;
+
+    }
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<span style=" font-size:14px;font-weight: bold;">{{trans "Results for %currentTime" currentTime=$currentTime}}</span>
+<span style=" font-size:14px;font-weight: bold; float: right;">Store name: {{trans "%store_name" store_name=$store_name}}</span>
+
+<ul class="new-subscribers">
+    <li class="title mp-item" style="font-size: 30px;">
+        <b>
+            <span class="number-subscribers">{{trans "%mp_subscriber" mp_subscriber=$mp_subscriber}}</span>
+            {{trans "New Subscriber(s)"}}
+        </b>
+    </li>
+</ul>
+
+{{layout handle="popup_email_list" area="frontend"}}
+<p style="margin-top:0;margin-bottom: 50px;">{{trans "This list shows only 8 most recent subscribers this week. To see all the subscribers list, please log into your admin panel:"}} <b>{{trans "MARKETING"}}</b> >> <b>{{trans "Communications"}}</b> >> <b>{{trans "Newsletter Subscribers"}}</b></p>
+
+<p class="sign">{{trans "Happy marketing,"}}<br>{{trans "The Mageplaza Team"}}</p>
+
+{{template config_path="design/email/footer_template"}}

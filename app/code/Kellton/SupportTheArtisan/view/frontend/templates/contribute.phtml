@@ -1,0 +1,201 @@
+<?php $data = $block->getPostedData();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+
+?>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/bootstrap.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/font-awesome.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/jquery.mCustomScrollbar.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/stylefile.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/responsive.css"/>
+<script>
+    function checkfields(){
+        if(document.getElementById('customer_name').value == ""){
+            alert("Please enter name");
+            return false;
+        }
+        if(document.getElementById('customer_name').value != ""){
+            var inputName = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
+            var customerName = document.getElementById('customer_name').value;
+            if(!customerName.match(inputName)){
+                alert("Please enter valid name");
+                return false;
+            }
+        }
+        if(document.getElementById('email_id').value == ""){
+            alert("Please enter email id");
+            return false;
+        }
+        if(document.getElementById('email_id').value){
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var inputText = document.getElementById('email_id').value;
+			 if(!inputText.match(mailformat)){
+                alert("Please enter valid email id");
+                return false;
+            }
+		}
+
+        if(document.getElementById('country_code').value == ""){
+            alert("Please enter Counter Code");
+            return false;
+        }
+        /** if(document.getElementById('country_code').value != ""){
+            var ccode = /^(\+|\d)[0-9]{7,16}$/;;
+            var countryCode = document.getElementById('country_code').value;
+            if(!countryCode.match(ccode)){
+                alert("Please enter valid country code");
+                return false;
+            }
+        }*/
+        
+        if(document.getElementById('phone_no').value == ""){
+            alert("Please enter phone no");
+            return false;
+        }
+        if(document.getElementById('phone_no').value != ""){
+            var validity = new RegExp("^[0-9]{10,11}$");
+            var inputNo = document.getElementById('phone_no').value;
+            if(!validity.test(inputNo)){
+                alert("Please enter valid phone no");
+                return false;
+            }
+        }
+        if(document.getElementById('address_line_1').value == ""){
+            alert("Please enter address");
+            return false;
+        }
+        if(document.getElementById('myCheckbox2').checked == false){
+            alert("Please Accept Terms and conditions");
+            return false;
+        }
+        
+    }
+</script>
+
+
+
+
+<div class="wrap">
+    <!-- <div class="navnemu">
+        <div class="container">
+            <div class="row">
+                <div class="offset-2 col-8 text-center">
+                    <ul class="nav">
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="artisans.html">ARTISANS</a></li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="section">       
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div class="contact-title">
+                        <h4>Support the</h4>
+                        <h1>Artisan</h1>
+                        <h5>Save the crafts</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-bx">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contact-form">
+                            <h4>Contribute rs. <?php if(isset($data['amount'])): echo $data['amount']; endif; ?></h4>
+                            <form name="suport_artisan" id="supprt_artisan_pay" method="post" action="<?= $block->getUrl('supporttheartisan/index/save'); ?>"/>
+                            	<input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+									<input type="hidden" name="cat_name" value="<?php if(isset($data['category'])): echo $data['category']; endif; ?>" />
+									<input type="hidden" name="contributed_amount" value="<?php if(isset($data['amount'])): echo $data['amount']; endif; ?>" />
+									<input type="hidden" name="callbackurl" value="<?php echo $block->getUrl('supporttheartisan/index/responsesave'); ?>" />
+
+                                <div class="form-group">
+                                    <input type="text" name="customer_name" id ="customer_name" class="form-control" placeholder="Full name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email_id" id ="email_id" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input autocomplete="off" type="text" class="form-control" name="country_code" id="country_code" value="+91" style="width:12%;float:left;"><input type="text" autocomplete="off" name="phone_no" id ="phone_no" class="form-control" placeholder="Phone number" style="width:85%; float:right;">
+                                </div>
+                                <div class="form-group">
+                                    <input type="textarea" name="address_line_1" id ="address_line_1" class="form-control" placeholder="Address"> 
+                                    </div>
+                                        
+                                <div class="chiller_cb mt-10">
+                                    <input id="myCheckbox2" type="checkbox">
+                                    <div data-mage-init='{"myjs": {}}'>
+
+
+                                    <label for="myCheckbox2">I agree to the <a href="javascript:void(0)" id="termscondition"> Terms and Conditions </a></label>
+                                    </div>
+                                    <span></span>
+                                </div>
+                                <button class="btn btn-green mt-5" onclick="return  checkfields();">Proceed to Payment</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="contact-content">
+                            <p>You will receive a specially handcrafted product from the recipient artisan, corresponding to the amount received.</p>
+                            <p>We will give you (by email) 3 handpicked options of beautiful products. You may select one of your choice. We will reach out to you in case of any exceptional scenarios.</p>
+                            <p>Your product will be shipped to you within 30-90 days, depending on the lockdown conditions around the artisan area and in India.</p>
+                            
+                            <div data-mage-init='{"myjs": {}}'>
+                                <p>For more details please refer to the <a href="javascript:void(0)" id="termscondition1">Terms and Conditions</a> or contact us at <a href="mailto:care@craftmaestros.com">care@craftmaestros.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div class="logo"><img src="images/logo for booth-1.png" alt=""></div>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <p>An inisiative of Craft Maestors</p>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <p> &copy Craft Maestors 2020</p>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+</div>
+<!-- <div id="stop" class="scrollTop">
+    <span><i class="fa fa-angle-up" aria-hidden="true"></i></span>
+</div> -->
+<!-- Modal Trams and Conditions-->
+
+
+  
+  <!--<a href="index.html" class="close btn-cut"><span>×</span></button>-->
+
+
+<div id="popup-modal" style="display:none;">
+    <h5 class="modal-title" id="tramsconditionsTitle">Terms & Conditions</h5>
+   <p>
+            <ul>
+                <li>You are voluntarily supporting the lives of the artisans.</li>
+                <li>The money will be received first by Ammara Craft Maestros Pvt Ltd. (Company). The Company is in direct contact with national award-winning artisans across the country, and the Company will transfer the amounts so received to the accounts of the artisans directly, after deducting taxes (GST) and direct costs like packaging and logistics.</li>
+                <li>The corresponding amounts received from you will be given to one of the master artisans in the craft category chosen by you. In the case where no product can be made by the craftsmen in the chosen craft category, with the corresponding amount of contribution, then the craft category can be changed. These decisions will solely be of the Company.</li>
+                <li>The artisan will be making a product of the corresponding value of the money received by her/him and the same shall be shipped by the Company to you.</li>
+                <li>You will receive an invoice for the full amount given by you.</li>
+                <li>You give your consent to be contacted by the Company by email/phone for getting the details like the address for shipment and other matters.</li>
+                <li>The products will be made and shipped within 30-90 days from receipt of funds, depending on the lockdown and related conditions.</li>
+                <li>In case the product delivery is further delayed due to any other factors or craftsmen conditions, the Company will not be held responsible in any manner.</li>
+                <li>The duration of this initiative and the content of the terms and conditions are subject to change at the sole discretion of the Company at any time.</li>
+                <li>The Company will not be held responsible for any IP, confidentiality, product, pricing or related matters in any way. The relevant terms and conditions from <a href="www.craftmaestros.com"> www.craftmaestros.com </a> shall apply.</li>
+                <li>The products once received at your address, will not be returned. In case of any broken products, please contact our customer care at <a href="www.craftmaestros.com">www.craftmaestros.com</a> or email at <a href="mailto:care@craftmaestros.com">  care@craftmaestros.com</a>.</li>
+                <li>For any payment related or other queries or concerns, please contact our customer care at <a href="www.craftmaestros.com"> www.craftmaestros.com </a> or email at  <a href="mailto:care@craftmaestros.com">care@craftmaestros.com</a> .</li>
+            </ul>
+            </p>
+</div>

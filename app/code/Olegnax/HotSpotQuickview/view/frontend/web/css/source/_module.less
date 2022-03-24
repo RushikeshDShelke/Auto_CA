@@ -1,0 +1,164 @@
+@ox-hotspot__size: 38px;
+@ox-hotspot-icon__size: 17px;
+@ox-hotspot-icon-smal__size: 10px;
+@ox-hotspot__tooltip-width: 190px;
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    @keyframes hs_pulse {
+        0% { transform:scale(1);opacity:0;  }        
+        20% {  opacity:0.6; }
+        100% { transform:scale(3); opacity:0;  }
+    }
+    .ox-hotspot__container{
+        position:relative;
+        > img{
+            width:100%;
+            display: block;
+        }
+    }
+    .ox-hotspot__item{
+        cursor:pointer;  
+        min-width: @ox-hotspot__size;
+        height: @ox-hotspot__size;
+        margin-top: -(@ox-hotspot__size/2);
+        margin-left: -(@ox-hotspot__size/2);
+        position: absolute;
+        text-align: left;
+        top:50%;
+        left:50%;
+        &.-shadow{
+            .inner{
+               box-shadow:0px 7px 16px 0 rgba(0, 0, 0, 0.25);
+            }
+        }
+        &.-pulse{
+            &:before{
+                position: absolute;
+                display: block;
+                width: @ox-hotspot__size;
+                height: @ox-hotspot__size;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                border-radius: 50%;
+                content: ' '!important;
+                left: 50%;
+                top: 50%;
+                opacity: 0;
+                margin-top: -@ox-hotspot__size/2;
+                margin-left: -@ox-hotspot__size/2;
+                background-color: currentColor;
+                animation: hs_pulse 2s ease infinite;
+            }
+        }
+        .inner{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            position: relative;
+            border-radius: 40px;
+            z-index: 1;
+        }
+        .-bold,
+        .-text{
+            line-height: 1;
+            display: block;
+            font-weight: @font-weight__bold;
+        }
+        .-upper{
+            text-transform: uppercase;
+        }
+        &:hover{
+            .ox-hotspot__tooltip{
+                transition: all 0.3s ease;
+                opacity:1;
+                visibility:visible;
+                top: -10px;
+            }
+        }
+    }
+    .ox-hotspot__tooltip{
+        position: absolute;
+        top: 0;
+        left: @ox-hotspot__size/2;
+        opacity:0;
+        visibility:hidden;
+        padding: 12px 18px;
+        background: white;
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.12);
+        width:@ox-hotspot__tooltip-width;
+        transform: translateY(-100%) translateX(-50%);
+        transition: all 0.15s ease;
+        line-height:1.4;
+        &:before{
+            content: '';
+            background: inherit;
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+            display: block;
+            position: absolute;
+            bottom: -6px;
+            left: ~"calc(50% - 6px)";
+            z-index: -1;
+        }
+    }
+    .ox-hotspot__icon{
+        &.athlete2-icon-plus{
+            position: relative;
+            font-size: @ox-hotspot-icon__size;
+            width: @ox-hotspot-icon__size;
+            height: @ox-hotspot-icon__size;
+            line-height: @ox-hotspot-icon__size;
+            display: block;
+            overflow: hidden;
+        }
+        &.athlete2-icon-plus-small{
+            position: relative;
+            width: @ox-hotspot-icon-smal__size;
+            height: @ox-hotspot-icon-smal__size;
+            display: block;
+            overflow: hidden;
+            &:after,
+            &:before{
+                content: '';
+                background: currentColor;
+                width: @ox-hotspot-icon-smal__size;
+                height: 2px;
+                top: 4px;
+                display: block;
+                position: absolute;
+            }
+            &:after{
+                transform: rotate(90deg);
+            }
+        }
+        & + .-text.hs{
+            margin-left:5px;
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .ox-hotspot__item{
+        &.mobile-minimized{
+            width: 20px!important;
+            height: 20px!important;
+            min-width: 20px!important;
+            margin-top: -10px!important;
+            margin-left: -10px!important;            
+            .ox-hotspot__icon,
+            .-text.hs{
+                display:none!important;   
+            }
+            .inner{
+                border-radius:10px!important;
+            }
+        }
+    }
+}

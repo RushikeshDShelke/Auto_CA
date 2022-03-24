@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Kellton_Smsbulk::parent" title="Smsbulk" module="Kellton_Smsbulk" sortOrder="100" resource="Kellton_Smsbulk::parent"/>
+		<add id="Kellton_Smsbulk::smsbulk" title="Smsbulk Smsbulk" module="Kellton_Smsbulk" sortOrder="20" parent="Kellton_Smsbulk::parent" action="smsbulk/smsbulk" resource="Kellton_Smsbulk::smsbulk"/>
+
+    </menu>
+</config>

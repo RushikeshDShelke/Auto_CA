@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>            
+            <referenceBlock name="header_account_drop">
+                    <block class="Magento\Customer\Block\Form\Login" name="customer_form_login"
+                           template="Magento_Customer::form/login_drop.phtml">
+                            <container name="header_form.additional.info" as="form_additional_info_drop">
+                                    <block class="Magento\ReCaptchaUi\Block\ReCaptcha" name="recaptcha-login-drop" after="-"
+                                               template="Magento_ReCaptchaFrontendUi::recaptcha.phtml"
+                                               ifconfig="recaptcha_frontend/type_for/customer_login">
+                                            <arguments>
+                                                    <argument name="recaptcha_for" xsi:type="string">customer_login</argument>
+                                                    <argument name="jsLayout" xsi:type="array">
+                                                            <item name="components" xsi:type="array">
+                                                                    <item name="recaptcha" xsi:type="array">
+                                                                            <item name="component" xsi:type="string">
+                                                                                    Magento_ReCaptchaFrontendUi/js/reCaptcha
+                                                                            </item>
+                                                                    </item>
+                                                            </item>
+                                                    </argument>
+                                            </arguments>
+                                    </block>
+                            </container>
+                    </block>
+                    <block class="Magento\Customer\Block\Form\Login\Info" name="customer.new" template="Magento_Customer::newcustomer.phtml"/>
+                    <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
+                            <arguments>
+                                    <argument name="triggers" xsi:type="array">
+                                            <item name="loginButton" xsi:type="string">.action.login</item>
+                                    </argument>
+                            </arguments>
+                    </block>
+            </referenceBlock>
+	</body>
+</page>

@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Theme\Block\Html\Pager">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Magento_Theme_Block_Html_Pager"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\Frontend\Magento\Theme\Block\Html\Pager"/>
+	</type>
+	<type name="Magento\Framework\App\View">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Magento_Framework_App_View"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\Frontend\Magento\Framework\App\View"/>
+	</type>
+	<type name="Amasty\Finder\Controller\Index\Index">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Amasty_Finder_Controller_Index_Index"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Amasty\ShopbyBrand\Controller\Index\Index">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Amasty_ShopbyBrand_Controller_Index_Index"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Amasty\Shopby\Controller\Index\Index">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Amasty_Shopby_Controller_Index_Index"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Amasty\Shopby\Controller\Search\Result\Index">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Amasty_Shopby_Controller_Search_Result_Index"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Amasty\Xlanding\Controller\Page\View">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Amasty_Xlanding_Controller_Page_View"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Magento\CatalogSearch\Controller\Result\Index">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Magento_CatalogSearch_Controller_Result_Index"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Magento\Catalog\Controller\Category\View">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Magento_Catalog_Controller_Category_View"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Smartwave\Porto\Controller\CatalogSearch\Result">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Smartwave_Porto_Controller_CatalogSearch_Result"
+				sortOrder="0"
+				type="Olegnax\InfiniteScroll\Plugin\ListAjax"/>
+	</type>
+	<type name="Bss\AddMultipleProducts\Helper\Data">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Bss_AddMultipleProducts_Helper_Data"
+				sortOrder="10"
+				type="Olegnax\InfiniteScroll\Plugin\Frontend\Bss\AddMultipleProducts\Helper\Data"/>
+	</type>
+	<type name="Mageplaza\AjaxLayer\Helper\Data">
+		<plugin name="Olegnax_InfiniteScroll_Plugin_Frontend_Mageplaza_AjaxLayer_Helper_Data"
+				sortOrder="10"
+				type="Olegnax\InfiniteScroll\Plugin\Frontend\Mageplaza\AjaxLayer\Helper\Data"/>
+	</type>
+</config>

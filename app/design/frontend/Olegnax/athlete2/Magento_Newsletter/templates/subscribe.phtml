@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/footer');
+$newsletterStyle = $at_settings['newsletter_style'];
+$newsletterInputStyle = $at_settings['newsletter_input_underlined'];
+$newsletterTitle = $at_settings['newsletter_title']; //__('Newsletter Sign Up')
+$newsletterLabel = $at_settings['newsletter_label']; //__('Get the latest deals and more')
+$newsletterLabelAria = $newsletterLabel ? $newsletterLabel : $newsletterTitle;
+if ($newsletterInputStyle) {
+    $newsletterInputStyle = 'inputs-style--underlined';
+} else {
+    $newsletterInputStyle = '';
+}
+?>
+<div class="block newsletter newsletter-style--<?= $newsletterStyle ?> <?= $newsletterInputStyle ?>">
+	<div class="block_newsletter_info">
+		<?php if ($newsletterTitle) {
+    ?>
+			<div class="title"><?= $newsletterTitle ?></div> <?php
+} ?>
+		<?php if ($newsletterLabel) {
+        ?><label class="label">
+			<span><?= $block->escapeHtml($newsletterLabel) ?></span></label> <?php
+    } ?>
+	</div>
+	<div class="content">
+		<form class="form subscribe"
+			  novalidate
+			  action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+			  method="post"
+			  data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+			  id="newsletter-validate-detail">
+			<div class="field newsletter">
+				<div class="control">
+					<label for="newsletter">
+						<span class="label">
+							<?= $block->escapeHtml($newsletterLabelAria) ?>
+						</span>
+					</label>
+					<input name="email" type="email" id="newsletter"
+						   placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>"
+						   data-validate="{required:true, 'validate-email':true}"
+					/>	
+				</div>
+			</div>
+			<div class="actions">
+				<button class="action subscribe primary"
+						title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"
+						type="submit"
+						aria-label="Subscribe">
+					<span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

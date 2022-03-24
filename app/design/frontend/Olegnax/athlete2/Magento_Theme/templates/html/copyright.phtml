@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$theme_helper	 = $this->helper( 'Olegnax\Athlete2\Helper\Helper' );
+$at_settings	 = $theme_helper->getConfig( 'athlete2_settings/footer' );
+$copyrightLayout = $at_settings[ 'copyright_layout' ];
+$showCopyright	 = $at_settings[ 'show_copyright' ];
+$copyrightText	 = $theme_helper->getBlockTemplateProcessor( $at_settings[ 'copyright_text' ] );
+if ( $at_settings[ 'copyright_content_type' ] == 'textfield' ) {
+	$customContent = $block->getBlockTemplateProcessor( $at_settings[ 'copyright_content_custom' ] );
+} elseif ($at_settings[ 'copyright_content_type' ] == 'custom_block'){
+	$customContent = $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'copyright_content_static' ] )->toHtml();
+} else {
+	$customContent	 = $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( 'athlete2-copyright-additional' )->toHtml();
+}
+if ( $showCopyright ) {
+	if ( $copyrightLayout === '2' ) {
+		?>
+		<div class="copyright-footer copyright-layout-2">
+			<div class="container">
+				<div class="row">
+					<?php if ( !empty( $customContent ) ) { ?>
+						<div class="col-12">
+							<?= /* @noEscape */ $customContent; ?>
+						</div>
+					<?php } ?>
+					<div class="col-12">
+						<small class="copyright">
+							<span><?= /* @noEscape */ $copyrightText /* $block->getCopyright() */ ?></span>
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	} else {
+		?>
+		<div class="copyright-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-md-6">
+						<small class="copyright">
+							<span><?= /* @noEscape */ $copyrightText /* $block->getCopyright() */ ?></span>
+						</small>
+					</div>
+					<div class="col-12 col-md-6 copyright-right">
+						<?= /* @noEscape */ $customContent; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+<?php } ?>

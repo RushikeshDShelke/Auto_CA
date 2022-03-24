@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View*/
+$at_settings = $block->getConfig('athlete2_settings/product');
+$showBlock = $at_settings['after_info_block_show'];
+if($showBlock):
+?>
+<div class="product__after-desc-block">
+	<?php if ( $at_settings[ 'after_info_block_content_type' ] == 'textfield' ) {
+		echo $block->getBlockTemplateProcessor( $at_settings[ 'after_info_block_content_custom' ] );
+	} elseif ($at_settings[ 'after_info_block_content_type' ] == 'custom_block'){
+		echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'after_info_block_content_static' ] )->toHtml();
+	} else {
+		echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( 'athlete2-after-product-info-block' )->toHtml();
+	} ?>		
+</div>
+<?php endif; ?>

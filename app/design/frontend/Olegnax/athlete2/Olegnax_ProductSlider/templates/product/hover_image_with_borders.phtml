@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/** @var $block \Magento\Catalog\Block\Product\Image */
+/** @var \Olegnax\Athlete2\Helper\Video $videoHelper */
+$videoHelper = $this->helper(\Olegnax\Athlete2\Helper\Video::class);
+?>
+
+<span class="product-image-container ox-product-hover-image-container"
+      style="width:<?= /* @escapeNotVerified */ $block->getWidth() ?>px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: <?= /* @escapeNotVerified */ ($block->getRatio() * 100) ?>%;">
+        <img class="product-image-photo product-first-image-photo owl-lazy"
+		<?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
+			 src="<?= $this->getViewFileUrl('Olegnax_Core/images/preloader-img.svg'); ?>"
+			 data-src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>"
+			 width="<?= /* @escapeNotVerified */ $block->getWidth() ?>"
+			 height="<?= /* @escapeNotVerified */ $block->getHeight() ?>"
+			 alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(),
+				null, true)
+		?>"/>
+		<?php if($videoHelper->videoOnHover($block->getProduct())){ ?>
+			<?= $videoHelper->getVideo($block->getProduct(), [
+				'video_attrs' => [
+					'width' => $block->getWidth(),
+					'height' => $block->getHeight(),
+					'controls' => $videoHelper->showControls($block->getProduct()),
+					'loop' => true,
+					'autoplay' => false,
+					'muted' => true,
+				],
+			]); ?>
+		<?php } else { ?>
+		<img class="product-image-photo product-second-image-photo owl-lazy"
+<?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
+			 src="<?= $this->getViewFileUrl('Olegnax_Core/images/preloader-img.svg'); ?>"
+			 data-src="<?= /* @escapeNotVerified */ $block->getImageHoverUrl() ?>"
+			 width="<?= /* @escapeNotVerified */ $block->getWidth() ?>"
+			 height="<?= /* @escapeNotVerified */ $block->getHeight() ?>"
+			 alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabelHover(),
+		null, true)
+?>"/>
+		<?php } ?>
+	</span>
+</span>

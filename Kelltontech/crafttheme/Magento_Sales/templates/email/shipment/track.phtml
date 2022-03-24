@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php $_shipment = $block->getShipment() ?>
+<?php
+/* @var \Magento\Sales\Model\Order $_order */
+$_order = $block->getOrder() ?>
+<?php if ($_shipment && $_order) : ?>
+    <?php $trackCollection = $_order->getTracksCollection($_shipment->getId()) ?>
+    <?php if ($trackCollection) : ?>
+        
+        
+            <?php foreach ($trackCollection as $_item) : ?>
+               
+				<?php echo $_item->getCarrierCode();
+				if($_item->getCarrierCode() == 'delhivery'){?>
+<a style="text-decoration:none;" href="https://www.delhivery.com/track/package/<?= $block->escapeHtml($_item->getNumber()) ?>" target="_blank"><span style="color:#ffffff;text-decoration:none;"><?= $block->escapeHtml($_item->getNumber()) ?></span></a>
+			<?php	
+			}else{		
+            ?>
+                    
+                        <a href="<?= $block->escapeUrl($block->getTrackingUrl()->getUrl($_item)) ?>" target="_blank">
+                            <?= $block->escapeHtml($_item->getNumber()) ?>
+                        </a>
+                    
+			<?php } ?>
+                
+            <?php endforeach ?>
+            
+    <?php endif; ?>
+<?php endif; ?>

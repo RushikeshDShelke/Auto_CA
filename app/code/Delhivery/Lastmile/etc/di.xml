@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Delhivery_Lastmile extension
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category  Delhivery
+ * @package   Delhivery_Lastmile
+ * @copyright Copyright (c) 2018
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Delhivery\Lastmile\Api\AwbRepositoryInterface" type="Delhivery\Lastmile\Model\AwbRepository"/>
+    <preference for="Delhivery\Lastmile\Api\Data\AwbInterface" type="Delhivery\Lastmile\Model\Awb"/>
+    <preference for="Delhivery\Lastmile\Api\Data\AwbSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Delhivery\Lastmile\Api\PincodeRepositoryInterface" type="Delhivery\Lastmile\Model\PincodeRepository"/>
+    <preference for="Delhivery\Lastmile\Api\Data\PincodeInterface" type="Delhivery\Lastmile\Model\Pincode"/>
+    <preference for="Delhivery\Lastmile\Api\Data\PincodeSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Delhivery\Lastmile\Api\LocationRepositoryInterface" type="Delhivery\Lastmile\Model\LocationRepository"/>
+    <preference for="Delhivery\Lastmile\Api\Data\LocationInterface" type="Delhivery\Lastmile\Model\Location"/>
+    <preference for="Delhivery\Lastmile\Api\Data\LocationSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Delhivery\Lastmile\Model\ResourceModel\Awb\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">delhivery_lastmile_awb</argument>
+            <argument name="eventPrefix" xsi:type="string">delhivery_lastmile_awb_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">awb_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Delhivery\Lastmile\Model\ResourceModel\Awb</argument>
+        </arguments>
+    </type>
+    <type name="Delhivery\Lastmile\Model\ResourceModel\Pincode\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">delhivery_lastmile_pincode</argument>
+            <argument name="eventPrefix" xsi:type="string">delhivery_lastmile_pincode_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">pincode_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Delhivery\Lastmile\Model\ResourceModel\Pincode</argument>
+        </arguments>
+    </type>
+    <type name="Delhivery\Lastmile\Model\ResourceModel\Location\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">delhivery_lastmile_location</argument>
+            <argument name="eventPrefix" xsi:type="string">delhivery_lastmile_location_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">location_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Delhivery\Lastmile\Model\ResourceModel\Location</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="delhivery_lastmile_awb_listing_data_source" xsi:type="string">Delhivery\Lastmile\Model\ResourceModel\Awb\Grid\Collection</item>
+                <item name="delhivery_lastmile_pincode_listing_data_source" xsi:type="string">Delhivery\Lastmile\Model\ResourceModel\Pincode\Grid\Collection</item>
+                <item name="delhivery_lastmile_location_listing_data_source" xsi:type="string">Delhivery\Lastmile\Model\ResourceModel\Location\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,45 @@
+<?php
+$at_settings = $block->getConfig('athlete2_settings');
+$account_action_drop = $at_settings['header']['account_action'];
+$at_helper = $this->helper('Olegnax\Athlete2\Helper\Helper');
+if($account_action_drop == 'login' || $account_action_drop == 'simple'){
+
+	$isLoggedIn = $block->isLoggedIn();
+	$account_type = $at_settings['header']['account_type'];
+	if(!$isLoggedIn && $account_action_drop == 'login') {
+		$dropClass='ox-login-drop';	
+	} else {
+		$dropClass='ox-links-drop';
+	}
+?>
+	<?php if(!(($at_helper->isAccountPage() || $at_helper->isMulticheckout()) && !$isLoggedIn)){ ?>
+	<div class="header__item-dropdown-content block-account"
+			 data-role="OXmodal"
+			 data-mage-init='{"OXmodal":{
+				"triggerTarget":".js-item-myaccount-action",
+				"overlayClass":"ox-slideout-shadow",
+				"timeout": "200",
+				"defaultModalClass":"ox-dialog <?= $block->escapeHtml($dropClass) ?>",
+				"closeOnEscape": true,
+				"closeButtonTrigger": "#btn-myaccount-close",
+				"closeOnMouseLeave": <?php echo 'dropdown-hover' == $block->escapeHtml($account_type) ? 'true' : 'false'; ?>,
+				"hoverOpen": <?php echo 'dropdown-hover' == $block->escapeHtml($account_type) ? 'true' : 'false'; ?>,
+				"type": "<?php echo 'slideout' == $block->escapeHtml($account_type) ? 'slideout' : ''; ?>",
+				"htmlClass":"ox-fixed"
+			}}'>
+		<button type="button" id="btn-myaccount-close" class="ox-overlay-close-btn" aria-label="Close Modal" data-action="close"><span></span></button>
+		<div class="block-content ox-move-item ox-move-item-store.links">
+			<?php
+            if ($account_action_drop == 'login' && !$isLoggedIn) {
+                echo $this->getChildHtml("customer_form_login");
+                echo $this->getChildHtml("customer.new");
+                echo $this->getChildHtml("require-cookie");
+            } else {
+                echo $this->getChildHtml("account-drop-links");
+            }
+			?>
+		</div>
+	</div>
+	<?php } ?>
+<?php } ?>
+

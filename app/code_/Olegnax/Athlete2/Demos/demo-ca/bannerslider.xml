@@ -1,0 +1,189 @@
+<root>
+	<carousels>
+		<item>
+			<title>Header Text</title>
+			<identifier>header-text</identifier>
+			<slides>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Free Shipping &amp; 60-Day Free Returns<br>
+<a href="#" style="border-bottom:1px solid">Join Now</a>			
+</div>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>20</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Up to 40% Off<br>
+<a href="#" style="border-bottom:1px solid">Shop Sale</a>			
+</div>
+]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>header-text</carousel>
+					<is_active>1</is_active>
+					<content_only>1</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>raw</content_wrappers>
+					<slide_bg></slide_bg>
+					<subtitle_color></subtitle_color>
+					<title_color></title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image></image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size></title_size>
+					<button_style></button_style>
+					<content_width></content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title></nav_title>
+					<content><![CDATA[<div class="d-block">Get The Latest Deals And More<br>
+<a href="#" style="border-bottom:1px solid">Sign up</a>
+</div>]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+		<item>
+			<title>hero-ca</title>
+			<identifier>hero-ca</identifier>
+			<slides>
+				<item>
+					<carousel>hero-ca</carousel>
+					<is_active>1</is_active>
+					<content_only>0</content_only>
+					<sort_order>10</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>no-container</content_wrappers>
+					<slide_bg>rgb(185, 173, 145)</slide_bg>
+					<subtitle_color>rgb(255, 255, 255)</subtitle_color>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color>rgb(255, 255, 255)</text_color>
+					<image>/media/athlete2/Demos/ca/hero-ca.jpg</image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size>huge-6vw</title_size>
+					<button_style></button_style>
+					<content_width>990</content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title>Pushing The Limits</nav_title>
+					<content><![CDATA[<h5 class="subtitle" style="letter-spacing: 1px;">BIG THANKS TO ALL OUR CUSTOMERS</h5>
+<div class="spacer-small hide-on-mobile">&nbsp;</div>
+<h2 class="title huge-6vw no-margin">PUSHING THE <br>LIMITS</h2>
+<span class="fancy-text h2 huge-6vw -overlay-top" style="color:#cfee10">Together</span>]]></content>
+					<content2></content2>
+				</item>
+				<item>
+					<carousel>hero-ca</carousel>
+					<is_active>1</is_active>
+					<content_only>0</content_only>
+					<sort_order>20</sort_order>
+					<layout>center</layout>
+					<mobile_align>center</mobile_align>
+					<margins>normal</margins>
+					<content_wrappers>no-container</content_wrappers>
+					<slide_bg>rgb(239, 243, 244)</slide_bg>
+					<subtitle_color>rgb(255, 255, 255)</subtitle_color>
+					<title_color>rgb(255, 255, 255)</title_color>
+					<title_bg></title_bg>
+					<button_color></button_color>
+					<button_bg></button_bg>
+					<button_color_hover></button_color_hover>
+					<button_bg_hover></button_bg_hover>
+					<text_color></text_color>
+					<image>/media/athlete2/Demos/ca/home-ca-hero-02.jpg</image>
+					<subtitle></subtitle>
+					<title></title>
+					<title_size>huge-6vw</title_size>
+					<button_style></button_style>
+					<content_width>990</content_width>
+					<custom_class></custom_class>
+					<link></link>
+					<button_css></button_css>
+					<button></button>
+					<nav_title>Join The Revolution</nav_title>
+					<content><![CDATA[<h5 class="subtitle" style="letter-spacing: 1px;">BIG THANKS TO ALL OUR CUSTOMERS</h5>
+<div class="spacer-small hide-on-mobile">&nbsp;</div>
+<h2 class="title huge-6vw no-margin">JOIN THE <br>REVOLUTION</h2>
+<span class="fancy-text h2 huge-6vw -overlay-top" style="color:#ec470c">Now</span>]]></content>
+					<content2></content2>
+				</item>
+			</slides>
+		</item>
+	</carousels>
+</root>

@@ -1,0 +1,103 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+
+/**
+ * @var $block Jajuma\WebpPlus\Block\Adminhtml\System\Config\TestButton
+ */
+?>
+<style>
+    .test-conversion-tool-wrapper {
+        display: flex;
+    }
+
+    .test-conversion-tool-wrapper .product-input-wrapper {
+        margin-left: 10px;
+        display: flex;
+    }
+    .test-conversion-tool-wrapper .product-input-wrapper .product {
+        width: 80px;
+    }
+
+    .test-conversion-tool-wrapper .product-input-wrapper .tooltip {
+        line-height: 26px;
+    }
+</style>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal',
+        'Magento_Ui/js/modal/alert'
+    ], function ($, modal, alert) {
+        window.conversionToolTest = function() {
+            if (!$.isNumeric($('#webp_advance_mode_quality').val())) {
+                alert({
+                    title: 'Error',
+                    content: "<?= __('Quality should be a numeric value') ?>",
+                    actions: {
+                        always: function(){}
+                    }
+                });
+                return;
+            }
+            $('body').trigger('processStart');
+            $('#iFrame').remove();
+            let productId = $('.product-input-wrapper .product').val();
+            let postData = {form_key: FORM_KEY, product: productId};
+
+            configForm.find('[id^=webp_advance_mode]').find(':input').serializeArray().map(function(field) {
+                var name = field.name.match(/groups\[advance_mode\]?(\[groups\]\[debug\])?\[fields\]\[(.*)\]\[value]/);
+
+                if(name && name.length === 3){
+                    postData[name[2]] = field.value;
+                }
+            });
+            let options ={
+                type: 'popup',
+                title: '<?= /* @escapeNotVerified */ __('Test Conversion Tool') ?>',
+                responsive: true,
+                innerScroll: false,
+                buttons: [{
+                    text: $.mage.__('Close'),
+                    class: 'close-modal',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+            let popup = modal(options, $('#quickViewContainer'));
+            let modalContainer = $("#quickViewContainer");
+            let iframe = $('<iframe />', {
+                id: 'iFrame',
+                src: "<?php echo $block->getAdminUrl() ?>?" + $.param( postData, true )
+            });
+            modalContainer.html(iframe);
+            $('#iFrame').on("load", function () {
+                $('body').trigger('processStop');
+                modalContainer.addClass("quick-view-image");
+                modalContainer.modal('openModal');
+                this.style.height = this.contentWindow.document.body.scrollHeight+ 10 + 'px';
+                this.style.border = '0';
+                this.style.width = '100%';
+            });
+        }
+    });
+</script>
+<div class="test-conversion-tool-wrapper">
+    <div class="button-wrapper">
+        <?php echo $block->getButtonHtml() ?>
+    </div>
+    <div class="product-input-wrapper">
+        <input type="text" name="product_id" class="product" value="<?= $block->getLatestProductId()?>">
+        <div class="tooltip">
+            <span class="help"><span></span></span>
+            <div class="tooltip-content">Fill your product id to test the conversion tool</div>
+        </div>
+    </div>
+</div>
+<div id="quickViewContainer">
+
+</div>

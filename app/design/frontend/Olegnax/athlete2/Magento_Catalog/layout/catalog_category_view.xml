@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Athlete2 Theme
+ *
+ * @author      Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (https://olegnax.com). All rights reserved.
+ * @license     https://www.olegnax.com/license
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- <move element="breadcrumbs" destination="page.wrapper" after="firsttest"/> -->
+        <!-- <move element="page.main.title" destination="main" before="-"/> -->
+        <!-- <referenceContainer name="category.cms" remove="true"/> -->
+        <referenceContainer name="before.body.end">
+                <block class="Magento\Framework\View\Element\Template" name="ox_catalog_js" template="Magento_Catalog::product/js.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="sticky-sidebar.js" as="sticky-sidebar.js" template="Magento_Catalog::product/sticky-sidebar.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="category.products.list">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="helper" helper="Olegnax\Athlete2\Helper\UpdaterTemplate::setProductsLayout"/>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="div.sidebar.additional" remove="true"/>
+
+        <referenceContainer name="page.bottom.container">
+             <container name="home-most-loved-categ" htmlTag="div" htmlClass="row home-most-loved-categ dd-tab-desk">
+                <block class="Magento\Cms\Block\Block" name="lovedcategories">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">CM Home - Our Most Loved Categories</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="category.image" remove="true" /> 
+    </body>
+</page>

@@ -1,0 +1,589 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB); 
+?>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/bootstrap.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/font-awesome.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/jquery.mCustomScrollbar.min.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/stylefile.css"/>
+<link  rel="stylesheet" type="text/css"  media="all" href="<?php echo $baseurl; ?>pub/media/css/responsive.css"/>
+
+<div class="wrap">
+    <div class="navnemu">
+        <div class="container">
+            <div class="row">
+                <div class="offset-2 col-8 text-center">
+                    <ul class="nav">
+                        <li><a href="<?php echo $block->getUrl('supporttheartisan'); ?>">HOME</a></li>
+                        <!-- <li><a href="artisans.html">ARTISANS</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-banner">
+        <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/DSCF-1.png'); ?>" alt="">
+        <div class="overlay-banner">
+            <div class="container">
+                <div class="offset-sm-2 col-sm-8">
+                    <div class="banner-text-inner">
+                        <h5>Meet our</h5>
+                        <h1>Maestros</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">                
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/1.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru Award,</i></small><br>
+                            <small><i>Meenakari</i></small>
+                            <p> Our maestro is the living example of the Guru Shiksha tradition, inheriting the craft from his Padma Shri father. A pioneering artisan of the ancient craft of Meenakari, he breathes a new life into traditionally popular designs with the medium of his skilled hands. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/2.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Paper Mache</i></small>
+                            <p> Honing his paper-mache skills since the age of fifteen, our master artisan's work is rare for its deftness, detail, and vibrancy. No one brings the beauty of the valley to life like our maestro who depicts this stunning beauty with a unique elegance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/3.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Brass Engraving</i></small>
+                            <p> A National Award winner, our maestro is the epitome of talent and hard work rolled into one. With his dexterity and devotion to the craft, he has managed to carve a niche for himself in this industry like no other craftsman.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/4.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Thewa</i></small>
+                            <p> At the age of just fourteen years, our maestro found his calling when he carved a piece in a competition that the judges could not believe was made by a fourteen-year-old! Pursuing this calling from a young age, he continues to inspire many others with his devotion and dexterity.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/5.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Paper Mache</i></small>
+                            <p> Driven by the desire to create pieces that transcend geography and culture, our maestro's art has a quality that makes them instantly lovable - much like their creator. Hailing from Kashmir, the ethereal beauty of his land and people finds its way into each piece crafted by him.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/6.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru Award,</i></small><br>
+                            <small><i>Blue Pottery</i></small>
+                            <p> A National and Shilp Guru Award winner, our maestro's designs span across geography and time. Having inspired many others to follow his suit, he continues to craft his magic in the by-lanes of Jaipur.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/7.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Block Printing</i></small>
+                            <p> A two-time National Award winner, our maestro is not only a talented artist but also an inspiring teacher. To revitalize and revive the dying art of Block Printing, he began an organization to bring traditional patterns of Indian heritage to the forefront of contemporary fashion.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/8.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Sant Kabir,</i></small><br>
+                            <small><i>Tapestry</i></small>
+                            <p> With nearly 50 years of experience in weaving, our maestro imparts his skill and knowledge to weavers from across the country, teaching them the niche weaving techniques he has mastered. His goal is to ensure the survival of this meticulous art-form.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/9.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru Award,</i></small><br>
+                            <small><i>Hand-woven rugs</i></small>
+                            <p> The craft of hand-weaving rugs demands patience and persistence of the highest order, both of which our maestro is a master. A pioneering artisan and an inspiring teacher, he provides training to young artisans to ensure the survival of this dexterous craft. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/10.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Block Printing</i></small>
+                            <p> For our master artisan, the craft of block printing is not his profession, it is his religion. Each piece crafted with his hands is an expression of his love and devotion for the craft which has been passed down to him from previous generations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/11.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Padma Shri,</i></small><br>
+                            <small><i>Block Printing</i></small>
+                            <p> A Padma Shri and National Award winner, our maestro believes his work is an endless journey with no beginning or end. Born into the fifth generation of block printers, he has a legacy of 400 years attached to his name.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/12.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru Award,</i></small><br>
+                            <small><i>Bone Inlay on Wood</i></small>
+                            <p> Graced with the National and the Shilp Guru Award, our maestro holds over 60 years of experience to his name. A retrophile at heart, he recycles waste wood to salvage its rich hues and antique designs. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/13.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Kinnauri Shawl</i></small>
+                            <p> A National Award winner, our maestro espouses to the notion of maintaining a unique quality and design in each piece that comes from his hands. Having travelled the world, he is still deeply rooted in his local traditions which shine through in each piece of his. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/15.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru Award,</i></small><br>
+                            <small><i>Metal Engraving</i></small>
+                            <p> While our maestro's eyes may have weakened with age, his vision remains strong. With an experience of over 55 years to his name, he believes he honours God through his art. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/14.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Relief Work</i></small>
+                            <p> Out of her sheer devotion to the craft of relief work, our maestro pursued a career in relief work despite her family's disapproval. A two-time recipient of the National Award, her paintings are known for their offbeat subjects and have often been featured in the National Geographic.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/16.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Tarakashi</i></small>
+                            <p> It is rare to come across someone so adept at their craft that they can transform the physical properties of the materials they use for their work. Recognized with National Award in 2014, our maestro's work harkens back to the Mughal era.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/17.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Padma Shri,</i></small><br>
+                            <small><i>Miniature Painting</i></small>
+                            <p> In an age of conformity, our maestro refuses to mould his designs based on the market trends of tourist requirements. His originality renders his masterpieces as hidden gems in a sea of mass-produced replicas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/18.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Wood Carving</i></small>
+                            <p> Our maestro has taken the craft of wood carving to new heights with his extremely intricate signature jali work. Unrivalled in his craft and designs, he is a firm believer in passing his skill down to the coming generations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/19.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Gemstone Carving</i></small>
+                            <p> The first-ever recipient of a National Award in the category of gemstone carving, he possesses 25 years of experience in the field and dreams of creating a global following for this art-form.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/20.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Sandalwood Carving</i></small>
+                            <p>  As our maestro's fingers meander their way through a block of sandalwood, fragrant with tradition and culture, they leave behind a vibrant narrative, immortalizing history, a task as great as stitching the fabric of time itself. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/21.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Sant Kabir,</i></small><br>
+                            <small><i>Dhabla</i></small>
+                            <p> Between the fingers of our maestro breathes a family tradition that has survived for over 6 generations now. Hand-woven between soft threads is a legacy of 300 years, passed down from one generation to another.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/22.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Khurja Pottery</i></small>
+                            <p> Our maestro's life bears testimony to the fact that talent makes its presence felt from an early age. A National Award recipient only at the age of thirty-two, he diligently ensures that he passes this craft down to the next generation to ensure its survival.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/23.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru,</i></small><br>
+                            <small><i>Kantha</i></small>
+                            <p> Our maestro's craft was passed down to her in the form of family heirlooms by her grandmothers. Her fingers began the dance of Kantha embroidery at an early age of ten and have passed it down to 5,000 girls ever since.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/24.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru,</i></small><br>
+                            <small><i>Walnut Wood Carving</i></small>
+                            <p> In the form of our maestro lives the preserver of a craft that is salient to Kashmir. A Shilp Guru and a National Award recipient for his excellence in walnut wood carving, he also holds mastery in Kashmiri shawls.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/25.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Pashmina Shawl</i></small>
+                            <p> Our maestro's connection with the craft began when he was handed the delicate needle by his father for merely five minutes. The finesse of the pashmina shawls fascinated him so much that the needle has not left his hand ever since. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/26.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Gemstone Carving</i></small>
+                            <p> A firm believer in garnering knowledge from the viewpoints of those around him, our maestro labours to hold a mirror to the society with his craft. He finds inspiration in the mundanest of things in life, attempting to make the mundane look extraordinary with his craft.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/27.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Meenakari</i></small>
+                            <p> When asked for his name, our maestro proudly refers to himself as 'Meenakaar,' his stage-name as he likes to call it. Inspired by the rich Indian heritage, his craft, meenakari (enamel painting on silver) is his way of painting the world with his colours.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/28.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Padma Shri,</i></small><br>
+                            <small><i>Tribal Dupatta</i></small>
+                            <p> Woven between the threads of soft threads of Odissi dupattas is the bond shared between our maestro and his wife. A Padma Shri awardee, he likes to attribute an equal share of his success to his wife, a National Awardee herself in the craft of tribal weaving.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/29.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Pashmina Shawl</i></small>
+                            <p> While hand-weaving threads together, our maestro doesn't just weave a pashmina shawl, he weaves a piece of art. A National Award recipient, he holds pride in the fact that his craft is a centuries-old and a stunning emblem of Kashmiri culture. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/30.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Glass Work</i></small>
+                            <p> Graced with the National Award in 2005 by Smt. Pratibha Patil, our maestro espouses the belief that each piece of his is an insignia of the Indian culture. For him, his work resounds the spirit of Indian heritage.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/31.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Bamboo & Cane</i></small>
+                            <p> Drawing inspiration from the low hills and the undulating waterfalls of the Northeast, our maestro started walking the path of depicting this beauty in his work. His tireless devotion to the craft of cane and bamboo work earned him the title of National Awardee in 2010.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/32.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Gulabi Meenakari</i></small>
+                            <p> A National Award winner, our maestro was drawn towards the historic craft of gulaabi meenakari because of the allure of the stunning colours. Each stroke of brush in his work tells the story his devotion and his skill to his craft.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/33.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Brassware</i></small>
+                            <p> Somewhere in his journey of hand-engraving history on brass, our maestro's work became his life's purpose. Holding the glistening metal in his hands, he hopes that his ancient craft continues to reach people in the form of his beautiful pieces.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/34.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru,</i></small><br>
+                            <small><i>Brass Engraving</i></small>
+                            <p> Our maestro's National Award is his tribute to his father, and his craft is a gift borne out of the love shared between him and his father. His deft skill and commitment to his work is his way of eulogizing the ancient craft of brass engraving.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/35.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Chikan Work</i></small>
+                            <p> Our maestro's bond with the craft of chikankari was established the moment her small hands felt an embroidered piece of cloth in her father's workshop. Since then, hers has been a journey towards mastering a craft that was handed to her as an heirloom. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/36.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Bone Carving</i></small>
+                            <p> Growing up in the hustle-bustle of the lanes of Lucknow, our maestro's eyes never failed to notice the myriad crafts residing in the heart of the city. The Awadhi style technique of bone carving took him by storm and birthed the exceptional artisan that he is today. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/37.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>Shilp Guru Award,</i></small><br>
+                            <small><i>Artistic Shawls</i></small>
+                            <p> A meticulous weaver, our maestro is proud to have received the title of Shilp Guru for a craft that has survived in the valleys of Kullu for hundreds of years. A preserver of his craft, he has imparted his 18 years of experience to more than 600 students to date.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/38.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Tribal Weaving</i></small>
+                            <p> Marriage means partnership. The life of our maestro stands as a living example of this statement. Married to Padma Shree artisan at a young age, she rose above odds and earned herself a National Award. She continues to make a spectacular display of her skill around the world</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/39.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Blue Pottery</i></small>
+                            <p> Drawn to the striking shade of blue associated with the craft of Blue Pottery, our maestro's decision to pursue the craft as a career was an easy one. The artist within her found a life amidst the striking colours and designs seen in the craft. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="arttisans-card row">
+                        <div class="card-head col-xl-6">
+                            <img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/artisan/40.jpg'); ?>" alt="">
+                        </div>
+                        <div class="a-card-body col-xl-6">
+                            <!-- <h4>Lorem ipsum, dolor</h4> -->
+                            <small><i>National Award,</i></small><br>
+                            <small><i>Paper Mache</i></small>
+                            <p> Our maestro's childhood was different than most childhoods. While most kids grow up surrounded by toys, he grew up in a household where the boundaries of home and workshop were merged. At an early age, it was clear to him as he watched his father craft exquisite paper mache pieces, that this craft is his home.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div class="logo"><img src="<?php echo $this->getViewFileUrl('Kellton_SupportTheArtisan::images/logo for booth-1.png'); ?>" alt=""></div>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <p>An initiative by Craft Maestros</p>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <p> &copy Craft Maestros 2020</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<div id="stop" class="scrollTop scroll2">
+    <a href="javascript:void(0)">
+    <span><i class="fa fa-angle-up" aria-hidden="true"></i></span>
+    </a>
+</div>
+ <script type="text/javascript" src="<?php echo $baseurl; ?>pub/media/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="<?php echo $baseurl; ?>pub/media/js/bootstrap.min.js"></script>
+<script src="<?php echo $baseurl; ?>pub/media/js/owl.carousel.min.js"></script>
+<script src="<?php echo $baseurl; ?>pub/media/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="<?php echo $baseurl; ?>pub/media/js/custom.js?v=1"></script>

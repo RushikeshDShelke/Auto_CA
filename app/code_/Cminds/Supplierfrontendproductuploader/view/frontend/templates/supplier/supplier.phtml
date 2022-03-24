@@ -1,0 +1,76 @@
+<?php $customer = $block->getCustomer(); ?>
+<?php $customFields = $block->getCustomFieldsValues(true); ?>
+<?php $productCollection = $block->getSupplierHelper()->getSupplierProducts($block->getParam('id')); ?>
+<div class="manufacturer-page">
+    <div class="col-main">
+        <div class="page-title category-title">
+            <h1><?php echo $block->escapeHtml($customer->getSupplierName()); ?></h1>
+        </div>
+        <?php if($block->getSupplierHelper()->getSupplierLogo($customer->getId())): ?>
+            <div class="col-left col-left-first">
+                <div class="main">
+                    <div class="block block-account">
+                        <img src="<?php echo $block->getSupplierHelper()->getSupplierLogo($customer->getId()); ?>" alt="<?php echo $block->escapeHtml($customer->getSupplierName()); ?>"/>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="col-main">
+            <div id="map-popup" class="map-popup" style="display:none;">
+                <a href="#" class="map-popup-close" id="map-popup-close">×</a>
+                <div class="map-popup-heading"><h3 id="map-popup-heading"></h3></div>
+                <div class="map-popup-content" id="map-popup-content">
+                    <div class="map-popup-msrp" id="map-popup-msrp-box">
+                        <span class="label">Price:</span>
+                        <span style="text-decoration:line-through;" id="map-popup-msrp"></span>
+                    </div>
+                    <div class="map-popup-price" id="map-popup-price-box">
+                        <span class="label">Actual Price:</span>
+                        <span id="map-popup-price"></span>
+                    </div>
+                    <div class="map-popup-checkout">
+                        <form action="" method="POST" id="product_addtocart_form_from_popup">
+                            <input type="hidden" name="product" class="product_id" value="" id="map-popup-product-id">
+                            <div class="additional-addtocart-box">
+                            </div>
+                            <button type="button" title="Add to Cart" class="button btn-cart" id="map-popup-button"><span><span>Add to Cart</span></span></button>
+                        </form>
+                    </div>
+                    <script type="text/javascript" data-illuminations="true">
+                        //<![CDATA[
+                        document.observe("dom:loaded", Catalog.Map.bindProductForm);
+                        //]]>
+                    </script>
+                </div>
+                <div class="map-popup-text" id="map-popup-text">Our price is lower than the manufacturer's "minimum advertised price."  As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.</div>
+                <div class="map-popup-text" id="map-popup-text-what-this">Our price is lower than the manufacturer's "minimum advertised price."  As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.</div>
+            </div>
+            <div class="my-account">
+                <div class="dashboard">
+                    <p><?php echo strip_tags($customer->getSupplierDescription(), '<ol><li><b><span><a><i><u><p><br><h1><h2><h3><h4><h5><div>'); ?></p>
+                </div>
+                    <?php if($customFields) {
+                        foreach ($customFields as $customField) {
+                            echo '<br>';
+                            echo '<div><strong>' . $block->getFieldLabel($customField['name']) . '</strong></div>';
+                            echo '<div>' . $customField['value'] . '</div>';
+                        }
+                    }
+                    ;?>
+            </div>
+        </div>
+    </div>
+
+    <div style="clear:both;"></div>
+    <?php echo $block->getChildBlock('product_list')
+        ->setCollection($productCollection)
+        ->setGridIndex(3)
+        ->setHideDescArrows(true)
+        ->setHideItemsLabel(true)
+        ->setShowItemsCount(true)
+        ->setShowSinglePage(true)
+        ->setImageWidth(263)
+        ->toHtml(); ?>
+
+</div>

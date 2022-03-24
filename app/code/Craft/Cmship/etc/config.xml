@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+	<default>
+        <carriers>
+            <cmshipping>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+				<model>Craft\Cmship\Model\Carrier\Cmshipping</model>
+                <name>Craft Cmship Shipping</name>
+                <price>0.00</price>
+                <title>Craft Cmship Shipping</title>
+               <specificerrmsg>Craft Cmship Shipping is not available for your area. Please contact us.</specificerrmsg>
+            </cmshipping>
+            <!-- carrier-config -->
+        </carriers>
+    </default>
+</config>

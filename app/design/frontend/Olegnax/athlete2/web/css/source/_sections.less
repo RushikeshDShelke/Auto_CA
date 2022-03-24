@@ -1,0 +1,335 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+.ba-block(){
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.accordion-minimal(){
+    .tabs-style--minimal &{
+        .additional-attributes th{
+            padding-left:0;
+        }
+        > .item{
+            &.content{
+                padding: 6px 2px 30px 2px;
+                background:none;
+                margin:0;
+                &:before{
+                    content:none;
+                }
+            }
+            &.title{
+                border-top: 1px solid rgba(0,0,0,.08);
+                margin:0;
+                > .switch{
+                    color:#000;
+                    height: auto;
+                    background:none!important;
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    padding-left: 30px;                                
+                    &:focus,
+                    &:hover {
+                        background:none;
+                        &:after,
+                        &:before{
+                            background:#000;
+                        }
+                    }
+                    &:after,
+                    &:before{
+                        background:#000;
+                    }
+                    &:before{                
+                        left: 2px;
+                        top: 50%;
+                        width: 12px;
+                        height: 2px;
+                        margin-top: -1px;
+                    }
+                    &:after{
+                        left: 7px;
+                        top: 50%;
+                        width: 2px;
+                        height: 12px;
+                        margin-top: -6px;
+
+                    }
+                }
+                &:not(.disabled) > .switch:active,
+                &.active > .switch,
+                &.active > .switch:focus,
+                &.active > .switch:hover {
+                    color:#000;
+                    padding-bottom: 12px;
+                }
+            }
+        }
+    }
+}
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .product.data.items {
+        .lib-data-accordion();
+        margin-bottom: @indent__base;
+        .additional-attributes-wrapper{
+                margin-bottom: 0;
+        }
+        > .item.content{
+            display: none;
+        }
+        > .item.title.active + .item.content{
+            display: block;
+        }
+        table {
+            > caption{
+                .lib-visibility-hidden();
+            }
+        }
+    }
+    .product.data.items > .item.title > .switch:hover:before,
+    .product.data.items > .item.title.active > .switch:before {
+        transform: translateY(0);
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .product.data.items {
+        .lib-data-tabs(
+            @_tab-content-border-top-status: false
+        );
+        &.accordion{
+            .accordion-minimal();
+        }
+    }
+    .product.data.items {
+        > .item {
+            &.title {
+                box-sizing: initial;
+                > .switch{
+                     letter-spacing: -0.03em;
+                      overflow: hidden;
+                      text-transform: uppercase;
+                      box-sizing: content-box;
+                    &:before {
+                        .ba-block();
+                        transform: translateY(39px);
+                        transition: all 0.25s ease;
+                        background: #000000;
+                        will-change:transform;
+                    }
+                    &:after {
+                        .ba-block();
+                        transform: translateY(100%);
+                        transition: all 0.4s ease;
+                        background: @main-color;
+                        will-change:transform;
+                    }
+                    &:visited {
+                        color: #000;
+                        text-decoration: none;
+                    }
+                    &:focus,
+                    &:hover {
+                        color: #fff;
+                        text-decoration: none;
+                        background: none;
+                    }
+                }
+                &.active {
+                    > .switch {
+                        transition: all 0.25s ease;
+                        &:after {
+                            transform: translateY(0);
+                            transition: transform 0.3s ease;
+                        }
+                    }
+                }
+            }
+        }
+        .tabs-style--minimal &{
+            > .item {
+                &.title {
+                    > .switch{
+                       &:visited,
+                       &:focus,
+                       &:hover {
+                           color:#000;
+                       }
+                        &:before {
+                            height:3px;
+                            transform: translateY(3px);
+                            transition: all 0.25s ease;
+                            background:#000;
+                            will-change:transform;
+                        }
+                        &:after {
+                            content:none;
+                        }
+                    }
+                    &.active {
+                        > .switch {
+
+                            &:before {
+                                transform: translateY(0);
+                                transition: transform 0.3s ease;
+                            }
+                        }
+                    }
+                    &:not(.disabled) > .switch:active,
+                    &.active > .switch,
+                    &.active > .switch:focus,
+                    &.active > .switch:hover {
+                        color:#000;
+                    }
+                }
+                &.content{
+                    padding: 40px 0;
+                    background:none;
+                    position:relative;
+                    &:before{
+                        height: 1px;
+                        width: 100%;
+                        background: rgba(0,0,0,.08);
+                        position: absolute;
+                        top: -1px;
+                    }
+                }
+            }
+        }
+    }
+        .product.data.items.accordion {
+            .lib-data-accordion();
+            .data.item {
+                display: block;
+                &.content{
+                    display: none;
+                }
+            }
+            .item.title {
+                &.active{
+                    margin-bottom:0;
+                    > .switch{
+                        color:@accordion-control__active__color;
+                        &:visited{
+                            color:@accordion-control__active__color;
+                        }
+                        &:after,
+                        &:before{
+                             background: @accordion-control__active__color;
+                        }
+                        &:after{
+                            content:none;
+                        }
+                    }
+                }
+                > .switch{
+                    position:relative;
+                    box-sizing: border-box;
+                    &:after,
+                    &:before{
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        background: @accordion-control__color;
+                        transition: all 0.6s ease;
+                        transform:none;
+                        z-index: unset;
+                    }
+                    &:before{                
+                        left: 17px;
+                        top: 23px;
+                        width: 15px;
+                        height: 3px;
+                    }
+                    &:after{
+                        left: 23px;
+                        top: 17px;
+                        width: 3px;
+                        height: 15px;
+                    }
+                    &:focus,
+                    &:hover {
+                        &:after,
+                        &:before{
+                            transition: all 10ms ease;
+                             background: @accordion-control__active__color;
+                        }
+                    }
+                }
+            }
+        }
+}
+
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .product.data.items {
+        .lib-data-accordion();
+        .data.item {
+            display: block;
+        }
+        .item.title {
+            &.active{
+                margin-bottom:0;
+                > .switch{
+                    color:@accordion-control__active__color;
+                    &:visited{
+                        color:@accordion-control__active__color;
+                    }
+                    &:after,
+                    &:before{
+                         background: @accordion-control__active__color;
+                    }
+                    &:after{
+                        content:none;
+                    }
+                }
+            }
+            > .switch{
+                text-transform: uppercase;
+                letter-spacing: -0.03em;
+                position:relative;
+                &:after,
+                &:before{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    background: @accordion-control__color;
+                }
+                &:before{                
+                    left: 17px;
+                    top: 23px;
+                    width: 15px;
+                    height: 3px;
+                }
+                &:after{
+                    left: 23px;
+                    top: 17px;
+                    width: 3px;
+                    height: 15px;
+                }
+            }
+        }
+        .accordion-minimal();
+    }
+}

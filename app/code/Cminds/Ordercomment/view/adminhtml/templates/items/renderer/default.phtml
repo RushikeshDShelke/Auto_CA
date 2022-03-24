@@ -1,0 +1,78 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); ?>
+<?php $_item = $block->getItem();?>
+<?php $block->setPriceDataObject($_item) ?>
+<table width="435">
+<tr<?php if (!$block->canDisplayGiftmessage()): ?> class="border"<?php endif; ?>>
+    <td custom="Ordercomment">
+        <?php if ($block->canDisplayContainer()): ?>
+        <div id="<?php echo $block->getHtmlId() ?>" class="item-container">
+        <?php endif; ?>
+        <div class="item-text">
+            <?php //echo $block->getColumnHtml($_item, 'name') ?>
+        </div>
+        <?php if ($block->canDisplayContainer()): ?>
+        </div>
+        <?php endif ?>
+        Readiness Date: <?php echo $_item->getItemreadinessdate(); ?><br> 
+        Pickup Date: <?php echo $_item->getItempickupdate(); ?><br> 
+        Delivery Date: <?php echo $_item->getItemdeliverydate(); ?><br>
+    </td>
+    <td class="a-center">
+        <?php $helper = $this->helper('Cminds\Ordercomment\Helper\Data'); ?>
+        <?php $supplierID = $helper->getProductSupplierId($_item->getData());
+                if($supplierID) {
+                   echo $helper->getSupplierName($supplierID);
+                }
+    ?>
+    <form action="<?php echo $this->getUrl('ordercomment/index/savedates',array( 'id' => $_item->getId() )); ?>" method="post">
+        <input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+    <table>
+    <tr><td>Item Status<br>
+    <?php $orderItem = $objectManager->get('Magento\Sales\Model\Order\Item')->load($_item->getId());
+          $orderid=$orderItem->getOrderId();
+          $orderitemstatus=$_item->getOrderitemstatus();
+          $itemstatuscoll=array(0=>'Not Ready',1=>'Ready');
+          echo '<select name="orderitemstatus" id="orderitemstatus">';
+          foreach($itemstatuscoll as $itemkey=>$itemval){
+              $sel='';
+              if($orderitemstatus==$itemkey){
+                 $sel='selected'; 
+              }
+              echo '<option '.$sel.' value="'.$itemkey.'">'.$itemval.'</option>';
+          }
+          echo '</select>';
+    ?>
+    </td></tr>
+    <tr><td>Update Readiness date<br>
+    <input type="date" name="updatereadiness" value="<?php echo $_item->getItemreadinessdate(); ?>" />
+    </td></tr>
+    <tr><td><input type="hidden" name="orderid" value="<?php echo $orderid; ?>" /><input type="hidden" name="itemid" value="<?php echo $_item->getId(); ?>" /><input type="submit" name="submit" value="Save" /></td></tr>
+    </table>
+    </form>
+</tr></table>

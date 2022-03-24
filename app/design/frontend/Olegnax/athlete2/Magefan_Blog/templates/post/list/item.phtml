@@ -1,0 +1,169 @@
+<?php
+/**
+ * Blog post list item template
+ *
+ * @var $block \Magefan\Blog\Block\Post\AbstractPost
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+
+	$at_settings = $this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/blog');
+    $_post = $this->getPost();
+	$_postClasses = [];
+	$_postClassesOutput ='';
+	$_postClasses[] = 'post-holder';
+	$_postClasses[] = 'post-holder-' . $_post->getId();
+	if($_post->getData('ox_post_list_style')){
+		$_postClasses[] = 'post-style--' . $_post->getData('ox_post_list_style');
+	}
+    $_postUrl = $_post->getPostUrl();
+    $_postName = $block->escapeHtml($_post->getTitle(), null, true);	
+	$_styleClassic = $at_settings['blog_style_classic'];
+	$_hideReadMore = $at_settings['blog_list_read_more'];
+	$_hideCommentsLink = $at_settings['blog_list_comments_link'];
+	$_hideAuthor = $at_settings['blog_list_author'];
+	$_hideDate = $at_settings['blog_list_date'];
+	$_hideCategories = $at_settings['blog_list_categories'];
+	$iBigWidth = $at_settings['blog_list_big_image_width'];
+	$iBigHeight = $at_settings['blog_list_big_image_height'];
+	$iWidth = $at_settings['blog_list_image_width'];
+	$iHeight = $at_settings['blog_list_image_height'];
+	$hide_desc = $at_settings['description'];
+	$expand = $at_settings['description_expand'];
+	$maxheight = $at_settings['description_expand_height'];
+	$metaContent = '';
+	$metaContentModern = '';
+	if($iWidth && $iHeight) {
+		$featuredImage = $_post->getFeaturedImage([$iWidth, $iHeight]);
+	} else {
+		$featuredImage = $_post->getFeaturedImage();
+	}
+	if($iBigWidth && $iBigHeight) {
+		$bigFeaturedImage = $_post->getFeaturedImage([$iBigWidth, $iBigHeight]);
+	} else {
+		$bigFeaturedImage = $_post->getFeaturedImage();
+	}
+	$_dateOnImage = $at_settings['blog_list_date_image'];
+	$_listStyle = $at_settings['blog_list_style'];
+	$dateMonth = $_post->getPublishDate('F');
+	if(strlen($dateMonth) > 4){
+		$dateMonth = substr($dateMonth, 0, 3);
+	}
+	if($_dateOnImage){
+		$_postClasses[] = 'date-above-image';
+	}
+	if(!empty($_postClasses)){
+		$_postClassesOutput = 'class="' . implode(' ',	$_postClasses) . '"';
+	}
+	
+	if ( !$_hideCommentsLink ) { 
+		$metaContent .= $this->getChildBlock( "blog.post.ox_comments_link" )->setData('post', $_post )->toHtml(); 		
+	} 
+	if ( !$_hideCategories ) { 
+		$metaContent .= $this->getChildBlock( "blog.post.ox_categories" )->setData('post', $_post )->toHtml(); 		
+	}
+	if ( !$_hideAuthor ) { 
+		$metaContent .= $this->getChildBlock( "blog.post.ox_author" )->setData('post', $_post )->toHtml(); 		
+	}
+	if(!$_hideDate && !($_listStyle === 'above-image' || $_post->getData('ox_post_list_style') === 'above-image' || $_listStyle === 'overlay' || $_post->getData('ox_post_list_style') === 'overlay') && !$_dateOnImage) { 
+		$metaContentModern .= '<span class="item post-posed-date">' . $_post->getPublishDate('F d, Y') . '</span>';
+	}
+	if ( !$_hideAuthor && !($_listStyle === 'above-image' || $_post->getData('ox_post_list_style') === 'above-image' || $_listStyle === 'overlay' || $_post->getData('ox_post_list_style') === 'overlay')) { 
+		$metaContentModern .= $this->getChildBlock( "blog.post.ox_author" )->setData('post', $_post )->toHtml(); 		
+	}	
+
+?>
+<article <?= $_postClassesOutput ?>>
+	<?php if ($featuredImage) { ?>
+	
+		<?php if (!$_styleClassic && ($_listStyle === 'above-image' || $_post->getData('ox_post_list_style') === 'above-image' || $_listStyle === 'overlay' || $_post->getData('ox_post_list_style') === 'overlay')) { ?>			
+			<div class="post-image-wrapper">
+				<div class="gradient-overlay"></div>
+				<?php if ($bigFeaturedImage) { ?>
+				<div class="bg-image-holder" style="background-image:url(<?php echo $bigFeaturedImage ?>);"></div>
+				<?php } ?>
+			</div>
+		<?php } else { ?>
+			<a class="post-image-wrapper" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+				<?php if(!$_hideDate && !$_styleClassic && $_dateOnImage) { ?>
+					<span class="item post-posed-date"><?php echo $_post->getPublishDate('F d, Y') ?></span>
+				<?php } ?>
+					<?php if($_styleClassic) { ?>
+						<div class="post-date">
+							<div class="inner"><span class="day"><?php echo $_post->getPublishDate('d' )?></span><?php echo $dateMonth ?></div>
+							<div class="hover"><span class="day"><?php echo $_post->getPublishDate('d') ?></span><?php echo $dateMonth ?></div>		
+						</div>	
+					<?php } ?>
+				<img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
+			</a>
+		<?php } ?>
+	<?php } ?>
+	<?php if ($_styleClassic) { ?>
+		<div class="post-date">
+			<div class="inner"><span class="day"><?php echo $_post->getPublishDate('d' )?></span><?php echo $dateMonth ?></div>
+			<div class="hover"><span class="day"><?php echo $_post->getPublishDate('d') ?></span><?php echo $dateMonth ?></div>		
+		</div>	
+		<div class="post-content">
+			<?php echo $this->getChildBlock( "blog.post.ox_title_link" )->setData('post', $_post )->toHtml(); ?>
+			<?php if($metaContent){ ?>
+				<div class="post-meta links-bg-hover">
+					<?php echo $metaContent ?>
+				</div>
+			<?php } ?>
+			<div class="post-description clearfix">            
+				<?php echo $block->getShorContent() ?>  
+			</div>
+			<div class="post-links">
+				<?php if (!$_hideReadMore) { ?>		
+					<a class="item button post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+						<span><?php echo __('Read more') ?></span>
+					</a>
+				<?php } ?>
+				<?php echo $this->getChildBlock( "blog.post.ox_share" )->setData('post', $_post )->toHtml(); ?>
+			</div>
+		</div>
+	<?php } else { ?>
+		<div class="post-content">
+			<?php if(!$_hideCategories) { echo $this->getChildBlock( "blog.post.ox_categories" )->setData('post', $_post )->toHtml(); } ?>
+			<?php echo $this->getChildBlock( "blog.post.ox_title_link" )->setData('post', $_post )->toHtml(); ?>
+			<?php if($metaContentModern) { ?>
+				<div class="post-meta">
+					<?php echo $metaContentModern ?>
+				</div>
+			<?php } ?>
+			<?php if(!$hide_desc) { ?>
+				<?php if($expand) { ?>
+					<div class="post-description ox-expand minimized clearfix" data-max-height="<?= $block->escapeHtmlAttr($maxheight) ?: '90' ?>">
+						<div class="ox-expand__inner" aria-expanded="false" style="max-height: <?= $block->escapeHtmlAttr($maxheight) ?: '90' ?>px;">
+							<?php echo $block->getShorContent() ?>  
+						</div>
+						<div class="ox-expand__link">
+							<span class="more"><?= __('Show more') ?></span>
+							<span class="less"><?= __('Show less') ?></span>
+						</div>					
+					</div>
+				<?php } else { ?>
+					<div class="post-description clearfix">            
+						<?php echo $block->getShorContent() ?>  
+					</div>
+				<?php } ?>
+			<?php } ?>
+			<div class="post-links">
+				<?php if (!$_hideReadMore) { ?>		
+					<a class="item post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+					   <?php echo __('Read more') ?>
+					</a>
+				<?php } ?>
+				<?php 
+					if (!$_hideCommentsLink) {
+						echo $this->getChildBlock( "blog.post.ox_comments_link" )->setData('post', $_post )->toHtml();
+					}
+					echo $this->getChildBlock( "blog.post.ox_share" )->setData('post', $_post )->toHtml(); 
+				?>
+			</div>
+		</div>
+	<?php } ?>
+</article>

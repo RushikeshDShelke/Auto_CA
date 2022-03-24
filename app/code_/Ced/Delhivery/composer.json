@@ -1,0 +1,19 @@
+{
+    "name": "ced/module-delhivery",
+    "description": "Extension which will integrate Delhivery Shipping Method.",
+    "require": {
+        "php": ">=5.6"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "EULA"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Ced\\Delhivery\\": ""
+        }
+    }
+}
+

@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/**  @var $block \Magento\Checkout\Block\Cart */
+$counter = $this->helper('\Magento\Checkout\Helper\Cart');     
+$url  = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$login_url = $block->getUrl('customer/account/login', array('referer' => base64_encode($url)));
+?>
+
+<h1 class="page-title"><span><?= $block->escapeHtml(__('My Cart '))."(".$counter->getItemsCount().")"; ?></span></h1>
+
+<h2>Already have a account ? <a href="<?= $login_url; ?>">login</a> </h2>
+

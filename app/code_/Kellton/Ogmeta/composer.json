@@ -1,0 +1,26 @@
+{
+    "name": "kellton/module-ogmeta",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        },
+        {
+            "email": "avinash.rawat@kelltontech.com",
+            "name": "Avinash Rawat"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Kellton\\Ogmeta\\": ""
+        }
+    }
+}

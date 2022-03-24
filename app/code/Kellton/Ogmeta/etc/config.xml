@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<ogmeta>
+			<module>
+				<enable/>
+				<def_og_img/>
+				<def_og_desc/>
+				<def_og_fb_app_id/>
+				<use_og_meta_tag_for/>
+			</module>
+		</ogmeta>
+	</default>
+</config>

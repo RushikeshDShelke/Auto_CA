@@ -1,0 +1,217 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_HotSpotQuickview
+ * @copyright   Copyright (c) 2021 Olegnax (http://olegnax.com/). All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Olegnax\NewsletterPopupBasic\Model\Config\Source\ManyTimes;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+?>
+<!--suppress JSValidateTypes, JSPotentiallyInvalidUsageOfThis -->
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal',
+		'jquery/jquery.cookie'
+    ], function ($, modal) {
+        "use strict";
+
+        function OxNewsletterPopup(element, options) {
+            // Options
+            this.options = {
+                many_times: "once",
+                timeout: 1000,
+                timeoutDestroy: 50,
+                breakpoint: 1024,
+                showMobile: true,
+                vAlign: true,
+                hAlign: true,
+                enabled: true,
+				cookieExpire: 24,
+                cookieName: "ox_load_newsletter_activity",
+                cookieNameAlways: "ox_load_newsletter_activity_always",
+                disableSelector: ".ox-newsletter-disable__link",
+                dialogOptions: {
+                    type: 'popup',
+                    modalClass: 'ox-newsletter-modal',
+                    modalVisibleClass: '_show',
+                    responsive: false,
+                    responsiveClass: '',
+                    innerScroll: false,
+                    parentModalClass: '',
+                    overlayClass: 'ox-newsletter-modal__overlay',
+                    clickableOverlay: false,
+                    title: '',
+                    buttons: []
+                }
+            };
+            if (options.hasOwnProperty('dialogOptions')) {
+                options.dialogOptions = $.extend({}, this.options.dialogOptions, options.dialogOptions);
+            }
+            this.options = $.extend({}, this.options, options);
+            this.needReopen = false;
+            this.eventNamespace = '.OxNewsletterPopup';
+            this.popup = null;
+            this.timer = null;
+            this.cookieValue = "1";
+			this.cookieE = parseInt(this.options.cookieExpire);
+            this.element = element;
+            var eventResize = 'resize',
+                eventClick = 'click',
+                eventDisable = 'disableForever';
+
+            // Valid options
+            if (10 > this.options.timeout) {
+                this.options.timeout = 10;
+            }
+
+            // Methods
+            this._isEnabled = function () {
+                if (this.options.enabled) {
+                    switch (this.options.many_times) {
+                        case '<?=ManyTimes::ONCE ?>':
+                            this.options.enabled = this.cookieValue !== $.cookie(this.options.cookieName);
+                            break;
+                        case '<?=ManyTimes::RANDOM ?>':
+                            this.options.enabled = Math.round(Math.random() * 100) % 4 === 1;
+                            break;
+                        case '<?=ManyTimes::EVERYTIME ?>':
+                        default:
+                            this.options.enabled = true;
+                            break;
+                    }
+                    if (this.options.enabled) {
+                        this.options.enabled = this.cookieValue !== $.cookie(this.options.cookieNameAlways);
+                    }
+                }
+
+                return this.options.enabled;
+            };
+            this.show = function () {
+                var isOtherOpen = false;
+                $('.modals-wrapper aside[role="dialog"]').each(function(){
+                    let modal = $(this).find('[data-role="content"]').children().eq(0).data('mageModal');
+                    if (modal) {
+                        isOtherOpen = isOtherOpen || modal.options.isOpen;
+					}
+				});
+                if (isOtherOpen) {
+                    return;
+				}
+                var that = this,
+                    options = $.extend({}, this.options.dialogOptions, {
+                        autoOpen: false,
+                        modalCloseBtnHandler: function () {
+                            this.modal.one(this.options.transitionEvent, function () {
+                                that.destroy();
+                            });
+                            this.closeModal();
+                            if (!this.options.transitionEvent) {
+                                that.destroy();
+                            }
+
+                        }
+                    });
+
+                this.popup = modal(options, this.element);
+
+                this.popup.__proto__._getVisibleCount = function () {
+                    var modals = this.modalWrapper.find(this.options.modalBlock);
+                    return modals.filter('.' + this.options.modalVisibleClass+':not(.no-overlay)').length;
+                };
+                this.popup.openModal();
+                this._alignCenter();
+                $.cookie(this.options.cookieName, this.cookieValue, {expires: this.cookieE});
+            };
+            this._resize = function () {
+                this._alignCenter();
+                if (this.popup && !this.options.showMobile) {
+                    if (this.popup.options.isOpen && this.options.breakpoint >= window.innerWidth) {
+                        this.element.trigger('closeModal');
+                        this.needReopen = true;
+                    } else if (this.needReopen) {
+                        this.element.trigger('openModal');
+                        this.needReopen = false;
+                    }
+                }
+            };
+            this._alignCenter = function () {
+                if (!this.popup)
+                    return;
+                if (this.options.hAlign) {
+                    var modal_width = this.popup.modal.width();
+                    if (modal_width && modal_width < window.innerWidth) {
+                        this.popup.modal.css({
+                            left: 'calc( 50% - ' + modal_width / 2 + 'px)'
+                        });
+                    } else {
+                        this.popup.modal.css({
+                            left: ''
+                        });
+                    }
+                }
+                if (this.options.vAlign) {
+                    var modal_height = this.popup.modal.height();
+                    if (modal_height && modal_height < window.innerHeight) {
+                        this.popup.modal.css({
+                            top: 'calc( 50% - ' + modal_height / 2 + 'px)'
+                        });
+                    } else {
+                        this.popup.modal.css({
+                            top: ''
+                        });
+                    }
+                }
+            };
+            this.destroy = function () {
+                setTimeout($.proxy(function () {
+                    $(window).off(eventResize + this.eventNamespace);
+                    if (this.popup) {
+                        if (this.popup.options.isOpen) {
+                            this.popup._removeKeyListener();
+                            this.popup._close();
+                        }
+                        this.popup.destroy();
+                        this.popup.modal.remove();
+                    }
+                    if (this.element.length) {
+                        this.element.remove();
+                    }
+                }, this), this.options.timeoutDestroy);
+            };
+            // Run
+            if (!this._isEnabled()) {
+                return this.destroy();
+            }
+            if (this.options.showMobile || this.options.breakpoint < window.innerWidth) {
+                if (this.timer)
+                    clearTimeout(this.timer);
+                this.timer = setTimeout($.proxy(this.show, this), this.options.timeout);
+            }
+            $(window).off(eventResize + this.eventNamespace)
+            .on(eventResize + this.eventNamespace, $.proxy(this._resize, this));
+            $(this.element).off(eventDisable + this.eventNamespace)
+            .on(eventDisable + this.eventNamespace, $.proxy(function () {
+                $.cookie(this.options.cookieNameAlways, this.cookieValue, {expires: this.cookieE});
+                this.element.trigger('closeModal');
+            }, this));
+            $(this.element).off(eventClick + this.eventNamespace, this.options.disableSelector)
+            .on(eventClick + this.eventNamespace, this.options.disableSelector, $.proxy(function (event) {
+                event.preventDefault();
+                this.element.trigger(eventDisable + this.eventNamespace);
+            }, this));
+        }
+
+        $('body').on('mousemove.oxNewsletter touchstart.oxNewsletter', function (e) {
+            $('body').off('mousemove.oxNewsletter touchstart.oxNewsletter');
+            new OxNewsletterPopup($('<?= $block->getSelector(); ?>'), <?= $block->getConfig(); ?>);
+        });
+    });
+</script>

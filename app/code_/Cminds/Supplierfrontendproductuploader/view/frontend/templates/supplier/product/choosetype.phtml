@@ -1,0 +1,84 @@
+<?php $types = $block->getProductTypes(); ?>
+<div class="container-fluid main-container vendor-container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><?php /* @escapeNotVerified */ echo __('Create Product Settings'); ?></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form class="form-horizontal"
+                  id="choose_type_form"
+                  action=""
+                  method="POST">
+                <div class="control-group" style="text-align: left !important;">
+                    <label class="control-label"
+                           for="attribute_set_id"><?php /* @escapeNotVerified */ echo __('Attribute Set'); ?></label>
+                    <div class="controls">
+                        <select class="required-entry"
+                                name="attribute_set_id"
+                                id="attribute_set_id">
+                            <?php foreach ($block->getAvailableAttributeSets() as $set) : ?>
+                                <option value="<?php echo $set->getId(); ?>"><?php echo $set->getAttributeSetName(); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group"
+                     style="text-align: left !important; <?php echo (count($types) == 1) ? ' display:none; ' : '' ?>">
+                    <label class="control-label"
+                           for="type"><?php /* @escapeNotVerified */ echo __('Product Type'); ?></label>
+                    <div class="controls">
+                        <select class="" name="type" id="type">
+                            <?php foreach ($types as $type) : ?>
+                                <option value="<?php echo $type['value']; ?>"><?php echo __($type['label']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="autoclickthis">
+                            <?php /* @escapeNotVerified */ echo __('Continue'); ?>
+                        </button>
+                        <!--<button type="button" onclick="location.href = '/supplier/product/chooseexisting';" class="btn btn-warning btn-lg btn-block">
+                            <?php /* echo __('Choose existing product'); */?>
+                        </button>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="slideshow-container">
+    <div class="slideshow"></div>
+</div>
+
+<script type="text/javascript">
+//< ![CDATA[
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        $('#my-button-name').click(function() { // The button type should be "button" and not submit
+            if ($('#form-name').valid()) {
+              window.alert('Validation pass');
+              return false;
+            }
+        });
+    });
+});
+//]]>
+</script>
+<script type="text/javascript">
+//< ![CDATA[
+require(['jquery'], function($) {
+        // $('#choose_type_form').submit();
+        // $("#autoclickthis").trigger( "click" );
+        // document.getElementById("autoclickthis").click();
+    // function myFunction(){
+    //     console.log('i am clicked');//do something here
+    //     }
+
+});
+//]]>
+</script>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Mageside. All rights reserved.
+ * See MS-LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageside_subscribeatcheckout>
+            <general>
+                <enabled>1</enabled>
+                <checkout_subscribe>1</checkout_subscribe>
+                <send_request_email>0</send_request_email>
+                <send_success_email>0</send_success_email>
+                <checkout_label>Receive our Tutorials and Promotions newsletter</checkout_label>
+                <module_name>Subscribe At Checkout</module_name>
+                <module_page_link>https://mageside.com/subscribe-at-checkout-2.html</module_page_link>
+                <extensions_link>https://mageside.com</extensions_link>
+                <marketplace_link>https://marketplace.magento.com/mageside-module-subscribe-at-checkout.html</marketplace_link>
+                <marketplace_extensions_link>https://marketplace.magento.com/partner/Mageside</marketplace_extensions_link>
+                <!--Please, change it to 1 for the marketplace version-->
+                <is_marketplace>0</is_marketplace>
+            </general>
+        </mageside_subscribeatcheckout>
+    </default>
+</config>

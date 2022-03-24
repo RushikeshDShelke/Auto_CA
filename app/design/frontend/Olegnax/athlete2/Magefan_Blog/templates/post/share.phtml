@@ -1,0 +1,46 @@
+<?php
+/**
+ * Blog post share template
+ *
+ * @var $block \Magefan\Blog\Block\Post\Info
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+?>
+
+<?php
+$at_settings	 = $this->helper( 'Olegnax\Athlete2\Helper\Helper' )->getConfig( 'athlete2_settings/blog' );
+$_hideShare		 = $at_settings[ 'blog_list_social' ];
+$_shareTheme	 = $at_settings[ 'blog_list_social_theme' ];
+$_post			 = $block->getPost();
+$_postUrl		 = $_post->getPostUrl();
+$_postName		 = $block->escapeHtml( $_post->getTitle(), null, true );
+?>
+<?php if ( !$_hideShare ) { ?>		
+	<?php if ( $_shareTheme ) { ?>		
+		<div class="social-share__content">
+			<a target="_blank" class="ox-social-button" href="https://twitter.com/intent/tweet?<?=
+					http_build_query( array( // WPCS: xss ok.
+						'text'	 => $_postName,
+						'url'	 => $_postUrl,
+					) )
+			?>"><i class="athlete2-icon-twitter"></i><span><?= __('Twitter') ?></span></a>	
+			<a target="_blank" class="ox-social-button" href="https://www.facebook.com/sharer/sharer.php?<?= http_build_query( array( 'u' => $_postUrl ) ) ?>"><i class="athlete2-icon-facebook"></i><span><?= __('Facebook') ?></span></a>
+		</div>
+	<?php } else { ?>
+		<div class="addthis_toolbox addthis_default_style"
+			 addthis:url="<?php echo $_postUrl ?>"
+			 addthis:title="<?php echo $_postName; ?>"
+			 <?php if ( $firstImage = $_post->getFirstImage() ) { ?>
+				 addthis:media="<?php echo $firstImage ?>"
+			 <?php } ?>>
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_email"></a>
+			<a class="addthis_button_compact"></a>
+		</div>
+	<?php } ?>
+<?php } ?>

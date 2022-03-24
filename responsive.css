@@ -1,0 +1,449 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@media screen and (min-width: 1401px) {
+    .overlay-banner .container{
+        display: flex;
+    align-items: center;
+    height: 100vh;
+    }
+    .banner-text {
+        /* margin: 29% 0; */
+        padding-left: 15px;
+    }
+}
+
+@media screen and (min-width: 1201px)and (max-width: 1400px) {
+    .overlay-banner .container{
+        display: flex;
+    align-items: center;
+    height: 100vh;
+    }
+    .banner-text {
+        /* margin: 4% 0; */
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px)  {
+    .dk-col-1 {
+        margin: 20px;
+        width: calc(100% / 5 - 0px);
+    }
+    .left-img, .right-img {
+        width: 100%;
+        height: 460px;
+    }
+    .header-banner {
+        width: 100%;
+        height: 680px;
+    }
+    /*-------------artisans---------*/
+    .banner-text-inner {
+        margin: 217px 0;
+    }
+    .arttisans-card .card-head {
+        margin-bottom: 30px;
+        height: 260px;
+    } 
+    .a-card-body {
+        text-align: center;
+        height: 234px;
+    }
+    /*-------------contact------------*/
+    .contact-form {
+        padding: 40px 17% 40px 40px;
+    }
+    /*-end-------------*/
+    .right-text, .left-text ,.left-img, .right-img{
+        height:503px;
+    }  
+    .right-text .col-4, .left-text .col-4
+    {
+        padding: 0;
+    }
+    .arttisans-card {
+        display: block;
+        height: auto;
+    } 
+    .banner-text {
+        margin: 13% 0;
+    }
+} 
+@media screen and (min-width: 768px) and (max-width: 991px)  {
+    .dk-col-1 {
+        margin: 20px;
+        width: calc(100% / 4 - 0px);
+    }    
+    .banner-text h5,.banner-text h6 {
+        font-size: 35px;}
+    .banner-text h1 {
+        font-size: 67px;}
+    .banner-text p {
+        font-size: 15px;
+    }   
+    .btn{
+        font-size: 14px;
+    }
+    .left-img, .right-img {
+        width: 100%;
+        height: 572px;
+    }  
+    .footer-banner .banner-text h1 {
+        font-size: 40px;
+    }   
+    .footer-banner .banner-text h1 span {
+        font-size: 57px;
+    }   
+    .header-banner {
+        width: 100%;
+        height: 588px;
+    }
+    /*-------------artisans---------*/
+    .banner-text-inner {
+        margin: 217px 0;
+    }
+    .banner-text-inner h5 {
+        font-size: 55px;
+    }
+    .banner-text-inner h1 {
+        font-size: 77px;
+    } 
+    .arttisans-card {
+        display: block;
+        height: auto;
+    }  
+    .arttisans-card .card-head {
+        margin-bottom: 30px;
+        height: 260px;
+    } 
+    .a-card-body {
+        text-align: center;
+        height: 261px;
+    }
+    /*-------------contact------------*/
+    .contact-title {
+        text-align: center;
+    }    
+    .contact-form {
+        padding: 40px 17% 40px 40px;
+    }
+    .contact-form h4 {
+        font-size: 22px;
+    }
+    .chiller_cb label {
+        font-size: 12px;
+    }
+    /*-------thankyou--------------*/
+    .thanks-banner .banner-text-inner h5 {
+        font-size: 48px;
+    }
+    .top-sec p {
+        color: #fff;
+        font-size: 15px;
+    }
+    .bottom-sec p {
+        font-size: 13px;
+    }
+    .top-sec {
+        margin-bottom: 23vh;
+    }
+    /*-end-------------*/
+    .right-text, .left-text {
+        height:573px;
+    } 
+    .right-text .col-4, .left-text .col-4
+    {
+        padding: 0;
+    }     
+    .btn-darkline{
+        padding: 0px;
+    }
+    .banner-text {
+        margin: 10% 0;
+    }
+}
+@media only screen and (max-width : 576px) {
+    .dk-col-1 {
+        margin: 11px 12px;
+        width: calc(85% / 2 - 0px);
+    } 
+    .nav {
+        width: 100%;}
+    .nav li a {
+        font-size: 16px;}
+    .bg-white .nav li a {
+        font-size: 11px;}
+    .banner-text {
+        margin: 101px 0 0 0;
+        width: 100%;
+        height: auto;
+    }
+    .header-banner {
+        width: 100%;
+        height: 636px;}
+    .header-banner img {
+        object-position: 43% center;
+    }
+    .banner-text h5 {
+        font-size: 22px;
+        /* text-align: right;
+        margin-right: 34%;     */
+        text-align: center;
+        margin-right: 0; 
+    }
+    .banner-text h1 {
+        font-size: 36px;
+        margin-right: 6%;
+        text-align: right;
+    }
+    .banner-text h6{
+        font-size: 22px;
+        /* margin-right: 0%;
+        text-align: right; */
+        text-align: center;
+        margin-right: 0; 
+    }
+    .banner-text p {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 178px;
+        width: 100%;
+    }
+    .btn-light {
+        font-size: 15px;
+        width: 90%;
+        margin: auto;
+        display: block;
+        padding: 10px 0;
+    }
+    .section {
+        padding: 30px 0;
+    }
+    .sm-des p {
+        font-size: 11px;
+        padding: 0;
+    }
+    h5.title {
+        font-size: 22px;
+        margin-bottom: 17px;
+    }
+    .craft-card .card-img {
+        width: 100%;
+        height: 117px;
+    }
+    .craft-card .card-body h6 {
+        font-size: 12px;
+    }
+    .footer-banner .banner-text {
+        margin: 223px 0 0;
+        width: 100%;
+        height: 179px;
+    }
+    .footer-banner {
+        width: 100%;
+        height: 443px;
+        text-align: center;
+    }
+    .footer-banner .banner-text h1 {
+        font-size: 36px;
+        text-align: center
+    }
+    .footer-banner .banner-text h1 span {
+        font-size: 48px;
+    }
+    .footer-banner .banner-text .btn-light {
+        margin-top: 15px;
+    }   
+    .logo {
+        width: 222px;
+    } 
+    .left-img, .right-img {
+        width: 100%;
+        height: 388px;
+    }
+    .right-text, .left-text {
+        padding: 22px 29px;
+        text-align: center;
+        height: auto;
+    }  
+    .btn-darkline {
+        padding: 3px;
+        font-size: 12px;
+    }
+    .right-text h2, .left-text h2 {
+        font-size: 16px;
+        margin: 16px 0;
+    } 
+    .right-text p, .left-text p {
+        font-size: 14px;
+    }  
+    /*-----------artisans page----------*/
+    .d-mob{
+        display:block;
+    }
+    .d-desk{
+        display:none;
+    }  
+    .arttisans-card {
+        display: block;
+        width: 260px;
+        height: auto;
+        padding: 23px 6px;
+    }  
+    .banner-text-inner h5 {
+        font-size: 30px;
+    } 
+    .banner-text-inner h1 {
+        font-size: 54px;
+    }       
+    .arttisans-card .card-head {
+        margin-bottom: 22px;
+        height: 238px;
+    } 
+    .a-card-body {
+        text-align: center;
+    }
+    /*-------------contact------------*/
+    .contact-title {
+        text-align: left;
+    } 
+    .contact-title h4 {
+        font-size: 25px;
+    } 
+    .contact-title h1 {
+        font-size: 41px;
+    }  
+    .contact-title h5 {
+        font-size: 19px;
+    } 
+    .contact-form {
+        padding: 0;
+    }
+    .contact-form h4 {
+        font-size: 17px;
+    }
+    .contact-form form {
+        margin-top: 20px;
+    }    
+    .mt-10 {
+        margin-top: 40px;
+    }
+    .chiller_cb label {
+        font-size: 13px;
+    }
+    .chiller_cb span {
+        width: 1rem;
+        height: 1rem;
+    }
+    .chiller_cb input:checked ~ span:after {
+        width: 0.3rem;
+    }    
+    .chiller_cb input:checked ~ span:before {
+        width: 0.9rem;
+        height: 0.13rem;
+    }
+    .chiller_cb span:before {
+        top: 0.8rem;
+    }
+    .mt-5 {
+        margin-top: 2rem!important;
+    }
+    .btn-green {
+        font-size: 15px;
+        padding: 7px 24px;
+    }
+    .contact-content {
+        padding: 20px 0 0;
+    }
+    .contact-content p {
+        color: #000;
+        font-size: 10px;
+        line-height: 1.3;
+    }
+    /*-------thankyou--------------*/
+    .thanks-banner .banner-text-inner {
+        margin: 24vh 0 0;
+    }
+    .thanks-banner .banner-text-inner h5 {
+        font-size:38px;
+    }
+    .top-sec p {
+        font-size: 15px;
+        width: 100%;
+    }
+    .bottom-sec p {
+        font-size: 15px;
+        width: 100%;
+    }
+    .top-sec {
+        margin-bottom: 23vh;
+    }
+    .thanks-banner .btn-light {
+        padding: 6px 23px;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 175px;
+    }
+    .thanks-banner .logo {
+        width: 174px;
+    }
+    .floting-button {
+        top: 25px;
+        bottom: inherit;
+        margin: auto;
+        left: inherit;
+        right: 25px;
+    }
+    .craft-card {
+        width: 100%;
+        height: 208px;
+    }
+    /*-----end-------------*/
+    .mb-45 {
+        margin-bottom: 0;
+    }
+    .right-text .col-4, .left-text .col-4
+    {
+        padding: 0px;
+    } 
+    .right-text .row, .left-text .row {
+        margin-right: -7px;
+        margin-left: -7px;
+    }    
+    .btn-darkline{
+        padding: 0px;
+        height: 50px;
+        margin: 2px 0;
+    }
+    .banner-text-inner {
+        margin: 468px 0 0;
+    }
+    .arttisans-card .a-card-body p {
+        font-size: 15px;
+    }
+    .arttisans-card .a-card-body small {
+        font-size: 14px;
+    }
+    .contact-bx .col-sm-6:nth-child(1){
+        border-right:0px;
+    }
+    .header-banner .banner-text {margin-top: 35px;}
+    .banner-text h6 , .banner-text h5{margin-top: 25px;}
+    .banner-text h6{margin-top: 8px;}
+    .banner-text .banner-contri{font-size: 19px;padding-left:44%;}
+    .banner-text ul{font-size: 16px;padding-left: 50%;}
+    .header-banner .banner-text  .btn.btn-light{margin-top: 60px;} 
+    .craft-slider .item{height: auto !important;}
+    .left-img, .right-img{height: auto !important;}
+    .header-banner  .banner-text h5{margin-top: 12px;}
+    .header-banner .banner-text {
+        margin-top: 0;
+    }
+    .header-banner .banner-text .btn.btn-light {
+        margin-top: 30px;
+    }
+}
+
+
+
+

@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+
+// phpcs:disable Magento2.Security.IncludeFile.FoundIncludeFile
+// phpcs:disable PSR2.Methods.FunctionCallSignature.SpaceBeforeOpenBracket
+?>
+<?php if ($block->getCollection()->getSize()): ?>
+    <?php $widget = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonDecode($block->getWidgetOptionsJson());
+        $widgetOptions = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode($widget['productListToolbarForm']);
+    ?>
+    <div class="toolbar toolbar-products flex-row" data-mage-init='{"productListToolbarForm":<?= /* @noEscape */ $widgetOptions ?>}'>
+		<?php if ($block->isExpanded()): ?>
+		<div class="filters-action">
+			<div class="hamburger-menu-icon-small" aria-label="<?= $block->escapeHtml(__('Filter')) ?>"><span></span><span></span><span></span></div><span class="label"><?= $block->escapeHtml(__('Filter')) ?></span> <span class="filter-current-count"></span>
+		</div>
+        <div class="flex-left d-flex align-items-center">
+			<?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+			<?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+		</div>
+		<?php endif; ?>
+		<div class="flex-right d-flex align-items-center">
+			<?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
+			<?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
+		</div>
+		<?= $block->getPagerHtml() ?>
+    </div>
+	<?php if ($this->helper('Olegnax\Athlete2\Helper\Helper')->getConfig('athlete2_settings/products_listing/filters_counter')) : ?>
+		<script type="text/javascript">
+			require(['jquery'], function ($){
+				function updateCount(){
+					var count = $('.filter-current .item').length,
+						$counterSelector = $('.filter-current-count');
+					if($counterSelector.length){
+						$counterSelector.html(count ? count : "");
+					}
+				}
+				updateCount();
+				$('body').on('contentUpdated', function(){
+					updateCount();
+				});
+			});
+		</script>
+	<?php endif; ?>
+<?php endif ?>

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<fieldset name="ox-menu">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="label" xsi:type="string" translate="true">Ox Mega Menu</item>
+				<item name="collapsible" xsi:type="boolean">true</item>
+				<item name="sortOrder" xsi:type="number">1000</item>
+			</item>
+		</argument>
+		<field name="ox_title_bg_color" sortOrder="10" formElement="colorPicker">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Menu Item Background color</label>
+			</settings>
+		</field>
+		<field name="ox_title_text_color" sortOrder="12" formElement="colorPicker">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Menu Item Text Color</label>
+			</settings>
+		</field>
+		<field name="ox_nav_custom_class" sortOrder="20" formElement="input">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Custom Class</label>
+			</settings>
+		</field>
+		<field name="ox_nav_custom_link_content" sortOrder="22" formElement="input">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Custom Content near Link</label>
+			</settings>
+		</field>
+		<field name="ox_nav_custom_link" sortOrder="30" formElement="input">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Custom Link Url</label>
+			</settings>
+		</field>
+		<field name="ox_nav_custom_link_target" sortOrder="32" formElement="checkbox">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="default" xsi:type="number">0</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>boolean</dataType>
+				<label translate="true">Open link in a new window</label>
+			</settings>
+			<formElements>
+				<checkbox>
+					<settings>
+						<valueMap>
+							<map name="false" xsi:type="string">0</map>
+							<map name="true" xsi:type="string">1</map>
+						</valueMap>
+						<prefer>toggle</prefer>
+					</settings>
+				</checkbox>
+			</formElements>
+		</field>
+		<field name="ox_category_label" sortOrder="40" formElement="input">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Category label, for ex. "Hot!"</label>
+			</settings>
+		</field>
+		<field name="ox_label_color" sortOrder="42" formElement="colorPicker">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Label Background color</label>
+			</settings>
+		</field>
+		<field name="ox_label_text_color" sortOrder="44" formElement="colorPicker">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Label Text Color</label>
+			</settings>
+		</field>
+		<field name="ox_columns" sortOrder="50" formElement="select">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Menu Columns</label>
+			</settings>
+		</field>
+		<field name="ox_nav_column_width" sortOrder="52" formElement="input">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Menu Column Width</label>
+				<validation>
+					<rule name="validate-digits" xsi:type="boolean">true</rule>
+					<rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="ox_bg_image" sortOrder="54" formElement="imageUploader">
+			<settings>
+				<elementTmpl>ui/form/element/uploader/image</elementTmpl>
+				<dataType>string</dataType>
+				<label translate="true">DropDown Background Image</label>
+				<visible>true</visible>
+				<required>false</required>
+			</settings>
+			<formElements>
+				<imageUploader>
+					<settings>
+						<required>false</required>
+						<uploaderConfig>
+							<param xsi:type="url" name="url" path="megamenu/category_image/upload"/>
+						</uploaderConfig>
+						<previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+						<openDialogTitle>Media Gallery</openDialogTitle>
+						<initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+						<allowedExtensions>jpg jpeg gif png</allowedExtensions>
+						<maxFileSize>4194304</maxFileSize>
+					</settings>
+				</imageUploader>
+			</formElements>
+		</field>
+		<field name="ox_data_tm_align_horizontal" sortOrder="60" formElement="select">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Top Menu Dropdown Align Horizontal</label>
+			</settings>
+		</field>
+		<field name="ox_nav_type" sortOrder="70" formElement="checkbox">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="default" xsi:type="number">0</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>boolean</dataType>
+				<label translate="true">Enable Mega Menu</label>
+			</settings>
+			<formElements>
+				<checkbox>
+					<settings>
+						<valueMap>
+							<map name="false" xsi:type="string">0</map>
+							<map name="true" xsi:type="string">1</map>
+						</valueMap>
+						<prefer>toggle</prefer>
+					</settings>
+				</checkbox>
+			</formElements>
+		</field>
+		<field name="ox_mm_lvl2_align_vertical" sortOrder="71" formElement="select">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Mega Menu in Dropdown Behavior</label>
+			</settings>
+		</field>
+		<field name="ox_nav_subcategories" sortOrder="72" formElement="checkbox">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="default" xsi:type="number">0</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>boolean</dataType>
+				<label translate="true">Hide subcategories</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+			<formElements>
+				<checkbox>
+					<settings>
+						<valueMap>
+							<map name="false" xsi:type="string">0</map>
+							<map name="true" xsi:type="string">1</map>
+						</valueMap>
+						<prefer>toggle</prefer>
+					</settings>
+				</checkbox>
+			</formElements>
+		</field>
+		<field name="ox_menu_width" sortOrder="74" formElement="select">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Menu Dropdown Width</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+		</field>
+		<field name="ox_cat_image" sortOrder="76" formElement="imageUploader">
+			<settings>
+				<elementTmpl>ui/form/element/uploader/image</elementTmpl>
+				<dataType>string</dataType>
+				<label translate="true">Category Image</label>
+				<visible>true</visible>
+				<required>false</required>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+			<formElements>
+				<imageUploader>
+					<settings>
+						<required>false</required>
+						<uploaderConfig>
+							<param xsi:type="url" name="url" path="megamenu/category_image/upload"/>
+						</uploaderConfig>
+						<previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+						<openDialogTitle>Media Gallery</openDialogTitle>
+						<initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+						<allowedExtensions>jpg jpeg gif png</allowedExtensions>
+						<maxFileSize>4194304</maxFileSize>
+					</settings>
+				</imageUploader>
+			</formElements>
+		</field>
+		<field name="ox_layout" sortOrder="80" formElement="select">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">DropDown Layout</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+		</field>
+		<field name="ox_nav_btm" template="ui/form/field" sortOrder="82" formElement="wysiwyg">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="add_variables" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Bottom Html Block</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+			<formElements>
+				<wysiwyg class="Magento\Catalog\Ui\Component\Category\Form\Element\Wysiwyg">
+					<settings>
+						<rows>4</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+		<field name="ox_nav_top" template="ui/form/field" sortOrder="84" formElement="wysiwyg">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="add_variables" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Top Html Block</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+			<formElements>
+				<wysiwyg class="Magento\Catalog\Ui\Component\Category\Form\Element\Wysiwyg">
+					<settings>
+						<rows>4</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+		<field name="ox_nav_left" template="ui/form/field" sortOrder="86" formElement="wysiwyg">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="add_variables" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Left Html Block</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+			<formElements>
+				<wysiwyg class="Magento\Catalog\Ui\Component\Category\Form\Element\Wysiwyg">
+					<settings>
+						<rows>4</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+		<field name="ox_nav_left_width" sortOrder="88" formElement="select">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Left Html Width</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+		</field>
+		<field name="ox_nav_right" template="ui/form/field" sortOrder="90" formElement="wysiwyg">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="add_variables" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Right Html Block</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+			<formElements>
+				<wysiwyg class="Magento\Catalog\Ui\Component\Category\Form\Element\Wysiwyg">
+					<settings>
+						<rows>4</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+		<field name="ox_nav_right_width" sortOrder="92" formElement="select">
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Right Html Width</label>
+				<imports>
+					<link name="visible">${ $.parentName }.ox_nav_type:checked</link>
+				</imports>
+			</settings>
+		</field>
+	</fieldset>
+</form>

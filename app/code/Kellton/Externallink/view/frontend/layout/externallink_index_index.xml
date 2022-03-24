@@ -1,0 +1,11 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	
+    <body>       
+         <referenceContainer name="header.container" remove="true" />
+         <referenceContainer name="footer" remove="true" />
+        <referenceContainer name="content">
+            <block class="Kellton\Externallink\Block\Index\Index" name="externallink_index_index" template="Kellton_Externallink::externallink_index_index.phtml"/>
+        </referenceContainer>
+       
+    </body>
+</page>

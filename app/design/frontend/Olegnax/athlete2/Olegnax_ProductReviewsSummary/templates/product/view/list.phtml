@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+/** @var Magento\Review\Block\Product\View\ListView $block */
+$_items	 = $block->getReviewsCollection()->getItems();
+$format	 = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
+
+$settings = $this->helper('Olegnax\ProductReviewsSummary\Helper\Helper')->getConfig('olegnax_productreviewssummary/general');
+$summaryBlocksCount = 0;
+$summaryBlocksCount += $settings['rating_bystar_rating'];
+$summaryBlocksCount += $settings['rating_overall'];
+$summaryBlocksCount += $settings['write_btn_after'];
+$summaryBlocksCount += $settings['rating_breakdown'];
+?>
+<?php if ( count( $_items ) ): ?>
+	<div class="block review-list" id="customer-reviews">
+		<div class="block-title">
+			<strong><?= $block->escapeHtml( __( 'Ratings' ) ) ?></strong>
+		</div>
+		<div class="block-content">
+			<div class="extended-review-summary-wrapper">
+				<?= $block->getChildHtml( 'review_summary' ); ?>
+				<?= $block->getChildHtml( 'review_by_rating' ); ?>				
+			</div>
+			<div class="toolbar review-toolbar">
+				<?= $block->getChildHtml( 'toolbar' ) ?>
+			</div>
+
+			
+			<ol class="items review-items">
+			<h3>Customer Reviews</h3>
+				<?php foreach ( $_items as $_review ): 
+					// print_r(get_class_methods($_review));
+					// exit();
+					?>
+					<li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
+					<div class="review-content-left">
+							
+							<div class="review-content" itemprop="description">
+								<?= nl2br( $block->escapeHtml( $_review->getDetail() ) ) ?>
+							</div>
+						</div>
+						<div class="review-content-right">
+							<div class="review-details">
+								<p class="review-author">									
+									<strong class="review-details-value" itemprop="author"><?= $block->escapeHtml( $_review->getNickname() ) ?></strong>
+								</p>
+								<p class="review-date">									
+									<span><?= date('F Y', strtotime($_review->getCreatedAt())); ?></span>
+								</p>
+							</div>							
+						</div>						
+					</li>
+				<?php endforeach; ?>
+			</ol>
+			<div class="toolbar review-toolbar">
+				<?= $block->getChildHtml( 'toolbar' ) ?>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="catalog_product_view"/>
+    <body>      
+        <referenceBlock name="yotpo_widget_script" remove="true"/>
+        <referenceBlock name="ox_newsletter_popup" remove="true"/>        
+        <referenceBlock name="yotpo_widget_div" remove="true"/>
+        <referenceBlock name="yotpo_bottomline" remove="true"/>
+        <referenceBlock name="product.info.blog.relatedposts" remove="true"/>
+        <referenceBlock name="breadcrumbs" remove="true"/>        
+        <referenceBlock name="reviews.tab" remove="true"/>
+        <referenceBlock name="product_additional_data" remove="true"/>
+        <referenceBlock name="product.review.form" remove="true"/>
+        <referenceBlock name="athlete2_header" remove="true"/>
+        <referenceBlock name="athlete2_navigation" remove="true"/>
+        <referenceBlock name="catalog.product.related" remove="true"/>
+        <referenceBlock name="product.info.upsell" remove="true"/>
+        <referenceBlock name="header.container" remove="true"/>
+        <referenceBlock name="footer-container" remove="true"/>
+        <referenceBlock name="page.top" remove="true" />
+        <referenceBlock name="copyright" remove="true" />
+        <referenceBlock name="authentication-popup" remove="true" />
+        <referenceBlock name="totop" remove="true" />
+        <referenceBlock name="header_banner" remove="true" />
+        <referenceBlock name="ox_prev_product" remove="true" />
+        <referenceBlock name="ox_next_product" remove="true" />
+        <referenceBlock name="product_view_ox_block" remove="true" />
+        <referenceBlock name="sidebar.slideout" remove="true" />   
+        <referenceBlock name="product.info.mailto" remove="true"/>
+        <referenceBlock name="product_view_ox_social2" remove="true"/>
+        <referenceBlock name="product_view_ox_social2.additional" remove="true"/>
+        <referenceBlock name="product_view_ox_social" remove="true"/>
+        <referenceContainer name="page.messages" remove="true" />
+        <referenceContainer name="div.sidebar.additional" remove="true" />
+        <referenceContainer name="above_footer" remove="true" />
+        <referenceContainer name="athlete-reviews-wrapper" remove="true"/>
+        <referenceContainer name="page.bottom.container" remove="true"/>        
+        <referenceBlock name="page.main.title">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Olegnax_Quickview::product/view/title.phtml</argument>                
+            </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.sku">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string"></argument>
+            </action>
+        </referenceBlock>       
+        <referenceContainer name="before.body.end">
+            <block class="Olegnax\Quickview\Block\Template" name="ox_quickview_beforebodyend" template="Olegnax_Quickview::beforebodyend.phtml" />
+            <block class="Magento\Checkout\Block\Cart\Sidebar" name="ox_checkout_js"
+                   template="Olegnax_Quickview::product/view/checkout_js.phtml" />
+        </referenceContainer>
+
+        <referenceBlock name="product.info.addtocart">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Olegnax_Quickview::product/view/addtocart.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.addtocart.additional">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Olegnax_Quickview::product/view/addtocart.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="related_products_impression" remove="true"/>
+        <referenceBlock name="upsell_products_impression" remove="true"/>
+        <referenceBlock name="related_products_impression" remove="true"/>
+        <referenceBlock name="ox_quickview_initialize" remove="true"/>
+        <referenceBlock name="amasty.mostviewed.bundle.below" remove="true"/>
+        <referenceBlock name="amasty.mostviewed.bundle.tab" remove="true"/>
+    </body>
+</page>

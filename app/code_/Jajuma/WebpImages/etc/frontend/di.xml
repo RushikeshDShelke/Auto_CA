@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="jajuma-webpimages-product-view-gallery" type="Jajuma\WebpImages\Plugin\Product\View\GalleryPlugin" sortOrder="5"/>
+    </type>
+    <type name="Magento\Framework\View\LayoutInterface">
+        <plugin name="jajuma-webpimages-replace-image-tag" type="Jajuma\WebpImages\Plugin\ReplaceImageTag"/>
+    </type>
+</config>

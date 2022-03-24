@@ -1,0 +1,115 @@
+<?php
+/**
+ * Dotzot Shipping
+ *
+ */
+?>
+<?php if ($block->canShow()) : ?>
+    <div class="pr-shipp">
+        <div class="page-title">
+             <?php if (!empty($block->getServiceIcon())) : ?>
+                <img src="<?= $block->getServiceIcon(); ?>" />
+             <?php endif; ?>
+            <h1>
+                <?= strtoupper($block->getServiceName()) . ' ' . __('Tracking Number %1', ($block->getTrackingNumber() ? '<span class="pr-track-number">(' . $block->getTrackingNumber() . ')</span>' : '' )) ?>
+            </h1>
+        </div>
+        <div class="fieldset">
+            <h2 class="legend"><?= __('General Information'); ?></h2>
+            <ul class="form-list">
+                <li class="fields">
+                    <strong><?= __('Order:'); ?></strong>
+                    <?= '#' . $block->getOrderIncrementId() ?>
+                </li>
+                <li class="fields">
+                    <strong><?= __('Order Status:'); ?></strong>
+                    <?= $block->getOrderStatus() ?>
+                </li>
+            </ul>
+        </div>
+        <div class="fieldset">
+            <h2 class="legend"><?= __('Shipment Progress') ?></h2>
+            <?php
+                $trackInfo = $block->getTrackingInfo();
+            ?>
+            <?php if(is_array($trackInfo) && isset($trackInfo['info'])) : ?>
+                <table class="data-table pr-shipp-table">
+                   <thead>
+                      <tr>
+                          <?php foreach($trackInfo['columns'] as $column) : ?>
+                              <th><?= $column ?></th>
+                          <?php endforeach; ?>
+                      </tr>
+                   </thead>
+                   <tbody>
+                       <?php foreach($trackInfo['info'] as $informs) : ?>
+                           <tr>
+                               <?php foreach($informs as $info) : ?>
+                                   <td><?= $info ?></td>
+                               <?php endforeach; ?>
+                           </tr>
+                       <?php endforeach; ?>
+                   </tbody>
+                </table>
+            <?php else: ?>
+              <div class="page-title">
+                <h4>
+                   <?= __('Tracking information is not available at this time. Please check back later or double-check the tracking number entered and try again.') ?>
+                </h4>
+              </div>
+            <?php endif; ?>
+        </div>
+    
+        <!-- form -->
+        <div class="pr-track-form-wrapper">
+            <form class="pr-track-form" action="<?= $this->getUrl('shippingtracking/search/index') ?>" id="tracking-number">
+                <div class="fieldset">
+                    <p class="required"><em>*</em><?= __('Required Fields') ?></p>
+                    <ul class="form-list">
+                        <li class="fields">
+                            <div class="track-fields">
+                                <div class="field">
+                                    <label for="track-number" class="required"><em>*</em><?= __('Enter Tracking number') ?></label>
+                                    <div class="input-box">
+                                        <input id="track-number" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" name="number" class="input-text required-entry">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                     <label for="carrier" class="required"><em>*</em><?= __('Postal Services'); ?></label>
+                                     <div class="input-box">
+                                         <select id="carrier" name="carrier" title="Carrier" class="required-entry">
+                                             <?php foreach ($block->getAvailableServices() as $key => $service) : ?>
+                                                 <option value="<?= $key ?>"><?= $service ?></option>
+                                             <?php endforeach; ?>
+                                         </select>
+                                     </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="actions-toolbar">
+                    <p class="secondary back-link">
+                        <a href="" class="a-order-status-and-shipping-tracking-shippingtracking-index-index-">
+                            <small>«</small>
+                            <?= __('Back') ?></a>
+                    </p>
+                    <div class="primary">
+                        <button type="submit" title="Track" class="button action primary">
+                            <span><span> <?= __('Track') ?></span></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- form end-->
+    </div>
+    
+<?php else: ?>
+    <div class="page-title">
+         <h3>
+             <?= __('Tracking number is not associated with any order on our store.') ?>
+         </h3>
+    </div>
+<?php endif; ?>
+

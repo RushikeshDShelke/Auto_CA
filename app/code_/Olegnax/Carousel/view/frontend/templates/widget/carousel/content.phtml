@@ -1,0 +1,21 @@
+<?php
+
+$slide = $this->getData( 'slide' );
+
+if ( !$slide->getContentOnly() ) {
+	$subtitle = $slide->getSubtitle();
+	if ( !empty( $subtitle ) ) {
+		echo '<h6 class="subtitle">' . $subtitle . '</h6>';
+	}
+	$title = $slide->getTitle();
+	if ( !empty( $title ) ) {
+		echo '<h2 class="title ' . $slide->getTitleSize() . '" >' . $title . '</h2>';
+	}
+	echo '<div class="ox-carousel__content">' . $slide->getContent() . '</div>';
+
+	if ( $slide->getButton() && $slide->getLink() ) {
+		echo '<a href="' . $escaper->escapeUrl($slide->getLink()) . '" class="button ox-slide__button ' . $slide->getButtonStyle() . ' ' . $slide->getButtonCss() .'" ><span>' . $escaper->escapeHtml($slide->getButton()) . '</span></a>';
+	}
+} else {
+	echo $slide->getContent();
+} 

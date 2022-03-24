@@ -1,0 +1,108 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Catalog\Controller\Category\View">
+		<plugin name="ox_navigation_Catalog_View"
+				type="Olegnax\LayeredNavigation\Plugin\ListAjax"/>
+	</type>
+	<type name="Magento\CatalogSearch\Controller\Result\Index">
+		<plugin name="ox_navigation_CatalogSearch_Index"
+				type="Olegnax\LayeredNavigation\Plugin\ListAjax"/>
+	</type>
+	<type name="Smartwave\Porto\Controller\CatalogSearch\Result">
+		<plugin name="ox_navigation_SmartwavePorto_Result"
+				type="Olegnax\LayeredNavigation\Plugin\ListAjax"/>
+	</type>
+	<type name="Amasty\ShopbyBrand\Controller\Index\Index">
+		<plugin name="ox_navigation_ShopbyBrand_Index"
+				type="Olegnax\LayeredNavigation\Plugin\ListAjax"/>
+	</type>
+	<type name="Magento\LayeredNavigation\Block\Navigation\FilterRenderer">
+		<plugin name="ox_navigation_filter_render"
+				type="Olegnax\LayeredNavigation\Plugin\LayeredNavigation\Block\Navigation\FilterRenderer"/>
+	</type>
+	<type name="Magento\Catalog\Model\Layer\Filter\Item">
+		<plugin name="ox_navigation_filter_item_urls"
+				type="Olegnax\LayeredNavigation\Plugin\Catalog\Model\Layer\Filter\Item" sortOrder="1"/>
+	</type>
+	<type name="Magento\Framework\App\View">
+		<plugin name="ox_navigation_filter_search" type="Olegnax\LayeredNavigation\Plugin\Framework\App\View"/>
+	</type>
+	<type name="Magento\Catalog\Model\CategoryRepository">
+		<plugin disabled="false" name="Olegnax_LayeredNavigation_Plugin_Frontend_Magento_Catalog_Model_CategoryRepository" sortOrder="10" type="Olegnax\LayeredNavigation\Plugin\Frontend\Magento\Catalog\Model\CategoryRepository"/>
+	</type>
+	<type name="Magento\Eav\Model\Entity\Collection\AbstractCollection">
+		<plugin disabled="false" name="Olegnax_LayeredNavigation_Plugin_Frontend_Magento_Eav_Model_Entity_Collection_AbstractCollection" sortOrder="10" type="Olegnax\LayeredNavigation\Plugin\Frontend\Magento\Eav\Model\Entity\Collection\AbstractCollection"/>
+	</type>
+	<virtualType name="categoryFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+		<arguments>
+			<argument name="filters" xsi:type="array">
+				<item name="attribute" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Attribute</item>
+				<item name="price" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Price</item>
+				<item name="category" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Category</item>
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="searchFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+		<arguments>
+			<argument name="filters" xsi:type="array">
+				<item name="attribute" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Attribute</item>
+				<item name="price" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Price</item>
+				<item name="category" xsi:type="string">Olegnax\LayeredNavigation\Model\Layer\Filter\Category</item>
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory"
+				 type="Magento\Catalog\Model\ResourceModel\Product\CollectionFactory">
+		<arguments>
+			<argument name="instanceName" xsi:type="string">
+				Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\Collection
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="elasticsearchCategoryCollectionFactory"
+				 type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollectionFactory">
+		<arguments>
+			<argument name="instanceName" xsi:type="string">
+				Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\Collection
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollection"
+				 type="Olegnax\LayeredNavigation\Model\ResourceModel\Fulltext\Collection">
+		<arguments>
+			<argument name="searchRequestName" xsi:type="string">quick_search_container</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Olegnax\LayeredNavigation\Block\Navigation\Category"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">categoryFilterList</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Olegnax\LayeredNavigation\Block\Navigation\Search"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">searchFilterList</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\LayeredNavigationStaging\Block\Navigation\Category"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">categoryFilterList</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Magento\LayeredNavigationStaging\Block\Navigation\Search"
+				 type="Olegnax\LayeredNavigation\Block\Navigation">
+		<arguments>
+			<argument name="filterList" xsi:type="object">searchFilterList</argument>
+		</arguments>
+	</virtualType>
+
+
+	<preference for="Magento\LayeredNavigation\Block\Navigation\State"
+				type="Olegnax\LayeredNavigation\Block\Navigation\State"/>
+	<preference for="Magento\Catalog\Model\ResourceModel\Layer\Filter\Attribute"
+				type="Olegnax\LayeredNavigation\Model\ResourceModel\Layer\Filter\Attribute"/>
+	<preference for="Magento\Swatches\Block\LayeredNavigation\RenderLayered"
+				type="Olegnax\LayeredNavigation\Block\LayeredNavigation\RenderLayered"/>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <update id="MagicToolbox_MagicToolbox::magictoolbox"
+            title="Magic Toolbox"
+            module="MagicToolbox_MagicZoomPlus"
+            sortOrder="75"
+            resource="MagicToolbox_MagicToolbox::magictoolbox"/>
+        <add id="MagicToolbox_MagicZoomPlus::magiczoomplus_settings_edit"
+            title="Magic Zoom Plus"
+            module="MagicToolbox_MagicZoomPlus"
+            sortOrder="10"
+            parent="MagicToolbox_MagicToolbox::magictoolbox"
+            action="magiczoomplus/settings/edit"
+            resource="MagicToolbox_MagicZoomPlus::magiczoomplus_settings_edit"/>
+    </menu>
+</config>

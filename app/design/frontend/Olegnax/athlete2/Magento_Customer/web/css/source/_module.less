@@ -1,0 +1,976 @@
+﻿// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@account-nav-background: @sidebar__background-color;
+@account-nav-color: false;
+
+@account-nav-current-border: 3px solid transparent;
+@account-nav-current-border-color: @color-orange-red1;
+@account-nav-current-color: false;
+@account-nav-current-font-weight: @font-weight__semibold;
+
+@account-nav-delimiter__border-color: @color-gray82;
+
+@account-nav-item-hover: @color-gray91;
+
+@_password-default: @color-gray-light01;
+@_password-weak: #ffafae;
+@_password-medium: #ffd6b3;
+@_password-strong: #c5eeac;
+@_password-very-strong: #81b562;
+
+@ox-forms-wrapper__padding:55px;
+@ox-forms-wrapper__padding-s:45px;
+@ox-forms__width-desktop:920px;
+@ox-forms__width-mobile:500px;
+@ox-forms-wrapper__margin:60px;
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .multishipping-checkout-login,
+    .customer-account-create,
+    .multishipping-checkout-register,
+    .customer-account-forgotpassword,
+    .customer-account-login{
+        .page-main{
+            background: #efefef;
+            max-width:100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .page.messages{
+            max-width: @ox-forms__width-desktop;
+            margin: auto;
+        }
+    }
+    /* login buttons */
+    .block {
+        &-customer-login{
+            .actions-toolbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-flow: wrap;
+            }
+        }
+    }
+    .account{
+        .table:not(.cart):not(.totals) > thead > tr > th{
+            border:none;
+        }
+        .data.table {
+            margin-bottom: 0;
+            .col {                
+                &.actions {
+                    white-space: nowrap;
+                }
+                padding: 26px 14px;
+                vertical-align: middle;
+                width: auto;
+                &:first-child{
+                    padding-left: 32px;
+                }
+                &:last-child{
+                    padding-right: 32px;
+                }
+                .action{
+                    border-bottom: 2px solid;
+                    font-weight: @font-weight__bold;
+                    text-transform: uppercase;
+                }
+                
+            }
+            thead{
+                background: #f8f8f8;
+                text-transform: uppercase;
+                line-height: 1;
+
+            }
+        }
+
+    }
+    /*.inputs-style--underlined{
+        .login-container {
+            input{
+                .ox-input-simple-underlined();
+            }
+        }
+    }*/
+    .block-customer-login,
+    .block-new-customer{
+        .block-title {
+            .lib-heading(h2);
+            .at-headings();     
+        }
+    }
+    .login-container {
+        display: flex;
+        
+        max-width: (@ox-forms__width-desktop / 2);
+        margin: 100px auto;
+        flex-flow: column; 
+
+        box-shadow: 0px 15px 70px -8px rgba(0, 0, 0, 0.11);
+        background: #ffffff;
+        .block-title {
+            .lib-heading(h2);
+            .at-headings();
+           
+        }
+        .block-customer-login {
+            .block-title {
+                margin-bottom: 32px;
+                margin-top: 0; 
+            }
+        }
+        .block {
+            width:100%;
+            padding: @ox-forms-wrapper__padding;
+            margin-bottom:0;
+            display: flex;
+            flex-flow: wrap;
+            align-self: stretch;
+            align-content: center;
+            .action.primary{
+                padding: @button__padding__b;
+                min-width: 150px;
+            }
+            .secondary > a.action{
+                    background: none;
+                    color: #000;
+                    padding: 5px 7px;
+                    font-size:12px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+            }    
+        }
+        .field:not(.choice){
+            input{
+                margin-bottom: 5px;
+            }
+        } 
+        .fieldset {
+            .field.note{
+                display:none;
+            }
+            > .field.choice:before, .fieldset > .field.no-label:before{
+                content:none;
+            }
+            > .field:not(.choice) > .label{
+                font-weight: @font-weight__black;
+                text-transform: uppercase;
+                font-size: 13px;
+                float: none;
+                width: auto;
+                text-align: left;
+            }
+        }
+    }
+    .block {
+        &-customer-login{
+            .block-title {        
+                margin-bottom: 32px;
+                margin-top: 0;
+            }
+            .secondary > a.action{
+                    background: none;
+                    color: #000;
+                    padding: 5px 7px;
+                    font-size:12px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+            }
+        }
+        &-new-customer {
+            background: #f8f8f8;                
+            text-align: center;                
+            flex-flow: wrap;
+            justify-content: center;
+            .actions-toolbar {
+                margin-top: 25px;
+            }
+            .block-title {
+                strong{
+                .lib-font-size(24);
+                }
+            }
+        }
+        &-content{
+            width:100%;
+        }
+    }
+    .block-addresses-list {
+        .items.addresses {
+            > .item {
+                margin-bottom: @indent__base;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .form-address-edit {
+        #region_id {
+            display: none;
+        }
+
+        .actions-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            .action.primary {
+                font-size: 1.6rem;
+                padding: @button__padding__b;
+            }
+        }
+    }
+
+    .form-edit-account {
+        .fieldset.password {
+            display: none;
+        }
+    }
+
+    .box-billing-address,
+    .box-shipping-address,
+    .box-information,
+    .box-newsletter {
+        .box-content {
+            line-height: 26px;
+        }
+    }
+
+    //  Full name fieldset
+    .fieldset {
+        .fullname {
+            &.field {
+                > .label {
+                    &:extend(.abs-visually-hidden all);
+
+                    + .control {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .field {
+                &:extend(.abs-add-clearfix all);
+            }
+        }
+    }
+
+    //
+    //  My account
+    //  ---------------------------------------------
+
+    .account {
+        .page-title-wrapper {
+            .page-title {
+                display: inline-block;
+            }
+        }
+        &.inputs-style--underlined{
+            .toolbar .limiter-options{
+                padding: 0 35px 0 10px;
+            }
+        }
+        .column.main {
+            h2 {
+                margin-top: 0;
+            }
+
+            .toolbar {
+                &:extend(.abs-pager-toolbar all);
+                .limiter-options {
+                    width: auto;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+            }
+            .form-edit-account{
+                .field.password-info{
+                  margin-bottom:40px;  
+                }
+                .fieldset.password{
+                    margin-bottom: 30px;
+                }
+            }
+            .fieldset:not(:last-of-type){
+                margin-bottom:60px;
+            }
+            .actions-toolbar{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                .action.primary {
+                   font-size: 1.6rem;
+                   padding: @button__padding__b;            
+                }
+            }
+            .limiter {
+                >.label {
+                    &:extend(.abs-visually-hidden all);
+                }
+            }
+
+            .block:not(.widget) {
+                &:extend(.abs-account-blocks all);
+            }
+            .block-dashboard-addresses,
+            .block-dashboard-info{
+                padding: 40px;
+                background: #f8f8f8;
+            }
+        }
+        .box-actions{
+                margin-top: 15px;
+            .action{
+                padding: 5px 9px;
+                background: #000;
+                color: #fff;
+                font-weight: @font-weight__bold;
+                font-size: 14px;
+                display: inline-block;
+                margin-right: 5px;
+                text-transform: uppercase;
+            }
+        }
+        .box-content{
+            margin: 10px 0;
+        }
+        .table-wrapper {
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .action {
+                margin-right: 15px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .table-return-items {
+            .qty {
+                .input-text {
+                    &:extend(.abs-input-qty all);
+                }
+            }
+        }
+    }
+
+    //  Checkout address (create shipping address)
+    .field.street {
+        .field {
+            .label {
+                &:extend(.abs-visually-hidden all);
+                position:absolute!important;
+            }
+        }
+    }
+    .fieldset.login{
+        margin-bottom: 0;
+    }
+
+    //
+    //  Account navigation
+    //  ---------------------------------------------
+    .sidebar-nobg{
+        .account-nav {
+            .content {
+                padding: 0;
+                border: none;
+                background-color: transparent;
+            }
+            .title label{
+                    font-size: 16px;
+                    font-weight: @font-weight__bold;
+            }
+            .item {
+                margin-left: -6px;
+                
+                a,
+                > strong {
+                    font-size: 16px;
+                    font-weight: @font-weight__bold;
+                }
+                .delimiter {
+                    margin-left: 0;
+                    margin-right: 0;
+                    border-color: rgb(228, 228, 228);
+                }
+            }
+        }
+    }
+    .account-nav {
+        .title {
+            display:none;
+            padding: 10px;
+            background: #f8f8f8;
+            label{
+                font-weight: @font-weight__black;
+                text-transform: uppercase;
+                color: #000;
+                font-size: 14px;
+                margin-left: 10px;
+            }
+        }
+
+        .content {
+            margin: 0;
+            border: 0;
+            padding: 20px;
+            border-top: 6px solid #ffe51e;
+            background-color: #f8f8f8;
+            margin-bottom: 15px;
+        }
+
+        .item {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            a,
+            > strong {
+                background-color: transparent;
+                color: #000000;
+                font-size: 14px;
+                font-weight: @font-weight__black;
+                margin: 0 0 2px 0;
+                padding: 7px;
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 0;
+                box-sizing: border-box;
+                display: inline-block;
+                line-height:1;
+            }
+
+            a {
+                &:hover {
+                    background-color: #000000;
+                    color:#ffffff;
+                    text-decoration: none;
+                }
+            }
+
+            &.current {
+                a,
+                strong {
+                    background-color: #000000;
+                    color:#ffffff;
+                    text-decoration: none;
+                }
+            }
+
+            .delimiter {
+                border-top: 1px solid @account-nav-delimiter__border-color;
+                display: block;
+                margin: 20px 7px;
+            }
+        }
+    }
+
+
+    //
+    //  Password Strength Meter
+    //  ---------------------------------------------
+
+    .field.password {
+        .control {
+            .lib-vendor-prefix-display();
+            .lib-vendor-prefix-flex-direction();
+
+            .mage-error {
+                .lib-vendor-prefix-order(2);
+            }
+
+            .input-text {
+                .lib-vendor-prefix-order(0);
+                z-index: 2;
+            }
+        }
+    }
+
+    .password-strength-meter {
+        background-color: @_password-default;
+        height: 100%;
+        min-height: 38px;
+        line-height: 1.6;
+        padding: 7px 11px;
+        position: relative;
+        z-index: 1;
+
+        &:before {
+            content: '';
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+        }
+
+        .password-none & {
+            &:before {
+                background-color: @_password-default;
+                width: 100%;
+            }
+        }
+
+        .password-weak & {
+            &:before {
+                background-color: @_password-weak;
+                width: 25%;
+            }
+        }
+
+        .password-medium & {
+            &:before {
+                background-color: @_password-medium;
+                width: 50%;
+            }
+        }
+
+        .password-strong & {
+            &:before {
+                background-color: @_password-strong;
+                width: 75%;
+            }
+        }
+
+        .password-very-strong & {
+            &:before {
+                background-color: @_password-very-strong;
+                width: 100%;
+            }
+        }
+    }
+    .captcha-reload{
+        background: transparent;
+        padding: 8px 10px;
+    }
+    .control.captcha-image {
+        .lib-css(margin-top, 20px);
+
+        .captcha-img {
+            vertical-align: middle;
+        }
+    }
+
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget{
+        .actions-toolbar{
+            > .secondary{
+                text-align: center;
+                background: #000000;
+                padding: 30px;
+                margin: @ox-forms-wrapper__padding -@ox-forms-wrapper__padding -@ox-forms-wrapper__padding;
+            }
+        }
+    }
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account{
+        background:#fff;
+        max-width: @ox-forms__width-mobile;
+        margin: @ox-forms-wrapper__margin auto;
+        width: 100%;        
+        padding: @ox-forms-wrapper__padding;
+        box-shadow: 0px 15px 70px -8px rgba(0, 0, 0, 0.11);
+        .field.note{
+            font-size: 26px;
+            font-weight: @font-weight__bold;
+            line-height: 1.1;
+            margin-bottom: 40px;
+        }        
+        .fieldset > .field > .control{
+            width: 100%;
+        }
+        .fieldset > .field:not(.choice) > .label{
+            font-weight: @font-weight__black;
+            text-transform: uppercase;
+            font-size: 13px;
+            float: none;
+            width: auto;
+            text-align: left;
+        }
+        input{
+            margin-bottom: 5px;
+        }
+        .actions-toolbar{
+            .action.primary{
+                padding: @button__padding__b;
+                width:100%;
+            }
+        }
+    }
+    .multishipping-checkout-register,
+    .customer-account-create{
+        .page-title-wrapper{
+            text-align:center;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account,
+    .login-container .block{
+        padding: 35px 25px;
+    }
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account{
+        .actions-toolbar{
+            > .secondary{
+                margin: 35px -25px -35px -25px;
+            }
+        }
+    }
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .block-customer-login,
+    .block-new-customer{
+        .block-title { 
+            line-height: 0.8;
+        }
+    }
+    .account {
+        .column.main,
+        .sidebar-additional {
+            margin: 0;
+        }
+        .column.main{
+            .block-dashboard-addresses,
+            .block-dashboard-info{
+                padding: 25px;
+            }
+        }
+    }
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account{
+        margin: 0 auto;
+        padding: @ox-forms-wrapper__padding-s;
+    }
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account{
+        .actions-toolbar{
+            > .secondary{
+                padding: 15px;
+                margin: @ox-forms-wrapper__padding-s -@ox-forms-wrapper__padding-s -@ox-forms-wrapper__padding-s;
+            }
+        }
+    }
+    .login-container {
+        margin: 0 auto;
+        .block{
+            padding: @ox-forms-wrapper__padding-s;
+        }
+        .block .action.primary{
+            width: 100%;
+        }
+    }
+    .block-customer-login {
+        .actions-toolbar{
+            text-align: center;
+            display: block;
+        }
+        &.block .action.primary{
+            width: 100%;
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .sidebar-nobg{
+        .account-nav {
+            &.collapsible-nav{
+                .content{
+                    padding: 20px;
+                    background-color: #f8f8f8;
+                }
+            }
+        }
+    }
+    .account-nav {
+         .title {
+                display:none;
+         }
+        &.collapsible-nav{
+
+            .title {
+                display:block;
+                &.active{
+                    .hamburger-menu-icon-small span{
+                        &:nth-child(1){
+                            transform: rotate(-45deg);
+                            top: 5px;
+                        }
+                        &:nth-child(2){
+                            transform: rotate(45deg);
+                            top: 3px;
+                        }
+                        &:nth-child(3){
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .content {
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+            }
+        }
+        .toggle-mobile-nav{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            position: relative;
+        }
+        .hamburger-menu-icon-small{
+            width: 22px;
+            height: 14px;
+            span{
+                height: 2px;
+            }
+        }
+    }
+    .form.create.account{
+        margin: 20px auto;
+        .actions-toolbar{
+            > .secondary{
+                text-align: center;
+                background: #000000;
+                padding: 30px;
+                margin: @ox-forms-wrapper__padding -@ox-forms-wrapper__padding -@ox-forms-wrapper__padding;
+            }
+        }
+    }
+    .login-container {
+        .fieldset {
+            &:after {
+                text-align: center;
+            }
+        }
+    }
+
+    .account {
+        .columns {
+            .sidebar-main{
+                order: 0;
+                margin-top:0;
+            }
+            .sidebar-additional{
+                margin-top:60px;
+            }
+        }
+
+        .column.main {
+            .toolbar {
+                &:extend(.abs-pager-toolbar-mobile all);
+            }
+        }
+    }
+
+    .control.captcha-image {
+        .captcha-img {
+            .lib-css(margin-bottom, @indent__s);
+            display: block;
+        }
+    }
+
+    .customer-account-index {
+        .page-title-wrapper {
+            position: relative;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .multishipping-checkout-register{
+        .form.create.account{
+            display: flex;
+            flex-wrap: wrap;
+            .fieldset.address{
+                order: 1;
+                width: 100%;
+            }
+            .actions-toolbar{
+                order: 2;
+                width: 100%;
+            }
+        }
+    }
+    .login-container {
+        &:extend(.abs-add-clearfix-desktop all);
+        max-width: @ox-forms__width-desktop;
+        flex-flow: row;
+        .block {
+            width:50%;
+            &.login {
+                .actions-toolbar {
+                    > .primary {
+                        margin-bottom: 0;
+                        margin-right: @indent__l;
+                    }
+
+                    > .secondary {
+                        float: left;
+                    }
+                }
+            }
+        }
+
+        .fieldset {
+            > .field {
+                > .control {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    
+    .form.create.account {
+        max-width: @ox-forms__width-desktop;
+        margin: 0 auto;
+        > .fieldset{
+            width: 50%;
+            display: inline-block;
+            float: left;
+            > .legend{
+                margin-bottom: 40px;
+            }
+            &.info{
+                padding-right: 25px;
+            }
+            &.account{
+                padding-left: 25px;
+            }
+        }
+        .actions-toolbar{
+            .lib-clearfix();
+            width:100%;
+            display: flex;
+            flex-wrap: wrap;
+            .action.primary{
+                padding: @button__padding__b;
+                width:100%;
+            }
+            > .secondary{
+                width: 50%;
+                padding-right: 25px;
+                .action{
+                    padding: @button__padding__b;
+                    width:100%;
+                }
+            }
+            > .primary{
+                order: 1;
+                width: 50%;
+                padding-left: 25px; 
+            }            
+        }
+    }
+
+
+
+    //
+    //  My account
+    //  ---------------------------------------------
+
+    .account {
+        .data.table{
+           tr:first-child{
+                .col {
+                    border-top:none;
+                }
+            }
+            .col {                
+                border-top: 1px solid @table__border-color;
+            }
+        }
+        .column.main {
+            .block:not(.widget) {
+                .block-content {
+                    &:extend(.abs-add-clearfix-desktop all);
+
+                    .box {
+                        &:extend(.abs-blocks-2columns all);
+                    }
+                }
+            }
+        }
+    }
+
+    .block-addresses-list {
+        .items.addresses {
+            &:extend(.abs-add-clearfix-desktop all);
+            font-size: 0;
+
+            > .item {
+                display: inline-block;
+                font-size: @font-size__base;
+                margin-bottom: @indent__base;
+                vertical-align: top;
+                width: 48.8%;
+
+                &:nth-last-child(1),
+                &:nth-last-child(2) {
+                    margin-bottom: 0;
+                }
+
+                &:nth-child(even) {
+                    margin-left: 2.4%;
+                }
+            }
+        }
+    }
+
+    //
+    //  Welcome block
+    //  ---------------------------------------------
+
+    .dashboard-welcome-toggler {
+        &:extend(.abs-visually-hidden-desktop all);
+    }
+
+    .control.captcha-image {
+        .captcha-img {
+            margin: 0 10px 10px 0;
+        }
+    }
+}

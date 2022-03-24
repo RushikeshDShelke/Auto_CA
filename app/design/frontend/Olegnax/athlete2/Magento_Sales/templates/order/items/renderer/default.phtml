@@ -1,0 +1,106 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var  $block \Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer */
+$_item = $block->getItem();
+$order = $block->getOrder();
+$objectManager =\Magento\Framework\App\ObjectManager::getInstance();
+$smallimage =  $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProductId())->getImage();
+$helperImport = $objectManager->get('\Magento\Catalog\Helper\Image');
+$imageUrl = $helperImport->init($_item, 'product_page_image_medium')
+                ->setImageFile($smallimage) // image,small_image,thumbnail
+                ->resize(380)
+                ->constrainOnly(FALSE)->keepAspectRatio(FALSE)->keepFrame(FALSE)->resize(150,190)
+                ->getUrl();
+
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+
+$productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
+$productObj = $productRepository->get($_item->getSku());
+
+$attr = $productObj->getResource()->getAttribute("craftsman_name");
+$artist_text=$attr->getSource()->getOptionText($productObj->getCraftsmanName());
+
+
+$_order = $block->getOrder();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl();
+$helpercancle = $this->helper('Magepow\CancelOrder\Helper\Data');
+
+?>
+<div class="main-item-div">
+    <div class="item-description-div">
+        <div class="image-div">
+            <img src="<?= $imageUrl ?>" alt="">
+        </div>
+        <div class="details-section">
+            <strong class="product name product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
+            <a href="<?php  echo $baseurl.$atrist_url;  ?>" ><span><?= $artist_text ; ?></span></a>
+        </div>
+        
+    </div>
+    <div class="right-side-div">
+        <button class="track-order-button">
+            <a href="<?= $baseurl; ?>trackorder/index/view/">TRACK ORDER</a>
+        </button>
+        <?php if($_order->canCancel() && $helpercancle->isEnabled()): ?>
+                               
+        <button class="track-order-button">
+            <a href="<?php echo $this->getUrl('cancelorder/cancelorder/index').'?orderid='.$_order->getEntityId(); ?>" class="action cancel"><?= /* @escapeNotVerified */ __('Cancel Order') ?></a>
+        </button>
+        <?php endif; ?>
+        
+        <button class="track-order-button">
+            <a href="<?= $baseurl; ?>contact-us">CONTACT US</a>
+        </button>  
+    </div>
+<!--    
+    <div class="bottom-section">
+        <div class="total-amount">
+            <h3>Total Amount </h3>
+            <span> <?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($order->getGrandTotal(),true,false); ?></span>
+        </div>
+        <div class="order-date">
+            <h3>Order Date</h3>
+            
+            <span><?php  $order->getCreatedAt(); 
+            $newDate = date("d-m-Y", strtotime($order->getCreatedAt()));
+            echo $newDate;
+            ?></span>
+        </div>
+        <div class="order-id">
+            <h3>Order Id</h3>
+            <span>
+                <?= $order->getId(); ?>
+            </span>
+        </div>
+    </div>
+-->
+</div>
+<div class="bottom-section">
+        <div class="total-amount">
+            <h3>Total Amount </h3>
+            <span> <?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($order->getGrandTotal(),true,false); ?></span>
+        </div>
+        <div class="order-date">
+            <h3>Order Date</h3>
+            
+            <span><?php  $order->getCreatedAt(); 
+            $newDate = date("d-m-Y", strtotime($order->getCreatedAt()));
+            echo $newDate;
+            ?></span>
+        </div>
+        <div class="order-id">
+            <h3>Order Id</h3>
+            <span>
+                <?= $order->getId(); ?>
+            </span>
+        </div>
+    </div>
+

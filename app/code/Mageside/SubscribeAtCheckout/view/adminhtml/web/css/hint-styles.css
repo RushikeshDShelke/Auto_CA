@@ -1,0 +1,24 @@
+.mageside-hint {
+    background: #f8f8f8;
+    border: 1px solid #8ba455;
+    margin-bottom: 10px;
+    padding: 11px 0 10px 10px;
+    color: #676056;
+    font: 600 12px 'Open Sans', sans-serif;
+}
+
+.mageside-hint .content {
+    padding-left: 30px;
+}
+
+.mageside-hint a,
+.mageside-hint a:visited,
+.mageside-hint a:active,
+.mageside-hint a:hover,
+.mageside-hint a:focus {
+    color: #8ba455;
+}
+
+.mageside-hint .module-name {
+    color: #EA7601;
+}

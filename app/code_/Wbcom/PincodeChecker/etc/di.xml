@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="wbcom_pincode_listing_grid_data_source" xsi:type="string">Wbcom\PincodeChecker\Model\ResourceModel\Pincode\Grid\Collection</item>
+                <item name="wbcom_pincodecheck_listing_grid_data_source" xsi:type="string">Wbcom\PincodeChecker\Model\ResourceModel\PincodeCheck\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Wbcom\PincodeChecker\Model\ResourceModel\Pincode\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wbcom_pincode_checker</argument>
+            <argument name="resourceModel" xsi:type="string">Wbcom\PincodeChecker\Model\ResourceModel\Pincode\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Wbcom\PincodeChecker\Model\ResourceModel\PincodeCheck\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wbcom_pincode_avcheck</argument>
+            <argument name="resourceModel" xsi:type="string">Wbcom\PincodeChecker\Model\ResourceModel\PincodeCheck\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\OfflinePayments\Model\Cashondelivery">
+        <plugin sortOrder="1" name="restrictByCustomer"
+                type="Wbcom\PincodeChecker\Plugin\Payment\Method\CashOnDelivery\Available"/>
+    </type>
+</config>
+
+

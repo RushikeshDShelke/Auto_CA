@@ -1,0 +1,125 @@
+// /**
+//  * Copyright � Olegnax (http://olegnax.com/). All rights reserved.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@css-preloader-color: #000000;
+@css-preloader-size: 35px;
+@css-preloader-border-size: 4px;
+
+@progress-line-background-color:#e6e6e6;
+@progress-line-active-background-color:#000000;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .ox-product-scroll + .toolbar-products,
+    .ox-infinite-scroll-enabled .products.wrapper ~ .toolbar-products{
+        display: none;
+    }
+    .ox-product-scroll__type--auto{
+        .ox-product-scroll__loader{
+                margin-top: 20px;
+        }
+    }
+    .ox-product-scroll{
+        &.ox-ps-hide{
+            &.ox-product-scroll-prev{
+                display:none!important;
+            }
+            &.ox-product-scroll-next {
+                .ox-product-scroll__button,
+                .ox-product-scroll__loader{
+                    display:none!important;
+                }
+            }
+        }
+
+        margin-top:20px;
+        .ox-product-scroll__loader{
+                display:none;
+        }
+        &.active{
+            .ox-product-scroll__loader{
+                display:block;
+            }
+        }
+        .ox-product-scroll__loader{
+                margin-left: auto;
+                margin-right: auto;
+        }
+        &.ox-product-scroll__loader--magento{
+            .ox-product-scroll__loader{
+                .lib-loading();
+                width: @loader-icon__width;
+                height: @loader-icon__height;
+                margin-top: 0;
+            }
+        }
+        &.ox-product-scroll__loader--css{
+            .ox-product-scroll__loader{
+                display: block;
+                width: @css-preloader-size;
+                height: @css-preloader-size;
+                border: @css-preloader-border-size solid rgba(0, 0, 0, 0);
+                border-radius: @css-preloader-size;
+                border-left: @css-preloader-border-size solid @css-preloader-color;
+                border-right: @css-preloader-border-size solid @css-preloader-color;
+                border-top: @css-preloader-border-size solid @css-preloader-color;
+                animation: spin .65s infinite linear;
+                transition: all 600ms ease-in-out;
+            }
+        }
+    }
+    .ox-product-scroll{
+        .ox-product-scroll__button{
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 16px auto 0;
+            padding: 15px;
+            line-height: normal;
+            &.active{
+                display:none;
+            }
+        }
+    }
+    .ox-product-scroll__amount {
+        width: 100%;
+        max-width: 240px;
+        display: block;
+        margin: 16px auto 0;
+        display:none;
+        &.ox-product-scroll__amount-loaded{
+            display:block;
+        }
+        .amount-wrap{
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .amount-count-line {
+            display: block;
+            height: 2px;
+            background: @progress-line-background-color;
+            overflow: hidden;
+
+            span {
+                display: block;
+                height: 2px;
+                background: @progress-line-active-background-color;
+            }
+        }
+    }
+    @keyframes spin {
+        from{
+            transform: rotate(0deg);
+        }to{
+            transform: rotate(360deg);
+        }
+    }
+}

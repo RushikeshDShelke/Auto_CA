@@ -1,0 +1,159 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .map-popup-wrapper.popup {
+        .action.close {
+            .lib-css(top, @popup-button-close__position-top);
+            z-index: 881;
+        }
+    }
+
+    .map-popup {
+        .lib-popup(
+            @_popup-header-margin: 0,
+            @_popup-margin-top: @indent__s,
+            @_popup-margin-left: false,
+            @_popup-content-margin: @indent__s 0 0,
+            @_popup-position-bottom: false,
+            @_popup-position-right: false,
+            @_popup-position: absolute,
+            @_popup-z-index:880
+        );
+        box-sizing: border-box;
+
+        .map-info-price {
+            &:extend(.abs-add-clearfix all);
+            margin-bottom: 22px;
+
+            .price-box {
+                margin: 0 0 20px;
+                .map-msrp{
+                    font-size: 15px;
+                    font-weight: @font-weight__bold;
+                    margin-bottom: 10px;
+                    text-transform: uppercase;
+                }
+                .map-price{
+                    font-size: 14px;
+                    font-weight: @font-weight__bold;
+                    line-height: 1;
+                    label{
+                        text-transform: uppercase;
+                    }
+                    .actual-price{
+                        display: block;
+                    }
+                    .actual-price,
+                    .special-price{
+                        .price{
+                            font-size: 34px;
+                            line-height: 1;
+                        }
+                    }
+                    .old-price{
+                        .price{
+                            font-size: 24px;
+                            line-height: 1;
+                        }
+                    }
+                    .price-label{
+                        display:none;
+                    }
+                }
+                .old-price{
+                    .price-wrapper{
+                        color: #d6d6d6;
+                        span{
+                            color: #d6d6d6;
+                        }
+                    } 
+                }
+                .label {
+                    &:after {
+                        content: ': ';
+                    }
+                }
+            }
+        }
+
+        .regular-price {
+            .price-label {
+                display: none;
+            }
+        }
+    }
+    .product-options-bottom,
+    .product-info-main{
+        .map-old-price{
+            margin-right: 10px;
+        }
+        .map-old-price,
+        .map-show-info{        
+            font-weight: @font-weight__bold;
+            letter-spacing: -0.03em;            
+            text-transform: uppercase;
+        }
+        .map-show-info{
+            &:not(:last-child) {
+                margin-right: 5px;
+            }
+            &:first-child{
+                margin-top: 5px;
+            }
+         }
+         .product-info-price .map-show-info {
+             display: block;
+         }
+    }
+
+
+    .map-old-price {
+        text-decoration: none;
+
+        .price-wrapper {
+            text-decoration: line-through;
+        }
+    }
+
+    .map-form-addtocart {
+        display: inline-block;
+        text-align: center;
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    button.map-show-info {
+        .lib-button-reset();
+        .lib-button-as-link();
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .map-popup {
+        max-width: 100%;
+    }
+
+    .map-old-price,
+    .map-show-info {
+        display: inline-block;
+
+        &:not(:last-child) {
+            margin-bottom: @indent__s;
+        }
+    }
+}

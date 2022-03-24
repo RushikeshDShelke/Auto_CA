@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Account\Dashboard\Info $block */
+?>
+
+<div class="welcome-msg"><h1 style="font-weight: 600 !important;font-size: 16px;color: #636363;font-family: playfair display;">My Dashboard</h1><p class="hello"><strong style="text-transform: capitalize;">Hello, <?= $block->escapeHtml($block->getName()) ?>!</strong></p><p style="margin-top: 8px;">"There are several ways to perform almost any act - an efficient, workable, artistic way and a careless, indifferent, sloppy way. Care and artistry are worth the trouble. They can be a satisfaction to the practitioner and a joy to all beholders." ― Helen Nearing</p></div>
+<div class="block block-dashboard-info">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Account Information')) ?></strong></div>
+    <div class="block-content">
+        <div class="box box-information">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Contact Information')) ?></span>
+            </strong>
+            <div class="box-content">
+                <p>
+                    <?= $block->escapeHtml($block->getName()) ?><br>
+                    <?= $block->escapeHtml($block->getCustomer()->getEmail()) ?><br>
+                </p>
+                <?= $block->getChildHtml('customer.account.dashboard.info.extra'); ?>
+            </div>
+            <div class="box-actions">
+                <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/account/edit')) ?>">
+                    <span><?= $block->escapeHtml(__('Edit')) ?></span>
+                </a>
+                <a href="<?= $block->escapeUrl($block->getChangePasswordUrl()) ?>" class="action change-password">
+                    <?= $block->escapeHtml(__('Change Password')) ?>
+                </a>
+            </div>
+        </div>
+        <?php if ($block->isNewsletterEnabled()) : ?>
+            <div class="box box-newsletter">
+                <strong class="box-title">
+                    <span><?= $block->escapeHtml(__('Newsletters')) ?></span>
+                </strong>
+                <div class="box-content">
+                    <p>
+                        <?php if ($block->getIsSubscribed()) : ?>
+                            <?= $block->escapeHtml(__('You are subscribed to "General Subscription".')) ?>
+                        <?php else : ?>
+                            <?= $block->escapeHtml(__('You aren\'t subscribed to our newsletter.')) ?>
+                        <?php endif; ?>
+                    </p>
+                </div>
+                <div class="box-actions">
+                    <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('newsletter/manage')) ?>"><span><?= $block->escapeHtml(__('Edit')) ?></span></a>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \MagicToolbox\MagicZoomPlus\Block\Adminhtml\Settings\Edit\Form\Renderer\Fieldset\Element */
+$element = $block->getElement();
+$note = $element->getNote() ? '<div class="note" id="' . $element->getId() . '-note">' . $element->getNote() . '</div>' : '';
+$fieldId = ($element->getHtmlContainerId()) ? ' id="' . $element->getHtmlContainerId() . '"' : '';
+$fieldClass = "admin__field field field-{$element->getId()} {$element->getCssClass()}";
+$fieldClass .= ($element->getRequired()) ? ' required _required' : '';
+$fieldClass .= ($note) ? ' with-note' : '';
+$fieldClass .= (!$element->getLabelHtml()) ? ' no-label' : '';
+$fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
+    . $block->getUiId('form-field', $element->getId())
+    . ($element->getFieldExtraAttributes() ? ' ' . $element->getFieldExtraAttributes() : '');
+?>
+<?php if (!$element->getNoDisplay()): ?>
+    <?php if ($element->getType() == 'hidden'): ?>
+        <?= $element->getElementHtml() ?>
+    <?php else: ?>
+    <div<?= /* @escapeNotVerified */ $fieldAttributes ?>>
+        <?= $element->getLabelHtml() ?>
+        <div class="admin__field-control control">
+            <?= $element->getElementHtml(); ?>
+            <?= /* @escapeNotVerified */ $note ?>
+        </div>
+        <div class="field-status">
+            <?php if ($element->getStatus() < 2): ?>
+            <div class="magictoolbox-switcher" onselectstart='return false;'>
+                <input type="checkbox" id="<?= $element->getId(); ?>-switcher" name="<?= str_replace('magictoolbox[', 'magictoolbox-switcher[', $element->getName()); ?>" class="magictoolbox-switcher-status"<?= $element->getStatus() ? ' checked="checked"' : ''; ?> />
+                <label class="magictoolbox-switcher-label"
+                       for="<?= $element->getId(); ?>-switcher"
+                       data-text-on="<?= /* @escapeNotVerified */ __('Enabled'); ?>"
+                       data-text-off="<?= /* @escapeNotVerified */ __('Disabled'); ?>"
+                       title="<?= /* @escapeNotVerified */ $element->getStatus() ? __('Enabled') : __('Disabled'); ?>"></label>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+<?php endif; ?>

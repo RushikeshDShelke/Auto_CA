@@ -1,0 +1,103 @@
+<?php $items = $block->getCollection(); ?>
+<?php $post   = $block->getRequest()->getPost(); ?>
+
+<div class="container-fluid main-container vendor-container">
+        <h1><?php echo $block->escapeHtml($block->getTitle()) ?></h1>
+        <div class="jumbotron">
+            <form name="report_filter" id="report_filter" action="<?php echo $block->getUrl('*/*/*') ?>" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-2">
+                        <select id="sales_report_period_type" name="period_type" title="Period" class="select">
+                            <option
+                                <?php if(isset($post['period_type']) and $post['period_type'] == 'day'): ?>
+                                    selected
+                                <?php endif; ?>
+                            value="day"><?php echo $block->escapeHtml(__('Day'))?></option>
+                            <option
+                                <?php if(isset($post['period_type']) and $post['period_type'] == 'month'): ?>
+                                    selected
+                                <?php endif; ?>
+                            value="month"><?php echo $block->escapeHtml(__('Month'))?></option>
+                            <option
+                                <?php if(isset($post['period_type']) and $post['period_type'] == 'year'): ?>
+                                    selected
+                                <?php endif; ?>
+                            value="year"><?php echo $block->escapeHtml(__('Year'))?></option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control datepicker input-text required-entry" name="from" value="<?php if(isset($post['from'])) echo $post['from']; ?>" placeholder="<?php echo $block->escapeHtml(__('From'))?>*"/>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control datepicker input-text required-entry" name="to" value="<?php if(isset($post['from'])) echo $post['to']; ?>" placeholder="<?php echo $block->escapeHtml(__('To'))?>*"/>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" name="submit" class="btn btn-primary btn-sm" value="<?php echo $block->escapeHtml(__('Show Report') )?>" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" name="submit" class="btn btn-info btn-sm" value="<?php echo $block->escapeHtml(__('Export to CSV') )?>" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    <script type="text/javascript">
+        //< ![CDATA[
+        //]]>
+        require(['jquery', "mage/template", "jquery/ui"], function($) {
+            $(document).ready(function ($) {
+            $('.datepicker').datepicker();
+        });
+        });
+        ///var customForm = new VarienForm('report_filter');
+
+    </script>
+    <script type="text/x-magento-init">
+    {
+        "#report_filter": {
+            "validation": {}
+        }
+    }
+</script>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><?php echo $block->escapeHtml(__('Interval')); ?></th>
+                <th><?php echo $block->escapeHtml(__('Products Name')); ?></th>
+                <th><?php echo $block->escapeHtml(__('Price')); ?></th>
+                <th><?php echo $block->escapeHtml($block->getLastColumnHeader()); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+                <?php $sumItemCount = 0; ?>
+                <?php $sumQtySold = 0; ?>
+                <?php $sumSubtotal = 0; ?>
+                <?php $sumIncome = 0; ?>
+                <?php if($items->count() > 0): ?>
+                    <?php foreach($items AS $item) : ?>
+                        <?php $sumItemCount += $item->getItemCount(); ?>
+                        <?php $sumQtySold += $item->getQtyOrdered(); ?>
+                        <?php $sumSubtotal += $item->getProductPrice(); ?>
+                        <tr>
+                            <td><?php echo $block->getPeriodString($item->getPeriod()); ?></td>
+                            <td><?php echo $block->escapeHtml($item->getProductName()); ?></td>
+                            <td><?php echo $block->getCurrencyHelper()->currency($item->getProductPrice()); ?></td>
+                            <td><?php echo number_format($item->getQtyOrdered()); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+            <?php else : ?>
+                    <tr>
+                        <td colspan="4"><?php echo $block->escapeHtml(__('No records found.')); ?></td>
+                    </tr>
+            <?php endif; ?>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="info" colspan="2"><?php echo $block->escapeHtml(__('Total')); ?></td>
+                <td class="info"><?php echo $block->getCurrencyHelper()->currency($sumSubtotal); ?></td>
+                <td class="info"><?php echo $block->escapeHtml($sumQtySold); ?></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

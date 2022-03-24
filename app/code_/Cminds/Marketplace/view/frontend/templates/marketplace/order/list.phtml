@@ -1,0 +1,272 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+$helperImport = $objectManager->get('\Magento\Catalog\Helper\Image');
+$rootPath  =  $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$items = $block->getFlatCollection();
+
+$isDiscountEff = $block->isDiscountEffective();
+$statuses = $block->gestSalesOrderStatusModel();
+$visibleStatuses = $block->getMarketplaceHelper()->getStatusesCanSee();
+
+$supplierid = $objectManager->create('Cminds\Supplierfrontendproductuploader\Helper\Data')->getSupplierId(); 
+
+$supplier = $objectManager->create('Magento\Customer\Model\Customer')->load($supplierid);
+
+$collection = $objectManager->get('Magento\Catalog\Model\Product')
+->getCollection()
+->addAttributeToSelect('creator_id')
+->addAttributeToFilter(array(array('attribute' => 'creator_id', 'eq' => $supplierid)))
+->setOrder('entity_id');
+$productList = array();
+
+foreach($collection as $product) {
+    $productList[] = $product->getId();
+}   
+$supplierCustomFeilds = unserialize($supplier->getCustomFieldsValues());
+
+$merchantId = "MCID";
+    if ($supplier->getMerhhantId()!=null) 
+    {
+        $merchantId = $supplier->getMerhhantId();
+    }
+
+?>
+
+<div class="container main-container vendor-container">
+    <h1 class="text-center"><?php echo /* @escapeNotVerified */ __('Orders')?></h1><hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <form
+                name="report_filter"
+                id="report_filter"
+                action="<?php echo $block->getUrl('*/*/*') ?>"
+                method="post"
+                enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-2">
+                        <input
+                            type="text"
+                            class="form-control input-text"
+                            placeholder="Order Id"
+                            name="autoincrement_id"
+                            value="<?php echo $block->escapeHtml($block->getRequestParams('autoincrement_id', '')); ?>"
+                        />
+                    </div>
+                    <div class="col-md-2">
+                        <input
+                            type="text"
+                            class="form-control datepicker input-text input-text validate-date"
+                            name="from"
+                            value="<?php echo $block->escapeHtml($block->getRequestParams('from', '')); ?>"
+                            placeholder=<?php echo /* @escapeNotVerified */ __('From/')?>
+                        />
+                    </div>
+                    <div class="col-md-2">
+                        <input
+                            type="text"
+                            class="form-control datepicker input-text input-text validate-date"
+                            name="to"
+                            value="<?php echo $block->escapeHtml($block->getRequestParams('to', '')); ?>"
+                            placeholder=<?php echo /* @escapeNotVerified */ __('To/')?>
+                        />
+                    </div>
+                    <!--<div class="col-md-2">
+                        <select name="status">
+                            <option value=""> Status</option>
+                            <?php foreach ($statuses as $status) : ?>
+                                <?php if (in_array($status->getStatus(), $visibleStatuses)) : ?>
+                                    <?php
+                                    $selected = $status->getStatus() === $block->getRequestParams('status', '')
+                                        ? ' selected="selected"'
+                                        : '';
+                                    ?>
+                                    <option
+                                        value="<?php echo $status->getStatus() ?>"
+                                        <?php echo $selected; ?>><?php echo $status->getLabel() ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>-->
+                    <div class="show-report">
+                        <input
+                            type="submit"
+                            name="submit"
+                            class="btn btn-primary btn-sm"
+                            value="<?php /* @escapeNotVerified */ echo __('Filter') ?>"
+                        />
+                    </div>
+                    <div class="col-md-2">
+                        <button
+                            class="btn btn-sm export-to-csv"
+                        ><?php echo /* @escapeNotVerified */ __('Export to CSV') ?></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class='table-responsive table-vendar-box'>
+                <table class="table table-striped">
+                    <thead>
+                        <th><?php echo /* @escapeNotVerified */ __('MC Order No') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Order Date') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Image') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Quantity') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Ship Date') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('MC Price') ?></th>  
+                        <!--<th><?php echo /* @escapeNotVerified */ __('Status')?></th>-->
+                        <th><?php echo /* @escapeNotVerified */ __('Print Invoice')?></th>
+                    </thead>
+                    <tbody>
+                    <?php if ($items->count()) : ?>
+
+                        <?php foreach($items as $item) : 
+                           
+                            $order = $objectManager->create('Magento\Sales\Model\Order')->load($item->getOrderId());
+                            ?>
+                            
+                             <?php 
+                              //$order = $block->getSalesOrderModel()->load($item->getOrderId()); 
+                              if (in_array($order->getStatus(), $visibleStatuses)) : 
+                           
+
+                               $prdoduct = $objectManager->create('Magento\Catalog\Model\Product')->load($item->getProductId());
+                                $shipId = 0;
+                                $supplierProdIds =  array_unique($productList);
+
+                                if(!in_array($item->getProductId(), $supplierProdIds))
+                                    continue;;
+				$skip= false;
+                                foreach($order->getShipmentsCollection() as $shipment)
+                                {
+				$shipmentCollections = $objectManager->create('Magento\Sales\Model\Order\Shipment');
+                        	$shipmentobj = $shipmentCollections->load($shipment->getId());
+				$sourceCode = $shipmentobj->getExtensionAttributes()->getSourceCode();
+				if($sourceCode == 'CM-GGN' || $sourceCode == 'default'){$skip = true;}   
+                                $itemShipment = $objectManager->create(Magento\Sales\Model\Order\Shipment::class)->load($shipment->getEntityId()); 
+
+                                    $shipmentItemsCollection = $itemShipment->getItemsCollection();
+                                  
+                                    foreach($shipmentItemsCollection as $shipItem)
+                                    {
+
+                                        if($shipItem->getProductId() == $item->getProductId())
+                                        {
+                                            
+                                            $shipId = $shipment->getEntityId();
+
+                                        }
+                                    }
+                                    // echo $shipId;
+                                }              
+				if($skip)continue;                  
+                            ?>
+                            <?php $newshipdate=$item->getItemreadinessdate();?>
+                          
+                            
+                                <?php $subtotal = $block->calculateSubtotal($order); ?>
+                                <?php if($isDiscountEff):?>
+                                    <?php $discount = $block->calculateDiscount($order); ?>
+                                <?php endif; ?>
+                                <tr class="item">
+                                    <td> #<?php echo $merchantId."-".$order->getIncrementId(); ?></td>
+                                    <td>
+                                        <?php echo $block->escapeHtml(date('d/M/y', strtotime($item->getCreatedAt()))); ?>                                      
+                                    </td>
+                                    <td><img height="100" width="100" src="<?php echo $rootPath . '/catalog/product' . $prdoduct->getImage(); ?>"></td>
+                                    </td>
+                                    <td class="qty-value"><?php echo round($item->getQtyOrdered())?></td>
+                                    <td>
+                                        <?php if($newshipdate){ echo date('d/M/y', strtotime($newshipdate)); }
+                                        else{ echo date('d/M/y', strtotime($item->getCreatedAt(). ' + 1 days'));
+
+                                        } ?>
+                                    </td>
+
+                                    <td>
+                                        <?php if($prdoduct->getMarketplace_fee()){ 
+                                            echo $priceHelper->currency($prdoduct->getMarketplace_fee(), true, false);
+                                             } 
+                                            else{ echo $priceHelper->currency($prdoduct->getPrice(), true, false);
+                                            } ?>
+                                        
+                                    </td>                                  
+                                   
+                                    <!--<td><?php //echo ucfirst($order->getStatus()); ?>
+                                    <?php //echo '=='.$item->getOrderitemstatus().'+++'?>
+                                    <?php //echo $item->getOrderitemstatus(); ?>
+                                    <?php if($order->getStatus() != "canceled"){ ?>
+                                        <form action="<?php echo $block->getUrl('ordercomment/index/savecomment',array( 'id' => $item->getId() )); ?>" method="post" id="comments">                                        
+                                        <input type="hidden" name="orderitemstatus" value="1" />
+                                        <input type="hidden" name="orderid" value="<?php echo $item->getOrderId(); ?>" />
+                                        <input type="hidden" name="itemid" value="<?php echo $item->getId(); ?>" />
+                                         <input type="submit" name="readyToShip" class="readyToShip btn btn-sm btn-primary" value="Ready" style="width:90px;" <?php echo $item->getOrderitemstatus() ? "disabled" : ""; ?> />
+                                        </form>
+                                    <?php } ?>
+                                    </td>-->
+                                    <td>
+                                           
+                                      <?php if($shipId != 0)
+                                        {  //echo $shipId; ?>
+                                             <a href="<?php echo $block->getUrl('marketplace/shipment/printlabel/', ['id' => $shipId])  ?>" class="btn btn-primary"  target="_blank"><?php echo $block->escapeHtml(__('Ship Label')); ?>                                                 
+                                             </a> 
+                                        
+                                           <!--<button id="printShip" title="Print" type="button" class="scalable save btn btn-sm btn-primary" onclick="setLocation('<?php //echo $block->getUrl('marketplace/shipment/printlabel/', ['id' => $shipId]) ?>')" style=""><span><span><span>Ship Label</span></span></span></button>-->
+
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
+                                <?php //} ?>  
+
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <td colspan="7"><?php echo /* @escapeNotVerified */ __('No results'); ?></td>
+                    <?php endif; ?>
+                    </tbody>
+                    <tfoot>
+                         <th><?php echo /* @escapeNotVerified */ __('MC Order No') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Order Date') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Image') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Quantity') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('Ship Date') ?></th>
+                        <th><?php echo /* @escapeNotVerified */ __('MC Price') ?></th>  
+                        <!--<th><?php echo /* @escapeNotVerified */ __('Status')?></th>-->
+                        <th><?php echo /* @escapeNotVerified */ __('Print Invoice')?></th>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require([
+        "jquery",
+        "jquery/ui",
+        'jquery/fileUploader/jquery.fileupload'
+    ], function ($) {
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
+
+            jQuery('#report_filter input[type="submit"]').click(function (e) {
+                var actionExport = '<?php echo $block->getUrl('*/*/*') ?>';
+                var form = jQuery('#report_filter');
+                form.attr('action', actionExport);
+                form.submit();
+            });
+
+            jQuery('.export-to-csv').click(function (e) {
+                var actionExport = '<?php echo $block->getUrl('*/*/export') ?>';
+                var form = jQuery('#report_filter');
+                form.attr('action', actionExport);
+                form.submit();
+            });
+        });
+    });
+</script>

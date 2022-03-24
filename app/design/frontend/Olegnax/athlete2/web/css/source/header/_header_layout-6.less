@@ -1,0 +1,82 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .header--layout-6 {
+        .header__center.block-search{
+            display:none;
+        }
+        .header__right{
+             margin-left: auto;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .header--layout-6{
+        .ox-sticky.sticky.resize{
+            .header__content{
+                .header__item-search{
+                    display:block;
+                }
+                > .header__center.block-search{
+                    display:none;
+                }
+            }
+            .header__left{
+               flex: 1 1 auto; 
+            }
+            .block-search--type-panel .action-search-slideout {
+                display: flex !important;
+            }
+        }
+        .header__content{
+            .header__right{
+                .header__item-search{
+                    display:none;                
+                }
+            }
+
+            .header__center.block-search{
+                order: unset;
+                z-index:101;
+                align-items: center;
+                display: flex;
+                float: none;
+                width:auto;
+                padding-left: 30px;
+                padding-right: 30px;
+                &.header__item-search .header__search-wrapper > form{
+                    float: none;
+                    width: auto;
+                    input{
+                        width:100%!important;
+                    }
+                }
+                .header__search-wrapper{
+                    flex: 1 1 auto;
+                    .ox-overlay-close-btn,
+                    .logo__container,
+                    .animated-text--masked,
+                    .flashing-cursor{
+                        display:none;
+                    }
+                    .minisearch{
+                        position:relative;
+                    }
+                    .control{
+                            padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+

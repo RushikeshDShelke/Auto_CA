@@ -1,0 +1,36 @@
+<?php
+/**
+ * Olegnax MegaMenu
+ *
+ * This file is part of Olegnax/Core.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Olegnax.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.olegnax.com/license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Olegnax
+ * @package     Olegnax_MegaMenu
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+$animation_type = $block->getValueOption('animation_type', 'fade');
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menu = $block->getHtml('level-top', 'submenu', $columnsLimit);
+?>
+<nav class="ox-megamenu" data-action="navigation" data-ox-mm-anim-type="<?php echo $animation_type ?>" data-mage-init='{"OxMegaMenu":{
+	 "header":"<?= $block->getValueOption('header_container') ?>",
+	 "direction":"<?= $block->getValueOption('direction', 'horizontal') ?>",
+	 "positionHorizontal":"<?= $block->getValueOption('position_horizontal', 'left') ?>"
+	 }}'>
+	<ul class="ox-megamenu-navigation">
+		<?= $_menu ?>
+	</ul>
+</nav>

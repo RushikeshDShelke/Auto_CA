@@ -1,0 +1,33 @@
+//  /**
+//  * Athlete2 Theme - Manadev Layered Navigation
+//  * Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+//  **/
+
+//
+//  Styles Extends
+//  _____________________________________________
+
+
+& when (@media-common = true) {    
+    .ox-product-nav{
+        &.ox-product-nav__loader--theme{
+            .ox-product-nav__loader{
+                background: url('@{baseDir}images/preloader.svg');
+                background-size: 56px 21px;
+                width: 56px;
+                height: 21px;
+                transform: translate3d(-28px, -10px, 0);
+            }
+        }
+    }
+    /* fix for labels with checkboxes */
+    .filter-options-content .item{
+        label{
+            .lib-vendor-prefix-display(flex);
+            .ox-checkbox{
+                flex: 0 0 16px;
+                margin: 5px 7px 5px 0;
+            }
+        }
+    }
+}

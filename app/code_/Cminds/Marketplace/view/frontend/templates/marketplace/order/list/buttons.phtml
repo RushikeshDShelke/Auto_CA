@@ -1,0 +1,9 @@
+<?php
+
+/** @var \Cminds\Marketplace\Block\Order\OrderList\Buttons $block */
+
+?>
+
+<?php foreach ($block->getButtons() as $button): ?>
+    <a href="<?= $button['url']; ?>" class="<?= $button['class']; ?>"><?= $button['title']; ?></a>
+<?php endforeach; ?>

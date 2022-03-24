@@ -1,0 +1,53 @@
+<?php
+$at_settings = $block->getConfig('athlete2_settings/footer');
+$showBelowNewsletterBlock = $at_settings['show_footer_below_newsletter'];
+$showBottomBlock = $at_settings['show_footer_bottom'];
+$showFooterBlock = $at_settings['show_footer'];
+$footerLayout = $at_settings['footer_layout'];
+$storeSwitchPosition = $at_settings['store_switch_position'];
+
+if ($showFooterBlock) {
+	if ($footerLayout === '1' || $footerLayout === '2' || $footerLayout === '4') { ?>
+		<div class="block_newsletter_wrapper">
+			<?= $block->getChildHtml("subscribe") ?>
+			<?php if ($showBelowNewsletterBlock) { ?>
+				<div class="block_newsletter_below">
+				<?php if ( $at_settings[ 'footer_below_newsletter_content_type' ] == 'textfield' ) {
+					echo $block->getBlockTemplateProcessor( $at_settings[ 'footer_below_newsletter_content_custom' ] );
+				} elseif ($at_settings[ 'footer_below_newsletter_content_type' ] == 'custom_block'){
+					echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'footer_below_newsletter_content_static' ] )->toHtml();
+				} else {
+					echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( 'athlete2-footer-content-after-newsletter' )->toHtml();
+				} ?>
+				</div>
+			<?php }
+			if ($storeSwitchPosition === 'below-newsletter') {
+				echo $block->getChildHtml("store_switcher"); 				
+			}
+			?>
+		</div>
+	<?php } ?>
+	<div class="footer-block-content">
+		<?php if ( $at_settings[ 'footer_content_type' ] == 'textfield' ) {
+			echo $block->getBlockTemplateProcessor( $at_settings[ 'footer_content_custom' ] );
+		} elseif ($at_settings[ 'footer_content_type' ] == 'custom_block'){
+			echo$block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'footer_content_static' ] )->toHtml();
+		} else {
+			echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( 'athlete2-footer-content' )->toHtml();
+		} ?>		
+		<?php if ($storeSwitchPosition === 'footer-content') { 
+			echo $block->getChildHtml("store_switcher"); 			
+		} ?>
+	</div>
+	<?php if ($showBottomBlock) { ?>
+		<div class="footer-block-content-after">
+			<?php if ( $at_settings[ 'footer_bottom_content_type' ] == 'textfield' ) {
+				echo $block->getBlockTemplateProcessor( $at_settings[ 'footer_bottom_content_custom' ] );
+			} elseif ($at_settings[ 'footer_bottom_content_type' ] == 'custom_block'){
+				echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $at_settings[ 'footer_bottom_content_static' ] )->toHtml();
+			} else {
+				echo $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( 'athlete2-footer-content-after' )->toHtml();
+			} ?>	
+		</div>
+	<?php } ?>
+<?php } ?>

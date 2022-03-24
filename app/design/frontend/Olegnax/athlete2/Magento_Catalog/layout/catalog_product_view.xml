@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Athlete2 Theme
+ *
+ * @author      Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (https://olegnax.com). All rights reserved.
+ * @license     https://www.olegnax.com/license
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+     <head>       
+        <css src="css/custom.css"/>
+    </head>
+    <body>
+        <referenceBlock name="head.additional">
+            <block ifconfig="athlete2_settings/product/gallery_preload" class="Magento\Catalog\Block\Product\View\Gallery" name="ox_preload_image" template="Magento_Catalog::product/view/preload.phtml">
+                <arguments>
+                    <argument name="gallery_options" xsi:type="object">Magento\Catalog\Block\Product\View\GalleryOptions</argument>
+                    <argument name="imageHelper" xsi:type="object">Magento\Catalog\Helper\Image</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="before.body.end">
+            <block ifconfig="athlete2_settings/product/gallery_sticky" class="Magento\Framework\View\Element\Template" name="ox_sticky_gallery_js" template="Magento_Catalog::product/view/stickygalleryjs.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="ox_product_js" template="Magento_Catalog::product/view/js.phtml"/>
+            
+        </referenceContainer>
+        <!-- reposition gallery to prevent CLS -->
+        <move element="product.info.media" destination="main" />
+        <move element="product.info.media" destination="content" before="product.info.main" />
+        
+        <referenceBlock name="product.info.addto2.additional" remove="true"/>
+        <referenceBlock name="product.info.blog.relatedposts" remove="true"/>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
+        <move element="product.info.stock.sku" destination="product.info.main" before="product.info.price"/>
+        <move element="product.info.overview" destination="product.info.main" after="product.info.price"/>
+        <block class="Magento\Catalog\Block\Product\View" name="product_view_brand" template="Magento_Catalog::product/view/brand.phtml" before="page.main.title"/>
+        <block class="Magento\Catalog\Block\Product\View" name="product_view_category_name" template="Magento_Catalog::product/view/category-name.phtml" before="page.main.title"/>      
+        <move element="product_view_category_name" destination="product.info.main" before="page.main.title"/>
+        <move element="product_view_brand" destination="product.info.main" before="page.main.title"/>
+        <move element="catalog.product.related" destination="main.content" after="-"/>
+        
+        <move element="product_view_ox_social2.additional" destination="product.info.options.wrapper" after="-"/>
+        <referenceBlock name="product_view_ox_block" remove="true"/>
+        <referenceBlock name="product.info.price">
+                <block class="Olegnax\Athlete2\Block\Template" name="product_view_ox_block_template" template="Magento_Catalog::product/view/custom.phtml" after="-"/>
+        </referenceBlock>
+        <referenceBlock name="product.info.main">
+            <block class="Olegnax\Athlete2\Block\Template" name="product_view_ox_block" template="Magento_Catalog::product/view/ox_block.phtml" after="-"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.addto2" as="addto2" template="Magento_Catalog::product/view/addto2.phtml"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product_view_ox_social2" after="-" template="Magento_Catalog::product/view/ox_social2.phtml"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.addto2.additional" as="addto2-additional" template="Magento_Catalog::product/view/addto2.phtml"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product_view_ox_social2.additional" as="ox_social2-additional" after="-" template="Magento_Catalog::product/view/ox_social2.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="product.info.addto2">
+            <block class="Magento\Catalog\Block\Product\View\AddTo\Compare" name="view.addto.compare2" after="view.addto.wishlist2"
+                       template="Magento_Catalog::product/view/addto/compare.phtml" >
+				<arguments>
+					<argument name="addToCompareViewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Checker\AddToCompareAvailability</argument>
+				</arguments>
+            </block>
+        </referenceBlock>
+        <!-- <move element="product.info.addto2" destination="product.info.form.content" after="-"/> -->
+        <move element="product_view_ox_social2" destination="product.info.form.content" after="-"/>
+        <move element="product.info.addto" destination="page.main.title" after="-"/>
+        <!-- <move element="product.info.addto2.additional" destination="product.info.options.wrapper.bottom" after="-"/> -->
+        <!-- <move element="product_view_ox_social2.additional" destination="product.info.options.wrapper.bottom" after="-"/> -->
+        <referenceContainer name="product.info.social">
+            <block class="Magento\Catalog\Block\Product\View" name="product_view_ox_social" before="product.info.mailto" template="Magento_Catalog::product/view/ox_social.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.media">
+                <block class="Magento\Cms\Block\Block" name="similarviewbutton" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">similarviewbutton</argument>
+                    </arguments>
+                </block>
+            <block class="Magento\Catalog\Block\Product\View" name="product_view_ox_labels" template="Magento_Catalog::product/view/ox_labels.phtml" after="-"/>
+            <block ifconfig="athlete2_settings/general/videojs" class="Magento\Catalog\Block\Product\View" name="product_view_ox_video_js" template="Magento_Catalog::product/view/videojs.phtml"/>    
+            <container name="athlete2_after_gallery" htmlTag="div" htmlClass="athlete2_after_gallery" after="-">
+            </container>
+            <block class="Magento\Catalog\Block\Product\View" name="product_view_move_mobile" template="Magento_Catalog::product/view/move_mobile.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="catalog.product.related">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="helper" helper="Olegnax\Athlete2\Helper\UpdaterTemplate::setRelatedProductsLayout"/>
+            </action>
+            <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                <block class="Magento\Framework\View\Element\Template" name="category.product.type.details.renderers.default" as="default"/>
+                <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable"
+                       name="category.product.type.details.renderers.configurable" as="configurable"
+                       template="Magento_Swatches::product/listing/renderer.phtml"
+                       ifconfig="catalog/frontend/show_swatches_in_product_list"/>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="product.info.upsell">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="helper" helper="Olegnax\Athlete2\Helper\UpdaterTemplate::setUpSellProductsLayout"/>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="main">
+            <container name="athlete-reviews-wrapper" htmlTag="div" htmlId="reviews" after="-" htmlClass="athlete-reviews-wrapper" />            
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="athlete2_product_info_wrapper" htmlTag="div" htmlClass="athlete2_product_info__wrapper" before="-">
+            </container>
+        </referenceContainer>
+        <referenceContainer name="main.content">
+            <container name="athlete2_product_bottom" htmlTag="div" htmlClass="athlete2_product__bottom" after="columns">
+            </container>
+
+            <container name="block_above_reviews" as="someContainer" label="block above review" htmlTag="div" htmlClass="block_above_reviews" before="athlete2_product_bottom">
+            <block class="Magefan\Blog\Block\Catalog\Product\RelatedPosts" name="product.info.blog.relatedposts.tab" as="relatedposts.tab"  template="Magefan_Blog::catalog/product/relatedposts.phtml" group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Related Posts</argument>
+                    <argument name="at_call" xsi:type="string">getRelatedposts</argument>
+                    <argument name="at_code" xsi:type="string">relatedposts</argument>
+                    <argument name="css_class" xsi:type="string">relatedposts</argument>
+                    <argument name="sort_order" xsi:type="string">50</argument>
+                </arguments>
+            </block>
+                <block class="Magento\Cms\Block\Block" name="Promo">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">CM - Product Details - More About Craft and the Maestros</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <container name="block_below_reviews" as="someContainers" label="block below review" htmlTag="div" htmlClass="block_below_reviews" after="athlete2_product_bottom">
+                <block class="Magento\Cms\Block\Block" name="Promos">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">CM Product Details Page - Worried About Quality</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>       
+         <referenceBlock name="product.info.details">                
+            <referenceBlock name="product.info.description">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Product Details</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceBlock>
+    </body>
+</page>

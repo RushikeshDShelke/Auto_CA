@@ -1,0 +1,30 @@
+<?php
+/**
+ * Blog post author template
+ *
+ * @var $block \Magefan\Blog\Block\Post\Info
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+?>
+<?php 
+$_post = $block->getPost();
+$_authorEnabled = $block->authorEnabled();
+$_authorPageEnabled = $block->authorPageEnabled();
+?>
+
+<?php if ($_authorEnabled) { ?>
+	<?php if ($_author = $_post->getAuthor()) { ?>
+		<?php if ($_authorPageEnabled) { ?>
+		<a class="item post-author" title="<?php echo $block->escapeHtml($_author->getTitle()) ?>" href="<?php echo $_author->getAuthorUrl() ?>">
+		<?php } ?>
+			<?php echo $block->escapeHtml($_author->getTitle()) ?>
+		<?php if ($_authorPageEnabled) { ?>
+		</a>
+		<?php } ?>
+	<?php } ?>
+<?php } ?>
+

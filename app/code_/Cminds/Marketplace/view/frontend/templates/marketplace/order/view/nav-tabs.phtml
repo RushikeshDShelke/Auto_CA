@@ -1,0 +1,15 @@
+<?php
+
+/** @var \Cminds\Marketplace\Block\Order\View\AdditionalTabs $block  */
+
+?>
+
+<?php foreach ($block->getAdditionalTabs() as $tab): ?>
+    <?php if ($block->canShowTab($tab)): ?>
+        <li <?= /* @escapeNotVerified */ $block->getParentBlock()->getCurrentTab() === $tab['id'] ? 'class="active"' : '' ?>>
+            <a href="#<?= $tab['id'] ?>"
+               role="tab"
+               data-toggle="tab"><?= /* @escapeNotVerified */ __($tab['label']) ?></a>
+        </li>
+    <?php endif; ?>
+<?php endforeach; ?>

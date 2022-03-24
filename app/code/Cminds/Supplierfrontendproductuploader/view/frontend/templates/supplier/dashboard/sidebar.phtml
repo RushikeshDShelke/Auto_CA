@@ -1,0 +1,31 @@
+<?php /** @var \Cminds\Supplierfrontendproductuploader\Block\Dashboard $block */ ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">
+            <?php /* @escapeNotVerified */ echo __('Total Order Value'); ?>
+        </h3>
+    </div>
+    <div class="panel-body text-center">
+        <?php /* @escapeNotVerified */ echo $block->getCurrencyHelper()->currency($block->getSupplierSaleAmount()); ?>
+    </div>
+</div>
+<div class="panel panel-default">
+   <!--  <div class="panel-heading">
+        <h3 class="panel-title text-center">
+            <?php /* @escapeNotVerified */ echo __('Total Order Value'); ?>
+        </h3>
+    </div> -->
+   <!--  <div class="panel-body text-center">
+        <?php /* @escapeNotVerified */ echo $block->getCurrencyHelper()->currency($block->getSupplierSaleAvg()); ?>
+    </div> -->
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center"><?php /* @escapeNotVerified */ echo __('Total Order Quantity'); ?></h3>
+    </div>
+    <div class="panel-body text-center">
+        <a href="<?php echo $block->escapeHtml($block->getUrl('supplier/product/ordered')); ?>">
+            <?php echo $block->escapeHtml((int)$block->getSupplierSaleCount()); ?>
+        </a>
+    </div>
+</div>

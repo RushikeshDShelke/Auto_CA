@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category  Lof
+ * @package   Lof\PincodeChecker
+ * @author    Landofcoder <landofcoder@gmail.com>
+ * @copyright 2020 Landofcoder
+ * @license   https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="standard">
+		<route frontName="pincodechecker" id="pincodechecker">
+			<module name="Lof_PincodeChecker"/>
+		</route>
+	</router>
+</config>

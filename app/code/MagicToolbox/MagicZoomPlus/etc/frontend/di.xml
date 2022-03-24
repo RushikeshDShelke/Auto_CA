@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="MagicToolbox\MagicScrollModuleCoreClass" type="MagicToolbox\MagicZoomPlus\Classes\MagicScrollModuleCoreClass" shared="true">
+        <arguments>
+            <argument name="reloadDefaults" xsi:type="boolean">false</argument>
+        </arguments>
+    </virtualType>
+    <type name="MagicToolbox\MagicZoomPlus\Helper\Data" shared="true">
+        <arguments>
+            <argument name="magicscroll" xsi:type="object">MagicToolbox\MagicScrollModuleCoreClass</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="MagicZoomPlusListProductPlugin" type="MagicToolbox\MagicZoomPlus\Plugin\Product\ListProduct" sortOrder="4" disabled="false" />
+    </type>
+
+    <!-- NOTE: to fix exception when image doesn't exists -->
+    <preference for="Magento\Framework\Image" type="MagicToolbox\MagicZoomPlus\Model\Image" />
+</config>

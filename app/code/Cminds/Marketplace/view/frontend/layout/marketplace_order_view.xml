@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="jquery.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="bootstrap/js/bootstrap.min.js"/>
+        <remove src="fancybox/js/jquery.fancybox.js"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/bootstrap.min.css"/>
+        <css src="Cminds_Supplierfrontendproductuploader::css/supplierfrontendproductuploader/custom.css"/>
+        <script src="jquery/jquery.min.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/no-conflict.js"/>
+        <script src="Cminds_Supplierfrontendproductuploader::js/supplierfrontendproductuploader/bootstrap.min.js"/>
+    </head>
+    <body>
+        <referenceBlock name="authentication-popup" remove="true"/>
+        <referenceBlock name="porto_header" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Cminds\Supplierfrontendproductuploader\Block\Navbar"
+                   name="supplier.navbar"
+                   template="Cminds_Supplierfrontendproductuploader::supplier/nav.phtml"
+                   cacheable="false"/>
+            <block class="Cminds\Marketplace\Block\Order\View"
+                   name="marketplace.order.list"
+                   template="Cminds_Marketplace::marketplace/order/view.phtml">
+                <block class="Cminds\Marketplace\Block\Order\View\Order"
+                       name="order_view_order" as="view_order"
+                       template="Cminds_Marketplace::marketplace/order/view/order.phtml"
+                       cacheable="false"/>
+                <block class="Cminds\Marketplace\Block\Order\View"
+                       name="order_view_shipments" as="view_shipments"
+                       template="Cminds_Marketplace::marketplace/order/view/shipments.phtml"
+                       cacheable="false"/>
+                <block class="Cminds\Marketplace\Block\Order\View\Invoices"
+                       name="order_view_invoices" as="view_invoices"
+                       template="Cminds_Marketplace::marketplace/order/view/invoices.phtml"
+                       cacheable="false"/>
+                <block class="Cminds\Marketplace\Block\Order\View\AdditionalTabs"
+                       name="order_view_additional_tabs" as="view_additional_tabs"
+                       template="Cminds_Marketplace::marketplace/order/view/tabs.phtml"
+                       cacheable="false"/>
+                <block class="Cminds\Marketplace\Block\Order\View\AdditionalTabs"
+                       name="order_view_additional_nav_tabs" as="view_additional_nav_tabs"
+                       template="Cminds_Marketplace::marketplace/order/view/nav-tabs.phtml"
+                       cacheable="false"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

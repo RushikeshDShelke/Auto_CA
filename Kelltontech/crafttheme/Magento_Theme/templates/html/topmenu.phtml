@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+?>
+<div id="header-nav" class="skip-content bk-overlay">
+	<nav class="navigation" data-action="navigation" id="nav">
+		<ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+			<?= /* @noEscape */ $_menuHtml?>
+			<?= $block->getChildHtml() ?>
+		</ul>
+	</nav>
+	<div id="mobilenav">
+
+	</div>
+</div>
+
+<script type="text/javascript">
+require(['jquery', 'cycle'],function(){
+	jQuery(document).ready(function () {
+
+		// ==============================================
+		// UI Pattern - Slideshow
+		// ==============================================
+
+		jQuery('.slideshow-container .slideshow')
+			.cycle({
+				fx: 'scrollHorz',
+				slides: '> li',
+				//pager: '.slideshow-pager',
+				//pagerTemplate: '<span class="pager-box"></span>',
+				speed: 600,
+				pauseOnHover: true,
+				swipe: true,
+				prev: '.slideshow-prev',
+				next: '.slideshow-next'
+				
+			});
+	});
+});
+
+</script>

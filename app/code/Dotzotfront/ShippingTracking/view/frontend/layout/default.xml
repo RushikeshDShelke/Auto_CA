@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dotzot Shipping
+ *
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="footer_links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="prshippingtracking/general/enabled" name="check-order-status-link">
+                <arguments>
+                    <argument name="label" xsi:type="string">Check Order Status</argument>
+                    <argument name="path" xsi:type="string">shippingtracking/index/index</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

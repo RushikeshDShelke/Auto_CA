@@ -1,0 +1,657 @@
+// Variables
+@athlete-slideshow__main-color: #ffe51e;
+@athlete-slideshow__transition: all 200ms ease;
+@athlete-slideshow__transition-long: all 600ms ease-in-out;
+@tiny-font: Arial, sans-serif;
+//
+// Common
+//____________________________________________________
+
+& when (@media-common = true) {
+    .athlete-slideshow { 
+        display:none;
+        overflow: hidden; 
+        position: relative; 
+        z-index: 1; 
+        .slide{
+            display: none; 
+            width:100%; 
+            height:100%;
+            /* in case script does not load */
+            &.first { 
+                display: block; 
+            }
+            .container{
+                height:100%;
+            }
+            .slide-img { 
+                position: absolute; 
+                z-index: 1; 
+                width: 100%; 
+            }
+            .slide-content-container { 
+                position: relative; 
+                z-index: 2; 
+                width: 98%; 
+                margin: 0 auto; 
+                padding: 0; 
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100%;
+            }
+            .controls-title { 
+                position: relative; 
+                float: left; 
+                margin: 0; 
+            }
+            .controls {            
+                position: relative; 
+                float: left;
+                margin: 0;
+                .slide-control {
+                    .lib-css(transition, @athlete-slideshow__transition, @_prefix: 1);
+                    opacity: 0; 
+                    filter:alpha(opacity=0); 
+                    width:60px; 
+                    height: 52px; 
+                    z-index: 800; 
+                    overflow: hidden; 
+                    cursor: pointer;
+                    background:#000;
+                    &:after{
+                        content: '';
+                        display: block;
+                        background: @athlete-slideshow__main-color;
+                        width: 100%;
+                        height: 100%;
+                        transform: scaleY(0);
+                    }
+                    span{
+                        position:absolute;
+                        z-index:2;
+                        &:after,
+                        &:before{
+                            content: '';
+                            display: block;
+                            width: 20px;
+                            height: 2px;
+                            position: absolute;
+                            background: #fff;
+                        }
+                    }
+                    &:hover{
+                        span{
+                            &:after,
+                            &:before{
+                                background: #000;
+                            }
+                        }
+                    }
+                    &.slide-prev {
+                        span{
+                            &:before{
+                                transform: rotate(-45deg);
+                                top: 24px;
+                                left: 13px;
+                            }
+                            &:after{
+                                transform: rotate(45deg);
+                                top: 24px;
+                                left: 27px;
+                            }
+                        }
+                        &:after {
+                            transform-origin: top;
+                            animation: arrow-out 200ms;
+                        }
+                    }
+                    &.slide-next {
+                        span{
+                            &:before{
+                                transform: rotate(45deg);
+                                top: 27px;
+                                left: 13px;
+                            }
+                            &:after{
+                                transform: rotate(-45deg);
+                                top: 27px;
+                                left: 27px;
+                            }
+                        }
+                        &:after {
+                            transform-origin: bottom;
+                            animation: arrow-out 200ms;
+                        }
+                    }
+                }
+
+                .progress { 
+                    position: absolute; 
+                    right: 0; 
+                    height: 10px; 
+                    width: 0; 
+                    background: @athlete-slideshow__main-color; 
+                    border-radius: 0;
+                }
+            }
+            .disabled { 
+                background-color:#999;
+            }
+            .slide-banners{
+                margin-left: auto;
+            }
+            .slide-banner { 
+                display: block; 
+                margin: 0 -10px 18px; 
+                opacity: 0; 
+                filter:alpha(opacity=0);
+                &:last-child { 
+                    margin-bottom: 0;
+                }
+                img { 
+                    .lib-css(transition, @athlete-slideshow__transition, @_prefix: 1);
+                    display: block; 
+                    float: right;  
+                    margin-left: 15px; 
+                }
+            }
+        }
+    }
+    .no-touch {
+        .slide-title {
+            .link{
+                &:hover {
+                    color: #ffffff;
+                    background-color: #000000;
+                    span{
+                        transform: translateX(4px);
+                        &:before,
+                        &:after{
+                            background: #ffffff;
+                        }
+                    }
+                }
+            }
+        }
+        .athlete-slideshow {
+            .slide{
+                .controls{
+                    .slide-control{
+                        &:hover{
+                            &:after{
+                                transform: scaleY(1);
+                            }
+                        }                   
+                    }
+                    .slide-prev{
+                        &:hover:after {
+                            transform-origin: bottom;
+                            animation: arrow-over 200ms;
+                        }
+                    }
+                    .slide-next{
+                        &:hover:after {
+                            transform-origin: top;
+                            animation: arrow-over 200ms;
+                        }
+                    }                                    
+                    .disabled:hover { 
+                        background-color:#999; 
+                    }
+                }
+                .slide-banner{
+                    &:hover {
+                        img { 
+                            margin:0 15px 0 0; 
+                            opacity: 0.9;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .pseudo-arrow(@width; @height; @top; @left; @deg; @bg){
+        content: '';
+        display: block;
+        position: absolute;
+        width: @width;
+        height: @height;
+        background: @bg;
+        transform: rotate(@deg);
+        top: @top;
+        left: @left;
+    }
+
+    .slide-title { 
+        float: left; 
+        margin: 0; 
+        /*
+        position: absolute; 
+        left: 60px; 
+        */
+        z-index: 1; 
+        display: none; 
+        br { 
+            clear:both; 
+            height:0; 
+            line-height: 0; 
+            font-size: 0;
+        }
+        .text { 
+            position: relative; 
+            display: inline-block; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            line-height:48px; 
+            padding:1px 12px 3px 6px; 
+            margin: 0; 
+            color:#fff; 
+            background-color: #000000;
+            font-size:48px; 
+            font-weight:900; 
+            text-transform:uppercase;
+            letter-spacing: -0.03em;
+            &:first-child { 
+                margin-top: 0;
+            }
+        }
+        .link { 
+            position: relative;
+            display: inline-block; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            line-height: 35px; 
+            margin: 0; 
+            padding:0 51px 0 11px; 
+            color:#000; 
+            background-color: @athlete-slideshow__main-color;
+            font-size:16px; 
+            font-weight:700; 
+            text-transform:uppercase; 
+            text-decoration: none;
+            letter-spacing: -0.03em;
+            span { 
+                .lib-css(transition, @athlete-slideshow__transition-long, @_prefix: 1);
+                display: block; 
+                position: absolute; 
+                top: 0; 
+                right: 0; 
+                overflow: hidden; 
+                width:25px; 
+                height: 35px; 
+                &:after{
+                    .pseudo-arrow(10px; 3px; 13px; 1px; 45deg; #000);
+                }
+                &:before{
+                    .pseudo-arrow(10px; 3px; 19px; 1px; -45deg; #000);
+                }
+            }
+            &:hover{
+                span{
+                    .lib-css(transition, @athlete-slideshow__transition, @_prefix: 1);
+                }
+            }
+        }
+
+    }
+    .slide-title--reset(){
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            top: 0; 
+            width: 0; 
+            height: 100%; 
+            z-index: -1;
+    }
+
+    .slide-title {
+        .animation-wrapper {
+            position: relative; 
+            z-index: 3; 
+            overflow: hidden; 
+            margin: 0; 
+            padding: 0;
+            &:first-child { 
+                margin-top: 0;
+            }
+        }
+        .animation-link { 
+            margin-top: 0 
+        }
+
+        .slide-title {
+            .text{
+                &:after { 
+                    .slide-title--reset();
+                }
+            } 
+        }
+        .text{
+            &:before { 
+                .slide-title--reset();
+                width: 100% 
+            }
+        }
+        .animate-me {
+            .text{
+                &:after { 
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+
+
+
+
+    /* loading */
+    .cycle-loading { 
+        box-sizing: border-box;
+        width: 80px;
+        height: 30px;
+        content:url('../Olegnax_Athlete2Slideshow/images/preloader.svg');
+    }
+
+    /* pager */
+    .cycle-pager {
+        text-align: center; 
+        width: 100%; 
+        z-index: 500; 
+        position: absolute; 
+        top: 10px; 
+        overflow: hidden;
+        > * { 
+            cursor: pointer;
+        }
+        span {
+            font-family: @tiny-font; 
+            font-size: 50px; 
+            width: 16px; 
+            height: 16px;
+            display: inline-block; 
+            color: #ddd; 
+            cursor: pointer;
+            &.cycle-pager-active { 
+                color: #D69746;
+            }
+        }
+    }
+
+    /* caption */
+    .cycle-caption { 
+        position: absolute; 
+        color: white;
+        bottom: 15px; 
+        right: 15px; 
+        z-index: 700; 
+    }
+
+    /* overlay */
+    .cycle-overlay {
+        font-family: tahoma, Arial, sans-serif;
+        position: absolute; 
+        bottom: 0; 
+        width: 100%; 
+        z-index: 600;
+        background: black; 
+        color: white; 
+        padding: 15px; 
+        opacity: .5;
+    }
+    /* prev / next links */
+    .cycle-prev, 
+    .cycle-next { 
+        position: absolute; 
+        top: 0; 
+        width: 30%; 
+        opacity: 0; 
+        filter: alpha(opacity=0); 
+        z-index: 800; 
+        height: 100%; 
+        cursor: pointer; 
+        &:hover{
+            opacity: .7; 
+            filter: alpha(opacity=70);
+        }
+    }
+    .cycle-prev { 
+        left: 0;
+    }
+    .cycle-next { 
+        right: 0;
+    }
+}
+
+    @keyframes arrow-over {
+        from {
+            transform:scaleY(0); 
+        }
+        to { 
+            transform:scaleY(1); 
+        }
+    }
+    @keyframes arrow-out {
+        from { 
+            transform:scaleY(1); 
+        }
+        to { 
+            transform:scaleY(0); 
+        }
+    }
+    
+    @media only screen and (max-width: 1023px) {
+        .athlete-slideshow {
+            .slide {
+                .controls {
+                    .slide-control { 
+                        width:51px; 
+                        height: 44px;
+                        span{
+                            &:after,
+                            &:before{
+                                width: 17px;
+                            }
+                        }
+                        &.slide-prev {
+                            span{
+                                &:before{
+                                    top: 21px;
+                                    left: 12px;
+                                }
+                                &:after{
+                                    top: 21px;
+                                    left: 23px;
+                                }
+                            }
+                        }
+                        &.slide-next {
+                            span{
+                                &:before{
+                                    top: 21px;
+                                    left: 12px;
+                                }
+                                &:after{
+                                    top: 21px;
+                                    left: 23px;
+                                }
+                            }
+                        }
+                    }  
+                }
+            }
+        }
+        .slide-title { 
+            /*left: 51px; */
+            .text { 
+                line-height: 40px; 
+                font-size: 40px; 
+            }
+        }
+    }
+    @media only screen and (max-width: 767px) {
+	.hide-below-768 { display: none; }
+	.show-below-768 { display: block; }
+        .athlete-slideshow .slide {
+            .slide-content-container{
+                flex-wrap: wrap;
+                flex-flow: column;
+            }
+            .controls {
+                .slide-control { 
+                    width:39px; 
+                    height: 34px; 
+                    span{
+                        &:after,
+                        &:before{
+                            width: 13px;
+                        }
+                    }
+                    &.slide-prev {
+                        span{
+                            &:before{
+                                top: 16px;
+                                left: 9px;
+                            }
+                            &:after{
+                                top: 16px;
+                                left: 18px;
+                            }
+                        }
+                    }
+                    &.slide-next {
+                        span{
+                            &:before{
+                                top: 16px;
+                                left: 9px;
+                            }
+                            &:after{
+                                top: 16px;
+                                left: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+            .controls-title {
+                float: none; 
+                width: 426px; 
+                margin: 0 auto; 
+            }
+            .slide-banners {
+                float: none; 
+                margin: 0 auto; 
+                text-align: center;
+            }
+            .slide-banner { 
+                display: inline-block; 
+                margin: 5px; 
+                img { 
+                    display: inline-block; 
+                    max-width: 100%; 
+                    height: auto; 
+                    float: none; 
+                    margin: 0;
+                }
+            }
+        }
+        .no-touch .athlete-slideshow .slide .slide-banner:hover img { 
+            margin: 0; 
+            opacity: 1 
+        }
+        .slide-title { 
+            /*left: 39px; */                   
+            .text { 
+                line-height: 30px; 
+                font-size: 30px;
+            }
+            .link { 
+                line-height: 26px; 
+                font-size: 12px; 
+                padding: 0 41px 0 7px;
+                span { 
+                    width:19px; 
+                    height: 26px;
+                    &:before{
+                        top: 14px;
+                        width: 7px;
+                        height: 2px;
+                    }
+                    &:after{
+                        width: 7px;
+                        height: 2px;
+                        top: 10px;
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 479px) {
+        .athlete-slideshow .slide {            
+            .controls-title { 
+                width: 300px 
+            }
+            .controls {            
+                .slide-control {
+                    width:33px; 
+                    height: 28px;
+                    span{
+                        &:after,
+                        &:before{
+                            width: 11px;
+                        }
+                    }
+                    &.slide-prev {
+                        span{
+                            &:before{
+                                top: 13px;
+                                left: 8px;
+                            }
+                            &:after{
+                                top: 13px;
+                                left: 15px;
+                            }
+                        }
+                    }
+                    &.slide-next {
+                        span{
+                            &:before{
+                                top: 13px;
+                                left: 8px;
+                            }
+                            &:after{
+                                top: 13px;
+                                left: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .slide-title { 
+            /*left: 33px; */
+            .text { 
+                line-height: 24px; 
+                font-size: 24px; 
+            }
+            .link { 
+                line-height: 20px; 
+                font-size: 11px; 
+                padding: 0 31px 0 5px; 
+                span { 
+                    width:14px; 
+                    height: 20px;
+                    &:before{
+                        top: 10px;
+                        width: 6px;
+                    }
+                    &:after{
+                        width: 6px;
+                        top: 7px;
+                    }
+                }
+            }
+        }
+    }

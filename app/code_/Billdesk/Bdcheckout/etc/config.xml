@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <!-- <default>
+        <payment>
+            <bdcheckout>
+                <model>Billdesk\Bdcheckout\Model\Bdcheckout</model>
+                <title>Billdesk</title>
+                <prod_url>https://pgi.billdesk.com/pgidsk/PGIMerchantPayment</prod_url>
+                <redirect_url>bdcheckout/standard/redirect</redirect_url>
+                <return_url>bdcheckout/standard/response</return_url>
+                <notify_url>bdcheckout/standard/notify</notify_url>
+                
+                <payment_action>authorize</payment_action>
+            </bdcheckout>
+        </payment>
+    </default> -->
+
+    <default>
+        <payment>
+            <bdcheckout>
+                <active>1</active>
+                <title>Billdesk</title>
+                <model>Billdesk\Bdcheckout\Model\Bdcheckout</model>
+                <merchant_id>merchant_id</merchant_id>
+                <checksum_key>checksum_key</checksum_key>
+                <billdesk_gateway_url>billdesk_gateway_url</billdesk_gateway_url>
+                <order_status>pending</order_status>
+                
+                <sort_order>1</sort_order>
+                <instructions>Instruction</instructions>
+                <payment_action>authorize</payment_action>
+                
+            </bdcheckout>
+        </payment>
+    </default>
+
+
+
+
+</config>

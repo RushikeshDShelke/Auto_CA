@@ -1,0 +1,5 @@
+<?php if($this->isRevoulutionActive() && $alias = $this->revolutionSliderAlias()): ?>
+    <div class="athlete2slideshow revolution">
+	    <?= $this->getLayout()->createBlock('Nwdthemes\Revslider\Block\Revslider')->setAlias($alias)->toHtml(); ?>
+    </div>
+<?php endif;

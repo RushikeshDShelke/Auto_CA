@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="custom_inv" sortOrder="999" translate="label">
+            <label>custom_inv</label>
+        </tab>
+        <section id="invoice" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>invoice</label>
+            <tab>custom_inv</tab>
+            <resource>Kellton_Custominvoice::config_kellton_custominvoice</resource>
+            <group id="value_cus_invoice" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>value_cus_invoice</label>
+                <field id="cus_invoice_value" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>cus_invoice_value</label>
+                    <comment/>
+                </field>
+                <field id="sup_invoice_value" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>sup_invoice_value</label>
+                    <comment/>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

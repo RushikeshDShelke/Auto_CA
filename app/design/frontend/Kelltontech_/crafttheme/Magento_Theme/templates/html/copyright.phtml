@@ -1,0 +1,96 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<small class="copyright n">
+    <span><?= $block->escapeHtml($block->getCopyright()) ?></span>
+</small>
+
+<a id="back2Top" title="Back to top" href="#"><i class="icon_uparrow-white"></i></a>
+
+<style>
+
+.icon_uparrow-white {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    margin-top: 16px;
+}
+#back2Top {
+    width: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    z-index: 1;
+    display: none;
+    cursor: pointer;
+    -moz-transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(360deg);
+    position: fixed;
+    bottom: 119px;
+    right: 0;
+    background-color: #0000009e!important;
+    color: #555;
+    text-align: center;
+    font-size: 25px;
+    text-decoration: none;
+    margin-right: 52px;
+}
+#back2Top:hover {
+    background-color: #DDF;
+    color: #000;
+}
+@media(max-width:768px){
+	#back2Top {
+	margin-right: 33px!important;	
+	}
+}
+</style>
+
+<script>
+/*Scroll to top when arrow up clicked BEGIN*/
+require(['jquery', 'jquery/ui'], function($){
+  $(document).ready( function() {
+$(window).scroll(function() {
+    var height = $(window).scrollTop();
+    if (height > 100) {
+        $('#back2Top').fadeIn();
+    } else {
+        $('#back2Top').fadeOut();
+    }
+});
+  });
+});
+
+require(['jquery', 'jquery/ui'], function($){
+$(document).ready(function() {
+    $("#back2Top").click(function(event) {
+        event.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+
+});
+});
+ /*Scroll to top when arrow up clicked END*/
+</script>
+
+<!--script>
+require(['jquery', 'jquery/ui'], function($){
+  $(document).ready( function() {
+	$(document).ready( function() {
+	$("mz-button-close").click(function(){
+		
+            location.reload(true);
+        });
+  });
+  });
+});
+</script-->

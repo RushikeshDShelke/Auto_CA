@@ -1,0 +1,12 @@
+{
+    "name": "ulmod/ordercomment",
+    "description": "Order Comment for Magento 2 by Ulmod",
+    "type": "magento2-module",
+    "version": "2.1.3",
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Ulmod\\OrderComment\\": ""
+        }
+    }
+}

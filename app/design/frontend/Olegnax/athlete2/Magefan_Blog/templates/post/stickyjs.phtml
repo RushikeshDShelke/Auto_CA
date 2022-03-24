@@ -1,0 +1,108 @@
+<?php
+/**
+ * Blog post sticky template
+ *
+ * @var $block \Magefan\Blog\Block\Post\Info
+ * 
+ * @category    Olegnax
+ * @package     Olegnax_Athlete2
+ * @copyright   Copyright (c) 2021 Olegnax (http://www.olegnax.com/)
+ * @license     https://www.olegnax.com/license
+ */
+?>
+<script type="text/javascript">
+require( [ 'jquery', 'domReady!'], function ( $ ) {
+    "use strict";
+    $( function () {
+        var postContent = $('.post-content'),
+        stickyHolder = $('.blog-post-sticky-info');
+
+        if(stickyHolder.length && postContent.length){
+            var progressBar = $('.progress-bar'),   
+                progressText = $('.progress-counter'),
+				narrow = $('.post-view .post-header'),
+				postContentLeft = postContent.offset().left,
+				minPostHeight = 350,
+				stickyWidth = stickyHolder.width() + 20,
+                windowHeight = $(window).height(),
+                windowWidth = $(window).width(),
+                eltop = postContent.offset().top;
+				
+			var narrowLeft = function(status){
+			   if( narrow.length ){
+				   if(narrow.offset().left - stickyWidth > 0){
+					   if(status){
+						   stickyHolder.css( { left: narrow.offset().left - stickyWidth } ); 
+					   } else {
+						   stickyHolder.css( { left: narrow.offset().left - stickyWidth - postContentLeft} );
+					   }
+				   } else {
+						if(status){
+							stickyHolder.css( { left: 0 } ); 
+						} else {
+							stickyHolder.css( { left: -(narrow.offset().left) } ); 
+						}
+				   }
+			   }
+			};
+			narrowLeft(false);
+            var updateSticky = function(){
+               var scrollTop = $(window).scrollTop(),
+                    _height = 50,
+                    $this_par_top = stickyHolder.parent().offset().top,
+                    $scrollto_h = postContent.offset().top + postContent.height() - stickyHolder.outerHeight(true);
+                if ( $( '.ox-sticky' ).length > 0 )
+                    _height += $( '.ox-sticky' ).height();
+                if ( scrollTop >= $scrollto_h - _height ) {					
+                    stickyHolder.addClass( '_static' ).removeClass( '_fixed' );
+                    stickyHolder.css( { top: 'auto' } );
+					narrowLeft(false);
+                    return;
+                }
+                stickyHolder.removeClass( '_static' ).toggleClass( '_fixed', scrollTop + _height >= $this_par_top );
+                if ( scrollTop + _height >= $this_par_top ) {
+                    stickyHolder.css( { top: _height} );
+					narrowLeft(true);
+                } else {
+					narrowLeft(false);
+                    stickyHolder.css( { top: '' } );					
+                }
+            }
+            var setHeight = function(){
+                var val = windowHeight + $(window).scrollTop(),
+					elheight = postContent.height(),
+					endpos = elheight + eltop;
+                if (endpos < val) {
+                    progressBar.css({ height: "100%" });
+                    progressText.text('100%');
+                    return;
+                }
+                var progress = ((val - eltop) / elheight) * 100;
+                progressBar.css({ height: progress + '%' });
+                progressText.text(Math.round(progress) + '%');
+            };
+            setHeight();
+            $( document ).on( 'scroll', function () {
+				if(windowWidth > 768 && postContent.height() > minPostHeight){
+					requestAnimationFrame( setHeight );
+					requestAnimationFrame( updateSticky );
+				}
+            } );
+            $(window).on('resize', function(){
+                windowWidth = $(window).width();
+                windowHeight = $(window).height();
+				postContentLeft = postContent.offset().left;
+				if(windowWidth > 768 && postContent.height() > minPostHeight){
+					$('body').removeClass('blog-short-post');
+					updateSticky();
+					setHeight();
+					stickyHolder.show();					
+				} else{
+					stickyHolder.hide();
+					$('body').addClass('blog-short-post');
+				}
+            });
+        }
+    } );
+} );
+</script>

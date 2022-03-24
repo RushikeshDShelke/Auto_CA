@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Olegnax_BrandSlider::brandslider" title="Brands" translate="title" module="Olegnax_BrandSlider" sortOrder="999" parent="Olegnax_Core::Olegnax_Core" resource="Olegnax_BrandSlider::brandslider"/>
+        <add id="Olegnax_BrandSlider::config" title="Configuration" translate="title" module="Olegnax_BrandSlider" sortOrder="20" action="adminhtml/system_config/edit/section/olegnax_brandslider" parent="Olegnax_BrandSlider::brandslider" resource="Olegnax_BrandSlider::brandslider"/>
+    </menu>
+</config>

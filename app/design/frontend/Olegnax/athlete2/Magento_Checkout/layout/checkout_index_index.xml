@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    <referenceContainer name="page.wrapper">
+        <block name="athlete2_header_checkout" class="Olegnax\Athlete2\Block\Template" template="Magento_Checkout::checkout/header.phtml" before="main.content">
+        </block>
+    </referenceContainer>
+    <move element="logo" destination="athlete2_header_checkout"/>
+    <referenceBlock name="page.main.title" remove="false"/>
+    <referenceBlock name="header_banner" remove="true" />
+    <referenceBlock name="above_footer_block" remove="true" />
+    <referenceBlock name="above_footer_banner" remove="true" />
+    <referenceContainer name="above_footer" remove="1" />
+    <referenceBlock name="athlete2_header" remove="true"/>
+    <referenceBlock name="athlete2_navigation" remove="true"/>
+    
+    </body>
+</page>

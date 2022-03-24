@@ -1,0 +1,16 @@
+ <?php if( $this->isMessageNeeded() ): ?>
+ <script type="text/javascript">
+    require( [ 'jquery' ], function ($)
+    {
+        $.ajax({
+            url: '<?php echo $this->getRefreshUrl(); ?>',
+            data: {id: <?= $this->getProductId(); ?>},
+            type: 'POST'
+        }).done(function( msg ) {
+            if( msg.preview ){
+                $(".product-add-form #product-addtocart-button, .product-add-form #qty, label[for=qty]").remove();
+            }
+        });
+    });
+</script>
+<?php endif; ?>

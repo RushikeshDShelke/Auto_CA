@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Kellton_Ewaybillno::parent" title="Ewaybillno" module="Kellton_Ewaybillno" sortOrder="100" resource="Kellton_Ewaybillno::parent"/>
+		<add id="Kellton_Ewaybillno::ewaybillno" title="Ewaybillno Ewaybillno" module="Kellton_Ewaybillno" sortOrder="20" parent="Kellton_Ewaybillno::parent" action="ewaybillno/ewaybillno" resource="Kellton_Ewaybillno::ewaybillno"/>
+
+    </menu>
+</config>

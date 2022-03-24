@@ -1,0 +1,117 @@
+<?php
+/**
+ * @author      Olegnax
+ * @package     Olegnax_HotSpotQuickview
+ * @copyright   Copyright (c) 2021 Olegnax (http://olegnax.com/). All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Olegnax\HotSpotQuickview\Block\Widget\HotSpot;
+
+/** @var HotSpot $block */
+/** @var Escaper $escaper */
+if ($block->isEnabled()):
+	$mobileBreakpoint = 768;
+	$widgetId = $block->getWidgetId();
+	$hotspotHeight = $block->getHeight();
+	$hotspotWidth = $escaper->escapeHtmlAttr($block->getWidth());
+	$inlineStyles =	$inlineStylesInner = $customStyles = $classes = [];
+	$tooltipText = $block->getTooltipText();
+	$iconClass = 'athlete2-icon-' . $block->getIcon();
+	$iconStyle = ($block->getColor() != '') ? ('style="color: ' . $block->getColor() . '"') : '';
+	if($block->getColorBackground()){
+		$inlineStylesInner[] = 'background-color: ' . $block->getColorBackground() . ';';
+	}
+	if($block->getBorderRadius() != ''){
+		$inlineStylesInner[] = 'border-radius: ' . $escaper->escapeHtmlAttr($block->getBorderRadius()) . 'px;';
+	}
+	if($hotspotHeight){
+		$inlineStyles[] = 'height: ' . $escaper->escapeHtmlAttr($hotspotHeight) . 'px;';
+	}
+	if($hotspotWidth){
+		$inlineStyles[] = 'min-width: ' . $hotspotWidth . 'px;';
+	}
+	$inlineStyles[] = 'left: ' . $escaper->escapeHtmlAttr($block->getPositionLeft()) . '%;';
+	$inlineStyles[] = 'top: ' . $escaper->escapeHtmlAttr($block->getPositionTop()) . '%;';
+	if($block->getBorderSize() > 0){
+		$inlineStylesInner[] = 'border: ' . $escaper->escapeHtmlAttr($block->getBorderSize()) . 'px solid;';
+	}
+	if( $block->getBorderColor() ){
+		$inlineStylesInner[] = 'border-color:' . $block->getBorderColor(). '; ';
+	}
+	
+	if($block->getHideMobile()){	
+		$classes[] = 'hide-on-mobile';
+	}
+	if($block->getMobileMinimized()){
+		$classes[] = 'mobile-minimized';
+	}
+	$classes[] = $escaper->escapeHtmlAttr($block->getCustomClass());
+
+	if($block->getPulseAnimation()){
+		$classes[] = '-pulse';
+		if($block->getPulseAnimationColor()){
+			$customStyles[] = '#' . $widgetId . '.ox-hotspot__item.-pulse:before{background-color:' . $block->getPulseAnimationColor() . '}';
+		}
+	}
+	$tooltip_color = $block->getTooltipColor();
+	$tooltip_color_background = $block->getTooltipColorBackground();
+	$tooltip_width = $escaper->escapeHtmlAttr($block->getTooltipWidth());
+	$mobileTop = $escaper->escapeHtmlAttr($block->getPositionTopM());
+	$mobileLeft =  $escaper->escapeHtmlAttr($block->getPositionLeftM());
+	if($mobileLeft != ''){
+		$customStyles[] = '@media (max-width: ' . $mobileBreakpoint . 'px){#' . $widgetId . '.ox-hotspot__item{left: ' . $mobileLeft . '%!important;}}';
+	}
+	if($mobileTop != ''){
+		$customStyles[] = '@media (max-width: ' . $mobileBreakpoint . 'px){#' . $widgetId . '.ox-hotspot__item{top: ' . $mobileTop . '%!important;}}';
+	}
+	if(	$hotspotWidth && (($block->getTooltipContent() && $block->getTooltipStatic() != '' ) || (!$block->getTooltipContent() && $tooltipText != ''))){
+		$customStyles[] = '#' . $widgetId . ' .ox-hotspot__tooltip{left: ' . $hotspotWidth/2 . 'px;}';
+	}
+	
+	if($tooltip_width != ''){
+		$customStyles[] = '#' . $widgetId . ' .ox-hotspot__tooltip{width: ' . $tooltip_width . 'px;}';
+	}
+	if($tooltip_color_background != ''){
+		$customStyles[] = '#' . $widgetId . ' .ox-hotspot__tooltip{background-color: ' . $tooltip_color_background . ';}';
+	}
+	if($tooltip_color != ''){
+		$customStyles[] = '#' . $widgetId . ' .ox-hotspot__tooltip{color: ' . $tooltip_color . ';}';
+	}
+	if ( !empty($customStyles) ){
+		echo '<style>' . implode(' ', $customStyles) . '</style>'; 	
+	}
+	if($block->getShadow()){
+		$classes[] = '-shadow';
+	}
+    ?>
+	<div id="<?= $widgetId ?>" 
+		 class="ox-hotspot__item ox-quickview-button <?php if ( !empty($classes) ){ echo implode(' ', $classes); } ?>" 
+		 <?php if($block->getHref()) { ?>
+		 data-quickview-url="<?= $escaper->escapeUrl($block->getHref()) ?>"
+		 <?php } ?>
+		<?php if ( !empty($inlineStyles) ){ echo 'style="' . implode(' ', $inlineStyles) . '"';	} ?> >
+		<div class="inner" <?php if ( !empty($inlineStylesInner) ){ echo 'style="' . implode(' ', $inlineStylesInner) . '"';} ?>>
+			<?php if ( $block->getIcon() ){ ?>
+			 <span class="ox-hotspot__icon <?= $iconClass ?>" <?= $iconStyle ?> >&nbsp;</span>
+			<?php } ?>
+			<?php  $label_text = $escaper->escapeHtml($block->getLabelText()); ?>
+			<?php if ( $label_text != '' ){ ?>
+			 <span class="-text hs" <?= $iconStyle ?>><?= $label_text ?></span>
+			<?php } ?>
+			 <?php if ($block->getTooltipContent()){
+				if ( $block->getTooltipStatic() != '' ){ ?>
+					<div class="ox-hotspot__tooltip <?php if($block->getTooltipBoldText()) { echo '-text'; } ?>"><?= $block->getLayout()->createBlock( 'Magento\Cms\Block\Block' )->setBlockId( $block->getTooltipStatic() )->toHtml();?></div>
+				<?php }
+				} else {
+					if($tooltipText != '') { ?> 
+						<div class="ox-hotspot__tooltip <?php if($block->getTooltipBoldText()) { echo '-text'; } ?>"><?= $tooltipText ?></div>
+					<?php }
+			 }?>
+		 </div>
+	</div>
+<?php 
+unset($classes,$customStyles, $inlineStyles, $inlineStylesInner);
+endif;

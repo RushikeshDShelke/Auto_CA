@@ -1,0 +1,110 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Checkout\Block\Onepage */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+// retrieve quote items array
+$items = $cart->getQuote()->getAllItems();
+$productItemsArray = array();
+foreach($items as $item) {
+        $product = $objectManager->get('Magento\Catalog\Model\Product')->load($item->getProductId());
+	if ($taxAttribute = $product->getCustomAttribute('tax_class_id')) {
+                $productRateId = $taxAttribute->getValue();
+                $rate = $objectManager->create('\Magento\Tax\Api\TaxCalculationInterface')->getCalculatedRate($productRateId);
+                $priceIncludingTax = $product->getPrice() + ($product->getPrice() * ($rate / 100));
+                $productPrice = round($priceIncludingTax);
+        }
+        $ids = $product->getCategoryIds();
+        $category = $objectManager->create('Magento\Catalog\Model\Category')->load($ids[0]);
+        $productItemsArray[] = array("id"=>$item->getSku(),"name"=>$item->getName(),"price"=>$productPrice,"category"=>$category->getName(),"quantity"=>$item->getQty());
+}
+$productData = json_encode($productItemsArray);
+$total  = $cart->getQuote()->getGrandTotal();
+?>
+<script type="text/javascript">
+var dataLayer = window.dataLayer || [];
+dataLayer.push({
+  "event": "checkout",
+  "ecommerce": {
+    "currencyCode": "INR",
+    "revenue": <?php echo $total ?>,
+    "add": {
+        "products": <?php echo $productData ?>
+    }
+  }
+});     
+</script>
+<div id="checkout" data-bind="scope:'checkout'" class="checkout-container">
+    <div id="checkout-loader" data-role="checkout-loader" class="loading-mask" data-mage-init='{"checkoutLoader": {}}'>
+        <div class="loader">
+            <img src="<?= $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
+                 alt="<?= $block->escapeHtmlAttr(__('Loading...')) ?>"
+                 style="position: absolute;">
+        </div>
+    </div>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "#checkout": {
+                "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+            }
+        }
+    </script>
+    <script>
+        window.checkoutConfig = <?= /* @noEscape */ $block->getSerializedCheckoutConfig() ?>;
+        // Create aliases for customer.js model from customer module
+        window.isCustomerLoggedIn = window.checkoutConfig.isCustomerLoggedIn;
+        window.customerData = window.checkoutConfig.customerData;
+    </script>
+    <script>
+        require([
+            'mage/url',
+            'Magento_Ui/js/block-loader'
+        ], function(url, blockLoader) {
+            blockLoader("<?= $block->escapeJs($block->escapeUrl($block->getViewFileUrl('images/loader-1.gif'))) ?>");
+            return url.setBaseUrl('<?= $block->escapeJs($block->escapeUrl($block->getBaseUrl())) ?>');
+        })
+    </script>
+</div>
+
+<script>
+require(['jquery', 'jquery/ui'], function($){
+  jQuery(document).ready( function() {
+	jQuery(document).on('change', "[name='country_id']", function () {
+	var cname =  jQuery('select[name="country_id"]').find(":selected").val();
+	if( cname != "IN")
+	{
+	jQuery("#shipmsg").show();
+	}
+	else
+	{
+	jQuery("#shipmsg").hide();
+	}
+	});
+  });
+});
+</script>
+<div id="shipmsg">Shipping cost for selected country is not added, our team will get in touch with you with the additional cost. You can still go ahead and place your order</div>
+<style>
+#shipmsg {
+	display:none;
+	color: red;
+	font-weight: bold;
+	width: 50%;
+	position: absolute;
+    bottom: 100px;
+	left: 38px;
+}
+
+@media only screen and (max-width: 767px)
+{
+	#shipmsg {
+	width: 100%!important;
+	position: inherit!important;
+	}
+}
+</style>

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Olegnax::top_level" module="Olegnax_Carousel" resource="Olegnax_Core::Olegnax_Core" parent="Olegnax_Core::Olegnax_Core" sortOrder="9999" title="Carousel"/>
+		<add action="olegnax_carousel/carousel/index" id="Olegnax_Carousel::olegnax_carousel_carousel" module="Olegnax_Carousel" parent="Olegnax::top_level" resource="Olegnax_Carousel::Carousel" sortOrder="9999" title="Carousel"/>
+		<add action="olegnax_carousel/slide/index" id="Olegnax_Carousel::olegnax_carousel_slide" module="Olegnax_Carousel" parent="Olegnax::top_level" resource="Olegnax_Carousel::Slide" sortOrder="9999" title="Slide"/>
+	</menu>
+</config>

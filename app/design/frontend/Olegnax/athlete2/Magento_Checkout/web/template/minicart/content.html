@@ -1,0 +1,111 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--
+<div class="block-title">
+    <strong>
+        <span class="text" translate="'My Cart'"/>
+        <span
+            class="qty empty"
+            text="getCartParam('summary_count')"
+            data-bind="css: { empty: !!getCartParam('summary_count') == false },
+                       attr: { title: $t('Items in Cart') }">
+        </span>
+    </strong>
+</div>
+-->
+<div class="block-content">
+    <if args="getCartParam('summary_count')">
+        <div class="items-total">
+            <button type="button"
+                    id="btn-minicart-close"
+                    class="ox-overlay-close-btn"
+                    data-action="close">
+                <span></span>
+            </button>
+            <span class="count" if="maxItemsToDisplay < getCartLineItemsCount()" text="maxItemsToDisplay"/>
+            <translate args="'of'" if="maxItemsToDisplay < getCartLineItemsCount()"/>
+            <span class="count" text="getCartParam('summary_count')"/>
+                <!-- ko if: (getCartLineItemsCount() === 1) -->
+                    <span translate="'Item in Cart'"/>
+                <!--/ko-->
+                <!-- ko if: (getCartLineItemsCount() > 1) -->
+                    <span translate="'Items in Cart'"/>
+                <!--/ko-->
+        </div>
+    </if>
+    <if args="getCartParam('summary_count')">
+        <strong class="subtitle" translate="'Recently added item(s)'"/>
+        <div data-action="scroll" class="minicart-items-wrapper">
+            <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartItems(), as: 'item' }">
+                <each args="$parent.getRegion($parent.getItemRenderer(item.product_type))"
+                      render="{name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}}"
+                />
+            </ol>
+        </div>
+    </if>
+
+    <ifnot args="getCartParam('summary_count')">
+        <div class="empty-cart-wrapper">
+            <div class="athlete2-icon-cart empty-cart-icon"></div>
+            <strong class="subtitle empty"
+                    data-bind="visible: closeSidebar()"
+                    translate="'You have no items in your shopping cart.'"
+            />
+            <button type="button"
+                    id="btn-minicart-close"
+                    class="button continue primary"
+                    data-action="close">
+                <span translate="'Continue Shopping.'"></span>
+            </button>
+        </div>
+        <if args="getCartParam('cart_empty_message')">
+            <p class="minicart empty text" text="getCartParam('cart_empty_message')"/>
+            <div class="actions">
+                <div class="secondary">
+                    <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                        <span translate="'View Cart'"/>
+                    </a>
+                </div>
+            </div>
+        </if>
+    </ifnot>
+    <div class="dropdown-bottom-wrapper" if="getCartParam('summary_count')">
+        <if args="getCartParam('summary_count')">
+
+            <each args="getRegion('subtotalContainer')" render=""/>
+            <each args="getRegion('extraInfo')" render=""/>
+
+            <div class="actions">
+                <div class="primary" if="getCartParam('possible_onepage_checkout')">
+                    <button
+                            id="top-cart-btn-checkout"
+                            type="button"
+                            class="action primary checkout"
+                            data-action="close"
+                            data-bind="
+                                attr: {
+                                    title: $t('Checkout')
+                                },
+                                click: closeMinicart()
+                            "
+                            translate="'Checkout'"
+                    />                   
+                </div>
+                <div class="secondary">
+                    <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                        <span translate="'View Cart'"/>
+                    </a>
+                </div>
+                <div data-bind="html: getCartParam('extra_actions')" class="extra-actions"></div>
+            </div>
+        </if>
+        <div id="minicart-widgets" class="minicart-widgets">
+            <each args="getRegion('promotion')" render=""/>
+        </div>
+    </div>
+</div>
+<each args="getRegion('sign-in-popup')" render=""/>
