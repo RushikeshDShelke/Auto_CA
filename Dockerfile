@@ -1,4 +1,4 @@
-FROM invanos/setup-n_p:1.2
+FROM invanos/b_setup:v1.1
 
 #### ADD USER ###
 ENV USER=demo 
