@@ -8,7 +8,8 @@ RUN mkdir -p /home/${USER}/public_html
 RUN mkdir -p /home/${USER}/ssl
 RUN mkdir -p /home/${USER}/logs
 
-COPY . /home/${USER}/public_html
+#COPY . /home/${USER}/public_html
+ADD code.tar.gz /home/${USER}/public_html
 
 ### Permission
 RUN chmod 755 /home/${USER}

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * CICD
+ * CICD Inv
  * Application entry point
  *
  * Example - run a particular store or website:
