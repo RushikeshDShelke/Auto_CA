@@ -7,9 +7,6 @@
     <event name="clean_cache_by_tags">
         <observer name="flush_peakhour_cdn" instance="Peakhour\Cdn\Observer\FlushObserver"/>
     </event>
-    <event name="clean_cache_after_reindex">
-        <observer name="flush_peakhour_cdn" instance="Peakhour\Cdn\Observer\FlushObserver"/>
-    </event>
     <!--<event name="adminhtml_cache_flush_system">-->
         <!--<observer name="flush_peakhour_cdn" instance="Peakhour\Cdn\Observer\FlushAllObserver"/>-->
     <!--</event>-->
